@@ -1,0 +1,4 @@
+public/
+node_modules/
+.gatsby-context.js
+.sass-cache/
