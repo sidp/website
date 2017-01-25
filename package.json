@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "sidp-portfolio",
+  "description": "Portfolio of Peter Simonsson",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Peter Simonsson <peter@simonsson.com>",
   "dependencies": {
     "front-matter": "^2.1.1",
     "gatsby": "^0.12.20",
