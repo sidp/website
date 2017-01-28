@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Container } from 'react-responsive-grid';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 
 import { rhythm } from '../../utils/typography';
 
+import utils from '../../css/utils.module';
 import styles from './header.module.css';
 
 const Header = (props) => {
@@ -36,16 +36,13 @@ const Header = (props) => {
 
 	return (
 		<header className={classNames}>
-			<Container style={{
-				maxWidth: 960,
-				padding: `${rhythm(props.slim ? 1/4 : 1)} ${rhythm(3/4)}`,
-			}}>
+			<div className={utils['container']}>
 				<h1 className={styles['title']}>
 					<Link to={prefixLink('/')}>Peter Simonsson</Link>
 				</h1>
 				{description}
 				{socialMedia}
-			</Container>
+			</div>
 		</header>
 	);
 }
