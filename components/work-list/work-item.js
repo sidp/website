@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 
-import { pageProps } from '../prop-types';
+import { workProps } from '../prop-types';
 import styles from './work-list.module.css';
 
 const WorkItem = (props) => {
@@ -21,7 +21,7 @@ const WorkItem = (props) => {
 };
 
 WorkItem.propTypes = {
-	page: pageProps.isRequired,
+	page: workProps.isRequired,
 	path: PropTypes.string.isRequired,
 };
 
