@@ -19,7 +19,7 @@ module.exports = React.createClass({
 	render () {
 		return (
 			<div>
-				<Header />
+				<Header slim={this.props.location.pathname !== '/'} />
 				<Container
 					style={{
 						maxWidth: 960,
