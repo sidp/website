@@ -1,4 +1,5 @@
 import React from 'react'
+import { rhythm } from '../../utils/typography';
 import WorkList from '../../components/work-list';
 
 const WorkTemplate = (props) => {
@@ -9,7 +10,7 @@ const WorkTemplate = (props) => {
 		<div>
 			{props.children}
 
-			<h2>More Projects</h2>
+			<h2 style={{ marginTop: rhythm(2) }}>More Projects</h2>
 			<WorkList work={work} />
 		</div>
 	);
