@@ -20,8 +20,8 @@ const options = {
 	headerColor: '#384047',
 	bodyFontFamily: ['Source Sans Pro', 'sans-serif'],
 	bodyColor: '#212b35',
-	baseFontSize: '18px',
-	baseLineHeight: 1.55,
+	baseFontSize: '20px',
+	baseLineHeight: 1.5,
 	boldWeight: '600',
 	scaleRatio: 2.0,
 	blockMarginBottom: 0.5,
@@ -56,4 +56,4 @@ if (process.env.NODE_ENV !== 'production') {
 	}
 }
 
-export default typography
+export default typography;
