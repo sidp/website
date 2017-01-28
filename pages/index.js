@@ -19,9 +19,7 @@ export default class Index extends React.Component {
 						{"name": "keywords", "content": "sample, something"},
 					]}
 				/>
-
-				<p>Lorem ipsum dolor sit amet.</p>
-
+				<h2>Projects</h2>
 				<WorkList work={work} />
 			</div>
 		)

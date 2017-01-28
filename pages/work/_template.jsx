@@ -8,6 +8,8 @@ const WorkTemplate = (props) => {
 	return (
 		<div>
 			{props.children}
+
+			<h2>More Projects</h2>
 			<WorkList work={work} />
 		</div>
 	);
