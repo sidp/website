@@ -2,6 +2,8 @@ import React from 'react';
 import { Container } from 'react-responsive-grid';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
+
+import '../css/global';
 import '../css/markdown-styles';
 
 import Header from '../components/header';
