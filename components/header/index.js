@@ -20,10 +20,11 @@ const Header = (props) => {
 		);
 		socialMedia = (
 			<p className={styles['social-media']}>
-				<a href="http://twitter.com/sidp">Twitter</a>
-				<a href="http://dribbble.com/sidp">Dribbble</a>
-				<a href="http://last.fm/user/sidp">Last.fm</a>
-				<a href="http://linkedin.com/profile/view?id=9864846">LinkedIn</a>
+				<a href="https://twitter.com/sidp">Twitter</a>
+				<a href="https://github.com/sidp">GitHub</a>
+				<a href="https://dribbble.com/sidp">Dribbble</a>
+				<a href="http://www.last.fm/user/sidp">Last.fm</a>
+				<a href="https://www.linkedin.com/in/sidp86">LinkedIn</a>
 			</p>
 		);
 	}
