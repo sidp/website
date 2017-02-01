@@ -4,6 +4,7 @@ client: MTV
 project: Match Machine
 year: 2014–2015
 path: /work/match-machine/
+weight: 3
 ---
 
 *Match Machine* was a Facebook app created to bring attention to the premiere of MTV’s dating show “Are You the One?”. Through a sophisticated algorithm, users could find out their perfect match among their Facebook friends. The results were good enough to achieve a conversion rate of 19 percent from visit to share, and Match Machine went viral.

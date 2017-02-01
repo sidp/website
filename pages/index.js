@@ -8,7 +8,8 @@ import WorkList from '../components/work-list';
 export default class Index extends React.Component {
 	render () {
 		const work = this.props.route.pages
-			.filter(page => page.path.indexOf('/work') === 0);
+			.filter(page => page.path.indexOf('/work') === 0)
+			.sort((a, b) => a.data.weight - b.data.weight);
 
 		return (
 			<div>
