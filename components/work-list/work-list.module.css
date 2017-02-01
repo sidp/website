@@ -16,6 +16,12 @@
 		line-height: inherit;
 		font-weight: inherit;
 		margin-top: 0.5rem;
+		margin-bottom: 0;
+	}
+
+	& .meta {
+		margin-top: 0;
+		font-size: 0.8em;
 	}
 }
 

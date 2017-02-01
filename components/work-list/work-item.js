@@ -6,7 +6,7 @@ import { workProps } from '../prop-types';
 import styles from './work-list.module.css';
 
 const WorkItem = (props) => {
-	const { title } = props.page;
+	const { title, year } = props.page;
 
 	return (
 		<div className={styles['work-item']}>
@@ -15,6 +15,7 @@ const WorkItem = (props) => {
 				<h3 className={styles['title']}>
 					{title}
 				</h3>
+				<p className={styles['meta']}>{year}</p>
 			</Link>
 		</div>
 	);

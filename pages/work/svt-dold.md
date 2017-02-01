@@ -2,6 +2,7 @@
 title: SVT Dold – Har vi ditt lösenord?
 client: SVT Dold
 project: Har vi ditt lösenord?
+year: "2016"
 path: /work/svt-dold/
 ---
 
