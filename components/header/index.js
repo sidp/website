@@ -37,11 +37,13 @@ const Header = (props) => {
 	return (
 		<header className={classNames}>
 			<div className={utils['container']}>
-				<h1 className={styles['title']}>
-					<Link to={prefixLink('/')}>Peter Simonsson</Link>
-				</h1>
-				{description}
-				{socialMedia}
+				<div className={utils['text-wrapper']}>
+					<h1 className={styles['title']}>
+						<Link to={prefixLink('/')}>Peter Simonsson</Link>
+					</h1>
+					{description}
+					{socialMedia}
+				</div>
 			</div>
 		</header>
 	);

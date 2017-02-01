@@ -3,3 +3,7 @@
 	padding-left: 5%;
 	padding-right: 5%;
 }
+
+.text-wrapper {
+	max-width: 34rem;
+}
