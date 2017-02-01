@@ -7,6 +7,7 @@ import utils from '../css/utils.module';
 import '../css/markdown-styles';
 
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 import { rhythm } from '../utils/typography';
 
@@ -23,11 +24,7 @@ module.exports = React.createClass({
 				<div className={utils['container']}>
 					{this.props.children}
 				</div>
-				<div style={{ backgroundColor: 'lightgray' }}>
-					<div className={utils['container']}>
-						<p>Footer</p>
-					</div>
-				</div>
+				<Footer />
 			</div>
 		)
 	},
