@@ -9,4 +9,5 @@ export const workProps = PropTypes.shape({
 	year: PropTypes.string,
 	client: PropTypes.string,
 	project: PropTypes.string,
+	link: PropTypes.string,
 });
