@@ -2,8 +2,6 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 
-import { rhythm } from '../../utils/typography';
-
 import utils from '../../css/utils.module';
 import styles from './header.module.css';
 
