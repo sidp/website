@@ -52,14 +52,14 @@ export default class ParallaxImage extends Component {
 	}
 
 	getPositionFromDepth(depth) {
-		const x = 50 - this.state.x / 140 * depth;
-		const y = 50 - this.state.y / 120 * depth;
+		const x = 50 - this.state.x / 180 * depth;
+		const y = 50 - this.state.y / 150 * depth;
 		const duration = this.state.hover ? 64 : 350;
 		const timingFunction = this.state.hover ? 'linear' : 'ease-out';
 		let scale = 1.01;
 
 		if (this.state.hover) {
-			scale += 0.03 * Math.abs(depth);
+			scale += 0.02 * Math.abs(depth);
 		}
 
 		return {
