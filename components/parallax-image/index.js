@@ -37,8 +37,8 @@ export default class ParallaxImage extends Component {
 		const rect = this.el.getBoundingClientRect();
 
 		this.setState({
-			x: ev.screenX - rect.left - (rect.width / 2),
-			y: ev.screenY - rect.top - (rect.height / 2),
+			x: ev.clientX - rect.left - (rect.width / 2),
+			y: ev.clientY - rect.top - (rect.height / 2),
 			hover: true,
 		});
 	}
@@ -56,10 +56,10 @@ export default class ParallaxImage extends Component {
 		const y = 50 - this.state.y / 120 * depth;
 		const duration = this.state.hover ? 64 : 350;
 		const timingFunction = this.state.hover ? 'linear' : 'ease-out';
-		let scale = 1.04;
+		let scale = 1.01;
 
 		if (this.state.hover) {
-			scale += 0.02 * depth;
+			scale += 0.03 * Math.abs(depth);
 		}
 
 		return {
