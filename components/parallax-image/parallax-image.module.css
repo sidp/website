@@ -11,6 +11,21 @@
 		top: 50%;
 		left: 50%;
 		width: 100%;
-		transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%) scale(1.01);
+	}
+
+	& .flattened {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		z-index: 100;
+
+		opacity: 1;
+		transition: opacity 500ms linear;
+	}
+
+	&.initialized .flattened {
+		opacity: 0;
 	}
 }

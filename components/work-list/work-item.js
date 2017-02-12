@@ -11,14 +11,16 @@ const WorkItem = (props) => {
 	const { project, client, year, slug } = props.page;
 
 	let images = [];
+	let flattened = '';
 	if (slug && thumbs[slug]) {
-		images = thumbs[slug];
+		images = thumbs[slug].images;
+		flattened = thumbs[slug].flattened;
 	}
 
 	return (
 		<div className={styles['work-item']}>
 			<Link to={prefixLink(props.path)}>
-				<ParallaxImage images={images} />
+				<ParallaxImage images={images} flattened={flattened} />
 				<h3 className={styles['title']}>
 					{project}
 				</h3>
