@@ -98,6 +98,7 @@ export default class ParallaxImage extends Component {
 
 	render() {
 		let images;
+		let flattened;
 		let frameClassName = styles['frame'];
 
 		if (this.state.initialized) {
@@ -113,12 +114,8 @@ export default class ParallaxImage extends Component {
 			frameClassName += ` ${styles.initialized}`
 		}
 
-		return (
-			<div
-				className={frameClassName}
-				ref={el => { this.el = el; }}
-			>
-				{images}
+		if (this.props.flattened) {
+			flattened = (
 				<img
 					src={this.props.flattened}
 					role="presentation"
@@ -127,6 +124,16 @@ export default class ParallaxImage extends Component {
 						willChange: !this.state.initialized ? 'opacity' : '',
 					}}
 				/>
+			);
+		}
+
+		return (
+			<div
+				className={frameClassName}
+				ref={el => { this.el = el; }}
+			>
+				{images}
+				{flattened}
 			</div>
 		);
 	}
@@ -142,5 +149,4 @@ ParallaxImage.propTypes = {
 
 ParallaxImage.defaultProps = {
 	images: [],
-	flattened: PropTypes.string,
 };
