@@ -10,4 +10,5 @@ export const workProps = PropTypes.shape({
 	client: PropTypes.string,
 	project: PropTypes.string,
 	link: PropTypes.string,
+	slug: PropTypes.string,
 });

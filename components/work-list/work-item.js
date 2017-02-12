@@ -2,16 +2,23 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 
+import ParallaxImage from '../parallax-image';
 import { workProps } from '../prop-types';
 import styles from './work-list.module.css';
+import thumbs from '../../thumbs';
 
 const WorkItem = (props) => {
-	const { project, client, year } = props.page;
+	const { project, client, year, slug } = props.page;
+
+	let images = [];
+	if (slug && thumbs[slug]) {
+		images = thumbs[slug];
+	}
 
 	return (
 		<div className={styles['work-item']}>
 			<Link to={prefixLink(props.path)}>
-				<div className={styles['image']} />
+				<ParallaxImage images={images} />
 				<h3 className={styles['title']}>
 					{project}
 				</h3>
