@@ -10,3 +10,10 @@ a {
 p > a {
 	border-bottom: 1px solid var(--link-color);
 }
+
+@media screen and (max-width: 640px) {
+
+	html {
+		font-size: 100%;
+	}
+}

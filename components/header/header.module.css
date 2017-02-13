@@ -19,15 +19,28 @@
 
 .social-media {
 
-	& a + a {
-		margin-left: 1em;
+	& a {
+		margin-right: 1em;
+		display: inline-block;
+
+		&:last-child {
+			margin-right: 0;
+		}
 	}
 }
 
-@media screen and (min-height: 30rem) {
+@media screen and (min-height: 30rem) and (min-width: 640px) {
 
 	.header {
 		padding-top: 2em;
 		padding-bottom: 2em;
+	}
+}
+
+@media screen and (max-width: 639px) {
+
+	.header {
+		padding-top: 0.65em;
+		padding-bottom: 0.65em;
 	}
 }
