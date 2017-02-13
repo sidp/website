@@ -1,2 +1,3 @@
-siteTitle="Peter Simonsson"
-linkPrefix = "/peter-simonsson"
+siteTitle = "Peter Simonsson"
+linkPrefix = ""
+googleAnalyticsId = "UA-60527-1"
