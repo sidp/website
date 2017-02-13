@@ -10,34 +10,19 @@ export default class ParallaxImage extends Component {
 		super(props);
 		this.state = {
 			initialized: false,
+			effectActive: false,
 			x: 0,
 			y: 0,
 			hover: false,
 		};
 
-		this.boundInitialize = once(this.initialize.bind(this));
-		this.boundHandleMouseMove = throttle(
-			this.handleMouseMove.bind(this), 16, { trailing: false }
+		this.initializeOnce = once(this.initialize);
+		this.handleMouseMoveThrottled = throttle(
+			this.handleMouseMove, 16, { trailing: false }
 		);
-		this.boundHandleMouseLeave = this.handleMouseLeave.bind(this);
 	}
 
-	componentDidMount() {
-		this.el.addEventListener('mousemove', this.boundInitialize);
-	}
-
-	componentWillUnmount() {
-		if (this.state.initialized) {
-			this.el.removeEventListener('mousemove', this.boundHandleMouseMove);
-			this.el.removeEventListener('mouseleave', this.boundHandleMouseLeave);
-		} else {
-			this.el.removeEventListener('mousemove', this.boundInitialize);
-		}
-	}
-
-	initialize() {
-		this.el.removeEventListener('mousemove', this.boundInitialize);
-
+	initialize = () => {
 		const images = this.props.images.map(image => image.src);
 		loadImages(images, (err) => {
 			if (err) {
@@ -47,29 +32,38 @@ export default class ParallaxImage extends Component {
 			this.setState({
 				initialized: true,
 			});
-
-			window.setInterval(() => {
-				this.el.addEventListener('mousemove', this.boundHandleMouseMove);
-				this.el.addEventListener('mouseleave', this.boundHandleMouseLeave);
-			}, 300); // fade out of flattened image takes 300ms
 		});
 	}
 
-	handleMouseMove(ev) {
+	activateEffect = () => {
+		this.setState({
+			effectActive: true,
+		})
+	}
+
+	handleMouseMove = (ev) => {
 		if (this.props.images.length === 0) {
 			return;
 		}
 
-		const rect = this.el.getBoundingClientRect();
+		if (!this.state.initialized) {
+			this.initializeOnce();
+		} else if (this.state.effectActive) {
+			const rect = this.el.getBoundingClientRect();
 
-		this.setState({
-			x: ev.clientX - rect.left - (rect.width / 2),
-			y: ev.clientY - rect.top - (rect.height / 2),
-			hover: true,
-		});
+			this.setState({
+				x: ev.clientX - rect.left - (rect.width / 2),
+				y: ev.clientY - rect.top - (rect.height / 2),
+				hover: true,
+			});
+		}
 	}
 
-	handleMouseLeave() {
+	handleMouseLeave = () => {
+		if (this.props.images.length === 0) {
+			return;
+		}
+
 		this.setState({
 			x: 0,
 			y: 0,
@@ -127,6 +121,7 @@ export default class ParallaxImage extends Component {
 					style={{
 						willChange: !this.state.initialized ? 'opacity' : '',
 					}}
+					onTransitionEnd={this.activateEffect}
 				/>
 			);
 		}
@@ -134,6 +129,8 @@ export default class ParallaxImage extends Component {
 		return (
 			<div
 				className={frameClassName}
+				onMouseMove={this.handleMouseMoveThrottled}
+				onMouseLeave={this.handleMouseLeave}
 				ref={el => { this.el = el; }}
 			>
 				{images}
