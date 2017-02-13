@@ -101,6 +101,10 @@ export default class ParallaxImage extends Component {
 		let flattened;
 		let frameClassName = styles['frame'];
 
+		if (this.props.images.length === 0) {
+			frameClassName += ` ${styles.empty}`;
+		}
+
 		if (this.state.initialized) {
 			images = this.props.images.map(image => (
 				<img
