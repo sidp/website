@@ -1,5 +1,7 @@
+@import "../../css/_variables.css";
+
 .footer {
-	background-color: #edeff3;
+	background-color: var(--accent-color);
 	padding-top: 4.4rem;
 	padding-bottom: 12rem;
 

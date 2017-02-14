@@ -1,3 +1,5 @@
+@import "../../css/_variables.css";
+
 .work-item {
 
 	& a {
@@ -8,12 +10,12 @@
 		font-size: 1.0em;
 		line-height: inherit;
 		font-weight: inherit;
-		margin-top: 0.5rem;
+		margin-top: 0.55rem;
 		margin-bottom: 0;
 	}
 
 	& .meta {
-		color: #98A0AB;
+		color: var(--grayed-text-color);
 		margin-top: 0;
 		font-size: 0.8rem;
 	}
