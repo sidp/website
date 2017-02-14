@@ -19,7 +19,7 @@ a {
 }
 
 p > a {
-	border-bottom: 1px solid var(--link-color);
+	border-bottom: 1px solid currentColor;
 }
 
 @media screen and (max-width: 640px) {
