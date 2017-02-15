@@ -29,9 +29,9 @@ p > a {
 	}
 }
 
-@media screen and (min-width: 641px) and (max-width: 1100px) {
+@media screen and (min-width: 1400px) {
 
 	html {
-		font-size: 112%;
+		font-size: 125%;
 	}
 }

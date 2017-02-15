@@ -20,7 +20,7 @@ const options = {
 	headerColor: '#221A2A',
 	bodyFontFamily: ['Source Sans Pro', 'sans-serif'],
 	bodyColor: '#221A2A',
-	baseFontSize: '20px',
+	baseFontSize: '19px',
 	baseLineHeight: 1.5,
 	boldWeight: '600',
 	scaleRatio: 2.0,
