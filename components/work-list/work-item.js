@@ -25,7 +25,7 @@ const WorkItem = (props) => {
 					{project}
 				</h3>
 				<p className={styles['meta']}>
-					{client} {year ? `(${year})` : ''}
+					{client}
 				</p>
 			</Link>
 		</div>
