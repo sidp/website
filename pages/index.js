@@ -4,12 +4,11 @@ import { prefixLink } from 'gatsby-helpers'
 import Helmet from 'react-helmet'
 import { config } from 'config'
 import ProjectList from '../components/project-list';
+import { getProjects } from '../utils/page-handling';
 
 export default class Index extends React.Component {
 	render () {
-		const projects = this.props.route.pages
-			.filter(page => page.path.indexOf('/project') === 0)
-			.sort((a, b) => a.data.weight - b.data.weight);
+		const projects = getProjects(this.props.route.pages);
 
 		return (
 			<div>
