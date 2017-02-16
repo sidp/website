@@ -17,7 +17,10 @@ const ProjectList = (props) => (
 );
 
 ProjectList.propTypes = {
-	projects: PropTypes.arrayOf(projectProps)
+	projects: PropTypes.arrayOf(PropTypes.shape({
+		path: PropTypes.string,
+		data: projectProps,
+	})),
 };
 
 ProjectList.defaultProps = {
