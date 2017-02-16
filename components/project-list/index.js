@@ -16,4 +16,12 @@ const ProjectList = (props) => (
 	</div>
 );
 
+ProjectList.propTypes = {
+	projects: PropTypes.arrayOf(projectProps)
+};
+
+ProjectList.defaultProps = {
+	projects: [],
+};
+
 export default ProjectList;
