@@ -1,22 +1,26 @@
-import React from 'react'
-import 'css/markdown-styles.css'
-import utils from 'css/utils.module';
-import Helmet from 'react-helmet'
-import { config } from 'config'
+import React, { Component, PropTypes } from 'react';
+import Project from '../components/project';
 
-module.exports = React.createClass({
-  propTypes () {
-    return {
-      router: React.PropTypes.object,
-    }
-  },
-  render () {
-    const post = this.props.route.page.data
-    return (
-      <div className={`markdown ${utils['text-wrapper']}`}>
-        <h1>{post.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: post.body }} />
-      </div>
-    )
-  },
-})
+import 'css/markdown-styles.css';
+import utils from 'css/utils.module';
+
+const MarkdownPage = (props) => {
+	const post = props.route.page.data;
+
+	if (post.path.indexOf('/work/') === 0) {
+		return (<Project post={post} />);
+	}
+
+	return (
+		<div className={`markdown ${utils['text-wrapper']}`}>
+			<h1>{post.title}</h1>
+			<div dangerouslySetInnerHTML={{ __html: post.body }} />
+		</div>
+	);
+}
+
+MarkdownPage.propTypes = {
+	router: PropTypes.object,
+};
+
+export default MarkdownPage;
