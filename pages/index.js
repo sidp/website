@@ -3,12 +3,12 @@ import { Link } from 'react-router'
 import { prefixLink } from 'gatsby-helpers'
 import Helmet from 'react-helmet'
 import { config } from 'config'
-import WorkList from '../components/work-list';
+import ProjectList from '../components/project-list';
 
 export default class Index extends React.Component {
 	render () {
 		const work = this.props.route.pages
-			.filter(page => page.path.indexOf('/work') === 0)
+			.filter(page => page.path.indexOf('/project') === 0)
 			.sort((a, b) => a.data.weight - b.data.weight);
 
 		return (
@@ -21,7 +21,7 @@ export default class Index extends React.Component {
 					]}
 				/>
 				<h2>Projects</h2>
-				<WorkList work={work} />
+				<ProjectList work={work} />
 			</div>
 		)
 	}

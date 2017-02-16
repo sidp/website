@@ -1,6 +1,6 @@
 @import "../../css/_variables.css";
 
-.work-item {
+.project-item {
 
 	& a {
 		color: inherit;
@@ -23,19 +23,19 @@
 
 @media screen and (max-width: 499px) {
 
-	.work-list .work-item + .work-item {
+	.project-list .project-item + .project-item {
 		margin-top: 6%;
 	}
 }
 
 @media screen and (min-width: 500px) {
 
-	.work-list {
+	.project-list {
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: flex-start;
 
-		& .work-item {
+		& .project-item {
 			display: flex-item;
 		}
 	}
@@ -43,11 +43,11 @@
 
 @media screen and (min-width: 500px) and (max-width: 800px) {
 
-	.work-list {
+	.project-list {
 		margin-left: -1.5%;
 		margin-right: -1.5%;
 
-		& .work-item {
+		& .project-item {
 			flex-basis: 47%;
 			margin-bottom: 4%;
 			margin-left: 1.5%;
@@ -58,11 +58,11 @@
 
 @media screen and (min-width: 801px) {
 
-	.work-list {
+	.project-list {
 		margin-left: -1.166665%;
 		margin-right: -1.166665%;
 		
-		& .work-item {
+		& .project-item {
 			flex-basis: 31%;
 			margin-bottom: 2%;
 			margin-left: 1.166665%;

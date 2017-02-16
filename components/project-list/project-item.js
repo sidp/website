@@ -3,11 +3,11 @@ import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 
 import ParallaxImage from '../parallax-image';
-import { workProps } from '../prop-types';
-import styles from './work-list.module.css';
+import { projectProps } from '../prop-types';
+import styles from './project-list.module.css';
 import thumbs from '../../thumbs';
 
-const WorkItem = (props) => {
+const ProjectItem = (props) => {
 	const { project, client, year, slug } = props.page;
 
 	let images = [];
@@ -18,7 +18,7 @@ const WorkItem = (props) => {
 	}
 
 	return (
-		<div className={styles['work-item']}>
+		<div className={styles['project-item']}>
 			<Link to={prefixLink(props.path)}>
 				<ParallaxImage images={images} flattened={flattened} />
 				<h3 className={styles['title']}>
@@ -32,9 +32,9 @@ const WorkItem = (props) => {
 	);
 };
 
-WorkItem.propTypes = {
-	page: workProps.isRequired,
+ProjectItem.propTypes = {
+	page: projectProps.isRequired,
 	path: PropTypes.string.isRequired,
 };
 
-export default WorkItem;
+export default ProjectItem;

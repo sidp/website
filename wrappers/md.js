@@ -7,7 +7,7 @@ import utils from 'css/utils.module';
 const MarkdownPage = (props) => {
 	const post = props.route.page.data;
 
-	if (post.path.indexOf('/work/') === 0) {
+	if (post.path.indexOf('/project') === 0) {
 		return (<Project post={post} />);
 	}
 

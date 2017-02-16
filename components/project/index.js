@@ -1,5 +1,5 @@
 import React from 'react';
-import { workProps } from '../prop-types';
+import { projectProps } from '../prop-types';
 import utils from '../../css/utils.module.css';
 import styles from './project.module.css';
 
@@ -13,7 +13,7 @@ const Project = props => (
 );
 
 Project.propTypes = {
-	post: workProps.isRequired,
+	post: projectProps.isRequired,
 };
 
 export default Project;

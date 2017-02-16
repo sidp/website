@@ -1,10 +1,10 @@
 import React from 'react'
 import { rhythm } from '../../utils/typography';
-import WorkList from '../../components/work-list';
+import ProjectList from '../../components/project-list';
 
-const WorkTemplate = (props) => {
-	const work = props.route.pages
-		.filter(page => page.path.indexOf('/work') === 0)
+const ProjectTemplate = (props) => {
+	const projects = props.route.pages
+		.filter(page => page.path.indexOf('/project') === 0)
 		.sort((a, b) => a.data.weight - b.data.weight);
 
 	return (
@@ -12,9 +12,9 @@ const WorkTemplate = (props) => {
 			{props.children}
 
 			<h2 style={{ marginTop: rhythm(2) }}>More Projects</h2>
-			<WorkList work={work} />
+			<ProjectList projects={projects} />
 		</div>
 	);
 };
 
-export default WorkTemplate;
+export default ProjectTemplate;
