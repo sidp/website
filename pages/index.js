@@ -7,7 +7,7 @@ import ProjectList from '../components/project-list';
 
 export default class Index extends React.Component {
 	render () {
-		const work = this.props.route.pages
+		const projects = this.props.route.pages
 			.filter(page => page.path.indexOf('/project') === 0)
 			.sort((a, b) => a.data.weight - b.data.weight);
 
@@ -21,7 +21,7 @@ export default class Index extends React.Component {
 					]}
 				/>
 				<h2>Projects</h2>
-				<ProjectList work={work} />
+				<ProjectList projects={projects} />
 			</div>
 		)
 	}
