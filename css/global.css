@@ -1,4 +1,4 @@
-@import "_variables.css";
+@import "./_variables.css";
 
 html {
 	box-shadow: inset 0 4px var(--accent-color);

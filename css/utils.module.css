@@ -1,4 +1,4 @@
-@import "_variables.css";
+@import "./_variables.css";
 
 .container {
 	max-width: 1440px;
