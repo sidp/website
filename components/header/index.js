@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
+import ExternalLink from '../external-link';
 
 import utils from '../../css/utils.module';
 import styles from './header.module.css';
@@ -18,11 +19,11 @@ const Header = (props) => {
 		);
 		socialMedia = (
 			<p className={styles['social-media']}>
-				<a href="https://twitter.com/sidp">Twitter</a>
-				<a href="https://github.com/sidp">GitHub</a>
-				<a href="https://dribbble.com/sidp">Dribbble</a>
-				<a href="http://www.last.fm/user/sidp">Last.fm</a>
-				<a href="https://www.linkedin.com/in/sidp86">LinkedIn</a>
+				<ExternalLink href="https://twitter.com/sidp">Twitter</ExternalLink>
+				<ExternalLink href="https://github.com/sidp">GitHub</ExternalLink>
+				<ExternalLink href="https://www.linkedin.com/in/sidp86">LinkedIn</ExternalLink>
+				<ExternalLink href="https://dribbble.com/sidp">Dribbble</ExternalLink>
+				<ExternalLink href="http://www.last.fm/user/sidp">Last.fm</ExternalLink>
 			</p>
 		);
 	}

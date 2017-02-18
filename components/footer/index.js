@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ExternalLink from '../external-link';
 
 import { rhythm } from '../../utils/typography';
 import utils from '../../css/utils.module';
@@ -15,7 +16,7 @@ const Footer = (props) => {
 					Contact me on <a href="mailto:peter@simonsson.com">peter@simonsson.com</a>
 				</span>
 				<span className={styles['item']}>
-					Source for this site on <a className={styles['item']} href="https://github.com/sidp/portfolio" target="_blank">GitHub</a>
+					Source for this site on <ExternalLink href="https://github.com/sidp/portfolio" className={styles['item']}>GitHub</ExternalLink>
 				</span>
 			</div>
 		</footer>

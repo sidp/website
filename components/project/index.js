@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { projectProps } from '../prop-types';
+import ExternalLink from '../external-link';
 import utils from '../../css/utils.module.css';
 import styles from './project.module.css';
 
@@ -9,14 +10,12 @@ const Project = props => {
 	if (props.page.link) {
 		link = (
 			<p>
-				<a
+				<ExternalLink
 					href={props.page.link}
 					className={styles['visit-link']}
-					target="_blank"
-					rel="noopener"
 				>
 					Check it out
-				</a>
+				</ExternalLink>
 			</p>
 		);
 	}
@@ -79,14 +78,12 @@ const MetaItem = (props) => {
 
 	if (props.link) {
 		value = (
-			<a
+			<ExternalLink
 				href={props.link}
 				className={styles['meta-value']}
-				target="_blank"
-				rel="noopener"
 			>
 				{props.value}
-			</a>
+			</ExternalLink>
 		);
 	} else {
 		value = (
