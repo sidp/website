@@ -1,3 +1,5 @@
+@import "_variables.css";
+
 .container {
 	max-width: 1440px;
 	margin-left: auto;
@@ -20,5 +22,5 @@
 }
 
 .text-wrapper {
-	max-width: 34rem;
+	max-width: var(--content-width);
 }
