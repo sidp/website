@@ -1,3 +1,57 @@
-.project {
+@import "../../css/_variables.css";
 
+.project {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.title {
+	margin-bottom: 0;
+}
+
+.description {
+	max-width: var(--content-width);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.meta {
+	color: var(--grayed-color);
+	margin: 0.3em 0 1em;
+	font-size: var(--meta-font-size);
+}
+
+.meta-item {
+	margin-right: 1em;
+}
+
+.meta-label {
+}
+
+.meta-value {
+	font-weight: 600;
+}
+
+a.meta-value {
+	color: var(--grayed-color);
+
+	&:hover {
+		color: var(--grayed-color-hover);
+	}
+
+	&:active {
+		color: var(--grayed-color-active);
+	}
+}
+
+.visit-link {
+	position: relative;
+	padding-right: 0.1em;
+
+	&::after {
+		content: "→";
+		position: absolute;
+		top: -0.1em;
+		right: -1.1em;
+	}
 }
