@@ -49,16 +49,16 @@ const Meta = (props) => {
 	const items = [];
 
 	if (props.client) {
-		items.push(<MetaItem label="Client" value={props.client} />);
+		items.push(<MetaItem key="client" label="Client" value={props.client} />);
 	}
 
 	if (props.year) {
-		items.push(<MetaItem label="Year" value={props.year} />);
+		items.push(<MetaItem key="year" label="Year" value={props.year} />);
 	}
 
 	if (props.link) {
 		const value = props.link.replace(/^https?\:\/\/(www\.)?([^\/]+).*$/, '$2');
-		items.push(<MetaItem label="Link" value={value} link={props.link} />);
+		items.push(<MetaItem key="link" label="Link" value={value} link={props.link} />);
 	}
 
 	return <div className={styles['meta']}>{items}</div>;
