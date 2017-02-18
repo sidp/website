@@ -5,6 +5,8 @@
 	--link-color--active: #00395F;
 	--accent-color: #F0E8F0;
 	--grayed-color: #968796;
+	--grayed-color-hover: color(var(--grayed-color) shade(20%));
+	--grayed-color-active: color(var(--grayed-color) shade(60%));
 
 	--content-width: 36rem;
 }

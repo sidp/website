@@ -8,7 +8,15 @@ const Footer = (props) => {
 	return (
 		<footer className={styles['footer']}>
 			<div className={utils['container']}>
-				<p>Ps</p>
+				<span className={styles['item']}>
+					Peter Simonsson
+				</span>
+				<span className={styles['item']}>
+					Contact me on <a href="mailto:peter@simonsson.com">peter@simonsson.com</a>
+				</span>
+				<span className={styles['item']}>
+					Source for this site on <a className={styles['item']} href="https://github.com/sidp/portfolio" target="_blank">GitHub</a>
+				</span>
 			</div>
 		</footer>
 	);
