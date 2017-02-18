@@ -15,7 +15,7 @@
 	}
 
 	& .meta {
-		color: var(--grayed-text-color);
+		color: var(--grayed-color);
 		margin-top: 0;
 		font-size: 0.8rem;
 	}
