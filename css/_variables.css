@@ -9,4 +9,6 @@
 	--grayed-color-active: color(var(--grayed-color) shade(60%));
 
 	--content-width: 36rem;
+
+	--meta-font-size: 0.85rem;
 }
