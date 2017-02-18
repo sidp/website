@@ -11,7 +11,7 @@ const ProjectTemplate = (props) => {
 			{props.children}
 
 			<h2 style={{ marginTop: rhythm(2) }}>More Projects</h2>
-			<ProjectList projects={projects} />
+			<ProjectList projects={projects} exclude={props.location.pathname} />
 		</div>
 	);
 };
