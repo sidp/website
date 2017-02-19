@@ -13,7 +13,7 @@ const Project = props => {
 		link = (
 			<p>
 				<ExternalLink
-					href={props.page.link}
+					to={props.page.link}
 					className={styles['visit-link']}
 				>
 					Check it out
@@ -81,7 +81,7 @@ const MetaItem = (props) => {
 	if (props.link) {
 		value = (
 			<ExternalLink
-				href={props.link}
+				to={props.link}
 				className={styles['meta-value']}
 			>
 				{props.value}

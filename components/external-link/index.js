@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 
-const ExternalLink = ({ children, ...props }) => (
-	<a {...props} target="_blank" rel="noopener">
+const ExternalLink = ({ to, children, ...props }) => (
+	<a {...props} href={to} target="_blank" rel="noopener">
 		{children}
 	</a>
 );
 
 ExternalLink.propTypes = {
-	href: PropTypes.string.isRequired,
+	to: PropTypes.string.isRequired,
 };
 
 export default ExternalLink;
