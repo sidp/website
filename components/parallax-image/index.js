@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { throttle, once } from 'lodash';
+
 import loadImages from '../../utils/load-images';
 
 import styles from './parallax-image.module.css';

@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-import ExternalLink from '../external-link';
 
 import { rhythm } from '../../utils/typography';
-import utils from '../../css/utils.module';
+import ExternalLink from '../external-link';
+
+import utils from '../../css/utils.module.css';
 import styles from './footer.module.css';
 
 const Footer = (props) => {

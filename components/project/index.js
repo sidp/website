@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
+
 import { projectProps } from '../prop-types';
 import ExternalLink from '../external-link';
+
 import utils from '../../css/utils.module.css';
 import styles from './project.module.css';
 

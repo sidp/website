@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import Project from '../components/project';
+
 import { isProject } from '../utils/page-handling';
+import Project from '../components/project';
+
 import 'css/markdown-styles.css';
-import utils from 'css/utils.module';
+import utils from 'css/utils.module.css';
 
 const MarkdownPage = (props) => {
 	const page = props.route.page.data;

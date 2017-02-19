@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
+
 import ExternalLink from '../external-link';
 
-import utils from '../../css/utils.module';
+import utils from '../../css/utils.module.css';
 import styles from './header.module.css';
 
 const Header = (props) => {

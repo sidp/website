@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 import { rhythm } from '../../utils/typography';
 import { getProjects } from '../../utils/page-handling';
 import ProjectList from '../../components/project-list';

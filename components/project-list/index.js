@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import ProjectItem from './project-item';
+
 import { projectProps } from '../prop-types';
+import ProjectItem from './project-item';
 
 import styles from './project-list.module.css';
 

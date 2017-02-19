@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 
-import '../css/global';
-import utils from '../css/utils.module';
-import '../css/markdown-styles';
-
+import { rhythm } from '../utils/typography';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-import { rhythm } from '../utils/typography';
+import '../css/global.css';
+import '../css/markdown-styles.css';
+import utils from '../css/utils.module.css';
 
 module.exports = React.createClass({
 	propTypes () {

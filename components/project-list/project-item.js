@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 
-import ParallaxImage from '../parallax-image';
 import { projectProps } from '../prop-types';
+import ParallaxImage from '../parallax-image';
+
 import styles from './project-list.module.css';
 import thumbs from '../../thumbs';
 
