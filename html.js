@@ -35,7 +35,7 @@ const Html = (props) => {
 				<script src={prefixLink(`/bundle.js?t=${BUILD_TIME}`)} />
 			</body>
 		</html>
-	)
+	);
 };
 
 Html.propTypes = {
