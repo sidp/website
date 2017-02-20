@@ -1,5 +1,3 @@
-import { config } from 'config'
-import ProjectList from '../components/project-list';
 import React from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
@@ -7,6 +5,7 @@ import Helmet from 'react-helmet';
 
 import pageTitle from '../utils/page-title';
 import { getProjects } from '../utils/page-handling';
+import ProjectList from '../components/project-list';
 
 export default class Index extends React.Component {
 	render () {
