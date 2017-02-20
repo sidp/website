@@ -26,7 +26,7 @@ const Project = props => {
 
 	return (
 		<div className={styles['project']}>
-			<Helmet title={pageTitle(page)} />
+			<Helmet title={pageTitle(props.page)} />
 			<div className={`markdown ${utils['text-wrapper']} ${styles['description']}`}>
 				<h1 className={styles['title']}>{props.page.title}</h1>
 				<Meta
