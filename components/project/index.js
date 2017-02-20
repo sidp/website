@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
+import Helmet from 'react-helmet';
 
+import pageTitle from '../../utils/page-title';
 import { projectProps } from '../prop-types';
 import ExternalLink from '../external-link';
 
@@ -24,6 +26,7 @@ const Project = props => {
 
 	return (
 		<div className={styles['project']}>
+			<Helmet title={pageTitle(page)} />
 			<div className={`markdown ${utils['text-wrapper']} ${styles['description']}`}>
 				<h1 className={styles['title']}>{props.page.title}</h1>
 				<Meta

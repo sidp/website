@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 
+import pageTitle from '../utils/page-title';
 import { isProject } from '../utils/page-handling';
 import Project from '../components/project';
 
@@ -15,6 +17,7 @@ const MarkdownPage = (props) => {
 
 	return (
 		<div className={`markdown ${utils['text-wrapper']}`}>
+			<Helmet title={pageTitle(page)} />
 			<h1>{page.title}</h1>
 			<div dangerouslySetInnerHTML={{ __html: page.body }} />
 		</div>

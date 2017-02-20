@@ -4,6 +4,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 import Helmet from 'react-helmet';
+
+import pageTitle from '../utils/page-title';
 import { getProjects } from '../utils/page-handling';
 
 export default class Index extends React.Component {
@@ -13,7 +15,7 @@ export default class Index extends React.Component {
 		return (
 			<div>
 				<Helmet
-					title={config.siteTitle}
+					title={pageTitle()}
 					meta={[
 						{"name": "description", "content": "Sample"},
 						{"name": "keywords", "content": "sample, something"},
