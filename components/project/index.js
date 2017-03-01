@@ -18,7 +18,7 @@ const Project = props => {
 					to={props.page.link}
 					className={styles['visit-link']}
 				>
-					Check it out
+					See it live
 				</ExternalLink>
 			</p>
 		);
