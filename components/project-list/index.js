@@ -5,9 +5,9 @@ import ProjectItem from './project-item';
 
 import styles from './project-list.module.css';
 
-const ProjectList = (props) => {
-	const projects = props.projects.filter(
-		project => project.path !== props.exclude
+const ProjectList = ({ projects = [], exclude = '' }) => {
+	projects = projects.filter(
+		project => project.path !== exclude
 	);
 
 	return (
@@ -29,11 +29,6 @@ ProjectList.propTypes = {
 		data: projectProps,
 	})),
 	exclude: PropTypes.string,
-};
-
-ProjectList.defaultProps = {
-	projects: [],
-	exclude: '',
 };
 
 export default ProjectList;

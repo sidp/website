@@ -8,11 +8,10 @@ import ParallaxImage from '../parallax-image';
 import styles from './project-list.module.css';
 import thumbs from '../../thumbs';
 
-const ProjectItem = (props) => {
-	const { project, client, year, slug } = props.page;
-
+const ProjectItem = ({ page: { project, client, year, slug }, path }) => {
 	let images = [];
 	let flattened = '';
+
 	if (slug && thumbs[slug]) {
 		images = thumbs[slug].images;
 		flattened = thumbs[slug].flattened;
@@ -20,7 +19,7 @@ const ProjectItem = (props) => {
 
 	return (
 		<div className={styles['project-item']}>
-			<Link to={prefixLink(props.path)}>
+			<Link to={prefixLink(path)}>
 				<ParallaxImage images={images} flattened={flattened} />
 				<h3 className={styles['title']}>
 					{project}

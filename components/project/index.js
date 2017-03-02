@@ -8,14 +8,14 @@ import ExternalLink from '../external-link';
 import utils from '../../css/utils.module.css';
 import styles from './project.module.css';
 
-const Project = props => {
+const Project = ({ page }) => {
 	let link;
 
-	if (props.page.link) {
+	if (page.link) {
 		link = (
 			<p>
 				<ExternalLink
-					to={props.page.link}
+					to={page.link}
 					className={styles['visit-link']}
 				>
 					See it live
@@ -26,15 +26,15 @@ const Project = props => {
 
 	return (
 		<div className={styles['project']}>
-			<Helmet title={pageTitle(props.page)} />
+			<Helmet title={pageTitle(page)} />
 			<div className={`markdown ${utils['text-wrapper']} ${styles['description']}`}>
-				<h1 className={styles['title']}>{props.page.title}</h1>
+				<h1 className={styles['title']}>{page.title}</h1>
 				<Meta
-					client={props.page.client}
-					year={props.page.year}
-					link={props.page.link}
+					client={page.client}
+					year={page.year}
+					link={page.link}
 				/>
-				<div dangerouslySetInnerHTML={{ __html: props.page.body }} />
+				<div dangerouslySetInnerHTML={{ __html: page.body }} />
 				{link}
 			</div>
 			(pictures)
@@ -49,20 +49,20 @@ Project.propTypes = {
 export default Project;
 
 
-const Meta = (props) => {
+const Meta = ({ client = '', year = '', link = '' }) => {
 	const items = [];
 
-	if (props.client) {
-		items.push(<MetaItem key="client" label="Client" value={props.client} />);
+	if (client) {
+		items.push(<MetaItem key="client" label="Client" value={client} />);
 	}
 
-	if (props.year) {
-		items.push(<MetaItem key="year" label="Year" value={props.year} />);
+	if (year) {
+		items.push(<MetaItem key="year" label="Year" value={year} />);
 	}
 
-	if (props.link) {
-		const value = props.link.replace(/^https?\:\/\/(www\.)?([^\/]+).*$/, '$2');
-		items.push(<MetaItem key="link" label="Link" value={value} link={props.link} />);
+	if (link) {
+		const value = link.replace(/^https?\:\/\/(www\.)?([^\/]+).*$/, '$2');
+		items.push(<MetaItem key="link" label="Link" value={value} link={link} />);
 	}
 
 	return <div className={styles['meta']}>{items}</div>;
@@ -71,38 +71,41 @@ const Meta = (props) => {
 Meta.propTypes = {
 	client: PropTypes.string,
 	year: PropTypes.string,
+	link: PropTypes.string,
 };
 
-Meta.defaultProps = {
-	client: '',
-	year: '',
-};
 
-const MetaItem = (props) => {
-	let value;
+const MetaItem = ({ label, value, link = '' }) => {
+	let valueElement;
 
-	if (props.link) {
-		value = (
+	if (link) {
+		valueElement = (
 			<ExternalLink
-				to={props.link}
+				to={link}
 				className={styles['meta-value']}
 			>
-				{props.value}
+				{value}
 			</ExternalLink>
 		);
 	} else {
-		value = (
+		valueElement = (
 			<span className={styles['meta-value']}>
-				{props.value}
+				{value}
 			</span>
 		);
 	}
 
 	return (
 		<span className={styles['meta-item']}>
-			<span className={styles['meta-label']}>{props.label}:</span>
+			<span className={styles['meta-label']}>{label}:</span>
 			{' '}
-			{value}
+			{valueElement}
 		</span>
 	);
+};
+
+MetaItem.propTypes = {
+	label: PropTypes.string.isRequired,
+	value: PropTypes.string.isRequired,
+	link: PropTypes.string,
 };
