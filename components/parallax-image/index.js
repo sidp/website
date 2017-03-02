@@ -7,15 +7,29 @@ import styles from './parallax-image.module.css';
 
 export default class ParallaxImage extends Component {
 
+	static propTypes = {
+		images: PropTypes.arrayOf(PropTypes.shape({
+			depth: PropTypes.number.isRequired,
+			src: PropTypes.string,
+		})),
+		flattened: PropTypes.string,
+	}
+
+	static defaultProps = {
+		images: [],
+		flattened: '',
+	}
+
+	state = {
+		initialized: false,
+		effectActive: false,
+		x: 0,
+		y: 0,
+		hover: false,
+	}
+
 	constructor(props) {
 		super(props);
-		this.state = {
-			initialized: false,
-			effectActive: false,
-			x: 0,
-			y: 0,
-			hover: false,
-		};
 
 		this.initializeOnce = once(this.initialize);
 		this.handleMouseMoveThrottled = throttle(
@@ -140,15 +154,3 @@ export default class ParallaxImage extends Component {
 		);
 	}
 }
-
-ParallaxImage.propTypes = {
-	images: PropTypes.arrayOf(PropTypes.shape({
-		depth: PropTypes.number.isRequired,
-		src: PropTypes.string,
-	})),
-	flattened: PropTypes.string,
-};
-
-ParallaxImage.defaultProps = {
-	images: [],
-};
