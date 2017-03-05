@@ -1,6 +1,7 @@
 @import "../../css/_variables.css";
 
 .header {
+	font-family: var(--font-family-sans-serif);
 	padding-top: 1.2em;
 	padding-bottom: 1.2em;
 
@@ -14,7 +15,8 @@
 }
 
 .title {
-	font-size: 1.1em;
+	font-size: 1.1rem;
+	margin-top: 0;
 	margin-bottom: 0.4rem;
 
 	& a {

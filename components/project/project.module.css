@@ -7,6 +7,7 @@
 .meta {
 	color: var(--grayed-color);
 	margin: 0.3em 0 1em;
+	font-family: var(--meta-font-family);
 	font-size: var(--meta-font-size);
 }
 

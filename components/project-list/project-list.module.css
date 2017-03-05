@@ -1,5 +1,9 @@
 @import "../../css/_variables.css";
 
+.project-list {
+	font-family: var(--font-family-sans-serif);
+}
+
 .project-item {
 
 	& a {

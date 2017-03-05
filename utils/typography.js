@@ -14,11 +14,17 @@ const options = {
 				'700',
 			],
 		},
+		{
+			name: 'Source Serif Pro',
+			styles: [
+				'400',
+			],
+		},
 	],
 	headerFontFamily: ['Source Sans Pro', 'sans-serif'],
 	headerWeight: '600',
 	headerColor: '#221A2A',
-	bodyFontFamily: ['Source Sans Pro', 'sans-serif'],
+	bodyFontFamily: ['Source Serif Pro', 'sans-serif'],
 	bodyColor: '#221A2A',
 	baseFontSize: '19px',
 	baseLineHeight: 1.5,
@@ -29,16 +35,19 @@ const options = {
 		new CodePlugin(),
 	],
 	overrideStyles: ({ adjustFontSizeTo, rhythm }, options, styles) => ({
-		/*'h1, h2, h3': {
+		'h1, h2, h3': {
 			marginTop: rhythm(0.75),
 			marginBottom: rhythm(0.25),
 		},
 		'h2 + h3': {
 			marginTop: rhythm(0.25),
 		},
-		'h3': {
+		'h2': {
 			fontSize: '1.1rem',
-		},*/
+		},
+		'h3': {
+			fontSize: '0.9rem',
+		},
 	})
 };
 

@@ -9,6 +9,10 @@
 	--grayed-color-hover: color(var(--grayed-color) shade(20%));
 	--grayed-color-active: color(var(--grayed-color) shade(60%));
 
+	--font-family-sans-serif: "Source Sans Pro";
+	--font-family-serif: "Source Serif Pro";
+
 	--content-width: 36rem;
 	--meta-font-size: 0.8rem;
+	--meta-font-family: var(--font-family-sans-serif);
 }
