@@ -35,7 +35,7 @@ const options = {
 		new CodePlugin(),
 	],
 	overrideStyles: ({ adjustFontSizeTo, rhythm }, options, styles) => ({
-		'h1, h2, h3': {
+		'h2, h3': {
 			marginTop: rhythm(0.75),
 			marginBottom: rhythm(0.25),
 		},
