@@ -1,18 +1,7 @@
 @import "../../css/_variables.css";
 
-.project {
-	margin-top: 2em;
-	margin-bottom: 2em;
-}
-
 .title {
 	margin-bottom: 0;
-}
-
-.description {
-	max-width: var(--content-width);
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .meta {

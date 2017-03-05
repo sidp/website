@@ -23,4 +23,5 @@
 
 .text-wrapper {
 	max-width: var(--content-width);
+	margin: 2rem auto 4.5rem;
 }

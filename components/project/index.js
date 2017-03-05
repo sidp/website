@@ -25,9 +25,9 @@ const Project = ({ page }) => {
 	}
 
 	return (
-		<div className={styles['project']}>
+		<div>
 			<Helmet title={pageTitle(page)} />
-			<div className={`markdown ${utils['text-wrapper']} ${styles['description']}`}>
+			<div className={`markdown ${utils['text-wrapper']}`}>
 				<h1 className={styles['title']}>{page.title}</h1>
 				<Meta
 					client={page.client}
