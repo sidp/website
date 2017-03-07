@@ -17,13 +17,13 @@
 		box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
 
 		&:hover {
-			color: var(--grayed-color-hover);
-			border-color: color(var(--grayed-color-hover) a(0.4));
+			color: var(--grayed-color--hover);
+			border-color: color(var(--grayed-color--hover) a(0.4));
 		}
 
 		&:active {
-			color: var(--grayed-color-active);
-			border-color: color(var(--grayed-color-active) a(0.4));
+			color: var(--grayed-color--active);
+			border-color: color(var(--grayed-color--active) a(0.4));
 		}
 	}
 }
