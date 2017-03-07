@@ -25,20 +25,22 @@ const Project = ({ page }) => {
 	}
 
 	return (
-		<div>
+		<article>
 			<Helmet title={pageTitle(page)} />
 			<div className={`markdown ${utils['text-wrapper']}`}>
-				<h1 className={styles['title']}>{page.title}</h1>
-				<Meta
-					client={page.client}
-					year={page.year}
-					link={page.link}
-				/>
+				<header>
+					<h1 className={styles['title']}>{page.title}</h1>
+					<Meta
+						client={page.client}
+						year={page.year}
+						link={page.link}
+					/>
+				</header>
 				<div dangerouslySetInnerHTML={{ __html: page.body }} />
 				{link}
 			</div>
 			(pictures)
-		</div>
+		</article>
 	);
 };
 

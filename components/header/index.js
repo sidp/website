@@ -44,7 +44,7 @@ const Header = (props) => {
 	}
 
 	return (
-		<header className={classNames}>
+		<header className={classNames} role="banner">
 			<div className={utils['container']}>
 				<div className={styles['content-wrapper']}>
 					<h1 className={styles['title']}>

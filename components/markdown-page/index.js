@@ -8,11 +8,11 @@ import '../../css/markdown-styles.css';
 import utils from '../../css/utils.module.css';
 
 const MarkdownPage = ({ page }) => (
-	<div className={`markdown ${utils['text-wrapper']}`}>
+	<article role="main" className={`markdown ${utils['text-wrapper']}`}>
 		<Helmet title={pageTitle(page)} />
 		<h1>{page.title}</h1>
 		<div dangerouslySetInnerHTML={{ __html: page.body }} />
-	</div>
+	</article>
 );
 
 MarkdownPage.propTypes = {
