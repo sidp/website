@@ -25,18 +25,15 @@
     "typography": "^0.15.0",
     "typography-plugin-code": "^0.15.0"
   },
-  "devDependencies": {
-    "gh-pages": "^0.12.0"
-  },
+  "devDependencies": {},
   "keywords": [
     "gatsby"
   ],
-  "license": "MIT",
-  "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "deploy": "gatsby build --prefix-links && gh-pages -d public",
     "develop": "gatsby develop",
+    "deploy:production": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/simonsson.com",
+    "deploy:staging": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/stage.simonsson.com",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
