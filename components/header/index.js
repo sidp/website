@@ -7,24 +7,32 @@ import ExternalLink from '../external-link';
 import utils from '../../css/utils.module.css';
 import styles from './header.module.css';
 
+const links = [
+	{ label: 'Twitter', url: 'https://twitter.com/sidp' },
+	{ label: 'GitHub', url: 'https://github.com/sidp' },
+	{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/sidp86' },
+	{ label: 'Instagram', url: 'https://www.instagram.com/sidp/' },
+	{ label: 'Last.fm', url: 'http://www.last.fm/user/sidp' },
+];
+
 const Header = (props) => {
-	let description = '';
-	let socialMedia = '';
+	let descriptionElement = '';
+	let linksElement = '';
 
 	if (!props.slim) {
-		description = (
+		descriptionElement = (
 			<p>
 				I’m a web designer and developer working in Stockholm, Sweden. This is a
 				selection of the projects I’ve worked on in the recent years.
 			</p>
 		);
-		socialMedia = (
-			<p className={styles['social-media']}>
-				<ExternalLink to="https://twitter.com/sidp">Twitter</ExternalLink>
-				<ExternalLink to="https://github.com/sidp">GitHub</ExternalLink>
-				<ExternalLink to="https://www.linkedin.com/in/sidp86">LinkedIn</ExternalLink>
-				<ExternalLink to="https://dribbble.com/sidp">Dribbble</ExternalLink>
-				<ExternalLink to="http://www.last.fm/user/sidp">Last.fm</ExternalLink>
+		linksElement = (
+			<p className={styles['links']}>
+				{links.map(({ label, url }) => (
+					<ExternalLink to={url} key={url}>
+						{label}
+					</ExternalLink>
+				))}
 			</p>
 		);
 	}
@@ -42,8 +50,8 @@ const Header = (props) => {
 					<h1 className={styles['title']}>
 						<Link to={prefixLink('/')}>Peter Simonsson</Link>
 					</h1>
-					{description}
-					{socialMedia}
+					{descriptionElement}
+					{linksElement}
 				</div>
 			</div>
 		</header>
