@@ -14,8 +14,9 @@ export const imageProps = PropTypes.shape({
 
 export const projectProps = PropTypes.shape({
 	title: PropTypes.string.isRequired,
-	year: PropTypes.string,
+	agency: PropTypes.string,
 	client: PropTypes.string,
+	year: PropTypes.string,
 	link: PropTypes.string,
 	slug: PropTypes.string,
 	images: PropTypes.arrayOf(imageProps),

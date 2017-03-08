@@ -32,6 +32,7 @@ const Project = ({ page }) => {
 				<header>
 					<h1 className={styles['title']}>{page.title}</h1>
 					<Meta
+						agency={page.agency}
 						client={page.client}
 						year={page.year}
 						link={page.link}
@@ -54,8 +55,12 @@ Project.propTypes = {
 export default Project;
 
 
-const Meta = ({ client = '', year = '', link = '' }) => {
+const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
 	const items = [];
+
+	if (agency) {
+		items.push(<MetaItem key="agency" label="Agency" value={agency} />);
+	}
 
 	if (client) {
 		items.push(<MetaItem key="client" label="Client" value={client} />);
@@ -74,6 +79,7 @@ const Meta = ({ client = '', year = '', link = '' }) => {
 };
 
 Meta.propTypes = {
+	agency: PropTypes.string,
 	client: PropTypes.string,
 	year: PropTypes.string,
 	link: PropTypes.string,
