@@ -13,10 +13,10 @@ const Project = ({ page }) => {
 
 	if (page.link) {
 		link = (
-			<p>
+			<p className={styles['links']}>
 				<ExternalLink
 					to={page.link}
-					className={styles['visit-link']}
+					className={styles['link']}
 				>
 					See it live
 				</ExternalLink>
