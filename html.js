@@ -26,6 +26,7 @@ const Html = (props) => {
 				/>
 				{head.title.toComponent()}
 				{head.meta.toComponent()}
+				<link rel="icon" type="image/x-icon" href={require('./images/favicon.ico')} />
 				<TypographyStyle typography={typography} />
 				<GoogleFont typography={typography} />
 				{css}
