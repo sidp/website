@@ -8,7 +8,7 @@ import ParallaxImage from '../parallax-image';
 import styles from './project-list.module.css';
 import thumbs from '../../images/thumbs';
 
-const ProjectItem = ({ page: { project, client, year, slug }, path }) => {
+const ProjectItem = ({ page: { title, client, year, slug }, path }) => {
 	let images = [];
 	let flattened = '';
 
@@ -22,7 +22,7 @@ const ProjectItem = ({ page: { project, client, year, slug }, path }) => {
 			<Link to={prefixLink(path)}>
 				<ParallaxImage images={images} flattened={flattened} />
 				<h3 className={styles['title']}>
-					{project}
+					{title}
 				</h3>
 				<p className={styles['meta']}>
 					{client}

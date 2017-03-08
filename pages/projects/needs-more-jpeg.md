@@ -1,7 +1,6 @@
 ---
 title: Needs More JPEG
 client: Personal
-project: Needs More JPEG
 year: 2013–
 link: http://needsmorejpeg.com/
 path: /project/needs-more-jpeg/

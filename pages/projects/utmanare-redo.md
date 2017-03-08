@@ -1,7 +1,6 @@
 ---
 title: Utmanare Redo
 client: TV4
-project: Utmanare Redo
 year: 2015–2016
 link: http://utmanareredo.se/
 path: /project/utmanare-redo/
