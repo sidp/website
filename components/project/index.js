@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import pageTitle from '../../utils/page-title';
 import { projectProps } from '../prop-types';
 import ExternalLink from '../external-link';
+import ProjectImage from '../project-image';
 
 import utils from '../../css/utils.module.css';
 import styles from './project.module.css';
@@ -39,7 +40,9 @@ const Project = ({ page }) => {
 				<div dangerouslySetInnerHTML={{ __html: page.body }} />
 				{link}
 			</div>
-			(pictures)
+			{page.images && page.images.map(image => (
+				<ProjectImage image={image} key={image.src1x} />
+			))}
 		</article>
 	);
 };
