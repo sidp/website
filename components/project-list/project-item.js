@@ -6,7 +6,7 @@ import { projectProps } from '../prop-types';
 import ParallaxImage from '../parallax-image';
 
 import styles from './project-list.module.css';
-import thumbs from '../../thumbs';
+import thumbs from '../../images/thumbs';
 
 const ProjectItem = ({ page: { project, client, year, slug }, path }) => {
 	let images = [];
