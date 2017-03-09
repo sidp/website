@@ -32,9 +32,10 @@ export default class ProjectImage extends Component {
 
 	state = {
 		loadState: LoadStates.NONE,
+		inTransition: false,
 	}
 
-	debouncedLoadIfNearViewport = throttle(
+	throttledLoadIfNearViewport = throttle(
 		this.loadIfNearViewport.bind(this),
 		40
 	)
@@ -43,7 +44,7 @@ export default class ProjectImage extends Component {
 		windowEvents.forEach(
 			event => window.addEventListener(
 				event,
-				this.debouncedLoadIfNearViewport
+				this.throttledLoadIfNearViewport
 			)
 		);
 	}
@@ -52,7 +53,7 @@ export default class ProjectImage extends Component {
 		windowEvents.forEach(
 			event => window.removeEventListener(
 				event,
-				this.debouncedLoadIfNearViewport
+				this.throttledLoadIfNearViewport
 			)
 		);
 	}
@@ -85,26 +86,35 @@ export default class ProjectImage extends Component {
 		});
 
 		// If the image hasn't loaded in a bit, show it anyway
-		this.loadTimeoutId = window.setTimeout(
-			this.imageDidLoad, 2500
-		);
+		this.loadTimeoutId = window.setTimeout(() => {
+			if (this.loadState === LoadStates.LOADING) {
+				this.handleImageLoad();
+			}
+		}, 2500);
 	}
 
-	imageDidLoad = () => {
+	handleImageLoad = () => {
 		this.setState({
 			loadState: LoadStates.LOADED,
+			inTransition: true,
 		});
 	}
 
-	imageDidError = () => {
+	handleImageError = () => {
 		this.setState({
 			loadState: LoadStates.ERROR,
 		});
 	}
 
+	handleImageTransitionEnd = () => {
+		this.setState({
+			inTransition: false,
+		});
+	}
+
 	render() {
 		const { image, width, height, className } = this.props;
-		const { loadState } = this.state;
+		const { loadState, inTransition } = this.state;
 		const src0x = require(`../../images/${image.src0x}`);
 		const src1x = require(`../../images/${image.src1x}`);
 		const src2x = require(`../../images/${image.src2x}`);
@@ -118,10 +128,12 @@ export default class ProjectImage extends Component {
 					srcSet={`${src1x} 1280w, ${src2x} 2560w`}
 					alt={image.title}
 					style={{
-						opacity: (loadState === LoadStates.LOADED) ? 1 : 0
+						opacity: (loadState === LoadStates.LOADED) ? 1 : 0,
+						willChange: (loadState === LoadStates.LOADING || inTransition) ? 'opacity': 'auto',
 					}}
-					onLoad={this.imageDidLoad}
-					onError={this.imageDidError}
+					onLoad={this.handleImageLoad}
+					onError={this.handleImageError}
+					onTransitionEnd={this.handleImageTransitionEnd}
 				/>
 			);
 		}
