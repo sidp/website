@@ -35,9 +35,15 @@ export default class ProjectImage extends Component {
 		inTransition: false,
 	}
 
+	loadIfNearViewport = () => {
+		if (isNearViewport(this.element, 50)) {
+			this.loadImage();
+		}
+	}
+
 	throttledLoadIfNearViewport = throttle(
-		this.loadIfNearViewport.bind(this),
-		40
+		this.loadIfNearViewport,
+		60
 	)
 
 	addWindowEventListeners() {
@@ -68,14 +74,8 @@ export default class ProjectImage extends Component {
 		window.clearTimeout(this.loadTimeoutId);
 	}
 
-	loadIfNearViewport() {
-		if (isNearViewport(this.element, 50)) {
-			this.loadImage();
-		}
-	}
-
 	loadImage() {
-		if (this.state.loaded) {
+		if (this.state.loadState !== LoadStates.NONE) {
 			return;
 		}
 
