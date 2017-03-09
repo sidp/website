@@ -120,7 +120,10 @@ export default class ProjectImage extends Component {
 		const src2x = require(`../../images/${image.src2x}`);
 
 		let imageElement;
-		if ([LoadStates.LOADED, LoadStates.LOADING].includes(loadState)) {
+		if (loadState !== LoadStates.NONE) {
+			const showImageElement = [LoadStates.LOADED, LoadStates.ERROR].includes(loadState);
+			const willChangeOpacity = loadState === LoadStates.LOADING || inTransition;
+
 			imageElement = (
 				<img
 					src={src1x}
@@ -128,8 +131,8 @@ export default class ProjectImage extends Component {
 					srcSet={`${src1x} 1280w, ${src2x} 2560w`}
 					alt={image.title}
 					style={{
-						opacity: (loadState === LoadStates.LOADED) ? 1 : 0,
-						willChange: (loadState === LoadStates.LOADING || inTransition) ? 'opacity': 'auto',
+						opacity: (showImageElement) ? 1 : 0,
+						willChange: (willChangeOpacity) ? 'opacity': 'auto',
 					}}
 					onLoad={this.handleImageLoad}
 					onError={this.handleImageError}
@@ -143,9 +146,18 @@ export default class ProjectImage extends Component {
 			backgroundImage: `url(${src0x})`,
 		};
 
+		let wrapperClassNames = [
+			styles['wrapper'],
+			className
+		];
+
+		if (loadState === LoadStates.ERROR) {
+			wrapperClassNames.push(styles['error']);
+		}
+
 		return (
 			<div
-				className={`${styles['wrapper']} ${className}`}
+				className={wrapperClassNames.join(' ')}
 				style={wrapperStyle}
 				ref={ el => this.element = el }
 			>
