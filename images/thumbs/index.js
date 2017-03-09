@@ -1,4 +1,17 @@
 const thumbs = {
+	dold: {
+		images: [
+			{
+				depth: 1.0,
+				src: require('./dold/ui.png'),
+			},
+			{
+				depth: -0.5,
+				src: require('./dold/background.jpg'),
+			},
+		],
+		flattened: require('./dold/flattened.jpg'),
+	},
 	'utmanare-redo': {
 		images: [
 			{
