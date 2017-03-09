@@ -12,7 +12,12 @@
 }
 
 .meta-item {
-	margin-right: 1em;
+	display: inline-block;
+	white-space: nowrap;
+
+	&:not(:last-of-type) {
+		margin-right: 1em;
+	}
 }
 
 .meta-label {
