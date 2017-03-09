@@ -57,3 +57,19 @@ a.meta-value {
 		right: -1.1em;
 	}
 }
+
+.images {
+	margin-bottom: 4.5rem;
+}
+
+.image {
+	margin: 1.2rem 0;
+	transition: margin 100ms ease-out;
+}
+
+@media screen and (min-width: 639px) {
+
+	.image {
+		margin: 1.8rem 0;
+	}
+}
