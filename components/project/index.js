@@ -41,9 +41,11 @@ const Project = ({ page }) => {
 				<div dangerouslySetInnerHTML={{ __html: page.body }} />
 				{link}
 			</div>
-			{page.images && page.images.map(image => (
-				<ProjectImage image={image} key={image.src1x} />
-			))}
+			<div className={styles['images']}>
+				{page.images && page.images.map(image => (
+					<ProjectImage image={image} className={styles['image']} key={image.src1x} />
+				))}
+			</div>
 		</article>
 	);
 };
