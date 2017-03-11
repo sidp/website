@@ -1,7 +1,7 @@
 @import "../../css/_variables.css";
 
 .project-list {
-	font-family: var(--font-family-sans-serif);
+	font-family: var(--sans-serif-font-family);
 }
 
 .project-item {

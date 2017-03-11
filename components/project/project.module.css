@@ -48,7 +48,7 @@ a.meta-value {
 .link {
 	position: relative;
 	padding-right: 0.1em;
-	font-family: var(--font-family-sans-serif);
+	font-family: var(--sans-serif-font-family);
 
 	&::after {
 		content: "→";
