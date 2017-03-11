@@ -27,6 +27,14 @@ p > a {
 	border-bottom: 1px solid currentColor;
 }
 
+h1, h2, h3 {
+	font-feature-settings: "onum" 1;
+}
+
+p {
+	font-feature-settings: "onum" 1, "pnum" 1;
+}
+
 @media screen and (max-width: 640px) {
 
 	html {

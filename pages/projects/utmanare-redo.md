@@ -22,7 +22,7 @@ Utmanare Redo (Contender Ready) was a campaign with the goal of attracting the f
 
 ## Results
 
-The website attracted over 100,000 visitors with an average session duration of three minutes. The number of streams started on TV4 Play rose by 15% due to Utmanare Redo.
+The website attracted over 100,000 visitors with an average session duration of three minutes. The number of streams started on TV4 Play rose by 15&#8198;% due to Utmanare Redo.
 
 ## My role and responsibility
 
