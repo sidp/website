@@ -1,9 +1,12 @@
+@import "../../css/_variables.css";
+
 .frame {
 	width: 100%;
 	height: 0;
 	padding-top: 75%;
 	position: relative;
 	overflow: hidden;
+	box-shadow: var(--image-box-shadow);
 
 	& .image {
 		position: absolute;

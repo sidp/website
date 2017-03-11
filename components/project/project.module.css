@@ -65,6 +65,7 @@ a.meta-value {
 .image {
 	margin: 1.2rem 0;
 	transition: margin 100ms ease-out;
+	box-shadow: var(--image-box-shadow);
 }
 
 @media screen and (min-width: 639px) {
