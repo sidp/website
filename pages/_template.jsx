@@ -12,7 +12,7 @@ import utils from '../css/utils.module.css';
 
 const Template = ({children, route, location}) => (
 	<div>
-		<Header slim={location.pathname !== '/'} />
+		<Header intro={location.pathname === '/'} />
 		<div className={utils['container']}>
 			{children}
 		</div>

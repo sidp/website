@@ -15,36 +15,28 @@ const links = [
 	{ label: 'Last.fm', url: 'http://www.last.fm/user/sidp' },
 ];
 
-const Header = (props) => {
-	let descriptionElement = '';
-	let linksElement = '';
+const Header = ({ intro = false }) => {
+	let introElement = '';
 
-	if (!props.slim) {
-		descriptionElement = (
-			<p>
-				I’m a web designer and developer working in Stockholm, Sweden. This is a
-				selection of the projects I’ve worked on in the recent years.
-			</p>
+	if (intro) {
+		introElement = (
+			<div className={styles['content-wrapper']}>
+				<p>
+					I’m a web designer and developer working in Stockholm, Sweden. This is a selection of the projects I’ve worked on in the recent years.
+				</p>
+				<p className={styles['links']}>
+					{links.map(({ label, url }) => (
+						<ExternalLink to={url} key={url}>
+							{label}
+						</ExternalLink>
+					))}
+				</p>
+			</div>
 		);
-		linksElement = (
-			<p className={styles['links']}>
-				{links.map(({ label, url }) => (
-					<ExternalLink to={url} key={url}>
-						{label}
-					</ExternalLink>
-				))}
-			</p>
-		);
-	}
-
-	let classNames = styles['header'];
-
-	if (props.slim) {
-		classNames += ` ${styles['header-slim']}`;
 	}
 
 	return (
-		<header className={classNames} role="banner">
+		<header className={styles['header']} role="banner">
 			<div className={utils['container']}>
 				<div className={styles['header-wrapper']}>
 					<h1 className={styles['title']}>
@@ -55,21 +47,14 @@ const Header = (props) => {
 						<Link to={prefixLink('/about/')}>About me</Link>
 					</nav>
 				</div>
-				<div className={styles['content-wrapper']}>
-					{descriptionElement}
-					{linksElement}
-				</div>
+				{introElement}
 			</div>
 		</header>
 	);
 }
 
 Header.propTypes = {
-	slim: PropTypes.bool,
-}
-
-Header.defaultProps = {
-	slim: false,
+	intro: PropTypes.bool,
 }
 
 export default Header;
