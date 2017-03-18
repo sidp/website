@@ -6,7 +6,7 @@ year: 2015–2016
 link: http://utmanareredo.se/
 path: /project/utmanare-redo/
 slug: utmanare-redo
-weight: 30
+weight: 40
 images:
  - title: Utmanare redo – intro
    src2x: utmanare-redo-intro-2x.jpg

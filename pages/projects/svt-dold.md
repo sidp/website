@@ -5,7 +5,7 @@ client: SVT
 year: "2016"
 path: /project/svt-dold/
 slug: dold
-weight: 10
+weight: 60
 images:
  - title: Har vi ditt lösenord? Start page
    src2x: dold-start-2x.jpg
