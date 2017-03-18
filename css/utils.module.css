@@ -5,8 +5,8 @@
 	margin-left: auto;
 	margin-right: auto;
 
-	padding-left: 1.2em;
-	padding-right: 1.2em;
+	padding-left: 1.2rem;
+	padding-right: 1.2rem;
 
 	transition-property: padding-left, padding-right;
 	transition-duration: 100ms;
@@ -16,8 +16,8 @@
 @media screen and (min-width: 639px) {
 
 	.container {
-		padding-left: 1.8em;
-		padding-right: 1.8em;
+		padding-left: 1.8rem;
+		padding-right: 1.8rem;
 	}
 }
 
