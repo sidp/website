@@ -20,4 +20,9 @@ export const projectProps = PropTypes.shape({
 	link: PropTypes.string,
 	slug: PropTypes.string,
 	images: PropTypes.arrayOf(imageProps),
+	videoEmbed: PropTypes.shape({
+		url: PropTypes.string.isRequired,
+		width: PropTypes.number.isRequired,
+		height: PropTypes.number.isRequired
+	}),
 });

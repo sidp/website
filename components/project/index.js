@@ -5,6 +5,7 @@ import pageTitle from '../../utils/page-title';
 import { projectProps } from '../prop-types';
 import ExternalLink from '../external-link';
 import ProjectImage from '../project-image';
+import VideoEmbed from '../video-embed';
 
 import utils from '../../css/utils.module.css';
 import styles from './project.module.css';
@@ -25,6 +26,16 @@ const Project = ({ page }) => {
 		);
 	}
 
+	let videoEmbed;
+	if (page.videoEmbed) {
+		videoEmbed = (
+			<VideoEmbed
+				{...page.videoEmbed}
+				className={styles['video-embed']}
+			/>
+		);
+	}
+
 	return (
 		<article>
 			<Helmet title={pageTitle(page)} />
@@ -40,6 +51,7 @@ const Project = ({ page }) => {
 				</header>
 				<div dangerouslySetInnerHTML={{ __html: page.body }} />
 				{link}
+				{videoEmbed}
 			</div>
 			<div className={styles['images']}>
 				{page.images && page.images.map(image => (
