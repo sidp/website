@@ -1,0 +1,23 @@
+.portrait {
+	max-width: 100%;
+	width: 256px;
+	height: auto;
+}
+
+@media (min-width: 500px) {
+	.about {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.summary {
+		width: 256px;
+	}
+
+	.content {
+		margin-top: 0;
+		margin-left: 4%;
+		margin-right: 0;
+	}
+}

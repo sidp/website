@@ -1,4 +1,7 @@
-export const isProject = page => 
+export const isAbout = page =>
+	(page.path === '/about/');
+
+export const isProject = page =>
 	(page.path.indexOf('/project') === 0);
 
 export const sortProjects = (a, b) =>
