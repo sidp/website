@@ -12,6 +12,23 @@ const thumbs = {
 		],
 		flattened: require('./dold/flattened.jpg'),
 	},
+	'svenska-lopare': {
+		images: [
+			{
+				depth: 0.7,
+				src: require('./svenska-lopare/text.png'),
+			},
+			{
+				depth: 0,
+				src: require('./svenska-lopare/ui.png'),
+			},
+			{
+				depth: -0.5,
+				src: require('./svenska-lopare/picture.jpg'),
+			},
+		],
+		flattened: require('./svenska-lopare/flattened.jpg'),
+	},
 	'utmanare-redo': {
 		images: [
 			{
