@@ -1,7 +1,13 @@
+@import "../../css/_variables";
+
 .portrait {
 	max-width: 100%;
-	width: 256px;
+	width: 600px;
 	height: auto;
+}
+
+.content {
+	margin-top: 0;
 }
 
 @media (min-width: 500px) {
@@ -12,12 +18,18 @@
 	}
 
 	.summary {
-		width: 256px;
+		width: 500px;
 	}
 
 	.content {
-		margin-top: 0;
-		margin-left: 4%;
+		margin-left: 1.2rem;
 		margin-right: 0;
+		transition: margin-left 100ms ease-out;
+	}
+}
+
+@media (min-width: 639px) {
+	.content {
+		margin-left: 1.8rem;
 	}
 }
