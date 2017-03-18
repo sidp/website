@@ -63,6 +63,27 @@ const thumbs = {
 		],
 		flattened: require('./needs-more-jpeg/flattened.jpg'),
 	},
+	'match-machine': {
+		images: [
+			{
+				depth: 1.4,
+				src: require('./match-machine/text.png'),
+			},
+			{
+				depth: 1.0,
+				src: require('./match-machine/heart.png'),
+			},
+			{
+				depth: 0.4,
+				src: require('./match-machine/banner.png'),
+			},
+			{
+				depth: -1.0,
+				src: require('./match-machine/background.jpg'),
+			},
+		],
+		flattened: require('./match-machine/flattened.jpg'),
+	},
 };
 
 export default thumbs;
