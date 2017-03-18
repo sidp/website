@@ -46,10 +46,16 @@ const Header = (props) => {
 	return (
 		<header className={classNames} role="banner">
 			<div className={utils['container']}>
-				<div className={styles['content-wrapper']}>
+				<div className={styles['header-wrapper']}>
 					<h1 className={styles['title']}>
 						<Link to={prefixLink('/')}>Peter Simonsson</Link>
 					</h1>
+					<nav className={styles['navigation']}>
+						<Link to={prefixLink('/')}>Projects</Link>
+						<Link to={prefixLink('/about/')}>About me</Link>
+					</nav>
+				</div>
+				<div className={styles['content-wrapper']}>
 					{descriptionElement}
 					{linksElement}
 				</div>
