@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { throttle, once } from 'lodash';
+import throttle from 'lodash/throttle';
+import once from 'lodash/once';
 
 import loadImages from '../../utils/load-images';
 
