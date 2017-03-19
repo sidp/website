@@ -75,15 +75,11 @@
 	}
 }
 
-.links {
+.links a {
+	display: inline-block;
 
-	& a {
+	&:not(:last-child) {
 		margin-right: 1em;
-		display: inline-block;
-
-		&:last-child {
-			margin-right: 0;
-		}
 	}
 }
 
@@ -92,5 +88,31 @@
 	.header {
 		padding-top: 0.65em;
 		padding-bottom: 0.65em;
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 4px;
+			right: 0;
+			bottom: 0;
+			z-index: 2;
+			width: 1.2rem;
+			background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 95%);
+		}
+	}
+
+	.links {
+		white-space: nowrap;
+		overflow-x: auto;
+		overflow-y: hidden;
+		margin-right: -1.2rem;
+		margin-left: -1.2rem;
+		padding-left: 1.2rem;
+		padding-right: 1.2rem;
+		padding-bottom: 0.8rem;
+		margin-bottom: -0.8rem;
+		position: relative;
+		-webkit-overflow-scrolling: touch;
 	}
 }
