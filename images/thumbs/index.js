@@ -1,5 +1,5 @@
 const thumbs = {
-	dold: {
+	'dold': {
 		images: [
 			{
 				depth: 1.0,
