@@ -121,7 +121,9 @@ export default class ProjectImage extends Component {
 
 		let imageElement;
 		if (loadState !== LoadStates.NONE) {
-			const showImageElement = [LoadStates.LOADED, LoadStates.ERROR].includes(loadState);
+			const showImageElement = [LoadStates.LOADED, LoadStates.ERROR].indexOf(
+				loadState
+			) !== -1;
 			const willChangeOpacity = loadState === LoadStates.LOADING || inTransition;
 
 			imageElement = (
