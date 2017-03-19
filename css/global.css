@@ -12,19 +12,22 @@ body {
 a {
 	text-decoration: none;
 	color: var(--link-color);
-	transition: color 100ms linear;
+	transition: color 100ms linear, box-shadow 100ms linear;
 
 	&:hover {
 		color: var(--link-color--hover);
+		box-shadow: 0 1px 0 var(--link-color--hover);
 	}
 
 	&:active {
 		color: var(--link-color--active);
+		box-shadow: 0 1px 0;
 	}
 }
 
 p > a {
-	border-bottom: 1px solid currentColor;
+	color: var(--text-color);
+	box-shadow: 0 1px 0 var(--link-color);
 }
 
 h1, h2, h3 {

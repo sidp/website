@@ -9,6 +9,7 @@
 	& a {
 		color: inherit;
 		display: block;
+		box-shadow: none;
 	}
 
 	& .title {

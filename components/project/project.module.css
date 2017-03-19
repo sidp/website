@@ -29,6 +29,7 @@
 
 a.meta-value {
 	color: var(--grayed-color);
+	box-shadow: 0 1px 0;
 
 	&:hover {
 		color: var(--grayed-color--hover);
@@ -46,6 +47,7 @@ a.meta-value {
 }
 
 .link {
+	color: var(--link-color);
 	position: relative;
 	padding-right: 0.1em;
 	font-family: var(--sans-serif-font-family);

@@ -31,7 +31,7 @@
 
 	& a {
 		color: var(--link-color);
-		border-bottom: 1px solid currentColor;
+		box-shadow: 0 1px 0;
 
 		&:hover {
 			color: var(--link-color--hover);
@@ -44,7 +44,6 @@
 
 	& a.selected {
 		color: var(--text-color);
-		border-bottom: 0;
 		cursor: default;
 	}
 
@@ -72,11 +71,20 @@
 	& a {
 		color: inherit;
 		text-decoration: none;
+		box-shadow: none;
 	}
 }
 
 .links a {
-	display: inline-block;
+	color: var(--link-color);
+
+	&:hover {
+		color: var(--link-color--hover);
+	}
+
+	&:active {
+		color: var(--link-color--active);
+	}
 
 	&:not(:last-child) {
 		margin-right: 1em;
