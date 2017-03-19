@@ -1,3 +1,11 @@
 siteTitle = "Peter Simonsson"
 linkPrefix = ""
 googleAnalyticsId = "UA-60527-1"
+
+[[navigation]]
+label = "Projects"
+path = "/"
+
+[[navigation]]
+label = "About me"
+path = "/about/"

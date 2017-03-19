@@ -30,7 +30,22 @@
 .navigation {
 
 	& a {
+		color: var(--link-color);
+		border-bottom: 1px solid currentColor;
+
+		&:hover {
+			color: var(--link-color--hover);
+		}
+
+		&:active {
+			color: var(--link-color--active);
+		}
+	}
+
+	& a.selected {
 		color: var(--text-color);
+		border-bottom: 0;
+		cursor: default;
 	}
 
 	& a:not(:last-of-type) {

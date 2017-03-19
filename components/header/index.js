@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 
+import { config } from '../../config.toml';
 import ExternalLink from '../external-link';
-
 import utils from '../../css/utils.module.css';
 import styles from './header.module.css';
 
@@ -15,7 +15,9 @@ const links = [
 	{ label: 'Last.fm', url: 'http://www.last.fm/user/sidp' },
 ];
 
-const Header = ({ intro = false }) => {
+const navigation = config.navigation || [];
+
+const Header = ({ intro = false, currentPath = '' }) => {
 	let introElement = '';
 
 	if (intro) {
@@ -43,8 +45,15 @@ const Header = ({ intro = false }) => {
 						<Link to={prefixLink('/')}>Peter Simonsson</Link>
 					</h1>
 					<nav className={styles['navigation']}>
-						<Link to={prefixLink('/')}>Projects</Link>
-						<Link to={prefixLink('/about/')}>About me</Link>
+						{navigation.map(item => (
+							<NavItem
+								path={item.path}
+								selected={item.path === currentPath}
+								key={item.path}
+							>
+								{item.label}
+							</NavItem>
+						))}
 					</nav>
 				</div>
 				{introElement}
@@ -55,6 +64,20 @@ const Header = ({ intro = false }) => {
 
 Header.propTypes = {
 	intro: PropTypes.bool,
+	currentPath: PropTypes.string,
 }
 
 export default Header;
+
+const NavItem = ({ path, selected, children }) => {
+	const className = selected ? styles['selected'] : '';
+
+	return (
+		<Link
+			to={prefixLink(path)}
+			className={className}
+		>
+			{children}
+		</Link>
+	);
+};
