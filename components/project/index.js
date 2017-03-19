@@ -36,9 +36,20 @@ const Project = ({ page }) => {
 		);
 	}
 
+	const helmetMeta = [];
+	if (page.description) {
+		helmetMeta.push({
+			"name": "description",
+			"content": page.description,
+		});
+	}
+
 	return (
 		<article>
-			<Helmet title={pageTitle(page)} />
+			<Helmet
+				title={pageTitle(page)}
+				meta={helmetMeta}
+			/>
 			<div className={`markdown ${utils['text-wrapper']}`}>
 				<header>
 					<h1 className={styles['title']}>{page.title}</h1>

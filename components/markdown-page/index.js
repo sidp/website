@@ -16,8 +16,20 @@ const MarkdownPage = ({ page, className = '', htmlElement = 'article', role = ''
 		props.role = role;
 	}
 
+	const meta = [];
+	if (page.description) {
+		meta.push({
+			"name": "description",
+			"content": page.description,
+		});
+	}
+
 	const children = [
-		<Helmet title={pageTitle(page)} key="helmet" />,
+		<Helmet
+			title={pageTitle(page)}
+			meta={meta}
+			key="helmet"
+		/>,
 		<h1 key="title">{page.title}</h1>,
 		<div dangerouslySetInnerHTML={{ __html: page.body }} key="body" />,
 	];

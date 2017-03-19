@@ -3,6 +3,7 @@ import { PropTypes } from 'react';
 export const pageProps = PropTypes.shape({
 	title: PropTypes.string.isRequired,
 	body: PropTypes.string.isRequired,
+	description: PropTypes.string,
 });
 
 export const imageProps = PropTypes.shape({
@@ -17,6 +18,7 @@ export const projectProps = PropTypes.shape({
 	agency: PropTypes.string,
 	client: PropTypes.string,
 	year: PropTypes.string,
+	description: PropTypes.string,
 	link: PropTypes.string,
 	slug: PropTypes.string,
 	images: PropTypes.arrayOf(imageProps),
