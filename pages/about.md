@@ -1,5 +1,6 @@
 ---
-title: Hi!
+title: About me
+heading: Hi!
 path: /about/
 ---
 

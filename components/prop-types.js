@@ -3,6 +3,7 @@ import { PropTypes } from 'react';
 export const pageProps = PropTypes.shape({
 	title: PropTypes.string.isRequired,
 	body: PropTypes.string.isRequired,
+	heading: PropTypes.string,
 	description: PropTypes.string,
 });
 

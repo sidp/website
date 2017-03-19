@@ -30,7 +30,7 @@ const MarkdownPage = ({ page, className = '', htmlElement = 'article', role = ''
 			meta={meta}
 			key="helmet"
 		/>,
-		<h1 key="title">{page.title}</h1>,
+		<h1 key="title">{page.heading || page.title}</h1>,
 		<div dangerouslySetInnerHTML={{ __html: page.body }} key="body" />,
 	];
 
