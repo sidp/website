@@ -29,9 +29,14 @@
 }
 
 .item {
-	margin-right: 1em;
+	display: inline-block;
+	white-space: nowrap;
+	margin: 0 0.5em;
+}
 
-	&:last-child {
-		margin-right: 0;
+@media screen and (max-width: 499px) {
+
+	.footer {
+		padding-top: 3.4rem;
 	}
 }

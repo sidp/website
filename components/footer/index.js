@@ -16,7 +16,7 @@ const Footer = () => (
 				Contact me on <a href="mailto:peter@simonsson.com">peter@simonsson.com</a>
 			</span>
 			<span className={styles['item']}>
-				Source for this site on <ExternalLink to="https://github.com/sidp/portfolio" className={styles['item']}>GitHub</ExternalLink>
+				This site on <ExternalLink to="https://github.com/sidp/portfolio">GitHub</ExternalLink>
 			</span>
 		</div>
 	</footer>
