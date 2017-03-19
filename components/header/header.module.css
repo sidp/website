@@ -13,6 +13,9 @@
 .header-wrapper {
 	margin-top: 0.3rem;
 	margin-bottom: 0.4rem;
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
 
 	& .title,
 	& .navigation {
@@ -20,19 +23,7 @@
 	}
 
 	& .title {
-		float: left;
 		margin-bottom: 0;
-	}
-
-	& .navigation {
-		float: right;
-		padding-top: 0.05em;
-	}
-
-	&::after {
-		content: "";
-		display: table;
-		clear: both;
 	}
 }
 
