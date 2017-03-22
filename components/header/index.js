@@ -24,7 +24,7 @@ const Header = ({ intro = false, currentPath = '' }) => {
 		introElement = (
 			<div className={styles['content-wrapper']}>
 				<p>
-					I’m a web designer and developer working in Stockholm, Sweden. This is a selection of the projects I’ve worked on in the recent years.
+					Hi! I'm the Technical Director of the PR agency <ExternalLink to="http://wenderfalck.com/">Wenderfalck</ExternalLink> in Stockholm, Sweden. This is a selection of the most popular projects I've worked on. Have a look!
 				</p>
 				<p className={styles['links']}>
 					{links.map(({ label, url }) => (
