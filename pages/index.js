@@ -16,8 +16,10 @@ export default class Index extends React.Component {
 				<Helmet
 					title={pageTitle()}
 					meta={[
-						{"name": "description", "content": "Sample"},
-						{"name": "keywords", "content": "sample, something"},
+						{
+							"name": "description",
+							"content": "I'm the Technical Director of Wenderfalck in Stockholm, Sweden. This is a selection of the most popular projects I've worked on."
+						},
 					]}
 				/>
 				<h2>Projects</h2>
