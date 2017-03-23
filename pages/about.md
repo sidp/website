@@ -14,7 +14,7 @@ I have more than ten years of experience in web development, design and consulti
 
 People say that I do have an eye for good typography and layout, probably inherited from my family. Despite my focus on digital production, I still think it is fun to work with print every now and then.
 
-After six years at my first job with communication agency [Stormen kommunikation](http://stormen.nu/), I joined Wenderfalck in March 2013.
+After six years at my first job with communication agency [Stormen kommunikation](http://stormen.nu/), I joined Wenderfalck in March 2012.
 
 
 ## Clients
