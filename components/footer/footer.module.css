@@ -4,8 +4,8 @@
 	color: var(--grayed-color);
 	background-color: var(--accent-color);
 	text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
-	padding-top: 4.4rem;
-	padding-bottom: 12rem;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
 
 	text-align: center;
 	font-size: var(--meta-font-size);
