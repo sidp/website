@@ -7,5 +7,5 @@ label = "Projects"
 path = "/"
 
 [[navigation]]
-label = "About me"
+label = "About"
 path = "/about/"
