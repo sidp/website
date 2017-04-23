@@ -1,5 +1,9 @@
 @import "../../css/_variables.css";
 
+.project {
+	animation: fadeIn 400ms ease-out both;
+}
+
 .title {
 	margin-bottom: 0;
 }

@@ -45,7 +45,7 @@ const Project = ({ page }) => {
 	}
 
 	return (
-		<article>
+		<article className={styles['project']}>
 			<Helmet
 				title={pageTitle(page)}
 				meta={helmetMeta}

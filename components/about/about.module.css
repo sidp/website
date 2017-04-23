@@ -4,10 +4,12 @@
 	max-width: 100%;
 	width: 600px;
 	height: auto;
+	animation: fadeIn 400ms ease-out both;
 }
 
 .content {
 	margin-top: 0;
+	animation: fadeIn 400ms 100ms ease-out both;
 }
 
 @media (min-width: 500px) {

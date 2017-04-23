@@ -5,9 +5,11 @@
 	padding-top: 1.2em;
 	padding-bottom: 1.2em;
 
-	transition-property: padding-top, padding-bottom;
+	transition-property: padding-top, padding-bottom, opacity;
 	transition-duration: 100ms;
 	transition-timing-function: ease-out;
+
+	animation: fadeIn 400ms ease-out both;
 }
 
 .header-wrapper {
