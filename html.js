@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import { prefixLink } from 'gatsby-helpers';
@@ -40,7 +41,7 @@ const Html = (props) => {
 };
 
 Html.propTypes = {
-	body: React.PropTypes.string,
+	body: PropTypes.string,
 };
 
 export default Html;

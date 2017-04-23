@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { isAbout, isProject } from '../utils/page-handling';
 import MarkdownPage from '../components/markdown-page';

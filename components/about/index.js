@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import { pageProps } from '../prop-types';
 import MarkdownPage from '../markdown-page';

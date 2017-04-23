@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import { rhythm } from '../../utils/typography';
 import ExternalLink from '../external-link';
