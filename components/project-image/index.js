@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import isNearViewport from '../../utils/is-near-viewport';
@@ -15,7 +15,7 @@ const LoadStates = {
 // The relevant window events for checking if the image should load
 const windowEvents = ['load', 'scroll', 'resize'];
 
-export default class ProjectImage extends Component {
+export default class ProjectImage extends PureComponent {
 
 	static propTypes = {
 		image: imageProps.isRequired,
