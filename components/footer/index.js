@@ -13,10 +13,16 @@ const Footer = () => (
 				Peter Simonsson
 			</span>
 			<span className={styles['item']}>
-				Contact me on <a href="mailto:peter@simonsson.com">peter@simonsson.com</a>
+				Contact me on
+				{' '}
+				<a href="mailto:peter@simonsson.com">peter@simonsson.com</a>
 			</span>
 			<span className={styles['item']}>
-				This site on <ExternalLink to="https://github.com/sidp/portfolio">GitHub</ExternalLink>
+				This site on
+				{' '}
+				<ExternalLink to="https://github.com/sidp/portfolio">
+					GitHub
+				</ExternalLink>
 			</span>
 		</div>
 	</footer>

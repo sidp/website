@@ -61,12 +61,12 @@ const Header = ({ intro = false, currentPath = '' }) => {
 			</div>
 		</header>
 	);
-}
+};
 
 Header.propTypes = {
 	intro: PropTypes.bool,
 	currentPath: PropTypes.string,
-}
+};
 
 export default Header;
 
@@ -74,10 +74,7 @@ const NavItem = ({ path, selected, children }) => {
 	const className = selected ? styles['selected'] : '';
 
 	return (
-		<Link
-			to={prefixLink(path)}
-			className={className}
-		>
+		<Link to={prefixLink(path)} className={className}>
 			{children}
 		</Link>
 	);

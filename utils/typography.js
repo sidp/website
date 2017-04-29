@@ -1,24 +1,18 @@
-import ReactDOM from 'react-dom/server'
-import React from 'react'
-import Typography from 'typography'
-import { GoogleFont } from 'react-typography'
-import CodePlugin from 'typography-plugin-code'
+import ReactDOM from 'react-dom/server';
+import React from 'react';
+import Typography from 'typography';
+import { GoogleFont } from 'react-typography';
+import CodePlugin from 'typography-plugin-code';
 
 const options = {
 	googleFonts: [
 		{
 			name: 'Source Sans Pro',
-			styles: [
-				'400',
-				'600',
-				'700',
-			],
+			styles: ['400', '600', '700'],
 		},
 		{
 			name: 'Source Serif Pro',
-			styles: [
-				'400',
-			],
+			styles: ['400'],
 		},
 	],
 	headerFontFamily: ['Source Sans Pro', 'sans-serif'],
@@ -31,9 +25,7 @@ const options = {
 	boldWeight: '600',
 	scaleRatio: 2.0,
 	blockMarginBottom: 0.5,
-	plugins: [
-		new CodePlugin(),
-	],
+	plugins: [new CodePlugin()],
 	overrideStyles: ({ adjustFontSizeTo, rhythm }, options, styles) => ({
 		'h2, h3': {
 			marginTop: rhythm(0.75),
@@ -42,13 +34,13 @@ const options = {
 		'h2 + h3': {
 			marginTop: rhythm(0.25),
 		},
-		'h2': {
+		h2: {
 			fontSize: '1.1rem',
 		},
-		'h3': {
+		h3: {
 			fontSize: '0.9rem',
 		},
-	})
+	}),
 };
 
 const typography = new Typography(options);

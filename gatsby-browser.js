@@ -6,5 +6,5 @@ if (process.env.NODE_ENV === 'production') {
 
 	exports.onRouteUpdate = (state, page, pages) => {
 		ReactGA.pageview(state.pathname);
-	}
+	};
 }

@@ -17,10 +17,7 @@ const Project = ({ page }) => {
 	if (page.link) {
 		link = (
 			<p className={styles['links']}>
-				<ExternalLink
-					to={page.link}
-					className={styles['link']}
-				>
+				<ExternalLink to={page.link} className={styles['link']}>
 					See it live
 				</ExternalLink>
 			</p>
@@ -30,27 +27,21 @@ const Project = ({ page }) => {
 	let videoEmbed;
 	if (page.videoEmbed) {
 		videoEmbed = (
-			<VideoEmbed
-				{...page.videoEmbed}
-				className={styles['video-embed']}
-			/>
+			<VideoEmbed {...page.videoEmbed} className={styles['video-embed']} />
 		);
 	}
 
 	const helmetMeta = [];
 	if (page.description) {
 		helmetMeta.push({
-			"name": "description",
-			"content": page.description,
+			name: 'description',
+			content: page.description,
 		});
 	}
 
 	return (
 		<article className={styles['project']}>
-			<Helmet
-				title={pageTitle(page)}
-				meta={helmetMeta}
-			/>
+			<Helmet title={pageTitle(page)} meta={helmetMeta} />
 			<div className={`markdown ${utils['text-wrapper']}`}>
 				<header>
 					<h1 className={styles['title']}>{page.title}</h1>
@@ -66,9 +57,14 @@ const Project = ({ page }) => {
 				{videoEmbed}
 			</div>
 			<div className={styles['images']}>
-				{page.images && page.images.map(image => (
-					<ProjectImage image={image} className={styles['image']} key={image.src1x} />
-				))}
+				{page.images &&
+					page.images.map(image => (
+						<ProjectImage
+							image={image}
+							className={styles['image']}
+							key={image.src1x}
+						/>
+					))}
 			</div>
 		</article>
 	);
@@ -79,7 +75,6 @@ Project.propTypes = {
 };
 
 export default Project;
-
 
 const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
 	const items = [];
@@ -111,16 +106,12 @@ Meta.propTypes = {
 	link: PropTypes.string,
 };
 
-
 const MetaItem = ({ label, value, link = '' }) => {
 	let valueElement;
 
 	if (link) {
 		valueElement = (
-			<ExternalLink
-				to={link}
-				className={styles['meta-value']}
-			>
+			<ExternalLink to={link} className={styles['meta-value']}>
 				{value}
 			</ExternalLink>
 		);

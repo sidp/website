@@ -1,5 +1,9 @@
 {
     "search.exclude": {
         "public/*": true
-    }
+    },
+    "editor.formatOnSave": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
+    "prettier.useTabs": true
 }

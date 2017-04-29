@@ -4,7 +4,7 @@ const hljs = require('highlight.js');
 const objectAssign = require('object-assign');
 
 const highlight = (str, lang) => {
-	if ((lang !== null) && hljs.getLanguage(lang)) {
+	if (lang !== null && hljs.getLanguage(lang)) {
 		try {
 			return hljs.highlight(lang, str).value;
 		} catch (_error) {
@@ -34,11 +34,13 @@ const md = markdownIt({
 	.use(require('markdown-it-abbr'))
 	.use(require('markdown-it-attrs'));
 
-const defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
-	return self.renderToken(tokens, idx, options);
-};
+const defaultRender =
+	md.renderer.rules.link_open ||
+	function(tokens, idx, options, env, self) {
+		return self.renderToken(tokens, idx, options);
+	};
 
-md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
 	const aHrefIndex = tokens[idx].attrIndex('href');
 	const aHrefValue = tokens[idx].attrs[aHrefIndex][1];
 
@@ -61,7 +63,7 @@ md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
 	return defaultRender(tokens, idx, options, env, self);
 };
 
-module.exports = function (content) {
+module.exports = function(content) {
 	this.cacheable();
 	const meta = frontMatter(content);
 	const body = md.render(meta.body);

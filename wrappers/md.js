@@ -10,15 +10,15 @@ const Markdown = ({ route }) => {
 	const page = route.page.data;
 
 	if (isAbout(page)) {
-		return (<About page={page} />);
+		return <About page={page} />;
 	}
 
 	if (isProject(page)) {
-		return (<Project page={page} />);
+		return <Project page={page} />;
 	}
 
-	return (<MarkdownPage page={page} />);
-}
+	return <MarkdownPage page={page} />;
+};
 
 Markdown.propTypes = {
 	route: PropTypes.object,

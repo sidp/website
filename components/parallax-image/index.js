@@ -8,19 +8,20 @@ import loadImages from '../../utils/load-images';
 import styles from './parallax-image.module.css';
 
 export default class ParallaxImage extends Component {
-
 	static propTypes = {
-		images: PropTypes.arrayOf(PropTypes.shape({
-			depth: PropTypes.number.isRequired,
-			src: PropTypes.string,
-		})),
+		images: PropTypes.arrayOf(
+			PropTypes.shape({
+				depth: PropTypes.number.isRequired,
+				src: PropTypes.string,
+			})
+		),
 		flattened: PropTypes.string,
-	}
+	};
 
 	static defaultProps = {
 		images: [],
 		flattened: '',
-	}
+	};
 
 	state = {
 		initialized: false,
@@ -28,20 +29,20 @@ export default class ParallaxImage extends Component {
 		x: 0,
 		y: 0,
 		hover: false,
-	}
+	};
 
 	constructor(props) {
 		super(props);
 
 		this.initializeOnce = once(this.initialize);
-		this.handleMouseMoveThrottled = throttle(
-			this.handleMouseMove, 16, { trailing: false }
-		);
+		this.handleMouseMoveThrottled = throttle(this.handleMouseMove, 16, {
+			trailing: false,
+		});
 	}
 
 	initialize = () => {
 		const images = this.props.images.map(image => image.src);
-		loadImages(images, (err) => {
+		loadImages(images, err => {
 			if (err) {
 				return;
 			}
@@ -50,15 +51,15 @@ export default class ParallaxImage extends Component {
 				initialized: true,
 			});
 		});
-	}
+	};
 
 	activateEffect = () => {
 		this.setState({
 			effectActive: true,
-		})
-	}
+		});
+	};
 
-	handleMouseMove = (ev) => {
+	handleMouseMove = ev => {
 		if (this.props.images.length === 0) {
 			return;
 		}
@@ -69,12 +70,12 @@ export default class ParallaxImage extends Component {
 			const rect = this.el.getBoundingClientRect();
 
 			this.setState({
-				x: ev.clientX - rect.left - (rect.width / 2),
-				y: ev.clientY - rect.top - (rect.height / 2),
+				x: ev.clientX - rect.left - rect.width / 2,
+				y: ev.clientY - rect.top - rect.height / 2,
 				hover: true,
 			});
 		}
-	}
+	};
 
 	handleMouseLeave = () => {
 		if (this.props.images.length === 0) {
@@ -86,7 +87,7 @@ export default class ParallaxImage extends Component {
 			y: 0,
 			hover: false,
 		});
-	}
+	};
 
 	getPositionFromDepth(depth) {
 		const x = 50 - this.state.x / 180 * depth;
@@ -104,7 +105,7 @@ export default class ParallaxImage extends Component {
 			transform: `translate(-${x}%, -${y}%) scale(${scale})`,
 			transition: `transform ${duration}ms ${timingFunction}`,
 			zIndex: Math.floor((depth + 1) * 10) + 1,
-		}
+		};
 	}
 
 	render() {
@@ -126,7 +127,7 @@ export default class ParallaxImage extends Component {
 					style={this.getPositionFromDepth(image.depth)}
 				/>
 			));
-			frameClassName += ` ${styles.initialized}`
+			frameClassName += ` ${styles.initialized}`;
 		}
 
 		if (this.props.flattened) {
@@ -148,7 +149,9 @@ export default class ParallaxImage extends Component {
 				className={frameClassName}
 				onMouseMove={this.handleMouseMoveThrottled}
 				onMouseLeave={this.handleMouseLeave}
-				ref={el => { this.el = el; }}
+				ref={el => {
+					this.el = el;
+				}}
 			>
 				{images}
 				{flattened}

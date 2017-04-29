@@ -16,15 +16,15 @@ const Index = ({ route }) => {
 				title={pageTitle()}
 				meta={[
 					{
-						"name": "description",
-						"content": "I'm the Technical Director of Wenderfalck in Stockholm, Sweden. This is a selection of the most popular projects I've worked on."
+						name: 'description',
+						content: "I'm the Technical Director of Wenderfalck in Stockholm, Sweden. This is a selection of the most popular projects I've worked on.",
 					},
 				]}
 			/>
 			<h2>Projects</h2>
 			<ProjectList projects={projects} />
 		</div>
-	)
-}
+	);
+};
 
 export default Index;

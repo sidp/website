@@ -13,7 +13,7 @@ export default function isNearViewport(element, margin = 50) {
 	return (
 		rect.top + rect.height + margin > 0 &&
 		rect.left + rect.width + margin > 0 &&
-		(window.innerHeight - rect.bottom) + rect.height + margin > 0 &&
-		(window.innerWidth - rect.right) + rect.width + margin > 0
+		window.innerHeight - rect.bottom + rect.height + margin > 0 &&
+		window.innerWidth - rect.right + rect.width + margin > 0
 	);
 }

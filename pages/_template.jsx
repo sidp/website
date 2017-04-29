@@ -11,12 +11,9 @@ import '../css/global.css';
 import '../css/markdown-styles.css';
 import utils from '../css/utils.module.css';
 
-const Template = ({children, route, location}) => (
+const Template = ({ children, route, location }) => (
 	<div>
-		<Header
-			intro={location.pathname === '/'}
-			currentPath={location.pathname}
-		/>
+		<Header intro={location.pathname === '/'} currentPath={location.pathname} />
 		<div className={utils['container']}>
 			{children}
 		</div>

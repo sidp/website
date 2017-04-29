@@ -8,7 +8,12 @@ import pageTitle from '../../utils/page-title';
 import '../../css/markdown-styles.css';
 import utils from '../../css/utils.module.css';
 
-const MarkdownPage = ({ page, className = '', htmlElement = 'article', role = '' }) => {
+const MarkdownPage = ({
+	page,
+	className = '',
+	htmlElement = 'article',
+	role = '',
+}) => {
 	const props = {
 		className: `markdown ${className} ${utils['text-wrapper']}`,
 	};
@@ -20,17 +25,13 @@ const MarkdownPage = ({ page, className = '', htmlElement = 'article', role = ''
 	const meta = [];
 	if (page.description) {
 		meta.push({
-			"name": "description",
-			"content": page.description,
+			name: 'description',
+			content: page.description,
 		});
 	}
 
 	const children = [
-		<Helmet
-			title={pageTitle(page)}
-			meta={meta}
-			key="helmet"
-		/>,
+		<Helmet title={pageTitle(page)} meta={meta} key="helmet" />,
 		<h1 key="title">{page.heading || page.title}</h1>,
 		<div dangerouslySetInnerHTML={{ __html: page.body }} key="body" />,
 	];

@@ -11,10 +11,7 @@ const VideoEmbed = ({ url, title, width, height, className = '' }) => {
 	};
 
 	return (
-		<div
-			className={classNames}
-			style={style}
-		>
+		<div className={classNames} style={style}>
 			<iframe
 				src={url}
 				title={title}

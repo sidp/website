@@ -26,6 +26,6 @@ export const projectProps = PropTypes.shape({
 	videoEmbed: PropTypes.shape({
 		url: PropTypes.string.isRequired,
 		width: PropTypes.number.isRequired,
-		height: PropTypes.number.isRequired
+		height: PropTypes.number.isRequired,
 	}),
 });

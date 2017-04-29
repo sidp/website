@@ -16,6 +16,7 @@
     "markdown-it-footnote": "^3.0.1",
     "markdown-it-sub": "^1.0.0",
     "object-assign": "^4.1.0",
+    "prettier": "^1.2.2",
     "prop-types": "^15.5.8",
     "react-ga": "^2.1.2",
     "react-headroom": "^2.1.2",
