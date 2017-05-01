@@ -8,14 +8,6 @@ import ExternalLink from '../external-link';
 import utils from '../../css/utils.module.css';
 import styles from './header.module.css';
 
-const links = [
-	{ label: 'Twitter', url: 'https://twitter.com/sidp' },
-	{ label: 'GitHub', url: 'https://github.com/sidp' },
-	{ label: 'LinkedIn', url: 'https://www.linkedin.com/in/sidp86' },
-	{ label: 'Instagram', url: 'https://www.instagram.com/sidp/' },
-	{ label: 'Last.fm', url: 'http://www.last.fm/user/sidp' },
-];
-
 const navigation = config.navigation || [];
 
 const Header = ({ intro = false, currentPath = '' }) => {
@@ -26,13 +18,6 @@ const Header = ({ intro = false, currentPath = '' }) => {
 			<div className={styles['content-wrapper']}>
 				<p>
 					Hi! I'm the Technical Director of the PR agency <ExternalLink to="http://wenderfalck.com/">Wenderfalck</ExternalLink> in Stockholm, Sweden. This is a selection of the most popular projects I've worked on. Have a look!
-				</p>
-				<p className={styles['links']}>
-					{links.map(({ label, url }) => (
-						<ExternalLink to={url} key={url}>
-							{label}
-						</ExternalLink>
-					))}
 				</p>
 			</div>
 		);
