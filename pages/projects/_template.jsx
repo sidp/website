@@ -11,8 +11,11 @@ const ProjectTemplate = ({ route, location, children }) => {
 		<div>
 			{children}
 
-			<h2 style={{ marginTop: rhythm(2) }}>More Projects</h2>
-			<ProjectList projects={projects} exclude={location.pathname} />
+			<ProjectList
+				title="More Projects"
+				projects={projects}
+				exclude={location.pathname}
+			/>
 		</div>
 	);
 };

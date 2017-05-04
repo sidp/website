@@ -1,5 +1,10 @@
 @import "../../css/_variables.css";
 
+.title {
+	margin-top: 0;
+	animation: fadeIn 400ms 100ms ease-out both;
+}
+
 .project-list {
 	font-family: var(--sans-serif-font-family);
 }

@@ -24,8 +24,7 @@ const Index = ({ route }) => {
 			/>
 
 			<Intro />
-			<h2 style={{ marginTop: 0 }}>Projects</h2>
-			<ProjectList projects={projects} />
+			<ProjectList title="Projects" projects={projects} />
 		</div>
 	);
 };
