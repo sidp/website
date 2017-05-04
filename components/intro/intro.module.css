@@ -1,0 +1,14 @@
+.block {
+	min-height: 55vmin;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	font-size: 1.4rem;
+	line-height: 1.5;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+
+	& > p {
+		max-width: 30em;
+	}
+}

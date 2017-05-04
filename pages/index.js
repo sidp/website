@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 
 import pageTitle from '../utils/page-title';
 import { getProjects } from '../utils/page-handling';
+import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
 
 const Index = ({ route }) => {
@@ -17,11 +18,13 @@ const Index = ({ route }) => {
 				meta={[
 					{
 						name: 'description',
-						content: "I'm the Technical Director of Wenderfalck in Stockholm, Sweden. This is a selection of the most popular projects I've worked on.",
+						content: 'I’m the Technical Director of Wenderfalck in Stockholm, Sweden. This is a selection of the most popular projects I’ve worked on.',
 					},
 				]}
 			/>
-			<h2>Projects</h2>
+
+			<Intro />
+			<h2 style={{ marginTop: 0 }}>Projects</h2>
 			<ProjectList projects={projects} />
 		</div>
 	);
