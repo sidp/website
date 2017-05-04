@@ -7,15 +7,15 @@
 .project-item {
 	animation: fadeIn 400ms ease-out both;
 
-	&:nth-child(1n+0) { animation-delay: 0; }
-	&:nth-child(1n+1) { animation-delay: 60ms; }
-	&:nth-child(1n+2) { animation-delay: 120ms; }
-	&:nth-child(1n+3) { animation-delay: 180ms; }
-	&:nth-child(1n+4) { animation-delay: 240ms; }
-	&:nth-child(1n+5) { animation-delay: 300ms; }
-	&:nth-child(1n+6) { animation-delay: 360ms; }
-	&:nth-child(1n+7) { animation-delay: 420ms; }
-	&:nth-child(1n+8) { animation-delay: 480ms; }
+	&:nth-child(1n+0) { animation-delay: 100ms; }
+	&:nth-child(1n+1) { animation-delay: 160ms; }
+	&:nth-child(1n+2) { animation-delay: 220ms; }
+	&:nth-child(1n+3) { animation-delay: 280ms; }
+	&:nth-child(1n+4) { animation-delay: 340ms; }
+	&:nth-child(1n+5) { animation-delay: 400ms; }
+	&:nth-child(1n+6) { animation-delay: 460ms; }
+	&:nth-child(1n+7) { animation-delay: 520ms; }
+	&:nth-child(1n+8) { animation-delay: 580ms; }
 
 	& a {
 		color: inherit;
