@@ -15,3 +15,10 @@
 		max-width: 30em;
 	}
 }
+
+@media screen and (max-width: 399px) {
+
+	.block {
+		font-size: 1.1rem;
+	}
+}
