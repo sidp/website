@@ -26,18 +26,12 @@ a {
 /* Apply a colored underline to links directly inside paragraphs */
 p > a {
 	color: var(--text-color);
-	box-shadow: 0 1px 0 var(--link-color);
-
-	&:hover {
-		box-shadow: 0 1px 0;
-	}
-
-	&:active {
-		box-shadow: 0 1px 0;
-	}
+	box-shadow: var(--link-box-shadow) var(--link-color);
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
 	font-feature-settings: "onum" 1;
 }
 
