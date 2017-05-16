@@ -9,7 +9,7 @@
 	line-height: 1.5;
 	padding-top: 0.75rem;
 	padding-bottom: 1.5rem;
-	animation: fadeIn 500ms ease-out both;
+	animation: fadeIn 500ms var(--cubic-bezier-fade-in) both;
 
 	& > p {
 		max-width: 30em;

@@ -17,6 +17,8 @@
 	--meta-font-family: var(--sans-serif-font-family);
 
 	--image-box-shadow: rgba(0, 0, 0, 0.1) 0 4px 48px, rgba(0, 0, 0, 0.05) 0 0 1px;
+
+	--cubic-bezier-fade-in: cubic-bezier(0.32, 0.89, 0.55, 1.0);
 }
 
 @keyframes fadeIn {

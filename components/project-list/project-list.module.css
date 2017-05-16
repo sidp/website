@@ -2,7 +2,7 @@
 
 .title {
 	margin-top: 0;
-	animation: fadeIn 400ms 100ms ease-out both;
+	animation: fadeIn 400ms 100ms var(--cubic-bezier-fade-in) both;
 }
 
 .project-list {
@@ -10,7 +10,7 @@
 }
 
 .project-item {
-	animation: fadeIn 400ms ease-out both;
+	animation: fadeIn 400ms var(--cubic-bezier-fade-in) both;
 
 	&:nth-child(1n+0) { animation-delay: 100ms; }
 	&:nth-child(1n+1) { animation-delay: 160ms; }

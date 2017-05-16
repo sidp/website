@@ -1,7 +1,7 @@
 @import "../../css/_variables.css";
 
 .project {
-	animation: fadeIn 400ms ease-out both;
+	animation: fadeIn 400ms var(--cubic-bezier-fade-in) both;
 }
 
 .title {
