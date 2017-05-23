@@ -1,44 +1,38 @@
 @import "../../css/_variables.css";
 
 .footer {
-	color: var(--grayed-color);
-	background-color: var(--accent-color);
 	text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
-
-	text-align: center;
+	line-height: 1.4;
+	border-top: var(--accent-color) solid 2px;
 	font-size: var(--meta-font-size);
 	font-family: var(--meta-font-family);
-
-	& a {
-		color: var(--grayed-color);
-		border-bottom: color(var(--grayed-color) a(0.4)) 1px solid;
-		box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
-
-		&:hover {
-			color: var(--grayed-color--hover);
-			border-color: color(var(--grayed-color--hover) a(0.4));
-			box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
-		}
-
-		&:active {
-			color: var(--grayed-color--active);
-			border-color: color(var(--grayed-color--active) a(0.4));
-			box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
-		}
-	}
 }
 
 .item {
 	display: inline-block;
-	white-space: nowrap;
-	margin: 0 0.5em;
+	break-inside: avoid;
+	margin-bottom: 0.5rem;
+
+	&:not(:last-child) {
+		margin-right: 1em;
+	}
+
+	& > a {
+		color: var(--text-color);
+		box-shadow: var(--link-box-shadow) var(--link-color);
+
+		&:hover {
+			color: var(--link-color--hover);
+		}
+
+		&:active {
+			color: var(--link-color--active);
+		}
+	}
 }
 
-@media screen and (max-width: 499px) {
-
-	.footer {
-		padding-top: 3.4rem;
-	}
+.item--main {
+	font-weight: 600;
 }
