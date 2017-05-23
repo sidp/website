@@ -45,8 +45,8 @@
 
 @media screen and (max-width: 499px) {
 
-	.project-list .project-item + .project-item {
-		margin-top: 6%;
+	.project-list .project-item {
+		margin-bottom: 2rem;
 	}
 }
 
