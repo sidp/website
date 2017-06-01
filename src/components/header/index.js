@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import { prefixLink } from 'gatsby-helpers';
+import Link from 'gatsby-link';
 
 import { config } from '../../config.toml';
 import ExternalLink from '../external-link';
@@ -15,7 +14,7 @@ const Header = ({ currentPath = '' }) => (
 		<div className={utils['container']}>
 			<div className={styles['header-wrapper']}>
 				<h1 className={styles['title']}>
-					<Link to={prefixLink('/')}>Peter Simonsson</Link>
+					<Link to={'/'}>Peter Simonsson</Link>
 				</h1>
 				<nav className={styles['navigation']}>
 					{navigation.map(item => (
@@ -43,7 +42,7 @@ const NavItem = ({ path, selected, children }) => {
 	const className = selected ? styles['selected'] : '';
 
 	return (
-		<Link to={prefixLink(path)} className={className}>
+		<Link to={path} className={className}>
 			{children}
 		</Link>
 	);

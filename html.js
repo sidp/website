@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import { prefixLink } from 'gatsby-helpers';
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import typography from './utils/typography';
 
@@ -44,7 +43,7 @@ const Html = props => {
 					id="react-mount"
 					dangerouslySetInnerHTML={{ __html: props.body }}
 				/>
-				<script src={prefixLink(`/bundle.js?t=${BUILD_TIME}`)} />
+				<script src={`/bundle.js?t=${BUILD_TIME}`} />
 			</body>
 		</html>
 	);

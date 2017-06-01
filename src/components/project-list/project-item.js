@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import { prefixLink } from 'gatsby-helpers';
+import Link from 'gatsby-link';
 
 import { projectProps } from '../prop-types';
 import ParallaxImage from '../parallax-image';
@@ -20,7 +19,7 @@ const ProjectItem = ({ page: { title, client, year, slug }, path }) => {
 
 	return (
 		<div className={styles['project-item']}>
-			<Link to={prefixLink(path)}>
+			<Link to={path}>
 				<ParallaxImage images={images} flattened={flattened} />
 				<h3 className={styles['title']}>
 					{title}

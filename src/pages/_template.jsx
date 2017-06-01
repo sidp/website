@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import { prefixLink } from 'gatsby-helpers';
 
 import { rhythm } from '../utils/typography';
 import Header from '../components/header';
