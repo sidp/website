@@ -8,18 +8,20 @@ import ParallaxImage from '../parallax-image';
 import styles from './project-list.module.css';
 import thumbs from '../../images/thumbs';
 
-const ProjectItem = ({ page: { title, client, year, slug }, path }) => {
+const ProjectItem = ({
+	project: { frontmatter: { title, client, year }, fields: { slug } },
+}) => {
 	let images = [];
 	let flattened = '';
 
-	if (slug && thumbs[slug]) {
+	/*if (slug && thumbs[slug]) {
 		images = thumbs[slug].images;
 		flattened = thumbs[slug].flattened;
-	}
+	}*/
 
 	return (
 		<div className={styles['project-item']}>
-			<Link to={path}>
+			<Link to={slug}>
 				<ParallaxImage images={images} flattened={flattened} />
 				<h3 className={styles['title']}>
 					{title}
@@ -32,9 +34,6 @@ const ProjectItem = ({ page: { title, client, year, slug }, path }) => {
 	);
 };
 
-ProjectItem.propTypes = {
-	page: projectProps.isRequired,
-	path: PropTypes.string.isRequired,
-};
+ProjectItem.propTypes = {};
 
 export default ProjectItem;

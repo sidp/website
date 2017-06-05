@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 
-import { config } from '../../config.toml';
+import { siteMetadata } from '../../../gatsby-config';
 import ExternalLink from '../external-link';
 import utils from '../../css/utils.module.css';
 import styles from './header.module.css';
 
-const navigation = config.navigation || [];
+const navigation = siteMetadata.navigation || [];
 
 const Header = ({ currentPath = '' }) => (
 	<header className={styles['header']} role="banner">

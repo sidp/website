@@ -13,7 +13,7 @@ const Template = ({ children, route, location }) => (
 	<div>
 		<Header currentPath={location.pathname} />
 		<div className={utils['container']}>
-			{children}
+			{children()}
 		</div>
 		<Footer />
 	</div>

@@ -6,8 +6,8 @@ import { getProjects } from '../utils/page-handling';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
 
-const Index = ({ route }) => {
-	const projects = getProjects(route.pages);
+const Index = ({ data }) => {
+	const projects = data.allMarkdownRemark.edges.map(edge => edge.node);
 
 	return (
 		<div>
@@ -16,7 +16,7 @@ const Index = ({ route }) => {
 				meta={[
 					{
 						name: 'description',
-						content: 'I’m the Technical Director of Wenderfalck in Stockholm, Sweden. This is a selection of the most popular projects I’ve worked on.',
+						content: data.site.siteMetadata.description,
 					},
 				]}
 			/>
@@ -26,5 +26,30 @@ const Index = ({ route }) => {
 		</div>
 	);
 };
+
+export const pageQuery = graphql`
+	query indexPageData {
+		site {
+			siteMetadata {
+				title
+				description
+			}
+		}
+		allMarkdownRemark(fields: { type: {eq: "project" } }) {
+			edges {
+				node {
+					frontmatter {
+						title
+						client,
+						year
+					}
+					fields {
+						slug
+					}
+				}
+			}
+		}
+	}
+`;
 
 export default Index;

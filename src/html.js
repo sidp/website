@@ -5,8 +5,6 @@ import Helmet from 'react-helmet';
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import typography from './utils/typography';
 
-const BUILD_TIME = new Date().getTime();
-
 const Html = props => {
 	const head = Helmet.rewind();
 
@@ -37,13 +35,11 @@ const Html = props => {
 				<TypographyStyle typography={typography} />
 				<GoogleFont typography={typography} />
 				{css}
+				{props.headComponents}
 			</head>
 			<body>
-				<div
-					id="react-mount"
-					dangerouslySetInnerHTML={{ __html: props.body }}
-				/>
-				<script src={`/bundle.js?t=${BUILD_TIME}`} />
+				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: props.body }} />
+				{props.postBodyComponents}
 			</body>
 		</html>
 	);

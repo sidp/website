@@ -13,9 +13,7 @@ const ProjectList = ({ title = '', projects = [], exclude = '' }) => {
 		<div>
 			{title && <h2 className={styles['title']}>{title}</h2>}
 			<div className={styles['project-list']}>
-				{projects.map(item => (
-					<ProjectItem path={item.path} page={item.data} key={item.path} />
-				))}
+				{projects.map(item => <ProjectItem project={item} />)}
 			</div>
 		</div>
 	);
@@ -23,12 +21,7 @@ const ProjectList = ({ title = '', projects = [], exclude = '' }) => {
 
 ProjectList.propTypes = {
 	title: PropTypes.string,
-	projects: PropTypes.arrayOf(
-		PropTypes.shape({
-			path: PropTypes.string,
-			data: projectProps,
-		})
-	),
+	projects: PropTypes.arrayOf(PropTypes.object),
 	exclude: PropTypes.string,
 };
 

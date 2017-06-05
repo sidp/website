@@ -2,7 +2,7 @@
  * A function that takes a page object and returns an appropriate page title
  */
 
-import { config } from '../config';
+import { siteMetadata } from '../../gatsby-config';
 
 const divider = ' – ';
 
@@ -13,7 +13,7 @@ export default function pageTitle(page = {}) {
 		parts.push(page.title);
 	}
 
-	parts.push(config.siteTitle);
+	parts.push(siteMetadata.title);
 
 	return parts.join(divider);
 }

@@ -1,8 +1,7 @@
 module.exports = {
 	siteMetadata: {
-		siteTitle: 'Peter Simonsson',
-		linkPrefix: '',
-		googleAnalyticsId: 'UA-60527-1',
+		title: 'Peter Simonsson',
+		description: 'I’m the Technical Director of Wenderfalck in Stockholm, Sweden. This is a selection of the most popular projects I’ve worked on.',
 		navigation: [
 			{
 				label: 'Projects',
@@ -14,4 +13,39 @@ module.exports = {
 			},
 		],
 	},
+	plugins: [
+		{
+			resolve: 'gatsby-source-filesystem',
+			options: {
+				name: 'pages',
+				path: `${__dirname}/src/pages/`,
+			},
+		},
+		{
+			resolve: 'gatsby-transformer-remark',
+			options: {
+				plugins: [
+					{
+						resolve: 'gatsby-remark-responsive-image',
+						options: {
+							maxWidth: 690,
+						},
+					},
+					{
+						resolve: 'gatsby-remark-responsive-iframe',
+					},
+					'gatsby-remark-prismjs',
+					'gatsby-remark-copy-linked-files',
+					'gatsby-remark-smartypants',
+				],
+			},
+		},
+		'gatsby-plugin-sharp',
+		{
+			resolve: 'gatsby-plugin-google-analytics',
+			options: {
+				trackingId: 'UA-60527-1',
+			},
+		},
+	],
 };
