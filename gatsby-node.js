@@ -5,7 +5,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
 	return new Promise((resolve, reject) => {
 		const pages = [];
-		const pageTemplate = path.resolve('src/templates/page.js');
+		const templates = {
+			page: path.resolve('src/templates/page.js'),
+			project: path.resolve('src/templates/project.js'),
+		};
+
 		resolve(
 			graphql(
 				`
@@ -30,11 +34,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 				}
 
 				result.data.allMarkdownRemark.edges.forEach(edge => {
+					const { fields: { type, slug }, frontmatter: { path } } = edge.node;
+					const template = templates[type] || templates.page;
+
 					createPage({
-						component: pageTemplate,
-						path: edge.node.fields.slug,
+						path: slug || path,
+						component: template,
 						context: {
-							slug: edge.node.fields.slug,
+							slug: slug || path,
 						},
 					});
 				});
@@ -60,9 +67,9 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
 			slug = `/${parsedFilePath.dir}/`;
 		}
 
-		const nodeType = [];
+		let nodeType = 'page';
 		if (parsedFilePath.dir === 'projects') {
-			nodeType.push('project');
+			nodeType = 'project';
 		}
 
 		createNodeField({

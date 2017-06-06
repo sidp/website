@@ -30,10 +30,6 @@ const PageTemplate = ({ data }) => {
 	return <MarkdownPage page={page} />;*/
 };
 
-/*PageTemplate.propTypes = {
-	route: PropTypes.object,
-};*/
-
 export default PageTemplate;
 
 export const pageQuery = graphql`
