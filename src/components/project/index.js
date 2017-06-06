@@ -43,6 +43,16 @@ const Project = ({ page: { frontmatter, html } }) => {
 		});
 	}
 
+	let images = [];
+	if (frontmatter.images && frontmatter.images.childrenManifestJson) {
+		images = frontmatter.images.childrenManifestJson.map(manifestItem => {
+			return {
+				...manifestItem.image.childImageSharp.responsive,
+				title: manifestItem.title,
+			};
+		});
+	}
+
 	return (
 		<article className={styles['project']}>
 			<Helmet title={pageTitle(frontmatter)} meta={helmetMeta} />
@@ -61,12 +71,12 @@ const Project = ({ page: { frontmatter, html } }) => {
 				{videoEmbed}
 			</div>
 			<div className={styles['images']}>
-				{frontmatter.images &&
-					frontmatter.images.map(image => (
+				{images &&
+					images.map(image => (
 						<ProjectImage
 							image={image}
 							className={styles['image']}
-							key={image.src1x}
+							key={image.src}
 						/>
 					))}
 			</div>
@@ -91,8 +101,18 @@ export const projectDetailsFragment = graphql`
 				height
 			}
 			images {
-				title
-				src
+				childrenManifestJson {
+					title
+					image {
+						childImageSharp {
+							responsive: responsiveSizes(maxWidth: 640) {
+								src
+								srcSet
+								base64
+							}
+						}
+					}
+				}
 			}
 		}
 		fields {
@@ -101,13 +121,3 @@ export const projectDetailsFragment = graphql`
 		html
 	}
 `;
-/*
-: {
-					childImageSharp {
-						responsiveSizes(maxWidth: 640) {
-							src
-							srcSet
-						}
-					}
-				}
-*/

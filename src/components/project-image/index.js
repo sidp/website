@@ -109,11 +109,6 @@ export default class ProjectImage extends PureComponent {
 
 		if (!image) return <span />;
 
-		let src0x, src1x, src2x;
-		/*const src0x = require(`../../pages/images/${image.src0x}`);
-		const src1x = require(`../../pages/images/${image.src1x}`);
-		const src2x = require(`../../pages/images/${image.src2x}`);*/
-
 		let imageElement;
 		if (loadState !== LoadStates.NONE) {
 			const showImageElement =
@@ -123,9 +118,9 @@ export default class ProjectImage extends PureComponent {
 
 			imageElement = (
 				<img
-					src={src1x}
+					src={image.src}
 					sizes="100vw"
-					srcSet={`${src1x} 1280w, ${src2x} 2560w`}
+					srcSet={image.srcSet}
 					alt={image.title}
 					style={{
 						opacity: showImageElement ? 1 : 0,
@@ -140,7 +135,7 @@ export default class ProjectImage extends PureComponent {
 
 		const wrapperStyle = {
 			paddingTop: `${height / width * 100}%`,
-			backgroundImage: `url(${src0x})`,
+			backgroundImage: `url(${image.base64})`,
 		};
 
 		let wrapperClassNames = [styles['wrapper'], className];

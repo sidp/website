@@ -17,6 +17,7 @@
     "gatsby-remark-responsive-image": "1.0.0-alpha20",
     "gatsby-remark-smartypants": "1.0.0-alpha20",
     "gatsby-source-filesystem": "1.0.0-alpha20",
+    "gatsby-transformer-json": "1.0.0-alpha20",
     "gatsby-transformer-remark": "1.0.0-alpha20",
     "gatsby-transformer-sharp": "1.0.0-alpha20",
     "lodash": "^4.17.4",

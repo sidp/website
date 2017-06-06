@@ -3024,6 +3024,12 @@ gatsby-source-filesystem@1.0.0-alpha20:
     pretty-bytes "^4.0.2"
     slash "^1.0.0"
 
+gatsby-transformer-json@1.0.0-alpha20:
+  version "1.0.0-alpha19-alpha.0ae0ee2a"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-json/-/gatsby-transformer-json-1.0.0-alpha19-alpha.0ae0ee2a.tgz#678f73d7ebbd566f537ccb75e7a0b3e69d70b6df"
+  dependencies:
+    bluebird "^3.5.0"
+
 gatsby-transformer-remark@1.0.0-alpha20:
   version "1.0.0-alpha20"
   resolved "https://registry.yarnpkg.com/gatsby-transformer-remark/-/gatsby-transformer-remark-1.0.0-alpha20.tgz#653763e5f66fa00a548a6dd8e48be2eca9045512"
