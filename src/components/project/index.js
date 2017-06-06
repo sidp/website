@@ -11,13 +11,13 @@ import VideoEmbed from '../video-embed';
 import utils from '../../css/utils.module.css';
 import styles from './project.module.css';
 
-const Project = ({ page }) => {
+const Project = ({ page: { frontmatter, html } }) => {
 	let link;
 
-	if (page.link) {
+	if (frontmatter.link) {
 		link = (
 			<p className={styles['links']}>
-				<ExternalLink to={page.link} className={styles['link']}>
+				<ExternalLink to={frontmatter.link} className={styles['link']}>
 					See it live
 				</ExternalLink>
 			</p>
@@ -25,40 +25,43 @@ const Project = ({ page }) => {
 	}
 
 	let videoEmbed;
-	if (page.videoEmbed) {
+	if (frontmatter.videoEmbed) {
 		videoEmbed = (
-			<VideoEmbed {...page.videoEmbed} className={styles['video-embed']} />
+			<VideoEmbed
+				{...frontmatter.videoEmbed}
+				className={styles['video-embed']}
+			/>
 		);
 	}
 
 	const helmetMeta = [];
-	if (page.description) {
+	if (frontmatter.description) {
 		helmetMeta.push({
 			name: 'description',
-			content: page.description,
+			content: frontmatter.description,
 		});
 	}
 
 	return (
 		<article className={styles['project']}>
-			<Helmet title={pageTitle(page)} meta={helmetMeta} />
+			<Helmet title={pageTitle(frontmatter)} meta={helmetMeta} />
 			<div className={`markdown ${utils['text-wrapper']}`}>
 				<header>
-					<h1 className={styles['title']}>{page.title}</h1>
+					<h1 className={styles['title']}>{frontmatter.title}</h1>
 					<Meta
-						agency={page.agency}
-						client={page.client}
-						year={page.year}
-						link={page.link}
+						agency={frontmatter.agency}
+						client={frontmatter.client}
+						year={frontmatter.year}
+						link={frontmatter.link}
 					/>
 				</header>
-				<div dangerouslySetInnerHTML={{ __html: page.body }} />
+				<div dangerouslySetInnerHTML={{ __html: html }} />
 				{link}
 				{videoEmbed}
 			</div>
 			<div className={styles['images']}>
-				{page.images &&
-					page.images.map(image => (
+				{frontmatter.images &&
+					frontmatter.images.map(image => (
 						<ProjectImage
 							image={image}
 							className={styles['image']}
@@ -70,11 +73,29 @@ const Project = ({ page }) => {
 	);
 };
 
-Project.propTypes = {
-	page: projectProps.isRequired,
-};
-
 export default Project;
+
+export const projectDetailsFragment = graphql`
+	fragment Project_details on MarkdownRemark {
+		frontmatter {
+			title,
+			agency,
+			client,
+			year,
+			link,
+			description,
+			videoEmbed {
+				url,
+				width,
+				height
+			}
+		}
+		fields {
+			slug
+		}
+		html
+	}
+`;
 
 const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
 	const items = [];

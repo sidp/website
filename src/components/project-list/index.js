@@ -26,3 +26,9 @@ ProjectList.propTypes = {
 };
 
 export default ProjectList;
+
+export const projectListFragment = graphql`
+	fragment Project_list on MarkdownRemark {
+		...Project_item
+	}
+`;

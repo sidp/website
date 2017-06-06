@@ -18,7 +18,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 							edges {
 								node {
 									fields {
-										slug
+										slug,
+										type
 									}
 									frontmatter {
 										path

@@ -35,17 +35,16 @@ export const pageQuery = graphql`
 				description
 			}
 		}
-		allMarkdownRemark(fields: { type: {eq: "project" } }) {
+		allMarkdownRemark(
+			fields: { type: {eq: "project" } },
+			sortBy: {
+				fields: [frontmatter___weight]
+				order: DESC
+			}
+		) {
 			edges {
 				node {
-					frontmatter {
-						title
-						client,
-						year
-					}
-					fields {
-						slug
-					}
+					...Project_list
 				}
 			}
 		}
