@@ -3,6 +3,7 @@ title: About
 heading: Hi!
 path: /about/
 description: I'm the Technical Director of Wenderfalck in Stockholm, Sweden. I build things for people on the internet. And I love it!
+portrait: ./images/peter.jpg
 ---
 
 I build things for people on the internet. And I love it! As the Technical Director at the PR agency [Wenderfalck](http://wenderfalck.com/) in Stockholm, Sweden, I create services that millions of people use, like and share.
