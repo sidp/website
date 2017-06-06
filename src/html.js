@@ -5,19 +5,8 @@ import Helmet from 'react-helmet';
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import typography from './utils/typography';
 
-const Html = props => {
+const Html = ({ headComponents, body, postBodyComponents }) => {
 	const head = Helmet.rewind();
-
-	let css;
-	if (process.env.NODE_ENV === 'production') {
-		css = (
-			<style
-				dangerouslySetInnerHTML={{
-					__html: require('!raw!./public/styles.css'),
-				}}
-			/>
-		);
-	}
 
 	return (
 		<html lang="en">
@@ -34,12 +23,11 @@ const Html = props => {
 				/>
 				<TypographyStyle typography={typography} />
 				<GoogleFont typography={typography} />
-				{css}
-				{props.headComponents}
+				{headComponents}
 			</head>
 			<body>
-				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: props.body }} />
-				{props.postBodyComponents}
+				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
+				{postBodyComponents}
 			</body>
 		</html>
 	);
