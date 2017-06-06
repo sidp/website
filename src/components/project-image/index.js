@@ -106,9 +106,13 @@ export default class ProjectImage extends PureComponent {
 	render() {
 		const { image, width, height, className } = this.props;
 		const { loadState, inTransition } = this.state;
-		const src0x = require(`../../images/${image.src0x}`);
-		const src1x = require(`../../images/${image.src1x}`);
-		const src2x = require(`../../images/${image.src2x}`);
+
+		if (!image) return <span />;
+
+		let src0x, src1x, src2x;
+		/*const src0x = require(`../../pages/images/${image.src0x}`);
+		const src1x = require(`../../pages/images/${image.src1x}`);
+		const src2x = require(`../../pages/images/${image.src2x}`);*/
 
 		let imageElement;
 		if (loadState !== LoadStates.NONE) {

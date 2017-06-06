@@ -9,17 +9,11 @@ slug: dold
 weight: 60
 images:
  - title: Har vi ditt lösenord? Start page
-   src2x: dold-start-2x.jpg
-   src1x: dold-start-1x.jpg
-   src0x: dold-start-0x.jpg
+   src: ../images/dold-start.jpg
  - title: Har vi ditt lösenord? Safe
-   src2x: dold-safe-2x.jpg
-   src1x: dold-safe-1x.jpg
-   src0x: dold-safe-0x.jpg
+   src: ../images/dold-safe.jpg
  - title: Har vi ditt lösenord? Hacked
-   src2x: dold-hacked-2x.jpg
-   src1x: dold-hacked-1x.jpg
-   src0x: dold-hacked-0x.jpg
+   src: ../images/dold-hacked.jpg
 ---
 
 Har vi ditt lösenord? was a service to complement SVT Dold’s reportage on password security. Users could inquire whether their login details were part of the over 1 billion accounts that SVT compiled from data breaches. If the login details were found, the user could request an email with information about the hacked websites, and instructions on how to improve the user's password security.

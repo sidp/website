@@ -4,8 +4,8 @@ import { pageProps } from '../prop-types';
 import MarkdownPage from '../markdown-page';
 
 import styles from './about.module.css';
-import portrait1x from '../../images/peter-1x.jpg';
-import portrait2x from '../../images/peter-2x.jpg';
+import portrait1x from '../../pages/images/peter.jpg';
+import portrait2x from '../../pages/images/peter.jpg';
 
 const About = ({ page }) => (
 	<article role="main" className={styles['about']}>

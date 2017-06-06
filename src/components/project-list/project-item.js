@@ -6,7 +6,7 @@ import { projectProps } from '../prop-types';
 import ParallaxImage from '../parallax-image';
 
 import styles from './project-list.module.css';
-import thumbs from '../../images/thumbs';
+import thumbs from '../../pages/images/thumbs';
 
 const ProjectItem = ({
 	project: { frontmatter: { title, client, year }, fields: { slug } },

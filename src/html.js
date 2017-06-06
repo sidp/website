@@ -19,7 +19,7 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 				<link
 					rel="icon"
 					type="image/x-icon"
-					href={require('./images/favicon.ico')}
+					href={require('./static/favicon.ico')}
 				/>
 				<TypographyStyle typography={typography} />
 				<GoogleFont typography={typography} />
