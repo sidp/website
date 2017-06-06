@@ -14,10 +14,10 @@ const ProjectItem = ({
 	let images = [];
 	let flattened = '';
 
-	/*if (slug && thumbs[slug]) {
+	if (slug && thumbs[slug]) {
 		images = thumbs[slug].images;
 		flattened = thumbs[slug].flattened;
-	}*/
+	}
 
 	return (
 		<div className={styles['project-item']}>

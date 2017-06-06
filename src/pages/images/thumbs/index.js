@@ -1,5 +1,5 @@
 const thumbs = {
-	'dold': {
+	'/projects/svt-dold/': {
 		images: [
 			{
 				depth: 1.0,
@@ -12,7 +12,7 @@ const thumbs = {
 		],
 		flattened: require('./dold/flattened.jpg'),
 	},
-	'svenska-lopare': {
+	'/projects/svenska-lopare/': {
 		images: [
 			{
 				depth: 0.7,
@@ -29,7 +29,7 @@ const thumbs = {
 		],
 		flattened: require('./svenska-lopare/flattened.jpg'),
 	},
-	'utmanare-redo': {
+	'/projects/utmanare-redo/': {
 		images: [
 			{
 				depth: 2.5,
@@ -46,7 +46,7 @@ const thumbs = {
 		],
 		flattened: require('./utmanare-redo/flattened.jpg'),
 	},
-	'needs-more-jpeg': {
+	'/projects/needs-more-jpeg/': {
 		images: [
 			{
 				depth: 2.0,
@@ -63,7 +63,7 @@ const thumbs = {
 		],
 		flattened: require('./needs-more-jpeg/flattened.jpg'),
 	},
-	'match-machine': {
+	'/projects/match-machine/': {
 		images: [
 			{
 				depth: 1.4,
