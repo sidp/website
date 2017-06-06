@@ -79,16 +79,20 @@ export default Project;
 export const projectDetailsFragment = graphql`
 	fragment Project_details on MarkdownRemark {
 		frontmatter {
-			title,
-			agency,
-			client,
-			year,
-			link,
-			description,
+			title
+			agency
+			client
+			year
+			link
+			description
 			videoEmbed {
-				url,
-				width,
+				url
+				width
 				height
+			}
+			images {
+				title
+				src
 			}
 		}
 		fields {
@@ -97,3 +101,13 @@ export const projectDetailsFragment = graphql`
 		html
 	}
 `;
+/*
+: {
+					childImageSharp {
+						responsiveSizes(maxWidth: 640) {
+							src
+							srcSet
+						}
+					}
+				}
+*/

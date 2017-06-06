@@ -41,7 +41,7 @@ export default ProjectItem;
 export const projectItemFragment = graphql`
 	fragment Project_item on MarkdownRemark {
 		frontmatter {
-			title,
+			title
 			client
 		}
 		fields {

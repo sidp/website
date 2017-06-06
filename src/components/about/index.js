@@ -32,8 +32,8 @@ export default About;
 export const aboutFragment = graphql`
 	fragment AboutPage_details on MarkdownRemark {
 		frontmatter {
-			title,
-			heading,
+			title
+			heading
 			description
 		}
 		html
