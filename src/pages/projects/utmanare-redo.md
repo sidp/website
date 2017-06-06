@@ -5,8 +5,6 @@ client: TV4
 year: 2015–2016
 description: Utmanare Redo (Contender Ready) was a campaign with the goal of attracting the fitness audience to the TV show Gladiatorerna (The Gladiators).
 link: http://utmanareredo.se/
-path: /project/utmanare-redo/
-slug: utmanare-redo
 weight: 40
 images: ./utmanare-redo/manifest.json
 ---

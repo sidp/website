@@ -5,8 +5,6 @@ client: Swedish Athletic Association
 year: 2016–
 description: The website Svenska löpare gives access to all running races, trainings and events organized by the Swedish Athletic Association and its members.
 link: https://svenskalopare.se/
-path: /project/svenska-lopare/
-slug: svenska-lopare
 weight: 50
 images: ./svenska-lopare/manifest.json
 ---

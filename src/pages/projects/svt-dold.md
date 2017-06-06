@@ -4,8 +4,6 @@ agency: Wenderfalck/SVT
 client: SVT
 year: "2016"
 description: Har vi ditt lösenord? was a service to complement SVT Dold’s reportage on password security. 2 million people used the service during its 9 day campaign period.
-path: /project/svt-dold/
-slug: dold
 weight: 60
 images: ./svt-dold/manifest.json
 ---

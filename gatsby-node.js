@@ -22,9 +22,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 										slug,
 										type
 									}
-									frontmatter {
-										path
-									}
 								}
 							}
 						}
@@ -36,14 +33,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 				}
 
 				result.data.allMarkdownRemark.edges.forEach(edge => {
-					const { fields: { type, slug }, frontmatter: { path } } = edge.node;
+					const { fields: { type, slug } } = edge.node;
 					const template = templates[type] || templates.page;
 
 					createPage({
-						path: slug || path,
+						path: slug,
 						component: template,
 						context: {
-							slug: slug || path,
+							slug,
 						},
 					});
 				});

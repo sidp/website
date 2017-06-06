@@ -1,7 +1,6 @@
 ---
 title: About
 heading: Hi!
-path: /about/
 description: I'm the Technical Director of Wenderfalck in Stockholm, Sweden. I build things for people on the internet. And I love it!
 portrait: ./images/peter.jpg
 ---

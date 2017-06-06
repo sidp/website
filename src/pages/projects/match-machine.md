@@ -4,8 +4,6 @@ agency: Wenderfalck
 client: MTV
 year: 2014–2015
 description: Match Machine was a Facebook app created to bring attention to the premiere of MTV’s new dating show Are You the One?.
-path: /project/match-machine/
-slug: match-machine
 weight: 30
 videoEmbed:
   url: https://player.vimeo.com/video/118012983

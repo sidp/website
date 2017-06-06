@@ -4,8 +4,6 @@ client: Personal
 year: 2013–
 description: Needs More JPEG is a web service created as a reference to the "Needs More JPEG" internet meme. Upload your image, and the service will completely ruin it for you.
 link: http://needsmorejpeg.com/
-path: /project/needs-more-jpeg/
-slug: needs-more-jpeg
 weight: 20
 ---
 
