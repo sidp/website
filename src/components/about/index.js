@@ -27,8 +27,15 @@ const About = ({ page }) => (
 	</article>
 );
 
-About.propTypes = {
-	page: pageProps,
-};
-
 export default About;
+
+export const aboutFragment = graphql`
+	fragment AboutPage_details on MarkdownRemark {
+		frontmatter {
+			title,
+			heading,
+			description
+		}
+		html
+	}
+`;

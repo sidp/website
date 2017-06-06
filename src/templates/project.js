@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Project from '../components/project';
 import ProjectList from '../components/project-list';
 

@@ -8,6 +8,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 		const templates = {
 			page: path.resolve('src/templates/page.js'),
 			project: path.resolve('src/templates/project.js'),
+			about: path.resolve('src/templates/about.js'),
 		};
 
 		resolve(
@@ -71,6 +72,8 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
 		let nodeType = 'page';
 		if (parsedFilePath.dir === 'projects') {
 			nodeType = 'project';
+		} else if (parsedFilePath.name === 'about') {
+			nodeType = 'about';
 		}
 
 		createNodeField({
