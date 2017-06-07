@@ -29,7 +29,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 				`
 			).then(result => {
 				if (result.errors) {
-					reject(result.errors);
+					reject(new Error(result.errors));
 				}
 
 				result.data.allMarkdownRemark.edges.forEach(edge => {
