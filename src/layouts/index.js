@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { rhythm } from '../utils/typography';
 import Header from '../components/header';
@@ -9,7 +8,7 @@ import '../css/global.css';
 import '../css/markdown-styles.css';
 import utils from '../css/utils.module.css';
 
-const Template = ({ children, route, location }) => (
+const Layout = ({ children, route, location }) => (
 	<div>
 		<Header currentPath={location.pathname} />
 		<div className={utils['container']}>
@@ -19,8 +18,4 @@ const Template = ({ children, route, location }) => (
 	</div>
 );
 
-Template.propTypes = {
-	children: PropTypes.any,
-};
-
-export default Template;
+export default Layout;
