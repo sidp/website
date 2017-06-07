@@ -36,6 +36,7 @@
   ],
   "scripts": {
     "build": "gatsby build",
+    "serve": "gatsby serve",
     "develop": "gatsby develop",
     "deploy:production": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/simonsson.com",
     "deploy:staging": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/stage.simonsson.com",
