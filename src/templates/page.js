@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { isAbout, isProject } from '../utils/page-handling';
 import MarkdownPage from '../components/markdown-page';
 
 const PageTemplate = ({ data }) => {

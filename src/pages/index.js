@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 import pageTitle from '../utils/page-title';
-import { getProjects } from '../utils/page-handling';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
 
