@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
@@ -11,17 +11,9 @@ import utils from '../../css/utils.module.css';
 const MarkdownPage = ({
 	page: { frontmatter, html },
 	className = '',
-	htmlElement = 'article',
+	HtmlElement = 'article',
 	role = '',
 }) => {
-	const props = {
-		className: `markdown ${className} ${utils['text-wrapper']}`,
-	};
-
-	if (role) {
-		props.role = role;
-	}
-
 	const meta = [];
 	if (frontmatter.description) {
 		meta.push({
@@ -30,13 +22,16 @@ const MarkdownPage = ({
 		});
 	}
 
-	const children = [
-		<Helmet title={pageTitle(frontmatter)} meta={meta} key="helmet" />,
-		<h1 key="title">{frontmatter.heading || frontmatter.title}</h1>,
-		<div dangerouslySetInnerHTML={{ __html: html }} key="body" />,
-	];
-
-	return createElement(htmlElement, props, children);
+	return (
+		<HtmlElement
+			className={`markdown ${className} ${utils['text-wrapper']}`}
+			role={role}
+		>
+			<Helmet title={pageTitle(frontmatter)} meta={meta} key="helmet" />
+			<h1 key="title">{frontmatter.heading || frontmatter.title}</h1>
+			<div dangerouslySetInnerHTML={{ __html: html }} key="body" />
+		</HtmlElement>
+	);
 };
 
 MarkdownPage.propTypes = {
