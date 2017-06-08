@@ -8,6 +8,18 @@ import typography from './utils/typography';
 const Html = ({ headComponents, body, postBodyComponents }) => {
 	const head = Helmet.rewind();
 
+	let css;
+	if (process.env.NODE_ENV === 'production') {
+		css = (
+			<style
+				id="gatsby-inlined-css"
+				dangerouslySetInnerHTML={{
+					__html: require('!raw!../public/styles.css'),
+				}}
+			/>
+		);
+	}
+
 	return (
 		<html lang="en">
 			<head>
@@ -23,6 +35,7 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 				/>
 				<TypographyStyle typography={typography} />
 				<GoogleFont typography={typography} />
+				{css}
 				{headComponents}
 			</head>
 			<body>
