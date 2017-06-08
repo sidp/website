@@ -5,7 +5,7 @@ import MarkdownPage from '../components/markdown-page';
 
 const PageTemplate = ({ data }) => {
 	const page = data.markdownRemark;
-	return <MarkdownPage page={page} />;
+	return <MarkdownPage page={page} role="main" />;
 };
 
 export default PageTemplate;

@@ -12,7 +12,7 @@ const MarkdownPage = ({
 	page: { frontmatter, html },
 	className = '',
 	HtmlElement = 'article',
-	role = '',
+	...props
 }) => {
 	const meta = [];
 	if (frontmatter.description) {
@@ -25,7 +25,7 @@ const MarkdownPage = ({
 	return (
 		<HtmlElement
 			className={`markdown ${className} ${utils['text-wrapper']}`}
-			role={role}
+			{...props}
 		>
 			<Helmet title={pageTitle(frontmatter)} meta={meta} key="helmet" />
 			<h1 key="title">{frontmatter.heading || frontmatter.title}</h1>

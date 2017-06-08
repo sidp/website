@@ -25,7 +25,6 @@ const About = ({ page }) => {
 				page={page}
 				className={styles['content']}
 				htmlElement="div"
-				role=""
 			/>
 		</article>
 	);
