@@ -29,6 +29,7 @@ export default class ParallaxImage extends Component {
 		x: 0,
 		y: 0,
 		hover: false,
+		scrolling: false,
 	};
 
 	constructor(props) {
@@ -38,6 +39,17 @@ export default class ParallaxImage extends Component {
 		this.handleMouseMoveThrottled = throttle(this.handleMouseMove, 16, {
 			trailing: false,
 		});
+		this.handleScrollThrottled = throttle(this.handleScroll, 100, {
+			trailing: false,
+		});
+	}
+
+	componentDidMount() {
+		window.addEventListener('scroll', this.handleScrollThrottled);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScrollThrottled);
 	}
 
 	initialize = () => {
@@ -60,7 +72,7 @@ export default class ParallaxImage extends Component {
 	};
 
 	handleMouseMove = ev => {
-		if (this.props.images.length === 0) {
+		if (this.state.scrolling || this.props.images.length === 0) {
 			return;
 		}
 
@@ -87,6 +99,22 @@ export default class ParallaxImage extends Component {
 			y: 0,
 			hover: false,
 		});
+	};
+
+	handleScroll = () => {
+		this.setState({
+			scrolling: true,
+		});
+
+		if (this.scrollTimeout) {
+			window.clearTimeout(this.scrollTimeout);
+		}
+
+		this.scrollTimeout = window.setTimeout(() => {
+			this.setState({
+				scrolling: false,
+			});
+		}, 200);
 	};
 
 	getPositionFromDepth(depth) {
@@ -118,7 +146,7 @@ export default class ParallaxImage extends Component {
 		}
 
 		if (this.state.initialized) {
-			images = this.props.images.map(image => (
+			images = this.props.images.map(image =>
 				<img
 					key={image.src}
 					src={image.src}
@@ -126,7 +154,7 @@ export default class ParallaxImage extends Component {
 					className={styles['image']}
 					style={this.getPositionFromDepth(image.depth)}
 				/>
-			));
+			);
 			frameClassName += ` ${styles.initialized}`;
 		}
 
