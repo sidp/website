@@ -1,18 +1,18 @@
 @import "../../css/_variables.css";
 
 .block {
-	min-height: 55vmin;
+	min-height: calc(100vh - 210px); /* estimated header height */
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	font-size: 1.4rem;
-	line-height: 1.5;
 	padding-top: 0.75rem;
 	padding-bottom: 1.5rem;
 	animation: fadeIn 500ms var(--cubic-bezier-fade-in) both;
 
 	& > p {
-		max-width: 30em;
+		font-size: 1.4rem;
+		line-height: 1.5;
+		max-width: 33em;
 		margin-left: auto;
 		margin-right: auto;
 		text-align: center;
