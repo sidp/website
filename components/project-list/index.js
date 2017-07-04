@@ -11,11 +11,14 @@ const ProjectList = ({ title = '', projects = [], exclude = '' }) => {
 
 	return (
 		<div>
-			{title && <h2 className={styles['title']}>{title}</h2>}
+			{title &&
+				<h2 className={styles['title']}>
+					{title}
+				</h2>}
 			<div className={styles['project-list']}>
-				{projects.map(item => (
+				{projects.map(item =>
 					<ProjectItem path={item.path} page={item.data} key={item.path} />
-				))}
+				)}
 			</div>
 		</div>
 	);

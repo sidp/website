@@ -40,7 +40,9 @@ const MarkdownPage = ({
 
 	const children = [
 		<Helmet title={pageTitle(page)} meta={meta} key="helmet" />,
-		<h1 key="title">{page.heading || page.title}</h1>,
+		<h1 key="title">
+			{page.heading || page.title}
+		</h1>,
 		<div dangerouslySetInnerHTML={{ __html: page.body }} key="body" />,
 	];
 

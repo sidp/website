@@ -7,7 +7,7 @@ import styles from './about.module.css';
 import portrait1x from '../../images/peter-1x.jpg';
 import portrait2x from '../../images/peter-2x.jpg';
 
-const About = ({ page }) => (
+const About = ({ page }) =>
 	<article role="main" className={styles['about']}>
 		<div className={styles['summary']}>
 			<img
@@ -24,8 +24,7 @@ const About = ({ page }) => (
 			htmlElement="div"
 			role=""
 		/>
-	</article>
-);
+	</article>;
 
 About.propTypes = {
 	page: pageProps,

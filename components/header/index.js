@@ -10,7 +10,7 @@ import styles from './header.module.css';
 
 const navigation = config.navigation || [];
 
-const Header = ({ currentPath = '' }) => (
+const Header = ({ currentPath = '' }) =>
 	<header className={styles['header']} role="banner">
 		<div className={utils['container']}>
 			<div className={styles['header-wrapper']}>
@@ -18,7 +18,7 @@ const Header = ({ currentPath = '' }) => (
 					<Link to={prefixLink('/')}>Peter Simonsson</Link>
 				</h1>
 				<nav className={styles['navigation']}>
-					{navigation.map(item => (
+					{navigation.map(item =>
 						<NavItem
 							path={item.path}
 							selected={item.path === currentPath}
@@ -26,12 +26,11 @@ const Header = ({ currentPath = '' }) => (
 						>
 							{item.label}
 						</NavItem>
-					))}
+					)}
 				</nav>
 			</div>
 		</div>
-	</header>
-);
+	</header>;
 
 Header.propTypes = {
 	currentPath: PropTypes.string,

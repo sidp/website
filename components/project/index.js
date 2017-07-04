@@ -52,7 +52,9 @@ const Project = ({ page }) => {
 			<Helmet title={pageTitle(page)} meta={helmetMeta} />
 			<div className={`markdown ${utils['text-wrapper']}`}>
 				<header>
-					<h1 className={styles['title']}>{page.title}</h1>
+					<h1 className={styles['title']}>
+						{page.title}
+					</h1>
 					<Meta
 						agency={page.agency}
 						client={page.client}
@@ -104,7 +106,11 @@ const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
 		items.push(<MetaItem key="link" label="Link" value={value} link={link} />);
 	}
 
-	return <div className={styles['meta']}>{items}</div>;
+	return (
+		<div className={styles['meta']}>
+			{items}
+		</div>
+	);
 };
 
 Meta.propTypes = {
@@ -133,9 +139,7 @@ const MetaItem = ({ label, value, link = '' }) => {
 
 	return (
 		<span className={styles['meta-item']}>
-			<span className={styles['meta-label']}>{label}:</span>
-			{' '}
-			{valueElement}
+			<span className={styles['meta-label']}>{label}:</span> {valueElement}
 		</span>
 	);
 };
