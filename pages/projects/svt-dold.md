@@ -22,7 +22,7 @@ images:
    src0x: dold-hacked-0x.jpg
 ---
 
-Har vi ditt lösenord? was a service to complement SVT Dold’s reportage on password security. Users could inquire whether their login details were part of the over 1 billion accounts that SVT compiled from data breaches. If the login details were found, the user could request an email with information about the hacked websites, and instructions on how to improve the user's password security.
+Har vi ditt lösenord? was a service to complement SVT Dold’s reportage on password security. Users could inquire whether their login details were part of the over 1 billion accounts that SVT compiled from data breaches. If the login details were found, the user could request an email with information about the hacked websites, and instructions on how to improve the user’s password security.
 
 ## Results
 

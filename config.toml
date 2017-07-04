@@ -1,6 +1,7 @@
 siteTitle = "Peter Simonsson"
 linkPrefix = ""
 googleAnalyticsId = "UA-60527-1"
+description = "I’m a freelance web developer and designer in Stockholm, Sweden. This is a selection of the most popular projects I’ve worked on."
 hostName = "https://simonsson.com/"
 
 [[navigation]]
