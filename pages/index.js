@@ -24,7 +24,9 @@ const Index = ({ route }) => {
 					},
 					{
 						property: 'og:image',
-						content: absoluteUri(require('file-loader!../images/og-image.png')),
+						content: absoluteUri(
+							require('!!file-loader!../images/og-image.png')
+						),
 					},
 				]}
 			/>
