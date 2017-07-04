@@ -3,6 +3,14 @@
   "description": "Portfolio of Peter Simonsson",
   "version": "1.0.0",
   "author": "Peter Simonsson <peter@simonsson.com>",
+  "scripts": {
+    "build": "gatsby build",
+    "serve": "gatsby serve-build",
+    "develop": "gatsby develop",
+    "deploy:production": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/simonsson.com",
+    "deploy:staging": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/stage.simonsson.com",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "front-matter": "^2.1.1",
     "gatsby": "^0.12.20",
@@ -29,13 +37,5 @@
   "devDependencies": {},
   "keywords": [
     "gatsby"
-  ],
-  "scripts": {
-    "build": "gatsby build",
-    "serve": "gatsby serve-build",
-    "develop": "gatsby develop",
-    "deploy:production": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/simonsson.com",
-    "deploy:staging": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/stage.simonsson.com",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+  ]
 }
