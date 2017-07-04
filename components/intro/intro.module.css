@@ -21,7 +21,17 @@
 
 @media screen and (max-width: 399px) {
 
-	.block {
+	.block > p {
 		font-size: 1.1rem;
+	}
+}
+
+@media screen and (max-width: 499px) {
+	.block {
+		min-height: 56vw;
+
+		& > p {
+			text-align: left;
+		}
 	}
 }
