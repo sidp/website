@@ -35,12 +35,15 @@ const Project = ({ page: { frontmatter, html } }) => {
 		);
 	}
 
-	const helmetMeta = [];
+	const meta = [];
 	if (frontmatter.description) {
-		helmetMeta.push({
-			name: 'description',
-			content: frontmatter.description,
-		});
+		meta.push(
+			<meta
+				name="description"
+				content="frontmatter.description"
+				key="description"
+			/>
+		);
 	}
 
 	let images = [];
@@ -55,10 +58,17 @@ const Project = ({ page: { frontmatter, html } }) => {
 
 	return (
 		<article className={styles['project']}>
-			<Helmet title={pageTitle(frontmatter)} meta={helmetMeta} />
+			<Helmet>
+				<title>
+					{pageTitle(frontmatter)}
+				</title>
+				{meta}
+			</Helmet>
 			<div className={`markdown ${utils['text-wrapper']}`}>
 				<header>
-					<h1 className={styles['title']}>{frontmatter.title}</h1>
+					<h1 className={styles['title']}>
+						{frontmatter.title}
+					</h1>
 					<Meta
 						agency={frontmatter.agency}
 						client={frontmatter.client}
@@ -72,13 +82,13 @@ const Project = ({ page: { frontmatter, html } }) => {
 			</div>
 			<div className={styles['images']}>
 				{images &&
-					images.map(image => (
+					images.map(image =>
 						<ProjectImage
 							image={image}
 							className={styles['image']}
 							key={image.src}
 						/>
-					))}
+					)}
 			</div>
 		</article>
 	);

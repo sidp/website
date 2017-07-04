@@ -16,10 +16,13 @@ const MarkdownPage = ({
 }) => {
 	const meta = [];
 	if (frontmatter.description) {
-		meta.push({
-			name: 'description',
-			content: frontmatter.description,
-		});
+		meta.push(
+			<meta
+				name="description"
+				content={frontmatter.description}
+				key="description"
+			/>
+		);
 	}
 
 	return (
@@ -27,8 +30,15 @@ const MarkdownPage = ({
 			className={`markdown ${className} ${utils['text-wrapper']}`}
 			{...props}
 		>
-			<Helmet title={pageTitle(frontmatter)} meta={meta} key="helmet" />
-			<h1 key="title">{frontmatter.heading || frontmatter.title}</h1>
+			<Helmet>
+				<title>
+					{pageTitle(frontmatter)}
+				</title>
+				{meta}
+			</Helmet>
+			<h1>
+				{frontmatter.heading || frontmatter.title}
+			</h1>
 			<div dangerouslySetInnerHTML={{ __html: html }} key="body" />
 		</HtmlElement>
 	);

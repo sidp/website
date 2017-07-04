@@ -10,15 +10,12 @@ const Index = ({ data }) => {
 
 	return (
 		<div>
-			<Helmet
-				title={pageTitle()}
-				meta={[
-					{
-						name: 'description',
-						content: data.site.siteMetadata.description,
-					},
-				]}
-			/>
+			<Helmet>
+				<title>
+					{pageTitle()}
+				</title>
+				<meta name="description" content={data.site.siteMetadata.description} />
+			</Helmet>
 
 			<Intro />
 			<ProjectList title="Projects" projects={projects} />
