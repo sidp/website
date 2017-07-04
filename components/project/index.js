@@ -32,6 +32,14 @@ const Project = ({ page }) => {
 	}
 
 	const helmetMeta = [];
+
+	if (page.title) {
+		helmetMeta.push({
+			property: 'og:title',
+			content: page.title,
+		});
+	}
+
 	if (page.description) {
 		helmetMeta.push({
 			name: 'description',
@@ -58,13 +66,13 @@ const Project = ({ page }) => {
 			</div>
 			<div className={styles['images']}>
 				{page.images &&
-					page.images.map(image => (
+					page.images.map(image =>
 						<ProjectImage
 							image={image}
 							className={styles['image']}
 							key={image.src1x}
 						/>
-					))}
+					)}
 			</div>
 		</article>
 	);

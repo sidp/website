@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 import Helmet from 'react-helmet';
 
+import { config } from '../config';
 import pageTitle from '../utils/page-title';
+import absoluteUri from '../utils/absolute-uri';
 import { getProjects } from '../utils/page-handling';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
@@ -18,7 +20,11 @@ const Index = ({ route }) => {
 				meta={[
 					{
 						name: 'description',
-						content: 'I’m the Technical Director of Wenderfalck in Stockholm, Sweden. This is a selection of the most popular projects I’ve worked on.',
+						content: config.description,
+					},
+					{
+						property: 'og:image',
+						content: absoluteUri(require('file-loader!../images/og-image.png')),
 					},
 				]}
 			/>

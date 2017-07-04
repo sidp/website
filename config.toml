@@ -1,6 +1,7 @@
 siteTitle = "Peter Simonsson"
 linkPrefix = ""
 googleAnalyticsId = "UA-60527-1"
+hostName = "https://simonsson.com/"
 
 [[navigation]]
 label = "Projects"

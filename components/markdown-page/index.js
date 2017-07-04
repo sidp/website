@@ -23,6 +23,14 @@ const MarkdownPage = ({
 	}
 
 	const meta = [];
+
+	if (page.title) {
+		meta.push({
+			property: 'og:title',
+			content: page.title,
+		});
+	}
+
 	if (page.description) {
 		meta.push({
 			name: 'description',
