@@ -75,11 +75,11 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
 
 		createNodeField({
 			node,
-			fieldName: 'type',
-			fieldValue: nodeType,
+			name: 'type',
+			value: nodeType,
 		});
 
 		// Add slug as a field on the node.
-		createNodeField({ node, fieldName: 'slug', fieldValue: slug });
+		createNodeField({ node, name: 'slug', value: slug });
 	}
 };

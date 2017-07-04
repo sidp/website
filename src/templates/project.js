@@ -22,13 +22,15 @@ export const pageQuery = graphql`
 			...Project_details
 		}
 		allMarkdownRemark(
-			fields: {
-				type: {eq: "project" }
-				slug: {ne: $slug}
+			filter: {
+				fields: {
+					type: {eq: "project" },
+					slug: {ne: $slug}
+				}
 			},
-			sortBy: {
+			sort: {
+				order: DESC,
 				fields: [frontmatter___weight]
-				order: DESC
 			}
 		) {
 			edges {

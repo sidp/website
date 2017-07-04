@@ -35,10 +35,10 @@ export const pageQuery = graphql`
 			}
 		}
 		allMarkdownRemark(
-			fields: { type: {eq: "project" } },
-			sortBy: {
+			filter: { fields: { type: {eq: "project" } } },
+			sort: {
+				order: DESC,
 				fields: [frontmatter___weight]
-				order: DESC
 			}
 		) {
 			edges {
