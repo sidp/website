@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import pageTitle from '../../utils/page-title';
 import { projectProps } from '../prop-types';
 import Meta from './meta';
 import ExternalLink from '../external-link';
@@ -60,7 +59,7 @@ const Project = ({ page: { frontmatter, html } }) => {
 		<article className={styles['project']}>
 			<Helmet>
 				<title>
-					{pageTitle(frontmatter)}
+					{frontmatter.title}
 				</title>
 				{meta}
 			</Helmet>

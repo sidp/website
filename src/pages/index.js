@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import pageTitle from '../utils/page-title';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
 
@@ -11,9 +10,6 @@ const Index = ({ data }) => {
 	return (
 		<div>
 			<Helmet>
-				<title>
-					{pageTitle()}
-				</title>
 				<meta name="description" content={data.site.siteMetadata.description} />
 			</Helmet>
 

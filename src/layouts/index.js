@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 
 import { rhythm } from '../utils/typography';
 import Header from '../components/header';
@@ -10,6 +11,10 @@ import utils from '../css/utils.module.css';
 
 const Layout = ({ children, location }) =>
 	<div>
+		<Helmet
+			defaultTitle="Peter Simonsson"
+			titleTemplate="%s - Peter Simonsson"
+		/>
 		<Header currentPath={location.pathname} />
 		<div className={utils['container']}>
 			{children()}

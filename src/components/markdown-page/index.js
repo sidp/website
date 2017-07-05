@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 import { pageProps } from '../prop-types';
-import pageTitle from '../../utils/page-title';
 
 import '../../css/markdown-styles.css';
 import utils from '../../css/utils.module.css';
@@ -32,7 +31,7 @@ const MarkdownPage = ({
 		>
 			<Helmet>
 				<title>
-					{pageTitle(frontmatter)}
+					{frontmatter.title}
 				</title>
 				{meta}
 			</Helmet>
