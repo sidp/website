@@ -27,6 +27,9 @@ const options = {
 	blockMarginBottom: 0.5,
 	plugins: [new CodePlugin()],
 	overrideStyles: ({ adjustFontSizeTo, rhythm }, options, styles) => ({
+		h1: {
+			letterSpacing: '-0.007em',
+		},
 		'h2, h3': {
 			marginTop: rhythm(0.75),
 			marginBottom: rhythm(0.25),

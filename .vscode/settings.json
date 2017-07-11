@@ -1,10 +1,10 @@
 {
-    "search.exclude": {
-        "public/*": true,
-        ".cache/*": true
-    },
-    "editor.formatOnSave": true,
-    "prettier.singleQuote": true,
-    "prettier.trailingComma": "es5",
-    "prettier.useTabs": true
+	"search.exclude": {
+		"public/*": true,
+		".cache/*": true
+	},
+	"editor.formatOnSave": true,
+	"prettier.singleQuote": true,
+	"prettier.trailingComma": "es5",
+	"prettier.useTabs": true
 }

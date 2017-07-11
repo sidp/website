@@ -6,11 +6,10 @@ const Intro = ({}) => {
 	return (
 		<div className={styles['block']}>
 			<p>
-				Hi! I'm the Technical Director of the PR agency
-				{' '}
-				<ExternalLink to="http://wenderfalck.com/">Wenderfalck</ExternalLink>
-				{' '}
-				in Stockholm, Sweden. This is a selection of the most popular projects I've worked on. Have a look!
+				Hi! I’m a freelance web developer and designer in Stockholm, Sweden.
+				Have a look at some of the most popular project I’ve worked on below,
+				and <a href="mailto:peter@simonsson.com">contact me</a> if you want to
+				talk further.
 			</p>
 		</div>
 	);

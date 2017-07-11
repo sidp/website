@@ -34,11 +34,11 @@ const Footer = () => {
 			title: 'sidp on Last.fm',
 			url: 'http://www.last.fm/user/sidp',
 		},
-	].map(link => (
+	].map(link =>
 		<ExternalLink to={link.url} title={link.title} key={link.url}>
 			{link.label}
 		</ExternalLink>
-	));
+	);
 
 	return (
 		<footer className={styles['footer']}>
@@ -47,16 +47,14 @@ const Footer = () => {
 					Peter Simonsson
 				</span>
 				<span className={styles['item']}>
-					Contact me on
-					{' '}
+					Contact me on{' '}
 					<a href="mailto:peter@simonsson.com">peter@simonsson.com</a>.
 				</span>
 				<span className={styles['item']}>
 					Also on {naturalJoin(links)}.
 				</span>
 				<span className={styles['item']}>
-					Check out this site on
-					{' '}
+					Check out this site on{' '}
 					<ExternalLink to="https://github.com/sidp/portfolio">
 						GitHub
 					</ExternalLink>.

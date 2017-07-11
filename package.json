@@ -34,9 +34,7 @@
 	"devDependencies": {
 		"prettier": "^1.5.2"
 	},
-	"keywords": [
-		"gatsby"
-	],
+	"keywords": ["gatsby"],
 	"scripts": {
 		"build": "gatsby build",
 		"serve": "gatsby serve",
