@@ -26,14 +26,12 @@ module.exports = {
 			options: {
 				plugins: [
 					{
-						resolve: 'gatsby-remark-responsive-image',
+						resolve: 'gatsby-remark-images',
 						options: {
 							maxWidth: 690,
 						},
 					},
-					{
-						resolve: 'gatsby-remark-responsive-iframe',
-					},
+					'gatsby-remark-responsive-iframe',
 					'gatsby-remark-prismjs',
 					'gatsby-remark-copy-linked-files',
 					'gatsby-remark-smartypants',
@@ -41,8 +39,9 @@ module.exports = {
 			},
 		},
 		'gatsby-transformer-json',
-		'gatsby-plugin-sharp',
 		'gatsby-transformer-sharp',
+		'gatsby-plugin-sharp',
+		'gatsby-plugin-sass',
 		'gatsby-plugin-react-helmet',
 		{
 			resolve: 'gatsby-plugin-google-analytics',
