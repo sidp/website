@@ -6559,7 +6559,7 @@ react-router-dom@^4.1.1:
     prop-types "^15.5.4"
     react-router "^4.1.1"
 
-"react-router-scroll@github:ytase/react-router-scroll#build":
+react-router-scroll@ytase/react-router-scroll#build:
   version "0.4.1"
   resolved "https://codeload.github.com/ytase/react-router-scroll/tar.gz/991ecddb08885e1fb80ec1e9dbf3a35844b7d4cd"
   dependencies:
@@ -6585,7 +6585,7 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
-react-typography@^0.15.0:
+react-typography@^0.15.10:
   version "0.15.10"
   resolved "https://registry.yarnpkg.com/react-typography/-/react-typography-0.15.10.tgz#1ece7bbd856735bd2ada4f6c40be508e994655a8"
 

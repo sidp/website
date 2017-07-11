@@ -5,6 +5,15 @@ import Helmet from 'react-helmet';
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import typography from './utils/typography';
 
+let stylesStr;
+if (process.env.NODE_ENV === 'production') {
+	try {
+		stylesStr = require('!raw-loader!../public/styles.css');
+	} catch (e) {
+		console.log(e);
+	}
+}
+
 const Html = ({ headComponents, body, postBodyComponents }) => {
 	const helmet = Helmet.rewind();
 
@@ -16,9 +25,7 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 		css = (
 			<style
 				id="gatsby-inlined-css"
-				dangerouslySetInnerHTML={{
-					__html: require('!raw!../public/styles.css'),
-				}}
+				dangerouslySetInnerHTML={{ __html: stylesStr }}
 			/>
 		);
 	}
