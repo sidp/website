@@ -7,8 +7,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 		const pages = [];
 		const templates = {
 			page: path.resolve('src/templates/page.js'),
-			project: path.resolve('src/templates/project.js'),
-			about: path.resolve('src/templates/about.js'),
+			project: path.resolve('src/templates/project/index.js'),
+			about: path.resolve('src/templates/about/index.js'),
 		};
 
 		resolve(

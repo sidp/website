@@ -10,7 +10,7 @@ import utils from '../../css/utils.module.css';
 const MarkdownPage = ({
 	page: { frontmatter, html },
 	className = '',
-	HtmlElement = 'article',
+	htmlElement = 'article',
 	...props
 }) => {
 	const meta = [];
@@ -25,7 +25,7 @@ const MarkdownPage = ({
 	}
 
 	return (
-		<HtmlElement
+		<htmlElement
 			className={`markdown ${className} ${utils['text-wrapper']}`}
 			{...props}
 		>
@@ -39,7 +39,7 @@ const MarkdownPage = ({
 				{frontmatter.heading || frontmatter.title}
 			</h1>
 			<div dangerouslySetInnerHTML={{ __html: html }} key="body" />
-		</HtmlElement>
+		</htmlElement>
 	);
 };
 

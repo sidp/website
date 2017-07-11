@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { pageProps } from '../prop-types';
-import MarkdownPage from '../markdown-page';
+import { pageProps } from '../../components/prop-types';
+import MarkdownPage from '../../components/markdown-page';
 
 import styles from './about.module.css';
 
-const About = ({ page }) => {
+export default function About({ data: { markdownRemark: page } }) {
 	const image =
 		page.frontmatter.portrait &&
 		page.frontmatter.portrait.childImageSharp.image;
+
 	return (
 		<article role="main" className={styles['about']}>
 			<div className={styles['summary']}>
@@ -28,25 +29,25 @@ const About = ({ page }) => {
 			/>
 		</article>
 	);
-};
+}
 
-export default About;
-
-export const aboutFragment = graphql`
-	fragment AboutPage_details on MarkdownRemark {
-		frontmatter {
-			title
-			heading
-			description
-			portrait {
-				childImageSharp {
-					image: responsiveSizes(maxWidth: 640) {
-						src
-						srcSet
+export const pageQuery = graphql`
+	query AboutPageBySlug($slug: String!) {
+		markdownRemark(fields: { slug: { eq: $slug } }) {
+			frontmatter {
+				title
+				heading
+				description
+				portrait {
+					childImageSharp {
+						image: responsiveSizes(maxWidth: 640) {
+							src
+							srcSet
+						}
 					}
 				}
 			}
+			html
 		}
-		html
 	}
 `;

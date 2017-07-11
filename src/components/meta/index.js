@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ExternalLink from '../external-link';
 
-import styles from './project.module.css';
+import styles from './meta.module.css';
 
 const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
 	const items = [];
@@ -24,7 +24,11 @@ const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
 		items.push(<MetaItem key="link" label="Link" value={value} link={link} />);
 	}
 
-	return <div className={styles['meta']}>{items}</div>;
+	return (
+		<div className={styles['meta']}>
+			{items}
+		</div>
+	);
 };
 
 Meta.propTypes = {
@@ -55,9 +59,7 @@ const MetaItem = ({ label, value, link = '' }) => {
 
 	return (
 		<span className={styles['meta-item']}>
-			<span className={styles['meta-label']}>{label}:</span>
-			{' '}
-			{valueElement}
+			<span className={styles['meta-label']}>{label}:</span> {valueElement}
 		</span>
 	);
 };

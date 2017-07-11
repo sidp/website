@@ -8,42 +8,6 @@
 	margin-bottom: 0;
 }
 
-.meta {
-	color: var(--grayed-color);
-	margin: 0.3em 0 1em;
-	font-family: var(--meta-font-family);
-	font-size: var(--meta-font-size);
-}
-
-.meta-item {
-	display: inline-block;
-	white-space: nowrap;
-
-	&:not(:last-of-type) {
-		margin-right: 1em;
-	}
-}
-
-.meta-label {
-}
-
-.meta-value {
-	font-weight: 600;
-}
-
-a.meta-value {
-	color: var(--grayed-color);
-	box-shadow: var(--link-box-shadow);
-
-	&:hover {
-		color: var(--grayed-color--hover);
-	}
-
-	&:active {
-		color: var(--grayed-color--active);
-	}
-}
-
 .links {
 	border-top: 1px solid var(--accent-color);
 	margin-top: 2em;
