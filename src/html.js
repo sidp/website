@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import typography from './utils/typography';
@@ -15,11 +14,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const Html = ({ headComponents, body, postBodyComponents }) => {
-	const helmet = Helmet.rewind();
-
-	const htmlAttrs = helmet.htmlAttributes.toComponent();
-	const bodyAttrs = helmet.bodyAttributes.toComponent();
-
 	let css;
 	if (process.env.NODE_ENV === 'production') {
 		css = (
@@ -31,14 +25,11 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 	}
 
 	return (
-		<html lang="en" {...htmlAttrs}>
+		<html lang="en">
 			<head>
 				<meta charSet="utf-8" />
 				<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				{helmet.title.toComponent()}
-				{helmet.meta.toComponent()}
-				{helmet.link.toComponent()}
 				<link
 					rel="icon"
 					type="image/x-icon"
@@ -49,7 +40,7 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 				{css}
 				{headComponents}
 			</head>
-			<body {...bodyAttrs}>
+			<body>
 				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
 				{postBodyComponents}
 			</body>
