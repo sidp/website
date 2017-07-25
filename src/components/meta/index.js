@@ -4,7 +4,13 @@ import ExternalLink from '../external-link';
 
 import styles from './meta.module.css';
 
-const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
+const Meta = ({
+	agency = '',
+	client = '',
+	year = '',
+	link = '',
+	published = '',
+}) => {
 	const items = [];
 
 	if (agency) {
@@ -24,6 +30,12 @@ const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
 		items.push(<MetaItem key="link" label="Link" value={value} link={link} />);
 	}
 
+	if (published) {
+		items.push(
+			<MetaItem key="published" label="Published" value={published} />
+		);
+	}
+
 	return (
 		<div className={styles['meta']}>
 			{items}
@@ -36,6 +48,7 @@ Meta.propTypes = {
 	client: PropTypes.string,
 	year: PropTypes.string,
 	link: PropTypes.string,
+	published: PropTypes.string,
 };
 
 export default Meta;

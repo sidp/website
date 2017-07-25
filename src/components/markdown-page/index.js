@@ -11,6 +11,7 @@ const MarkdownPage = ({
 	page: { frontmatter, html },
 	className = '',
 	htmlElement = 'article',
+	children,
 	...props
 }) => {
 	const meta = [];
@@ -38,6 +39,7 @@ const MarkdownPage = ({
 			<h1>
 				{frontmatter.heading || frontmatter.title}
 			</h1>
+			{children}
 			<div dangerouslySetInnerHTML={{ __html: html }} key="body" />
 		</htmlElement>
 	);
@@ -48,6 +50,7 @@ MarkdownPage.propTypes = {
 	className: PropTypes.string,
 	htmlElement: PropTypes.string,
 	role: PropTypes.string,
+	children: PropTypes.node,
 };
 
 export default MarkdownPage;
