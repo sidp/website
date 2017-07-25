@@ -1,29 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 
 import absoluteUrl from '../utils/absolute-uri';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
 
-const Index = ({ data }) => {
-	const projects = data.allMarkdownRemark.edges.map(edge => edge.node);
-	const { siteMetadata } = data.site;
+export default class Index extends Component {
+	render() {
+		const { data } = this.props;
+		const projects = data.allMarkdownRemark.edges.map(edge => edge.node);
+		const { siteMetadata } = data.site;
 
-	return (
-		<div>
-			<Helmet>
-				<meta name="description" content={siteMetadata.description} />
-				<meta
-					name="og:image"
-					content={absoluteUrl(require('../static/images/og-image.png'))}
-				/>
-			</Helmet>
+		return (
+			<div>
+				<Helmet>
+					<meta name="description" content={siteMetadata.description} />
+					<meta
+						name="og:image"
+						content={absoluteUrl(require('../static/images/og-image.png'))}
+					/>
+				</Helmet>
 
-			<Intro />
-			<ProjectList title="Projects" projects={projects} />
-		</div>
-	);
-};
+				<Intro />
+				<ProjectList title="Projects" projects={projects} />
+			</div>
+		);
+	}
+}
 
 export const pageQuery = graphql`
 	query indexPageData {
@@ -45,5 +48,3 @@ export const pageQuery = graphql`
 		}
 	}
 `;
-
-export default Index;
