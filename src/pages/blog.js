@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 
 export default class Blog extends Component {
@@ -12,10 +13,16 @@ export default class Blog extends Component {
 				<Helmet>
 					<title>Blog</title>
 				</Helmet>
-
+				<p>
+					There are {blogPosts.length} blog post(s):
+				</p>
 				{blogPosts.map(post =>
-					<div key={post.published}>
-						{post.title}
+					<div>
+						<h2>
+							{post.frontmatter.title}
+						</h2>
+						{post.frontmatter.description}
+						<Link to={post.fields.slug}>Read more</Link>
 					</div>
 				)}
 			</div>
@@ -40,6 +47,9 @@ export const pageQuery = graphql`
 					frontmatter {
 						title
 						published
+					}
+					fields {
+						slug
 					}
 					html
 				}
