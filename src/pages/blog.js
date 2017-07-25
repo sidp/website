@@ -17,7 +17,7 @@ export default class Blog extends Component {
 					There are {blogPosts.length} blog post(s):
 				</p>
 				{blogPosts.map(post =>
-					<div>
+					<div key={post.fields.slug}>
 						<h2>
 							{post.frontmatter.title}
 						</h2>
