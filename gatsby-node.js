@@ -59,11 +59,18 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
 	) {
 		const fileNode = getNode(node.parent);
 		const parsedFilePath = path.parse(fileNode.relativePath);
+		const blogPostFormat = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})\-(.+)/;
+		const isBlogPost =
+			parsedFilePath.dir === 'blog' ||
+			blogPostFormat.exec(parsedFilePath.dir) !== null;
 
-		if (parsedFilePath.dir === 'blog') {
-			const parts = parsedFilePath.name.match(
-				/([0-9]{4})\-([0-9]{2})\-([0-9]{2})\-([^\/]+)/
-			);
+		if (isBlogPost) {
+			const name =
+				parsedFilePath.dir === 'blog'
+					? parsedFilePath.name
+					: parsedFilePath.dir;
+
+			const parts = blogPostFormat.exec(name);
 			slug = `/blog/${parts[4] || parsedFilePath.name}/`;
 		} else if (parsedFilePath.name !== 'index' && parsedFilePath.dir !== '') {
 			slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
@@ -76,7 +83,7 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
 		let nodeType = 'page';
 		if (parsedFilePath.dir === 'projects') {
 			nodeType = 'project';
-		} else if (parsedFilePath.dir === 'blog') {
+		} else if (isBlogPost) {
 			nodeType = 'blogPost';
 		} else if (parsedFilePath.name === 'about') {
 			nodeType = 'about';
