@@ -1,6 +1,7 @@
 {
 	"search.exclude": {
-		"public/*": true
+		"public/*": true,
+		".cache/*": true
 	},
 	"editor.formatOnSave": true,
 	"prettier.singleQuote": true,

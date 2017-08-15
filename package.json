@@ -1,39 +1,48 @@
 {
 	"name": "sidp-portfolio",
+	"private": true,
 	"description": "Portfolio of Peter Simonsson",
 	"version": "1.0.0",
 	"author": "Peter Simonsson <peter@simonsson.com>",
+	"dependencies": {
+		"front-matter": "^2.1.1",
+		"gatsby": "^1.0.11",
+		"gatsby-link": "^1.0",
+		"gatsby-plugin-catch-links": "^1.0",
+		"gatsby-plugin-google-analytics": "^1.0",
+		"gatsby-plugin-nprogress": "^1.0",
+		"gatsby-plugin-offline": "^1.0",
+		"gatsby-plugin-react-helmet": "^1.0.1",
+		"gatsby-plugin-sass": "^1.0",
+		"gatsby-plugin-sharp": "^1.0",
+		"gatsby-remark-copy-linked-files": "^1.0",
+		"gatsby-remark-images": "^1.0",
+		"gatsby-remark-prismjs": "^1.0",
+		"gatsby-remark-responsive-iframe": "^1.0",
+		"gatsby-remark-smartypants": "^1.0",
+		"gatsby-source-filesystem": "^1.0",
+		"gatsby-transformer-json": "^1.0",
+		"gatsby-transformer-remark": "^1.0",
+		"gatsby-transformer-sharp": "^1.0",
+		"lodash": "^4.17.4",
+		"prop-types": "^15.5.8",
+		"react-helmet": "^5.1.3",
+		"react-typography": "^0.15.10",
+		"typography": "^0.15.0",
+		"typography-plugin-code": "^0.15.0"
+	},
+	"devDependencies": {
+		"prettier": "^1.5.2"
+	},
+	"keywords": [
+		"gatsby"
+	],
 	"scripts": {
 		"build": "gatsby build",
-		"serve": "gatsby serve-build",
+		"serve": "gatsby serve",
 		"develop": "gatsby develop",
 		"deploy:production": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/simonsson.com",
 		"deploy:staging": "yarn run build && rsync -avz --del public/ peter@simonsson.com:/var/www/stage.simonsson.com",
 		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"dependencies": {
-		"front-matter": "^2.1.1",
-		"gatsby": "^0.12.20",
-		"highlight.js": "^9.8.0",
-		"js-yaml": "^3.7.0",
-		"lodash": "^4.17.4",
-		"markdown-it": "^8.3.1",
-		"markdown-it-abbr": "^1.0.4",
-		"markdown-it-attrs": "^0.9.0",
-		"markdown-it-deflist": "^2.0.1",
-		"markdown-it-footnote": "^3.0.1",
-		"markdown-it-sub": "^1.0.0",
-		"object-assign": "^4.1.0",
-		"prettier": "^1.2.2",
-		"prop-types": "^15.5.8",
-		"react-ga": "^2.1.2",
-		"react-headroom": "^2.1.2",
-		"react-helmet": "^5.0.3",
-		"react-typography": "^0.15.0",
-		"toml-js": "0.0.8",
-		"typography": "^0.15.0",
-		"typography-plugin-code": "^0.15.0"
-	},
-	"devDependencies": {},
-	"keywords": ["gatsby"]
+	}
 }
