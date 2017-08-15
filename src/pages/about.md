@@ -2,7 +2,7 @@
 title: About
 heading: Hi!
 description: I’m a freelance web developer and designer in Stockholm, Sweden. I build things for people on the internet – and I love it!
-portrait: ./images/peter.jpg
+portrait: ./peter.jpg
 ---
 
 I build things for people on the internet – and I love it! The past eleven years, I’ve created services that millions of people use, like and share.
