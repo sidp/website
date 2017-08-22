@@ -3436,6 +3436,13 @@ gatsby-plugin-google-analytics@^1.0:
   dependencies:
     babel-runtime "6.26.0"
 
+gatsby-plugin-manifest@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-1.0.4.tgz#85f49142788827a79c4593682384b40d16417abe"
+  dependencies:
+    babel-runtime "6.26.0"
+    bluebird "^3.5.0"
+
 gatsby-plugin-nprogress@^1.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-nprogress/-/gatsby-plugin-nprogress-1.0.3.tgz#8ba5591b93e5d641f2fc59b6844e5c1700552a90"
@@ -3443,7 +3450,7 @@ gatsby-plugin-nprogress@^1.0:
     babel-runtime "6.26.0"
     nprogress "^0.2.0"
 
-gatsby-plugin-offline@^1.0:
+gatsby-plugin-offline@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-offline/-/gatsby-plugin-offline-1.0.4.tgz#33ecac56ed2804daf2951642801ecb7023f352a7"
   dependencies:
@@ -7295,7 +7302,7 @@ react-router-dom@^4.1.1:
     prop-types "^15.5.4"
     react-router "^4.1.1"
 
-"react-router-scroll@github:ytase/react-router-scroll#build":
+react-router-scroll@ytase/react-router-scroll#build:
   version "0.4.1"
   resolved "https://codeload.github.com/ytase/react-router-scroll/tar.gz/991ecddb08885e1fb80ec1e9dbf3a35844b7d4cd"
   dependencies:
