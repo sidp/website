@@ -42,10 +42,9 @@ module.exports = {
 		},
 		'gatsby-transformer-json',
 		'gatsby-transformer-sharp',
+		'gatsby-plugin-react-next',
 		'gatsby-plugin-sharp',
-		'gatsby-plugin-sass',
 		'gatsby-plugin-react-helmet',
-		'gatsby-plugin-preact',
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
@@ -69,7 +68,6 @@ module.exports = {
 				],
 			},
 		},
-		'gatsby-plugin-offline',
 		{
 			resolve: 'gatsby-plugin-google-analytics',
 			options: {
