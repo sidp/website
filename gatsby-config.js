@@ -46,9 +46,32 @@ module.exports = {
 		},
 		'gatsby-transformer-json',
 		'gatsby-transformer-sharp',
+		'gatsby-plugin-react-next',
 		'gatsby-plugin-sharp',
-		'gatsby-plugin-sass',
 		'gatsby-plugin-react-helmet',
+		{
+			resolve: `gatsby-plugin-manifest`,
+			options: {
+				name: 'Peter Simonsson',
+				short_name: 'Peter S.',
+				start_url: '/',
+				background_color: '#F0E8F0',
+				theme_color: '#0099FF',
+				display: 'minimal-ui',
+				icons: [
+					{
+						src: '/images/chrome-192.png',
+						sizes: '192x192',
+						type: 'image/png',
+					},
+					{
+						src: '/images/chrome-512.png',
+						sizes: '512x512',
+						type: 'image/png',
+					},
+				],
+			},
+		},
 		{
 			resolve: 'gatsby-plugin-google-analytics',
 			options: {

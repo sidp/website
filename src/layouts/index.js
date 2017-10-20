@@ -18,10 +18,10 @@ export default class Layout extends Component {
 					defaultTitle={siteMetadata.title}
 					titleTemplate={`%s - ${siteMetadata.title}`}
 				/>
-				<Header currentPath={this.props.location.pathname} />
-				<div className={utils['container']}>
-					{this.props.children()}
-				</div>
+				<Header
+					currentPath={this.props.location && this.props.location.pathname}
+				/>
+				<div className={utils['container']}>{this.props.children()}</div>
 				<Footer />
 			</div>
 		);

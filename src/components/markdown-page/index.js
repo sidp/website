@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createElement } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
@@ -25,23 +25,20 @@ const MarkdownPage = ({
 		);
 	}
 
-	return (
-		<htmlElement
-			className={`markdown ${className} ${utils['text-wrapper']}`}
-			{...props}
-		>
-			<Helmet>
-				<title>
-					{frontmatter.title}
-				</title>
+	return createElement(
+		htmlElement,
+		{
+			className: `markdown ${className} ${utils['text-wrapper']}`,
+			...props,
+		},
+		[
+			<Helmet key="helmet">
+				<title>{frontmatter.title}</title>
 				{meta}
-			</Helmet>
-			<h1>
-				{frontmatter.heading || frontmatter.title}
-			</h1>
-			{children}
-			<div dangerouslySetInnerHTML={{ __html: html }} key="body" />
-		</htmlElement>
+			</Helmet>,
+			<h1 key="heading">{frontmatter.heading || frontmatter.title}</h1>,
+			<div key="body" dangerouslySetInnerHTML={{ __html: html }} />,
+		]
 	);
 };
 
