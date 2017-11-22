@@ -6,7 +6,11 @@ year: 2016–
 description: The website Svenska löpare gives access to all running races, trainings and events organized by the Swedish Athletic Association and its members.
 link: https://svenskalopare.se/
 weight: 50
-images: ./svenska-lopare/manifest.json
+images:
+ - title: "Start page of Svenska löpare"
+   src: "./start.jpg"
+ - title: "Find races on a map"
+   src: "./map.jpg"
 ---
 
 The website Svenska löpare gives access to all running races, trainings and events organized by the Swedish Athletic Association and its members. The goal of Svenska löpare is health promotion and social gathering through running.

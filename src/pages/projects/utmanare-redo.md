@@ -6,7 +6,11 @@ year: 2015–2016
 description: Utmanare Redo (Contender Ready) was a campaign with the goal of attracting the fitness audience to the TV show Gladiatorerna (The Gladiators).
 link: http://utmanareredo.se/
 weight: 40
-images: ./utmanare-redo/manifest.json
+images:
+ - title: "Utmanare redo – intro"
+   src: "./utmanare-redo/intro.jpg"
+ - title: "Utmanare redo – weekly challenge"
+   src: "./utmanare-redo/start.jpg"
 ---
 
 Utmanare Redo (Contender Ready) was a campaign with the goal of attracting the fitness audience to the TV show Gladiatorerna (The Gladiators). We created a website where gladiators challenged the public in weekly fitness exercises. By accepting the challenge visitors could realize the level of fitness required of the gladiators, thus changing their opinion on them, from pure muscle mass to actual athletes.

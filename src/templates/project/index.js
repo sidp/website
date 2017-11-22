@@ -10,34 +10,7 @@ import utils from '../../css/utils.module.css';
 import styles from './project.module.css';
 
 export default class Project extends Component {
-	render() {
-		const {
-			data: { markdownRemark: page, allMarkdownRemark: { edges } },
-		} = this.props;
-		const projects = edges.map(edge => edge.node);
-		const frontmatter = page.frontmatter;
-		let link;
-
-		if (frontmatter.link) {
-			link = (
-				<p className={styles['links']}>
-					<ExternalLink to={frontmatter.link} className={styles['link']}>
-						See it live
-					</ExternalLink>
-				</p>
-			);
-		}
-
-		let videoEmbed;
-		if (frontmatter.videoEmbed) {
-			videoEmbed = (
-				<VideoEmbed
-					{...frontmatter.videoEmbed}
-					className={styles['video-embed']}
-				/>
-			);
-		}
-
+	renderMeta(frontmatter) {
 		const meta = [];
 		if (frontmatter.description) {
 			meta.push(
@@ -48,31 +21,86 @@ export default class Project extends Component {
 				/>
 			);
 		}
+		return meta;
+	}
 
-		let images = [];
-		if (frontmatter.images && frontmatter.images.childrenManifestJson) {
-			images = frontmatter.images.childrenManifestJson.map(manifestItem => {
-				return {
-					...manifestItem.image.childImageSharp.responsive,
-					title: manifestItem.title,
-				};
-			});
+	renderLink(frontmatter) {
+		let link;
+		if (frontmatter.link) {
+			link = (
+				<p className={styles['links']}>
+					<ExternalLink to={frontmatter.link} className={styles['link']}>
+						See it live
+					</ExternalLink>
+				</p>
+			);
 		}
+		return link;
+	}
+
+	renderVideoEmbed(frontmatter) {
+		let videoEmbed;
+		if (frontmatter.videoEmbed) {
+			videoEmbed = (
+				<VideoEmbed
+					{...frontmatter.videoEmbed}
+					className={styles['video-embed']}
+				/>
+			);
+		}
+		return videoEmbed;
+	}
+
+	renderImages(frontmatter) {
+		let images = [];
+		let imageElements;
+
+		if (frontmatter.images && frontmatter.images.length > 0) {
+			images = frontmatter.images.map(image => ({
+				...image.src.childImageSharp.responsive,
+				title: image.title,
+			}));
+		}
+
+		if (images) {
+			imageElements = (
+				<div className={styles['images']}>
+					{images.map(image => (
+						<ProjectImage
+							image={image}
+							className={styles['image']}
+							key={image.src}
+						/>
+					))}
+				</div>
+			);
+		}
+
+		return imageElements;
+	}
+
+	render() {
+		const {
+			data: { markdownRemark: page, allMarkdownRemark: { edges } },
+		} = this.props;
+		const projects = edges.map(edge => edge.node);
+		const frontmatter = page.frontmatter;
+
+		const meta = this.renderMeta(frontmatter);
+		const link = this.renderLink(frontmatter);
+		const videoEmbed = this.renderVideoEmbed(frontmatter);
+		const images = this.renderImages(frontmatter);
 
 		return (
 			<div>
 				<article className={styles['project']}>
 					<Helmet>
-						<title>
-							{frontmatter.title}
-						</title>
+						<title>{frontmatter.title}</title>
 						{meta}
 					</Helmet>
 					<div className={`markdown ${utils['text-wrapper']}`}>
 						<header>
-							<h1 className={styles['title']}>
-								{frontmatter.title}
-							</h1>
+							<h1 className={styles['title']}>{frontmatter.title}</h1>
 							<Meta
 								agency={frontmatter.agency}
 								client={frontmatter.client}
@@ -84,16 +112,7 @@ export default class Project extends Component {
 						{link}
 						{videoEmbed}
 					</div>
-					<div className={styles['images']}>
-						{images &&
-							images.map(image =>
-								<ProjectImage
-									image={image}
-									className={styles['image']}
-									key={image.src}
-								/>
-							)}
-					</div>
+					{images}
 				</article>
 				<ProjectList title="More Projects" projects={projects} />
 			</div>
@@ -117,15 +136,13 @@ export const pageQuery = graphql`
 					height
 				}
 				images {
-					childrenManifestJson {
-						title
-						image {
-							childImageSharp {
-								responsive: responsiveSizes(maxWidth: 640) {
-									src
-									srcSet
-									base64
-								}
+					title
+					src {
+						childImageSharp {
+							responsive: responsiveSizes(maxWidth: 640) {
+								src
+								srcSet
+								base64
 							}
 						}
 					}
