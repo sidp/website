@@ -14,17 +14,22 @@ export default class Blog extends Component {
 					<title>Blog</title>
 				</Helmet>
 				<p>
-					There are {blogPosts.length} blog post(s):
+					There are {blogPosts.length} blog{' '}
+					{blogPosts.length === 1 ? 'post' : 'posts'}:
 				</p>
-				{blogPosts.map(post =>
+				{blogPosts.map(post => (
 					<div key={post.fields.slug}>
-						<h2>
-							{post.frontmatter.title}
-						</h2>
-						{post.frontmatter.description}
-						<Link to={post.fields.slug}>Read more</Link>
+						<hr />
+						<time dateTime={post.frontmatter.timestamp}>
+							{post.frontmatter.date}
+						</time>
+						<h2>{post.frontmatter.title}</h2>
+						<p>
+							{post.frontmatter.description}{' '}
+							<Link to={post.fields.slug}>Read more »</Link>
+						</p>
 					</div>
-				)}
+				))}
 			</div>
 		);
 	}
@@ -46,7 +51,9 @@ export const pageQuery = graphql`
 				node {
 					frontmatter {
 						title
-						published
+						description
+						date: published(formatString: "MMMM d, YYYY")
+						timestamp: published
 					}
 					fields {
 						slug
