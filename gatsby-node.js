@@ -4,7 +4,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 	const { createPage } = boundActionCreators;
 
 	return new Promise((resolve, reject) => {
-		const pages = [];
 		const templates = {
 			page: path.resolve('src/templates/page.js'),
 			project: path.resolve('src/templates/project/index.js'),
@@ -19,7 +18,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 							edges {
 								node {
 									fields {
-										slug,
+										slug
 										type
 									}
 								}
@@ -45,7 +44,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 					});
 				});
 
-				return;
+				resolve();
 			})
 		);
 	});
