@@ -20,8 +20,14 @@ export default class Index extends Component {
 						content={absoluteUrl(require('../static/images/og-image.png'))}
 					/>
 				</Helmet>
-
-				<Intro />
+				<Intro>
+					<p>
+						Hi! I’m a freelance web developer and designer. Have a look at some
+						of the most popular project I’ve worked on below, and{' '}
+						<a href="mailto:peter@simonsson.com">contact me</a> if you want to
+						talk further.
+					</p>
+				</Intro>
 				<ProjectList title="Projects" projects={projects} />
 			</div>
 		);
