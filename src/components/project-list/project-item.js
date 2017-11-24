@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
+import styled from 'styled-components';
 
 import { projectProps } from '../prop-types';
 import ParallaxImage from '../parallax-image';
 
-import styles from './project-list.module.css';
+import { grayedColor, metaFontSize } from '../../styles/variables';
 import thumbs from '../../images/thumbs';
 
 const ProjectItem = ({
-	project: { frontmatter: { title, client, year }, fields: { slug } },
+	project: { frontmatter: { title, client }, fields: { slug } },
+	className = '',
 }) => {
 	let images = [];
 	let flattened = '';
@@ -20,23 +22,30 @@ const ProjectItem = ({
 	}
 
 	return (
-		<div className={styles['project-item']}>
-			<Link to={slug}>
+		<div className={className}>
+			<StyledLink to={slug}>
 				<ParallaxImage images={images} flattened={flattened} />
-				<h3 className={styles['title']}>
-					{title}
-				</h3>
-				<p className={styles['meta']}>
-					{client}
-				</p>
-			</Link>
+				<Title>{title}</Title>
+				<Meta>{client}</Meta>
+			</StyledLink>
 		</div>
 	);
 };
 
-ProjectItem.propTypes = {};
+ProjectItem.propTypes = {
+	project: PropTypes.shape({
+		frontmatter: PropTypes.shape({
+			title: PropTypes.string,
+			client: PropTypes.string,
+		}),
+	}),
+};
 
 export default ProjectItem;
+
+/**
+ * GraphQL
+ */
 
 export const projectItemFragment = graphql`
 	fragment Project_item on MarkdownRemark {
@@ -48,4 +57,30 @@ export const projectItemFragment = graphql`
 			slug
 		}
 	}
+`;
+
+/**
+ * Styled components
+ */
+
+const Block = styled.div``;
+
+const StyledLink = styled(Link)`
+	color: inherit;
+	display: block;
+`;
+
+const Title = styled.h3`
+	font-size: 1em;
+	line-height: inherit;
+	font-weight: inherit;
+	margin-top: 0.55rem;
+	margin-bottom: 0;
+`;
+
+const Meta = styled.p`
+	color: ${grayedColor};
+	font-size: ${metaFontSize};
+	margin-top: 0;
+	margin-bottom: 0;
 `;

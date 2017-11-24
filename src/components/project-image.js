@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import isNearViewport from '../../utils/is-near-viewport';
-import { imageProps } from '../prop-types';
-import styles from './project-image.module.css';
+import styled from 'styled-components';
+import isNearViewport from '../utils/is-near-viewport';
+import { imageProps } from './prop-types';
 
 const LoadStates = {
 	NONE: 'NONE',
@@ -138,20 +138,70 @@ export default class ProjectImage extends PureComponent {
 			backgroundImage: `url(${image.base64})`,
 		};
 
-		let wrapperClassNames = [styles['wrapper'], className];
-
-		if (loadState === LoadStates.ERROR) {
-			wrapperClassNames.push(styles['error']);
-		}
-
 		return (
-			<div
-				className={wrapperClassNames.join(' ')}
+			<Wrapper
+				error={loadState === LoadStates.ERROR}
 				style={wrapperStyle}
-				ref={el => (this.element = el)}
+				className={className}
+				innerRef={el => (this.element = el)}
 			>
 				{imageElement}
-			</div>
+			</Wrapper>
 		);
 	}
 }
+
+/**
+ * Styled components
+ */
+
+const Wrapper = styled.div`
+	position: relative;
+	width: 100%;
+	height: 0;
+	background-size: 100%;
+
+	& > img {
+		position: absolute;
+		top: 0;
+		z-index: 3;
+		width: 100%;
+		height: 100%;
+		transition: opacity 350ms linear;
+	}
+
+	/* overlay on error */
+	&::before {
+		content: '';
+		display: none;
+		background-color: #eee;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+		opacity: 0;
+		transition: opacity 400ms linear;
+
+		${props =>
+			props.error
+				? `
+					display: block;
+					opacity: 0.66;
+				`
+				: ''};
+	}
+`;
+
+/*
+
+.wrapper.error {
+
+	&::before {
+	}
+}
+
+
+
+*/

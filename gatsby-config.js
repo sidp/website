@@ -1,4 +1,5 @@
 module.exports = {
+	pathPrefix: '/',
 	siteMetadata: {
 		title: 'Peter Simonsson',
 		description:
@@ -47,8 +48,9 @@ module.exports = {
 		'gatsby-transformer-json',
 		'gatsby-transformer-sharp',
 		'gatsby-plugin-react-next',
-		'gatsby-plugin-sharp',
 		'gatsby-plugin-react-helmet',
+		'gatsby-plugin-styled-components',
+		'gatsby-plugin-sharp',
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {

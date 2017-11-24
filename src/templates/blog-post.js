@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { pageProps } from '../../components/prop-types';
-import MarkdownPage from '../../components/markdown-page';
-import Meta from '../../components/meta';
+import { pageProps } from '../components/prop-types';
+import MarkdownPage from '../components/markdown-page';
+import Meta from '../components/meta';
 
 export default class BlogPost extends Component {
 	render() {
