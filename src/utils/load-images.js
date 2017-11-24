@@ -1,4 +1,4 @@
-export default function loadImages(images = [], callback = () => {}) {
+export default function loadImages(images = [], callback = error => {}) {
 	let loaded = 0;
 	let successfully = 0;
 
