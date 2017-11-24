@@ -92,19 +92,12 @@ const HeaderWrapper = styled.div`
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
-
-	& .title,
-	& .navigation {
-	}
-
-	& .title {
-		margin-bottom: 0;
-	}
 `;
 
 const Title = styled.h1`
 	font-size: 1.1rem;
 	margin-top: 0;
+	margin-bottom: 0;
 	letter-spacing: 0;
 	line-height: 1.5;
 
