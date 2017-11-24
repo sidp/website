@@ -5,6 +5,7 @@ module.exports = {
 		description:
 			'I’m a freelance web developer and designer in Stockholm, Sweden. This is a selection of the most popular projects I’ve worked on.',
 		hostname: 'https://simonsson.com',
+		email: 'peter@simonsson.com',
 		navigation: [
 			{
 				label: 'Projects',
@@ -13,6 +14,33 @@ module.exports = {
 			{
 				label: 'About',
 				path: '/about/',
+			},
+		],
+		socialMediaLinks: [
+			{
+				label: 'Twitter',
+				title: '@sidp on Twitter',
+				url: 'https://twitter.com/sidp',
+			},
+			{
+				label: 'GitHub',
+				title: '@sidp on GitHub',
+				url: 'https://github.com/sidp',
+			},
+			{
+				label: 'LinkedIn',
+				title: 'Peter Simonsson on LinkedIn',
+				url: 'https://www.linkedin.com/in/sidp86',
+			},
+			{
+				label: 'Instagram',
+				title: '@sidp on Instagram',
+				url: 'https://www.instagram.com/sidp/',
+			},
+			{
+				label: 'Last.fm',
+				title: 'sidp on Last.fm',
+				url: 'http://www.last.fm/user/sidp',
 			},
 		],
 	},

@@ -9,12 +9,12 @@ export default class Index extends Component {
 	render() {
 		const { data } = this.props;
 		const projects = data.allMarkdownRemark.edges.map(edge => edge.node);
-		const { siteMetadata } = data.site;
+		const { siteMetadata: { description } } = data.site;
 
 		return (
 			<div>
 				<Helmet>
-					<meta name="description" content={siteMetadata.description} />
+					<meta name="description" content={description} />
 					<meta
 						name="og:image"
 						content={absoluteUrl(require('../static/images/og-image.png'))}
@@ -33,6 +33,10 @@ export default class Index extends Component {
 		);
 	}
 }
+
+/**
+ * GraphQL
+ */
 
 export const pageQuery = graphql`
 	query indexPageData {

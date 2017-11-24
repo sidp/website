@@ -16,34 +16,8 @@ import {
 } from '../styles/variables';
 import { Container } from '../styles/components';
 
-const Footer = () => {
-	let links = [
-		{
-			label: 'Twitter',
-			title: '@sidp on Twitter',
-			url: 'https://twitter.com/sidp',
-		},
-		{
-			label: 'GitHub',
-			title: '@sidp on GitHub',
-			url: 'https://github.com/sidp',
-		},
-		{
-			label: 'LinkedIn',
-			title: 'Peter Simonsson on LinkedIn',
-			url: 'https://www.linkedin.com/in/sidp86',
-		},
-		{
-			label: 'Instagram',
-			title: '@sidp on Instagram',
-			url: 'https://www.instagram.com/sidp/',
-		},
-		{
-			label: 'Last.fm',
-			title: 'sidp on Last.fm',
-			url: 'http://www.last.fm/user/sidp',
-		},
-	].map(link => (
+const Footer = ({ title, email, links = [] }) => {
+	const socialMediaLinks = links.map(link => (
 		<ExternalLink to={link.url} title={link.title} key={link.url}>
 			{link.label}
 		</ExternalLink>
@@ -52,12 +26,11 @@ const Footer = () => {
 	return (
 		<FooterBlock>
 			<Container>
-				<MainItem>Peter Simonsson</MainItem>
+				<MainItem>{title}</MainItem>
 				<Item>
-					Contact me on{' '}
-					<a href="mailto:peter@simonsson.com">peter@simonsson.com</a>.
+					Contact me on <a href={`mailto:${email}`}>{email}</a>.
 				</Item>
-				<Item>Also on {naturalJoin(links)}.</Item>
+				<Item>Also on {naturalJoin(socialMediaLinks)}.</Item>
 				<Item>
 					Check out this site on{' '}
 					<ExternalLink to="https://github.com/sidp/portfolio">
