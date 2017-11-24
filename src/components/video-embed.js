@@ -4,13 +4,12 @@ import styled from 'styled-components';
 
 const VideoEmbed = ({ url, title, width, height, className = '' }) => {
 	const aspectRatio = height / width;
-	const classNames = `${styles['video-embed']} ${className}`;
 	const style = {
 		paddingTop: `${aspectRatio * 100}%`,
 	};
 
 	return (
-		<div className={classNames} style={style}>
+		<Block className={className} style={style}>
 			<iframe
 				src={url}
 				title={title}
@@ -21,7 +20,7 @@ const VideoEmbed = ({ url, title, width, height, className = '' }) => {
 				allowTransparency
 				allowFullScreen
 			/>
-		</div>
+		</Block>
 	);
 };
 
