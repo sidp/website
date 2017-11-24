@@ -1,6 +1,7 @@
-@import "./_variables.css";
+import styled from 'styled-components';
+import { contentWidth } from './variables';
 
-.container {
+export const Container = styled.div`
 	max-width: 1440px;
 	margin-left: auto;
 	margin-right: auto;
@@ -11,17 +12,14 @@
 	transition-property: padding-left, padding-right;
 	transition-duration: 100ms;
 	transition-timing-function: ease-out;
-}
 
-@media screen and (min-width: 639px) {
-
-	.container {
+	@media screen and (min-width: 639px) {
 		padding-left: 1.8rem;
 		padding-right: 1.8rem;
 	}
-}
+`;
 
-.text-wrapper {
-	max-width: var(--content-width);
+export const TextWrapper = styled.div`
+	max-width: ${contentWidth};
 	margin: 2rem auto 4.5rem;
-}
+`;

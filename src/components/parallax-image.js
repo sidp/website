@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import once from 'lodash/once';
+import styled from 'styled-components';
 
-import loadImages from '../../utils/load-images';
-
-import styles from './parallax-image.module.css';
+import loadImages from '../utils/load-images';
+import { imageBoxShadow } from '../styles/variables';
 
 export default class ParallaxImage extends Component {
 	static propTypes = {
@@ -139,51 +139,73 @@ export default class ParallaxImage extends Component {
 	render() {
 		let images;
 		let flattened;
-		let frameClassName = styles['frame'];
-
-		if (this.props.images.length === 0) {
-			frameClassName += ` ${styles.empty}`;
-		}
 
 		if (this.state.initialized) {
-			images = this.props.images.map(image =>
-				<img
+			images = this.props.images.map(image => (
+				<Image
 					key={image.src}
 					src={image.src}
 					role="presentation"
-					className={styles['image']}
 					style={this.getPositionFromDepth(image.depth)}
 				/>
-			);
-			frameClassName += ` ${styles.initialized}`;
+			));
 		}
 
 		if (this.props.flattened) {
 			flattened = (
-				<img
+				<FlattenedImage
 					src={this.props.flattened}
 					role="presentation"
-					className={`${styles['image']} ${styles['flattened']}`}
-					style={{
-						willChange: !this.state.initialized ? 'opacity' : '',
-					}}
+					initialized={this.state.initialized}
 					onTransitionEnd={this.activateEffect}
 				/>
 			);
 		}
 
 		return (
-			<div
-				className={frameClassName}
+			<Frame
+				empty={this.props.images.length === 0}
 				onMouseMove={this.handleMouseMoveThrottled}
 				onMouseLeave={this.handleMouseLeave}
-				ref={el => {
+				innerRef={el => {
 					this.el = el;
 				}}
 			>
 				{images}
 				{flattened}
-			</div>
+			</Frame>
 		);
 	}
 }
+
+/**
+ * Styled components
+ */
+
+const Frame = styled.div`
+	width: 100%;
+	height: 0;
+	padding-top: 75%;
+	position: relative;
+	overflow: hidden;
+	box-shadow: ${imageBoxShadow};
+
+	${props => (props.empty ? 'background-color: #4A4D52' : '')};
+`;
+
+const Image = styled.img`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	transform: translate(-50%, -50%) scale(1.01);
+`;
+
+const FlattenedImage = Image.extend`
+	z-index: 100;
+
+	opacity: ${props => (props.initialized ? '0' : '1')};
+	transition: opacity 500ms linear;
+
+	willchange: ${props => (!props.initialized ? 'opacity' : '')};
+`;

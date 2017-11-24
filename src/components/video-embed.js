@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import styles from './video-embed.module.css';
+import styled from 'styled-components';
 
 const VideoEmbed = ({ url, title, width, height, className = '' }) => {
 	const aspectRatio = height / width;
@@ -35,3 +34,22 @@ VideoEmbed.propTypes = {
 };
 
 export default VideoEmbed;
+
+/**
+ * Styled components
+ */
+
+const Block = styled.div`
+	position: relative;
+	overflow: hidden;
+	padding: 0;
+	width: 100%;
+
+	iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+`;

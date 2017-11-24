@@ -2,14 +2,12 @@ import React, { createElement } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
-import { pageProps } from '../prop-types';
+import { pageProps } from './prop-types';
 
-import '../../css/markdown-styles.css';
-import utils from '../../css/utils.module.css';
+import { TextWrapper } from '../styles/components';
 
 const MarkdownPage = ({
 	page: { frontmatter, html },
-	className = '',
 	htmlElement = 'article',
 	...props
 }) => {
@@ -24,20 +22,17 @@ const MarkdownPage = ({
 		);
 	}
 
-	return createElement(
-		htmlElement,
-		{
-			className: `markdown ${className} ${utils['text-wrapper']}`,
-			...props,
-		},
-		[
-			<Helmet key="helmet">
+	const PageWrap = TextWrapper.withComponent(htmlElement);
+
+	return (
+		<PageWrap {...props}>
+			<Helmet>
 				<title>{frontmatter.title}</title>
 				{meta}
-			</Helmet>,
-			<h1 key="heading">{frontmatter.heading || frontmatter.title}</h1>,
-			<div key="body" dangerouslySetInnerHTML={{ __html: html }} key="body" />,
-		]
+			</Helmet>
+			<h1>{frontmatter.heading || frontmatter.title}</h1>
+			<div dangerouslySetInnerHTML={{ __html: html }} />
+		</PageWrap>
 	);
 };
 
