@@ -8,25 +8,25 @@ import '../styles/global';
 import '../styles/markdown-styles.css';
 import { Container } from '../styles/components';
 
-export default class Layout extends Component {
-	render() {
-		const {
-			site: { siteMetadata: { title, navigation, email, socialMediaLinks } },
-		} = this.props.data;
-		return (
-			<div>
-				<Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
-				<Header
-					title={title}
-					navigation={navigation}
-					currentPath={this.props.location && this.props.location.pathname}
-				/>
-				<Container>{this.props.children()}</Container>
-				<Footer title={title} email={email} links={socialMediaLinks} />
-			</div>
-		);
-	}
-}
+const Layout = ({ location, data, children }) => {
+	const {
+		site: { siteMetadata: { title, navigation, email, socialMediaLinks } },
+	} = data;
+	return (
+		<div>
+			<Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
+			<Header
+				title={title}
+				navigation={navigation}
+				currentPath={location && location.pathname}
+			/>
+			<Container>{children()}</Container>
+			<Footer title={title} email={email} links={socialMediaLinks} />
+		</div>
+	);
+};
+
+export default Layout;
 
 export const query = graphql`
 	query LayoutQuery {
