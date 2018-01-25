@@ -3,6 +3,7 @@ import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 
 import BlogList from '../components/blog-list';
+import { TextWrapper } from '../styles/components';
 
 export default class Blog extends Component {
 	render() {
@@ -14,7 +15,9 @@ export default class Blog extends Component {
 				<Helmet>
 					<title>Blog</title>
 				</Helmet>
-				<BlogList posts={blogPosts} />
+				<TextWrapper>
+					<BlogList posts={blogPosts} />
+				</TextWrapper>
 			</div>
 		);
 	}

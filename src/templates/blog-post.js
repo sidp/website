@@ -23,7 +23,7 @@ export const pageQuery = graphql`
 		markdownRemark(fields: { slug: { eq: $slug } }) {
 			frontmatter {
 				title
-				description
+				excerpt
 				date: published(formatString: "MMMM d, YYYY")
 				timestamp: published
 			}

@@ -32,6 +32,7 @@ const MarkdownPage = ({
 				{meta}
 			</Helmet>
 			<h1>{frontmatter.heading || frontmatter.title}</h1>
+			{children}
 			<div dangerouslySetInnerHTML={{ __html: html }} />
 		</PageWrap>
 	);
