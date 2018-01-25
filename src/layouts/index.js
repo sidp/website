@@ -13,10 +13,9 @@ export default class Layout extends Component {
 	render() {
 		return (
 			<div>
-				<Helmet
-					defaultTitle={siteMetadata.title}
-					titleTemplate={`%s - ${siteMetadata.title}`}
-				/>
+				<Helmet titleTemplate={`%s - ${siteMetadata.title}`}>
+					<title>{siteMetadata.title}</title>
+				</Helmet>
 				<Header
 					currentPath={this.props.location && this.props.location.pathname}
 				/>
