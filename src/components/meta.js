@@ -52,7 +52,7 @@ const MetaItem = ({ label, value, link = '' }) => {
 	let valueElement;
 
 	if (link) {
-		valueElement = <StyledExternalLink>{value}</StyledExternalLink>;
+		valueElement = <StyledExternalLink to={link}>{value}</StyledExternalLink>;
 	} else {
 		valueElement = <Value>{value}</Value>;
 	}
