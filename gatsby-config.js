@@ -4,7 +4,7 @@ module.exports = {
 		title: 'Peter Simonsson',
 		description:
 			'I’m a freelance web developer and designer in Stockholm, Sweden. This is a selection of the most popular projects I’ve worked on.',
-		hostname: 'https://simonsson.com',
+		siteUrl: 'https://simonsson.com',
 		navigation: [
 			{
 				label: 'Projects',

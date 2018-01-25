@@ -3,5 +3,5 @@ export default function absoluteUrl(link = '') {
 	if (link.indexOf('http') === 0) {
 		return link;
 	}
-	return siteMetadata.hostname + (pathPrefix || '') + link;
+	return siteMetadata.siteUrl + (pathPrefix || '') + link;
 }
