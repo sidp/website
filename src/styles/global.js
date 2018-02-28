@@ -6,6 +6,7 @@ import {
 	linkColorHover,
 	linkColorActive,
 	linkBoxShadow,
+	sansSerifFontFamily,
 } from './variables';
 
 injectGlobal`
@@ -46,6 +47,34 @@ injectGlobal`
 
 	p {
 		font-feature-settings: "onum" 1, "pnum" 1;
+	}
+
+	table {
+		font-family: ${sansSerifFontFamily};
+		font-size: 0.8425rem;
+		margin-bottom: 1rem;
+	}
+
+	th, td {
+		padding-top: 0.4rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid ${accentColor};
+		background-color: rgba(255, 255, 255, 0);
+		transition: background-color 150ms linear;
+	}
+
+	tr:hover td {
+		background-color: color(${accentColor} alpha(10%));
+	}
+
+	code {
+		padding-top: 0.3em;
+		padding-bottom: 0.25em;
+
+		&::before,
+		&::after {
+			letter-spacing: -0.28em;
+		}
 	}
 
 	@media screen and (max-width: 640px) {
