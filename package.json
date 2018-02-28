@@ -5,6 +5,7 @@
 	"version": "1.0.0",
 	"author": "Peter Simonsson <peter@simonsson.com>",
 	"dependencies": {
+		"css-color-function": "^1.3.3",
 		"front-matter": "^2.1.1",
 		"gatsby": "^1.0.11",
 		"gatsby-link": "^1.0",

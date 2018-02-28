@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import color from 'css-color-function';
 
 export const textColor = '#221A2A';
 export const linkColor = '#0099FF';
@@ -7,8 +8,12 @@ export const linkColorActive = '#00395F';
 export const focusColor = linkColor;
 export const accentColor = '#F0E8F0';
 export const grayedColor = '#968796';
-export const grayedColorHover = `color(${grayedColor}) shade(20%))`;
-export const grayedColorActive = `color(${grayedColor}) shade(60%))`;
+export const grayedColorHover = color.convert(
+	`color(${grayedColor} shade(20%))`
+);
+export const grayedColorActive = color.convert(
+	`color(${grayedColor} shade(60%))`
+);
 
 export const sansSerifFontFamily = 'Source Sans Pro';
 export const serifFontFamily = 'Source Serif Pro';
