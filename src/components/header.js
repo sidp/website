@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { siteMetadata } from '../../gatsby-config';
 import ExternalLink from './external-link';
@@ -20,34 +20,34 @@ import {
 
 const navigation = siteMetadata.navigation || [];
 
-const Header = ({ currentPath = '' }) => (
-	<HeaderBlock role="banner">
-		<Container>
-			<HeaderWrapper>
-				<Title>
-					<Link to={'/'}>Peter Simonsson</Link>
-				</Title>
-				<Navigation>
-					{navigation.map(item => (
-						<NavLink
-							to={item.path}
-							selected={item.path === currentPath}
-							key={item.path}
-						>
-							{item.label}
-						</NavLink>
-					))}
-				</Navigation>
-			</HeaderWrapper>
-		</Container>
-	</HeaderBlock>
-);
+export default function Header({ currentPath = '' }) {
+	return (
+		<HeaderBlock role="banner">
+			<Container>
+				<HeaderWrapper>
+					<Title>
+						<Link to={'/'}>Peter Simonsson</Link>
+					</Title>
+					<Navigation>
+						{navigation.map(item => (
+							<NavLink
+								to={item.path}
+								selected={item.path === currentPath}
+								key={item.path}
+							>
+								{item.label}
+							</NavLink>
+						))}
+					</Navigation>
+				</HeaderWrapper>
+			</Container>
+		</HeaderBlock>
+	);
+}
 
 Header.propTypes = {
 	currentPath: PropTypes.string,
 };
-
-export default Header;
 
 /**
  * Styled components
@@ -122,14 +122,15 @@ const NavLink = styled(Link)`
 
 	${props =>
 		props.selected
-			? `
-				color: ${textColor};
-				cursor: default;
-			`
+			? css`
+					color: ${textColor};
+					cursor: default;
+					box-shadow: none;
+			  `
 			: ''};
 
 	&:hover {
-		color: ${linkColorHover};
+		color: ${props => (props.selected ? textColor : linkColorHover)};
 	}
 
 	&:active {
