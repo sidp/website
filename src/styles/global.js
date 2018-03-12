@@ -42,6 +42,14 @@ injectGlobal`
 	h1,
 	h2,
 	h3 {
+		& > a {
+			color: inherit;
+		}
+	}
+
+	h1,
+	h2,
+	h3 {
 		font-feature-settings: "onum" 1;
 	}
 
