@@ -37,8 +37,8 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 				/>
 				<TypographyStyle typography={typography} />
 				<GoogleFont typography={typography} />
-				{css}
 				{headComponents}
+				{css}
 			</head>
 			<body>
 				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
