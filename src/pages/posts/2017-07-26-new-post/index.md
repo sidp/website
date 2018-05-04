@@ -1,6 +1,6 @@
 ---
 title: New post
-description: Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+excerpt: Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
 published: 2017-07-26T14:59:00
 ---
 

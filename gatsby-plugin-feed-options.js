@@ -26,7 +26,7 @@ module.exports = {
 			query: `
 				{
 					allMarkdownRemark(
-						filter: {fields: { type: { eq: "blogPost" } } },
+						filter: {fields: { type: { eq: "post" } } },
 						limit: 10,
 						sort: { order: DESC, fields: [frontmatter___published] },
 					) {

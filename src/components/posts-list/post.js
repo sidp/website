@@ -9,14 +9,13 @@ import {
 	metaFontSize,
 } from '../../styles/variables';
 
-const BlogItem = ({
-	post: {
-		frontmatter: { title, excerpt, date, timestamp },
-		fields: { slug },
-	},
+const Post = ({
+	post: { frontmatter: { title, excerpt, date, timestamp }, fields: { slug } },
 }) => (
 	<BlogItemBlock>
-		<Heading>{title}</Heading>
+		<Heading>
+			<Link to={slug}>{title}</Link>
+		</Heading>
 		<Excerpt>
 			{excerpt} <Link to={slug}>Read more »</Link>
 		</Excerpt>
@@ -24,14 +23,14 @@ const BlogItem = ({
 	</BlogItemBlock>
 );
 
-export default BlogItem;
+export default Post;
 
 /**
  * GraphQL
  */
 
-export const blogItemFragment = graphql`
-	fragment Blog_item on MarkdownRemark {
+export const postListItemFragment = graphql`
+	fragment PostList_item on MarkdownRemark {
 		frontmatter {
 			title
 			excerpt

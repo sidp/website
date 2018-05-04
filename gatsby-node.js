@@ -7,7 +7,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 		const templates = {
 			page: path.resolve('src/templates/page.js'),
 			project: path.resolve('src/templates/project.js'),
-			blogPost: path.resolve('src/templates/blog-post.js'),
+			post: path.resolve('src/templates/post.js'),
 			about: path.resolve('src/templates/about.js'),
 		};
 
@@ -59,19 +59,19 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
 	) {
 		const fileNode = getNode(node.parent);
 		const parsedFilePath = path.parse(fileNode.relativePath);
-		const blogPostFormat = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})\-(.+)/;
-		const isBlogPost =
-			parsedFilePath.dir === 'blog' ||
-			blogPostFormat.exec(parsedFilePath.dir) !== null;
+		const postFormat = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})\-(.+)/;
+		const isPost =
+			parsedFilePath.dir === 'posts' ||
+			postFormat.exec(parsedFilePath.dir) !== null;
 
-		if (isBlogPost) {
+		if (isPost) {
 			const name =
-				parsedFilePath.dir === 'blog'
+				parsedFilePath.dir === 'posts'
 					? parsedFilePath.name
 					: parsedFilePath.dir;
 
-			const parts = blogPostFormat.exec(name);
-			slug = `/blog/${parts[4] || parsedFilePath.name}/`;
+			const parts = postFormat.exec(name);
+			slug = `/posts/${parts[4] || parsedFilePath.name}/`;
 		} else if (parsedFilePath.name !== 'index' && parsedFilePath.dir !== '') {
 			slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
 		} else if (parsedFilePath.dir === '') {
@@ -83,8 +83,8 @@ exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
 		let nodeType = 'page';
 		if (parsedFilePath.dir === 'projects') {
 			nodeType = 'project';
-		} else if (isBlogPost) {
-			nodeType = 'blogPost';
+		} else if (isPost) {
+			nodeType = 'post';
 		} else if (parsedFilePath.name === 'about') {
 			nodeType = 'about';
 		}
