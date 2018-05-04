@@ -7,6 +7,7 @@ import {
 	linkColorActive,
 	linkBoxShadow,
 	sansSerifFontFamily,
+	monoFontFamily,
 } from './variables';
 
 injectGlobal`
@@ -76,12 +77,14 @@ injectGlobal`
 	}
 
 	code {
-		padding-top: 0.3em;
-		padding-bottom: 0.25em;
+		font-family: ${monoFontFamily}, monospace;
+		font-feature-settings: "onum" 0, "pnum" 0;
+		padding-top: 0.15em;
+		padding-bottom: 0.15em;
 
 		&::before,
 		&::after {
-			letter-spacing: -0.28em;
+			letter-spacing: -0.3em;
 		}
 	}
 

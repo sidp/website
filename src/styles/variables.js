@@ -6,7 +6,7 @@ export const linkColor = '#0099FF';
 export const linkColorHover = '#0077C7';
 export const linkColorActive = '#00395F';
 export const focusColor = linkColor;
-export const accentColor = '#F0E8F0';
+export const accentColor = '#F0DFEC';
 export const grayedColor = '#968796';
 export const grayedColorHover = color.convert(
 	`color(${grayedColor} shade(20%))`
@@ -17,6 +17,7 @@ export const grayedColorActive = color.convert(
 
 export const sansSerifFontFamily = 'Source Sans Pro';
 export const serifFontFamily = 'Source Serif Pro';
+export const monoFontFamily = 'Source Code Pro';
 
 export const contentWidth = '36rem';
 export const metaFontSize = '0.8rem';
