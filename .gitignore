@@ -3,3 +3,4 @@ node_modules/
 .gatsby-context.js
 .sass-cache/
 .cache
+yarn-error.log
