@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import typography from './utils/typography';
 import favicon from './static/favicon.ico';
@@ -43,10 +41,6 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 			</body>
 		</html>
 	);
-};
-
-Html.propTypes = {
-	body: PropTypes.string,
 };
 
 export default Html;
