@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import typography from './utils/typography';
+import favicon from './static/favicon.ico';
 
 let stylesStr;
 if (process.env.NODE_ENV === 'production') {
@@ -30,11 +31,7 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 				<meta charSet="utf-8" />
 				<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				<link
-					rel="icon"
-					type="image/x-icon"
-					href={require('./static/favicon.ico')}
-				/>
+				<link rel="icon" type="image/x-icon" href={favicon} />
 				<TypographyStyle typography={typography} />
 				<GoogleFont typography={typography} />
 				{headComponents}
