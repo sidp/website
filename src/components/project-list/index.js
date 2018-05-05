@@ -43,6 +43,7 @@ export const projectListFragment = graphql`
 
 const Title = styled.h2`
 	margin-top: 0;
+	margin-bottom: 0.75rem;
 	animation: ${fadeIn} 400ms 100ms ${cubicBezierFadeIn} both;
 `;
 
