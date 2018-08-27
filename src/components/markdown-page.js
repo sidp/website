@@ -6,10 +6,17 @@ import { pageProps } from './prop-types';
 
 import { TextWrapper } from '../styles/components';
 
+const renderBody = ({ title, body }) => (
+	<React.Fragment>
+		{title}
+		{body}
+	</React.Fragment>
+);
+
 const MarkdownPage = ({
 	page: { frontmatter, html },
 	htmlElement = 'article',
-	children,
+	render = renderBody,
 	...props
 }) => {
 	const meta = [];
@@ -31,9 +38,10 @@ const MarkdownPage = ({
 				<title>{frontmatter.title}</title>
 				{meta}
 			</Helmet>
-			<h1>{frontmatter.heading || frontmatter.title}</h1>
-			{children}
-			<div dangerouslySetInnerHTML={{ __html: html }} />
+			{render({
+				title: <h1>{frontmatter.heading || frontmatter.title}</h1>,
+				body: <div dangerouslySetInnerHTML={{ __html: html }} />,
+			})}
 		</PageWrap>
 	);
 };
@@ -43,7 +51,6 @@ MarkdownPage.propTypes = {
 	className: PropTypes.string,
 	htmlElement: PropTypes.string,
 	role: PropTypes.string,
-	children: PropTypes.node,
 };
 
 export default MarkdownPage;

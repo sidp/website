@@ -1,19 +1,27 @@
-import React, { Component } from 'react';
-
-import { pageProps } from '../components/prop-types';
+import React, { Component, Fragment } from 'react';
+import styled from 'styled-components';
 import MarkdownPage from '../components/markdown-page';
-import Meta from '../components/meta';
+import PostDetails from '../components/post-details';
+import { cubicBezierFadeIn } from '../styles/variables';
 
 export default class BlogPost extends Component {
 	render() {
-		const { data: { markdownRemark: page } } = this.props;
+		const {
+			data: { markdownRemark: page },
+		} = this.props;
 
 		return (
-			<MarkdownPage page={page} role="main">
-				<time dateTime={page.frontmatter.timestamp}>
-					<Meta published={page.frontmatter.date} />
-				</time>
-			</MarkdownPage>
+			<StyledMarkdownPage
+				page={page}
+				role="main"
+				render={({ title, body }) => (
+					<Fragment>
+						{title}
+						{body}
+						<PostDetails>Published on {page.frontmatter.date}</PostDetails>
+					</Fragment>
+				)}
+			/>
 		);
 	}
 }
@@ -30,4 +38,8 @@ export const pageQuery = graphql`
 			html
 		}
 	}
+`;
+
+const StyledMarkdownPage = styled(MarkdownPage)`
+	animation: fadeIn 500ms ${cubicBezierFadeIn} both;
 `;
