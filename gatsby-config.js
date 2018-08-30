@@ -48,7 +48,12 @@ module.exports = {
 		},
 		'gatsby-transformer-json',
 		'gatsby-transformer-sharp',
-		'gatsby-plugin-layout',
+		{
+			resolve: 'gatsby-plugin-layout',
+			options: {
+				component: require.resolve('./src/layouts/index.js'),
+			},
+		},
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-styled-components',
 		'gatsby-plugin-sharp',
