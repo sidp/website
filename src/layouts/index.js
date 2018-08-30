@@ -11,17 +11,16 @@ import { Container } from '../styles/components';
 
 export default class Layout extends Component {
 	render() {
+		const { location, children } = this.props;
 		return (
-			<div>
+			<>
 				<Helmet titleTemplate={`%s - ${siteMetadata.title}`}>
 					<title>{siteMetadata.title}</title>
 				</Helmet>
-				<Header
-					currentPath={this.props.location && this.props.location.pathname}
-				/>
-				<Container>{this.props.children()}</Container>
+				<Header currentPath={location && location.pathname} />
+				<Container>{children}</Container>
 				<Footer />
-			</div>
+			</>
 		);
 	}
 }

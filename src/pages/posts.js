@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Link from 'gatsby-link';
+import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 
 import BlogList from '../components/posts-list/index';
@@ -11,14 +11,14 @@ export default class Blog extends Component {
 		const posts = data.allMarkdownRemark.edges.map(edge => edge.node);
 
 		return (
-			<div>
+			<>
 				<Helmet>
 					<title>Posts</title>
 				</Helmet>
 				<TextWrapper>
 					<BlogList posts={posts} />
 				</TextWrapper>
-			</div>
+			</>
 		);
 	}
 }

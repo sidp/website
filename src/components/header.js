@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 
 import { siteMetadata } from '../../gatsby-config';

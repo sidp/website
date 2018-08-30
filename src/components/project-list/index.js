@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -15,7 +16,9 @@ const ProjectList = ({ title = '', projects = [] }) => (
 	<div>
 		{title && <Title>{title}</Title>}
 		<List>
-			{projects.map(item => <Item key={item.fields.slug} project={item} />)}
+			{projects.map(item => (
+				<Item key={item.fields.slug} project={item} />
+			))}
 		</List>
 	</div>
 );

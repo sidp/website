@@ -48,7 +48,7 @@ module.exports = {
 		},
 		'gatsby-transformer-json',
 		'gatsby-transformer-sharp',
-		'gatsby-plugin-react-next',
+		'gatsby-plugin-layout',
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-styled-components',
 		'gatsby-plugin-sharp',

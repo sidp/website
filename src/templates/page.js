@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 
 import MarkdownPage from '../components/markdown-page';
 
 export default class Page extends Component {
 	render() {
-		const { data: { markdownRemark: page } } = this.props;
+		const {
+			data: { markdownRemark: page },
+		} = this.props;
 		return <MarkdownPage page={page} role="main" />;
 	}
 }

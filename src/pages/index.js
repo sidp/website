@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 
 import absoluteUrl from '../utils/absolute-uri';
@@ -12,7 +13,7 @@ export default class Index extends Component {
 		const { siteMetadata } = data.site;
 
 		return (
-			<div>
+			<>
 				<Helmet>
 					<meta name="description" content={siteMetadata.description} />
 					<meta
@@ -20,10 +21,9 @@ export default class Index extends Component {
 						content={absoluteUrl(require('../static/images/og-image.png'))}
 					/>
 				</Helmet>
-
 				<Intro />
 				<ProjectList title="Projects" projects={projects} />
-			</div>
+			</>
 		);
 	}
 }

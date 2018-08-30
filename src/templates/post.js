@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import MarkdownPage from '../components/markdown-page';
 import PostDetails from '../components/post-details';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
 import {
 	accentColor,
@@ -10,7 +10,10 @@ import {
 } from '../../styles/variables';
 
 const Post = ({
-	post: { frontmatter: { title, excerpt, date, timestamp }, fields: { slug } },
+	post: {
+		frontmatter: { title, excerpt, date, timestamp },
+		fields: { slug },
+	},
 }) => (
 	<BlogItemBlock>
 		<Heading>

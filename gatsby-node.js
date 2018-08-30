@@ -1,7 +1,7 @@
 const path = require('path');
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-	const { createPage } = boundActionCreators;
+exports.createPages = ({ graphql, actions }) => {
+	const { createPage } = actions;
 
 	return new Promise((resolve, reject) => {
 		const templates = {
@@ -32,7 +32,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 			}
 
 			result.data.allMarkdownRemark.edges.forEach(edge => {
-				const { fields: { type, slug } } = edge.node;
+				const {
+					fields: { type, slug },
+				} = edge.node;
 				const template = templates[type] || templates.page;
 
 				createPage({
@@ -49,8 +51,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 	});
 };
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-	const { createNodeField } = boundActionCreators;
+exports.onCreateNode = ({ node, actions, getNode }) => {
+	const { createNodeField } = actions;
 	let slug;
 
 	if (
