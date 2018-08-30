@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import once from 'lodash/once';
 import styled from 'styled-components';
-
 import loadImages from '../utils/load-images';
 import { imageBoxShadow } from '../styles/variables';
 

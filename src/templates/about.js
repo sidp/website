@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
-
-import { pageProps } from '../components/prop-types';
 import MarkdownPage from '../components/markdown-page';
-
 import { fadeIn, cubicBezierFadeIn } from '../styles/variables';
 
 export default class About extends Component {

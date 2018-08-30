@@ -2,10 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-import { projectProps } from '../prop-types';
 import ProjectItem from './project-item';
-
 import {
 	fadeIn,
 	cubicBezierFadeIn,

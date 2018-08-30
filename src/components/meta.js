@@ -27,7 +27,7 @@ const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
 	}
 
 	if (link) {
-		const value = link.replace(/^https?\:\/\/(www\.)?([^\/]+).*$/, '$2');
+		const value = link.replace(/^https?:\/\/(www\.)?([^/]+).*$/, '$2');
 		items.push(<MetaItem key="link" label="Link" value={value} link={link} />);
 	}
 

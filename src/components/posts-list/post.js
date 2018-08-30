@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import {
 	accentColor,
 	grayedColor,
-	sansSerifFontFamily,
 	metaFontFamily,
 	metaFontSize,
 } from '../../styles/variables';

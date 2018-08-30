@@ -7,7 +7,6 @@ import ExternalLink from '../components/external-link';
 import ProjectImage from '../components/project-image';
 import VideoEmbed from '../components/video-embed';
 import ProjectList from '../components/project-list';
-
 import { TextWrapper } from '../styles/components';
 import {
 	accentColor,

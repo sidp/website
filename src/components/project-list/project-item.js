@@ -2,10 +2,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-import { projectProps } from '../prop-types';
 import ParallaxImage from '../parallax-image';
-
 import { grayedColor, metaFontSize } from '../../styles/variables';
 import thumbs from '../../images/thumbs';
 
@@ -65,8 +62,6 @@ export const projectItemFragment = graphql`
 /**
  * Styled components
  */
-
-const Block = styled.div``;
 
 const StyledLink = styled(Link)`
 	color: inherit;

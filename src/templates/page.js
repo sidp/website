@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
-import PropTypes from 'prop-types';
-
 import MarkdownPage from '../components/markdown-page';
 
 export default class Page extends Component {

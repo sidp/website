@@ -1,16 +1,13 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-
-import { pageProps } from './prop-types';
-
 import { TextWrapper } from '../styles/components';
 
 const renderBody = ({ title, body }) => (
-	<React.Fragment>
+	<>
 		{title}
 		{body}
-	</React.Fragment>
+	</>
 );
 
 const MarkdownPage = ({

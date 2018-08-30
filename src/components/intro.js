@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ExternalLink from './external-link';
 import { cubicBezierFadeIn } from '../styles/variables';
 
 const Intro = () => (

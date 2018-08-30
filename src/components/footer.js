@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import naturalJoin from '../utils/natural-join';
 import ExternalLink from './external-link';
-
 import {
 	textColor,
 	linkColor,

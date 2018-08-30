@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Post from './post';
 
 const PostsList = ({ posts }) => (
-	<Fragment>
-		{posts.map(post => <Post post={post} key={post.fields.slug} />)}
-	</Fragment>
+	<>
+		{posts.map(post => (
+			<Post post={post} key={post.fields.slug} />
+		))}
+	</>
 );
 
 export default PostsList;
