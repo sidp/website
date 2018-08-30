@@ -21,31 +21,36 @@ const Footer = () => {
 		{
 			label: 'Twitter',
 			title: '@sidp on Twitter',
-			url: 'https://twitter.com/sidp',
+			to: 'https://twitter.com/sidp',
+			rel: 'me',
 		},
 		{
 			label: 'GitHub',
 			title: '@sidp on GitHub',
-			url: 'https://github.com/sidp',
+			to: 'https://github.com/sidp',
+			rel: 'me',
 		},
 		{
 			label: 'LinkedIn',
 			title: 'Peter Simonsson on LinkedIn',
-			url: 'https://www.linkedin.com/in/sidp86',
+			to: 'https://www.linkedin.com/in/sidp86',
+			rel: 'me',
 		},
 		{
 			label: 'Instagram',
 			title: '@sidp on Instagram',
-			url: 'https://www.instagram.com/sidp/',
+			to: 'https://www.instagram.com/sidp/',
+			rel: 'me',
 		},
 		{
 			label: 'Last.fm',
 			title: 'sidp on Last.fm',
-			url: 'http://www.last.fm/user/sidp',
+			to: 'http://www.last.fm/user/sidp',
+			rel: 'me',
 		},
-	].map(link => (
-		<ExternalLink to={link.url} title={link.title} key={link.url}>
-			{link.label}
+	].map(({ label, ...link }) => (
+		<ExternalLink {...link} key={link.to}>
+			{label}
 		</ExternalLink>
 	));
 
@@ -62,7 +67,8 @@ const Footer = () => {
 					Check out this site on{' '}
 					<ExternalLink to="https://github.com/sidp/portfolio">
 						GitHub
-					</ExternalLink>.
+					</ExternalLink>
+					.
 				</Item>
 			</Container>
 		</FooterBlock>
