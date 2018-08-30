@@ -98,7 +98,7 @@ injectGlobal`
 	@media screen and (min-width: 1400px) {
 
 		html {
-			font-size: 125%;
+			font-size: 131.25%;
 		}
 	}
 `;
