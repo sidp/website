@@ -3,7 +3,11 @@ import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ParallaxImage from '../parallax-image';
-import { grayedColor, metaFontSize } from '../../styles/variables';
+import {
+	grayedColor,
+	metaFontSize,
+	sansSerifFontFamily,
+} from '../../styles/variables';
 import thumbs from '../../images/thumbs';
 
 const ProjectItem = ({
@@ -79,6 +83,7 @@ const Title = styled.h3`
 const Meta = styled.p`
 	color: ${grayedColor};
 	font-size: ${metaFontSize};
+	font-family: ${sansSerifFontFamily};
 	margin-top: 0;
 	margin-bottom: 0;
 `;

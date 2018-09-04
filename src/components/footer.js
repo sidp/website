@@ -81,6 +81,7 @@ export default Footer;
 
 const FooterBlock = styled.footer`
 	text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
+	margin-top: 2rem;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 	line-height: 1.4;

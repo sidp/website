@@ -3,6 +3,9 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import MarkdownPage from '../components/markdown-page';
 import { fadeIn, cubicBezierFadeIn } from '../styles/variables';
+import Columns, { Column } from '../components/columns';
+
+const ArticleColumns = Columns.withComponent('article');
 
 export default class About extends Component {
 	render() {
@@ -14,8 +17,8 @@ export default class About extends Component {
 			page.frontmatter.portrait.childImageSharp.image;
 
 		return (
-			<Article role="main">
-				<Summary>
+			<ArticleColumns role="main">
+				<Column span={{ '<small': 12, '>small': 4, '>medium': 5 }}>
 					{image && (
 						<Portrait
 							src={image.src}
@@ -24,9 +27,11 @@ export default class About extends Component {
 							alt="Peter Simonsson"
 						/>
 					)}
-				</Summary>
-				<Content page={page} htmlElement="div" />
-			</Article>
+				</Column>
+				<Column span={{ '<small': 12, '>small': 8, '>medium': 7 }}>
+					<Content page={page} htmlElement="div" />
+				</Column>
+			</ArticleColumns>
 		);
 	}
 }
@@ -60,27 +65,13 @@ export const pageQuery = graphql`
  * Styled components
  */
 
-const columnBreakPoint = '500px';
-
-const Article = styled.article`
-	@media (min-width: ${columnBreakPoint}) {
-		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
-	}
-`;
-
 const Portrait = styled.img`
 	max-width: 100%;
 	width: 600px;
 	height: auto;
 	animation: ${fadeIn} 400ms ${cubicBezierFadeIn} both;
-`;
-
-const Summary = styled.div`
-	@media (min-width: ${columnBreakPoint}) {
-		width: ${columnBreakPoint};
-	}
+	margin-bottom: 0;
+	float: left;
 `;
 
 /**
@@ -92,18 +83,4 @@ const Content = styled(MarkdownPage)`
 		margin-top: 0;
 	}
 	animation: fadeIn 400ms 100ms ${cubicBezierFadeIn} both;
-
-	@media (min-width: ${columnBreakPoint}) {
-		&& {
-			margin-left: 1.2rem;
-			margin-right: 0;
-		}
-		transition: margin-left 100ms ${cubicBezierFadeIn};
-	}
-
-	@media (min-width: 639px) {
-		&& {
-			margin-left: 1.8rem;
-		}
-	}
 `;

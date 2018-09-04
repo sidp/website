@@ -51,10 +51,10 @@ export const postListItemFragment = graphql`
  */
 
 const BlogItemBlock = styled.div`
-	margin: 1rem 0;
+	margin: 1.5rem 0;
 
 	& + & {
-		padding-top: 1rem;
+		padding-top: 1.5rem;
 		border-top: 1px solid ${accentColor};
 	}
 `;
@@ -66,6 +66,8 @@ const Time = styled.time`
 `;
 
 const Heading = styled.h2`
+	margin-top: 0;
+
 	${Time} + & {
 		margin-top: 0.325rem;
 	}

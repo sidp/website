@@ -2,21 +2,24 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Columns, { Column } from '../columns';
 import ProjectItem from './project-item';
-import {
-	fadeIn,
-	cubicBezierFadeIn,
-	sansSerifFontFamily,
-} from '../../styles/variables';
+import { fadeIn, cubicBezierFadeIn } from '../../styles/variables';
 
 const ProjectList = ({ title = '', projects = [] }) => (
 	<div>
 		{title && <Title>{title}</Title>}
-		<List>
+
+		<Columns>
 			{projects.map(item => (
-				<Item key={item.fields.slug} project={item} />
+				<AnimatedColumn
+					span={{ '<small': 12, '>small': 6, '>medium': 4 }}
+					key={item.fields.slug}
+				>
+					<ProjectItem project={item} />
+				</AnimatedColumn>
 			))}
-		</List>
+		</Columns>
 	</div>
 );
 
@@ -54,51 +57,7 @@ for (let i = 0; i < 12; i += 1) {
 	`;
 }
 
-const Item = styled(ProjectItem)``;
-
-const List = styled.div`
-	font-family: ${sansSerifFontFamily};
-
-	${Item} {
-		animation: ${fadeIn} 400ms ${cubicBezierFadeIn} both;
-		${animationDelaySequence};
-
-		@media screen and (max-width: 499px) {
-			margin-bottom: 2rem;
-		}
-	}
-
-	@media screen and (min-width: 500px) {
-		display: flex;
-		flex-flow: row wrap;
-		justify-content: flex-start;
-
-		${Item} {
-			display: flex-item;
-		}
-	}
-
-	@media screen and (min-width: 500px) and (max-width: 800px) {
-		margin-left: -1.5%;
-		margin-right: -1.5%;
-
-		${Item} {
-			flex-basis: 47%;
-			margin-bottom: 2rem;
-			margin-left: 1.5%;
-			margin-right: 1.5%;
-		}
-	}
-
-	@media screen and (min-width: 801px) {
-		margin-left: -1.166665%;
-		margin-right: -1.166665%;
-
-		${Item} {
-			flex-basis: 31%;
-			margin-bottom: 2rem;
-			margin-left: 1.166665%;
-			margin-right: 1.166665%;
-		}
-	}
+const AnimatedColumn = styled(Column)`
+	animation: ${fadeIn} 400ms ${cubicBezierFadeIn} both;
+	${animationDelaySequence};
 `;
