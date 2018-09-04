@@ -112,6 +112,6 @@ const Item = styled.span`
 	}
 `;
 
-const MainItem = Item.extend`
+const MainItem = styled(Item)`
 	font-weight: 600;
 `;

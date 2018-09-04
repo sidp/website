@@ -200,7 +200,7 @@ const Image = styled.img`
 	transform: translate(-50%, -50%) scale(1.01);
 `;
 
-const FlattenedImage = Image.extend`
+const FlattenedImage = styled(Image)`
 	z-index: 100;
 
 	opacity: ${props => (props.initialized ? '0' : '1')};
