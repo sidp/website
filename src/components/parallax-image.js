@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import once from 'lodash/once';
 import styled from 'styled-components';
-
 import loadImages from '../utils/load-images';
 import { imageBoxShadow } from '../styles/variables';
+import Preload from './preload';
 
 export default class ParallaxImage extends Component {
 	static propTypes = {
@@ -25,6 +25,7 @@ export default class ParallaxImage extends Component {
 
 	state = {
 		initialized: false,
+		shouldPreload: false,
 		effectActive: false,
 		x: 0,
 		y: 0,
@@ -36,6 +37,12 @@ export default class ParallaxImage extends Component {
 		super(props);
 
 		this.initializeOnce = once(this.initialize);
+
+		this.handleWindowMouseMoveThrottled = throttle(
+			this.handleWindowMouseMove,
+			50,
+			{ trailing: false }
+		);
 		this.handleMouseMoveThrottled = throttle(this.handleMouseMove, 16, {
 			trailing: false,
 		});
@@ -46,10 +53,15 @@ export default class ParallaxImage extends Component {
 
 	componentDidMount() {
 		window.addEventListener('scroll', this.handleScrollThrottled);
+		window.addEventListener('mousemove', this.handleWindowMouseMoveThrottled);
 	}
 
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.handleScrollThrottled);
+		window.removeEventListener(
+			'mousemove',
+			this.handleWindowMouseMoveThrottled
+		);
 	}
 
 	initialize = () => {
@@ -69,6 +81,24 @@ export default class ParallaxImage extends Component {
 		this.setState({
 			effectActive: true,
 		});
+	};
+
+	handleWindowMouseMove = ev => {
+		if (this.state.initialized) {
+			return;
+		}
+		const rect = this.el.getBoundingClientRect();
+		const margin = 100;
+		const near =
+			ev.clientX > rect.left - margin &&
+			ev.clientX < rect.left + rect.width + margin &&
+			ev.clientY > rect.top - margin &&
+			ev.clientY < rect.top + rect.height + margin;
+
+		if (near) {
+			this.setState({ shouldPreload: true });
+			window.removeEventListener('mousemove', this.handleWindowMouseMove);
+		}
 	};
 
 	handleMouseMove = ev => {
@@ -118,8 +148,8 @@ export default class ParallaxImage extends Component {
 	};
 
 	getPositionFromDepth(depth) {
-		const x = 50 - this.state.x / 180 * depth;
-		const y = 50 - this.state.y / 150 * depth;
+		const x = 50 - (this.state.x / 180) * depth;
+		const y = 50 - (this.state.y / 150) * depth;
 		const duration = this.state.hover ? 64 : 350;
 		const timingFunction = this.state.hover ? 'linear' : 'ease-out';
 		let scale = 1.01;
@@ -167,10 +197,13 @@ export default class ParallaxImage extends Component {
 				empty={this.props.images.length === 0}
 				onMouseMove={this.handleMouseMoveThrottled}
 				onMouseLeave={this.handleMouseLeave}
-				innerRef={el => {
+				ref={el => {
 					this.el = el;
 				}}
 			>
+				{this.state.shouldPreload && (
+					<Preload images={this.props.images.map(image => image.src)} />
+				)}
 				{images}
 				{flattened}
 			</Frame>
@@ -201,11 +234,11 @@ const Image = styled.img`
 	transform: translate(-50%, -50%) scale(1.01);
 `;
 
-const FlattenedImage = Image.extend`
+const FlattenedImage = styled(Image)`
 	z-index: 100;
 
 	opacity: ${props => (props.initialized ? '0' : '1')};
-	transition: opacity 500ms linear;
+	transition: opacity 50ms linear;
 
-	willchange: ${props => (!props.initialized ? 'opacity' : '')};
+	will-change: ${props => (!props.initialized ? 'opacity' : '')};
 `;

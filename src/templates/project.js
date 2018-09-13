@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import Meta from '../components/meta';
@@ -6,7 +7,6 @@ import ExternalLink from '../components/external-link';
 import ProjectImage from '../components/project-image';
 import VideoEmbed from '../components/video-embed';
 import ProjectList from '../components/project-list';
-
 import { TextWrapper } from '../styles/components';
 import {
 	accentColor,
@@ -77,7 +77,10 @@ export default class Project extends Component {
 
 	render() {
 		const {
-			data: { markdownRemark: page, allMarkdownRemark: { edges } },
+			data: {
+				markdownRemark: page,
+				allMarkdownRemark: { edges },
+			},
 		} = this.props;
 		const projects = edges.map(edge => edge.node);
 		const frontmatter = page.frontmatter;
@@ -87,34 +90,39 @@ export default class Project extends Component {
 		const videoEmbed = this.renderVideoEmbed(frontmatter);
 		const images = this.renderImages(frontmatter);
 
-		return [
-			<Article key="article">
-				<Helmet>
-					<title>{frontmatter.title}</title>
-					{meta}
-				</Helmet>
-				<TextWrapper>
-					<header>
-						<Title>{frontmatter.title}</Title>
-						<Meta
-							agency={frontmatter.agency}
-							client={frontmatter.client}
-							year={frontmatter.year}
-							link={frontmatter.link}
+		return (
+			<>
+				<Article key="article">
+					<Helmet>
+						<title>{frontmatter.title}</title>
+						{meta}
+					</Helmet>
+					<TextWrapper className="h-entry">
+						<header>
+							<Title className="p-name">{frontmatter.title}</Title>
+							<Meta
+								agency={frontmatter.agency}
+								client={frontmatter.client}
+								year={frontmatter.year}
+								link={frontmatter.link}
+							/>
+						</header>
+						<div
+							dangerouslySetInnerHTML={{ __html: page.html }}
+							className="e-content"
 						/>
-					</header>
-					<div dangerouslySetInnerHTML={{ __html: page.html }} />
-					{link}
-					{videoEmbed}
-				</TextWrapper>
-				{images}
-			</Article>,
-			<ProjectList
-				title="More Projects"
-				projects={projects}
-				key="project-list"
-			/>,
-		];
+						{link}
+						{videoEmbed}
+					</TextWrapper>
+					{images}
+				</Article>
+				<ProjectList
+					title="More Projects"
+					projects={projects}
+					key="project-list"
+				/>
+			</>
+		);
 	}
 }
 
@@ -156,7 +164,10 @@ export const pageQuery = graphql`
 			html
 		}
 		allMarkdownRemark(
-			filter: { fields: { type: { eq: "project" }, slug: { ne: $slug } } }
+			filter: {
+				fields: { type: { eq: "project" }, slug: { ne: $slug } }
+				frontmatter: { draft: { ne: true } }
+			}
 			sort: { order: DESC, fields: [frontmatter___weight] }
 		) {
 			edges {

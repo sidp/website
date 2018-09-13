@@ -1,4 +1,5 @@
 export default function loadImages(images = [], callback = error => {}) {
+	let imageElements = [];
 	let loaded = 0;
 	let successfully = 0;
 
@@ -11,14 +12,15 @@ export default function loadImages(images = [], callback = error => {}) {
 		if (loaded === images.length) {
 			const error = loaded !== successfully;
 			callback(error);
+			imageElements = null;
 		}
 	};
 
-	const imageElements = [];
 	for (let i = 0; i < images.length; i++) {
 		const imageElement = document.createElement('img');
 		imageElement.src = images[i];
 		imageElement.onload = eventHandler;
 		imageElement.onerror = eventHandler;
+		imageElements.push(imageElements);
 	}
 }

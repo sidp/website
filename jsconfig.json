@@ -1,8 +1,8 @@
 {
 	"compilerOptions": {
-		"target": "es2016",
-		"checkJs": true,
-		"jsx": "react"
+		"target": "esnext",
+		"jsx": "react",
+		"moduleResolution": "node"
 	},
 	"typeAcquisition": {
 		"enable": true

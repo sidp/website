@@ -1,14 +1,19 @@
-import React, { createElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-
-import { pageProps } from './prop-types';
-
 import { TextWrapper } from '../styles/components';
+
+const renderBody = ({ title, body }) => (
+	<>
+		{title}
+		{body}
+	</>
+);
 
 const MarkdownPage = ({
 	page: { frontmatter, html },
 	htmlElement = 'article',
+	render = renderBody,
 	...props
 }) => {
 	const meta = [];
@@ -22,17 +27,24 @@ const MarkdownPage = ({
 		);
 	}
 
-	const PageWrap = TextWrapper.withComponent(htmlElement);
-
 	return (
-		<PageWrap {...props}>
+		<TextWrapper as={htmlElement} className="h-entry" {...props}>
 			<Helmet>
 				<title>{frontmatter.title}</title>
 				{meta}
 			</Helmet>
-			<h1>{frontmatter.heading || frontmatter.title}</h1>
-			<div dangerouslySetInnerHTML={{ __html: html }} />
-		</PageWrap>
+			{render({
+				title: (
+					<h1 className="p-name">{frontmatter.heading || frontmatter.title}</h1>
+				),
+				body: (
+					<div
+						className="e-content"
+						dangerouslySetInnerHTML={{ __html: html }}
+					/>
+				),
+			})}
+		</TextWrapper>
 	);
 };
 

@@ -1,16 +1,20 @@
 import React from 'react';
+import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
 import styled from 'styled-components';
-
-import { projectProps } from '../prop-types';
 import ParallaxImage from '../parallax-image';
-
-import { grayedColor, metaFontSize } from '../../styles/variables';
+import {
+	grayedColor,
+	metaFontSize,
+	sansSerifFontFamily,
+} from '../../styles/variables';
 import thumbs from '../../images/thumbs';
 
 const ProjectItem = ({
-	project: { frontmatter: { title, client }, fields: { slug } },
+	project: {
+		frontmatter: { title, client },
+		fields: { slug },
+	},
 	className = '',
 }) => {
 	let images = [];
@@ -22,10 +26,10 @@ const ProjectItem = ({
 	}
 
 	return (
-		<div className={className}>
-			<StyledLink to={slug}>
+		<div className={`${className} h-entry`}>
+			<StyledLink to={slug} className="u-url">
 				<ParallaxImage images={images} flattened={flattened} />
-				<Title>{title}</Title>
+				<Title className="p-name">{title}</Title>
 				<Meta>{client}</Meta>
 			</StyledLink>
 		</div>
@@ -63,8 +67,6 @@ export const projectItemFragment = graphql`
  * Styled components
  */
 
-const Block = styled.div``;
-
 const StyledLink = styled(Link)`
 	color: inherit;
 	display: block;
@@ -81,6 +83,7 @@ const Title = styled.h3`
 const Meta = styled.p`
 	color: ${grayedColor};
 	font-size: ${metaFontSize};
+	font-family: ${sansSerifFontFamily};
 	margin-top: 0;
 	margin-bottom: 0;
 `;

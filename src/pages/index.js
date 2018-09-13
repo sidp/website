@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
+import { graphql } from 'gatsby';
+import styled from 'styled-components';
 import Helmet from 'react-helmet';
-
 import absoluteUrl from '../utils/absolute-uri';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
+import PostsList from '../components/posts-list';
+import { InnerContainer, TextWrapper } from '../styles/components';
 
 export default class Index extends Component {
 	render() {
-		const { data } = this.props;
-		const projects = data.allMarkdownRemark.edges.map(edge => edge.node);
-		const { siteMetadata: { description } } = data.site;
+		const { allProjects, allPosts, site } = this.props.data;
+		const projects = allProjects.edges.map(edge => edge.node);
+		const posts = allPosts.edges.map(edge => edge.node);
+		const { description } = site.siteMetadata;
 
 		return (
-			<div>
+			<>
 				<Helmet>
 					<meta name="description" content={description} />
 					<meta
@@ -29,14 +33,24 @@ export default class Index extends Component {
 					</p>
 				</Intro>
 				<ProjectList title="Projects" projects={projects} />
-			</div>
+				<StyledInnerContainer>
+					<StyledTextWrapper>
+						<PostsList posts={posts} />
+					</StyledTextWrapper>
+				</StyledInnerContainer>
+			</>
 		);
 	}
 }
 
-/**
- * GraphQL
- */
+const StyledInnerContainer = styled(InnerContainer)`
+	padding-top: 1px;
+	margin-bottom: 0;
+`;
+
+const StyledTextWrapper = styled(TextWrapper)`
+	margin-bottom: 2rem;
+`;
 
 export const pageQuery = graphql`
 	query indexPageData {
@@ -46,13 +60,54 @@ export const pageQuery = graphql`
 				description
 			}
 		}
-		allMarkdownRemark(
-			filter: { fields: { type: { eq: "project" } } }
+
+		allProjects: allMarkdownRemark(
+			filter: {
+				fields: { type: { eq: "project" } }
+				frontmatter: { draft: { ne: true } }
+			}
 			sort: { order: DESC, fields: [frontmatter___weight] }
 		) {
 			edges {
 				node {
 					...Project_list
+				}
+			}
+		}
+
+		allPosts: allMarkdownRemark(
+			filter: {
+				fields: { type: { eq: "post" } }
+				frontmatter: { draft: { ne: true } }
+			}
+			sort: { order: DESC, fields: [frontmatter___published] }
+		) {
+			edges {
+				node {
+					...PostList_item
+				}
+			}
+		}
+
+		allUpdates: allMarkdownRemark(
+			filter: {
+				fields: { type: { eq: "update" } }
+				frontmatter: { draft: { ne: true } }
+			}
+			sort: { order: DESC, fields: [frontmatter___published] }
+		) {
+			edges {
+				node {
+					id
+					frontmatter {
+						title
+						date: published(formatString: "MMMM d, YYYY")
+						timestamp: published
+					}
+					fields {
+						slug
+					}
+					html
 				}
 			}
 		}

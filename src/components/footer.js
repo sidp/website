@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import naturalJoin from '../utils/natural-join';
 import ExternalLink from './external-link';
-
 import {
 	textColor,
 	linkColor,
@@ -18,11 +16,15 @@ import { Container } from '../styles/components';
 
 const Footer = ({ title, email, links = [] }) => {
 	const socialMediaLinks = links.map(link => (
-		<ExternalLink to={link.url} title={link.title} key={link.url}>
+		<ExternalLink
+			to={link.url}
+			title={link.title}
+			rel={link.rel}
+			key={link.url}
+		>
 			{link.label}
 		</ExternalLink>
 	));
-
 	return (
 		<FooterBlock>
 			<Container>
@@ -35,7 +37,8 @@ const Footer = ({ title, email, links = [] }) => {
 					Check out this site on{' '}
 					<ExternalLink to="https://github.com/sidp/portfolio">
 						GitHub
-					</ExternalLink>.
+					</ExternalLink>
+					.
 				</Item>
 			</Container>
 		</FooterBlock>
@@ -50,6 +53,7 @@ export default Footer;
 
 const FooterBlock = styled.footer`
 	text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
+	margin-top: 2rem;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 	line-height: 1.4;
@@ -81,6 +85,6 @@ const Item = styled.span`
 	}
 `;
 
-const MainItem = Item.extend`
+const MainItem = styled(Item)`
 	font-weight: 600;
 `;

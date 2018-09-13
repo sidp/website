@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
-import styled from 'styled-components';
-
-import ExternalLink from './external-link';
-
+import { Link } from 'gatsby';
+import styled, { css } from 'styled-components';
 import { Container } from '../styles/components';
 import {
 	textColor,
@@ -17,28 +14,32 @@ import {
 	cubicBezierFadeIn,
 } from '../styles/variables';
 
-const Header = ({ title, navigation, currentPath = '' }) => (
-	<HeaderBlock role="banner">
-		<Container>
-			<HeaderWrapper>
-				<Title>
-					<Link to={'/'}>{title}</Link>
-				</Title>
-				<Navigation>
-					{navigation.map(item => (
-						<NavLink
-							to={item.path}
-							selected={item.path === currentPath}
-							key={item.path}
-						>
-							{item.label}
-						</NavLink>
-					))}
-				</Navigation>
-			</HeaderWrapper>
-		</Container>
-	</HeaderBlock>
-);
+const Header = ({ title, navigation = [], currentPath = '' }) => {
+	return (
+		<HeaderBlock role="banner">
+			<Container>
+				<HeaderWrapper>
+					<Title>
+						<Link to={'/'}>{title}</Link>
+					</Title>
+					<Navigation>
+						{navigation.map(item => (
+							<NavLink
+								to={item.path}
+								selected={item.path === currentPath}
+								key={item.path}
+							>
+								{item.label}
+							</NavLink>
+						))}
+					</Navigation>
+				</HeaderWrapper>
+			</Container>
+		</HeaderBlock>
+	);
+};
+
+export default Header;
 
 Header.propTypes = {
 	title: PropTypes.string,
@@ -47,8 +48,6 @@ Header.propTypes = {
 	),
 	currentPath: PropTypes.string,
 };
-
-export default Header;
 
 /**
  * Styled components
@@ -123,14 +122,15 @@ const NavLink = styled(Link)`
 
 	${props =>
 		props.selected
-			? `
-				color: ${textColor};
-				cursor: default;
-			`
+			? css`
+					color: ${textColor};
+					cursor: default;
+					box-shadow: none;
+			  `
 			: ''};
 
 	&:hover {
-		color: ${linkColorHover};
+		color: ${props => (props.selected ? textColor : linkColorHover)};
 	}
 
 	&:active {

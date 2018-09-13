@@ -134,7 +134,7 @@ export default class ProjectImage extends PureComponent {
 		}
 
 		const wrapperStyle = {
-			paddingTop: `${height / width * 100}%`,
+			paddingTop: `${(height / width) * 100}%`,
 			backgroundImage: `url(${image.base64})`,
 		};
 
@@ -143,7 +143,7 @@ export default class ProjectImage extends PureComponent {
 				error={loadState === LoadStates.ERROR}
 				style={wrapperStyle}
 				className={className}
-				innerRef={el => (this.element = el)}
+				ref={el => (this.element = el)}
 			>
 				{imageElement}
 			</Wrapper>

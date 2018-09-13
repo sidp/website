@@ -4,7 +4,7 @@ module.exports = {
 		title: 'Peter Simonsson',
 		description:
 			'I’m a freelance web developer and designer in Stockholm, Sweden. This is a selection of the most popular projects I’ve worked on.',
-		hostname: 'https://simonsson.com',
+		siteUrl: 'https://simonsson.com',
 		email: 'peter@simonsson.com',
 		navigation: [
 			{
@@ -21,26 +21,31 @@ module.exports = {
 				label: 'Twitter',
 				title: '@sidp on Twitter',
 				url: 'https://twitter.com/sidp',
+				rel: 'me',
 			},
 			{
 				label: 'GitHub',
 				title: '@sidp on GitHub',
 				url: 'https://github.com/sidp',
+				rel: 'me',
 			},
 			{
 				label: 'LinkedIn',
 				title: 'Peter Simonsson on LinkedIn',
 				url: 'https://www.linkedin.com/in/sidp86',
+				rel: 'me',
 			},
 			{
 				label: 'Instagram',
 				title: '@sidp on Instagram',
 				url: 'https://www.instagram.com/sidp/',
+				rel: 'me',
 			},
 			{
 				label: 'Last.fm',
 				title: 'sidp on Last.fm',
 				url: 'http://www.last.fm/user/sidp',
+				rel: 'me',
 			},
 		],
 	},
@@ -49,7 +54,7 @@ module.exports = {
 			resolve: 'gatsby-source-filesystem',
 			options: {
 				name: 'pages',
-				path: `${__dirname}/src/pages`,
+				path: `${__dirname}/src/pages/content`,
 			},
 		},
 		{
@@ -59,7 +64,8 @@ module.exports = {
 					{
 						resolve: 'gatsby-remark-images',
 						options: {
-							maxWidth: 690,
+							maxWidth: 684,
+							linkImagesToOriginal: false,
 						},
 					},
 					'gatsby-remark-responsive-iframe',
@@ -71,7 +77,12 @@ module.exports = {
 		},
 		'gatsby-transformer-json',
 		'gatsby-transformer-sharp',
-		'gatsby-plugin-react-next',
+		{
+			resolve: 'gatsby-plugin-layout',
+			options: {
+				component: require.resolve('./src/layouts/index.js'),
+			},
+		},
 		'gatsby-plugin-react-helmet',
 		'gatsby-plugin-styled-components',
 		'gatsby-plugin-sharp',
@@ -97,6 +108,10 @@ module.exports = {
 					},
 				],
 			},
+		},
+		{
+			resolve: 'gatsby-plugin-feed',
+			options: require('./gatsby-plugin-feed-options'),
 		},
 		{
 			resolve: 'gatsby-plugin-google-analytics',
