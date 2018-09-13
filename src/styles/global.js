@@ -8,6 +8,7 @@ import {
 	linkBoxShadow,
 	sansSerifFontFamily,
 	monoFontFamily,
+	paleAccentColor,
 } from './variables';
 
 const GlobalStyle = createGlobalStyle`
@@ -83,9 +84,12 @@ const GlobalStyle = createGlobalStyle`
 		padding-top: 0.15em;
 		padding-bottom: 0.15em;
 
+		background-color: ${paleAccentColor};
+		box-shadow: inset 0 0 0 1px ${accentColor};
+
 		&::before,
 		&::after {
-			letter-spacing: -0.3em;
+			letter-spacing: -0.33em;
 		}
 	}
 
