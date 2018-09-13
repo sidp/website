@@ -33,7 +33,7 @@ export default Columns;
 
 export const Column = styled.div`
 	${props =>
-		Object.keys(props.span)
+		Object.keys(props.span || {})
 			.filter(key => mediaQueryMap[key])
 			.map(
 				key => css`
