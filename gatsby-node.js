@@ -3,18 +3,11 @@ const path = require('path');
 exports.createPages = ({ graphql, actions }) => {
 	const { createPage } = actions;
 
-	return new Promise((resolve, reject) => {
-		const templates = {
-			page: path.resolve('src/templates/page.js'),
-			project: path.resolve('src/templates/project.js'),
-			post: path.resolve('src/templates/post.js'),
-			about: path.resolve('src/templates/about.js'),
-		};
-
+	return Promise.all([
 		graphql(
 			`
 				{
-					allMarkdownRemark {
+					posts: allMarkdownRemark {
 						edges {
 							node {
 								fields {
@@ -26,27 +19,96 @@ exports.createPages = ({ graphql, actions }) => {
 					}
 				}
 			`
-		).then(result => {
-			if (result.errors) {
-				reject(new Error(result.errors));
-			}
+		),
+		graphql(
+			`
+				{
+					posts: allMarkdownRemark(
+						filter: { fields: { type: { eq: "post" } } }
+						sort: { order: DESC, fields: [frontmatter___published] }
+					) {
+						edges {
+							node {
+								fields {
+									slug
+									type
+								}
+							}
+						}
+					}
+				}
+			`
+		),
+	]).then(([result, resultForPosts]) => {
+		const templates = {
+			page: path.resolve('src/templates/page.js'),
+			project: path.resolve('src/templates/project.js'),
+			post: path.resolve('src/templates/post.js'),
+			posts: path.resolve('src/templates/posts.js'),
+			about: path.resolve('src/templates/about.js'),
+		};
 
-			result.data.allMarkdownRemark.edges.forEach(edge => {
-				const {
-					fields: { type, slug },
-				} = edge.node;
-				const template = templates[type] || templates.page;
+		/**
+		 * Make all pages
+		 */
 
-				createPage({
-					path: slug,
-					component: template,
-					context: {
-						slug,
-					},
-				});
+		if (result.errors) {
+			throw new Error(result.errors[0].message);
+		}
+
+		result.data.posts.edges.forEach(edge => {
+			const {
+				fields: { type, slug },
+			} = edge.node;
+			const template = templates[type] || templates.page;
+
+			createPage({
+				path: slug,
+				component: template,
+				context: {
+					slug,
+				},
 			});
+		});
 
-			resolve();
+		/**
+		 * Make the paginated posts page
+		 */
+
+		if (resultForPosts.errors) {
+			throw new Error(resultForPosts.errors[0].message);
+		}
+
+		const groupPosts = (posts, perPage) =>
+			posts.reduce((grouped, post, i) => {
+				const group = Math.floor(i / perPage);
+				grouped[group] = grouped[group] || [];
+				grouped[group].push(post);
+				return grouped;
+			}, []);
+
+		const makePagePath = (prefix, pageNo) =>
+			`/${prefix}${pageNo > 1 ? `/${pageNo}` : ''}`;
+
+		const posts = resultForPosts.data.posts.edges.map(edge => edge.node);
+
+		const template = templates.posts;
+		const perPage = 3;
+		const pathPrefix = 'posts';
+
+		const grouped = groupPosts(posts, perPage);
+		grouped.forEach((posts, i) => {
+			const slugs = posts.map(post => post.fields.slug);
+			createPage({
+				path: makePagePath(pathPrefix, i + 1),
+				component: template,
+				context: {
+					posts,
+					slugs,
+					pageNo: i + 1,
+					pageCount: grouped.length,
+				},
+			});
 		});
 	});
 };
@@ -62,8 +124,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 		const fileNode = getNode(node.parent);
 		const parsedFilePath = path.parse(fileNode.relativePath);
 		const postFormat = /([0-9]{4})\-([0-9]{2})\-([0-9]{2})\-(.+)/;
+
 		const isPost =
 			parsedFilePath.dir === 'posts' ||
+			postFormat.exec(parsedFilePath.dir) !== null;
+
+		const isUpdate =
+			parsedFilePath.dir === 'updates' ||
 			postFormat.exec(parsedFilePath.dir) !== null;
 
 		if (isPost) {
@@ -74,6 +141,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 			const parts = postFormat.exec(name);
 			slug = `/posts/${parts[4] || parsedFilePath.name}/`;
+		} else if (isUpdate) {
+			const name =
+				parsedFilePath.dir === 'updates'
+					? parsedFilePath.name
+					: parsedFilePath.dir;
+
+			const parts = postFormat.exec(name);
+			slug = `/posts/short/${parts[4] || parsedFilePath.name}`;
 		} else if (parsedFilePath.name !== 'index' && parsedFilePath.dir !== '') {
 			slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
 		} else if (parsedFilePath.dir === '') {
@@ -85,6 +160,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 		let nodeType = 'page';
 		if (parsedFilePath.dir === 'projects') {
 			nodeType = 'project';
+		} else if (parsedFilePath.dir === 'updates') {
+			nodeType = 'update';
 		} else if (isPost) {
 			nodeType = 'post';
 		} else if (parsedFilePath.name === 'about') {
