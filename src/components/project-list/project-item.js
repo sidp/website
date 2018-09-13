@@ -26,10 +26,10 @@ const ProjectItem = ({
 	}
 
 	return (
-		<div className={className}>
-			<StyledLink to={slug}>
+		<div className={`${className} h-entry`}>
+			<StyledLink to={slug} className="u-url">
 				<ParallaxImage images={images} flattened={flattened} />
-				<Title>{title}</Title>
+				<Title className="p-name">{title}</Title>
 				<Meta>{client}</Meta>
 			</StyledLink>
 		</div>

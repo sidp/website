@@ -28,14 +28,21 @@ const MarkdownPage = ({
 	}
 
 	return (
-		<TextWrapper as={htmlElement} {...props}>
+		<TextWrapper as={htmlElement} className="h-entry" {...props}>
 			<Helmet>
 				<title>{frontmatter.title}</title>
 				{meta}
 			</Helmet>
 			{render({
-				title: <h1>{frontmatter.heading || frontmatter.title}</h1>,
-				body: <div dangerouslySetInnerHTML={{ __html: html }} />,
+				title: (
+					<h1 className="p-name">{frontmatter.heading || frontmatter.title}</h1>
+				),
+				body: (
+					<div
+						className="e-content"
+						dangerouslySetInnerHTML={{ __html: html }}
+					/>
+				),
 			})}
 		</TextWrapper>
 	);

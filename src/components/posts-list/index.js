@@ -4,7 +4,7 @@ import Post from './post';
 const PostsList = ({ posts }) => (
 	<>
 		{posts.map(post => (
-			<Post post={post} key={post.fields.slug} />
+			<Post post={post} key={post.fields.slug} className="h-feed" />
 		))}
 	</>
 );

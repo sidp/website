@@ -19,7 +19,15 @@ export default class BlogPost extends Component {
 					<Fragment>
 						{title}
 						{body}
-						<PostDetails>Published on {page.frontmatter.date}</PostDetails>
+						<PostDetails>
+							Published on{' '}
+							<time
+								dateTime={page.frontmatter.timestamp}
+								className="dt-published"
+							>
+								{page.frontmatter.date}
+							</time>
+						</PostDetails>
 					</Fragment>
 				)}
 			/>

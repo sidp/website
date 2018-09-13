@@ -14,14 +14,19 @@ const Post = ({
 		fields: { slug },
 	},
 }) => (
-	<BlogItemBlock>
+	<BlogItemBlock className="h-entry">
 		<Heading>
-			<Link to={slug}>{title}</Link>
+			<Link to={slug} className="u-url p-name">
+				{title}
+			</Link>
 		</Heading>
 		<Excerpt>
-			{excerpt} <Link to={slug}>Read more »</Link>
+			<span className="p-summary">{excerpt}</span>{' '}
+			<Link to={slug}>Read more »</Link>
 		</Excerpt>
-		<Time dateTime={timestamp}>{date}</Time>
+		<Time dateTime={timestamp} className="dt-published">
+			{date}
+		</Time>
 	</BlogItemBlock>
 );
 

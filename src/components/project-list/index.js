@@ -10,7 +10,7 @@ const ProjectList = ({ title = '', projects = [] }) => (
 	<div>
 		{title && <Title>{title}</Title>}
 
-		<Columns>
+		<Columns className="h-feed">
 			{projects.map(item => (
 				<AnimatedColumn
 					span={{ '<small': 12, '>small': 6, '>medium': 4 }}

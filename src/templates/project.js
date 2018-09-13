@@ -97,9 +97,9 @@ export default class Project extends Component {
 						<title>{frontmatter.title}</title>
 						{meta}
 					</Helmet>
-					<TextWrapper>
+					<TextWrapper className="h-entry">
 						<header>
-							<Title>{frontmatter.title}</Title>
+							<Title className="p-name">{frontmatter.title}</Title>
 							<Meta
 								agency={frontmatter.agency}
 								client={frontmatter.client}
@@ -107,7 +107,10 @@ export default class Project extends Component {
 								link={frontmatter.link}
 							/>
 						</header>
-						<div dangerouslySetInnerHTML={{ __html: page.html }} />
+						<div
+							dangerouslySetInnerHTML={{ __html: page.html }}
+							className="e-content"
+						/>
 						{link}
 						{videoEmbed}
 					</TextWrapper>
