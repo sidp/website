@@ -20,7 +20,6 @@ export const Container = styled.div`
 `;
 
 export const InnerContainer = styled.div`
-	background-color: ${paleAccentColor};
 	position: relative;
 
 	margin-top: 2rem;
@@ -30,11 +29,19 @@ export const InnerContainer = styled.div`
 	padding-left: 10px;
 	padding-right: 10px;
 
+	&,
+	&::before,
+	&::after {
+		background-image: linear-gradient(
+			to bottom,
+			${paleAccentColor} 0%,
+			#fff 100%
+		);
+	}
+
 	&::before,
 	&::after {
 		content: '';
-		background-color: inherit;
-
 		position: absolute;
 		top: 0;
 		bottom: 0;

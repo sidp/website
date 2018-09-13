@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
+import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import absoluteUrl from '../utils/absolute-uri';
-import Columns, { Column } from '../components/columns';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
 import PostsList from '../components/posts-list';
-import { InnerContainer } from '../styles/components';
+import { InnerContainer, TextWrapper } from '../styles/components';
 
 export default class Index extends Component {
 	render() {
 		const { data } = this.props;
 		const projects = data.allProjects.edges.map(edge => edge.node);
 		const posts = data.allPosts.edges.map(edge => edge.node);
-		const updates = data.allUpdates.edges.map(edge => edge.node);
 		const { siteMetadata } = data.site;
 
 		return (
@@ -26,26 +25,26 @@ export default class Index extends Component {
 					/>
 				</Helmet>
 				<Intro />
-				<InnerContainer>
-					<Columns>
-						<Column span={{ '<medium': 12, '>medium': 8 }}>
-							<PostsList posts={posts} />
-						</Column>
-						<Column span={{ '<medium': 12, '>medium': 4 }}>
-							{updates.map(update => (
-								<div key={update.fields.slug}>
-									<div dangerouslySetInnerHTML={{ __html: update.html }} />
-									<Link to={update.fields.slug}>{update.frontmatter.date}</Link>
-								</div>
-							))}
-						</Column>
-					</Columns>
-				</InnerContainer>
 				<ProjectList title="Projects" projects={projects} />
+				<StyledInnerContainer>
+					<StyledTextWrapper>
+						<PostsList posts={posts} />
+					</StyledTextWrapper>
+				</StyledInnerContainer>
 			</>
 		);
 	}
 }
+
+const StyledInnerContainer = styled(InnerContainer)`
+	padding-top: 1px;
+	padding-bottom: 1px;
+	margin-bottom: 0;
+`;
+
+const StyledTextWrapper = styled(TextWrapper)`
+	margin-bottom: 2rem;
+`;
 
 export const pageQuery = graphql`
 	query indexPageData {
