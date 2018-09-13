@@ -5,8 +5,6 @@ import MarkdownPage from '../components/markdown-page';
 import { fadeIn, cubicBezierFadeIn } from '../styles/variables';
 import Columns, { Column } from '../components/columns';
 
-const ArticleColumns = Columns.withComponent('article');
-
 export default class About extends Component {
 	render() {
 		const {
@@ -17,7 +15,7 @@ export default class About extends Component {
 			page.frontmatter.portrait.childImageSharp.image;
 
 		return (
-			<ArticleColumns role="main">
+			<Columns as="article" role="main">
 				<Column span={{ '<small': 12, '>small': 4, '>medium': 5 }}>
 					{image && (
 						<Portrait
@@ -31,7 +29,7 @@ export default class About extends Component {
 				<Column span={{ '<small': 12, '>small': 8, '>medium': 7 }}>
 					<Content page={page} htmlElement="div" />
 				</Column>
-			</ArticleColumns>
+			</Columns>
 		);
 	}
 }

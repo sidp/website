@@ -1,4 +1,4 @@
-import { injectGlobal } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import {
 	accentColor,
 	textColor,
@@ -10,7 +10,7 @@ import {
 	monoFontFamily,
 } from './variables';
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
 	html {
 		background-color: ${accentColor};
 	}
@@ -102,3 +102,5 @@ injectGlobal`
 		}
 	}
 `;
+
+export default GlobalStyle;

@@ -27,10 +27,8 @@ const MarkdownPage = ({
 		);
 	}
 
-	const PageWrap = TextWrapper.withComponent(htmlElement);
-
 	return (
-		<PageWrap {...props}>
+		<TextWrapper as={htmlElement} {...props}>
 			<Helmet>
 				<title>{frontmatter.title}</title>
 				{meta}
@@ -39,7 +37,7 @@ const MarkdownPage = ({
 				title: <h1>{frontmatter.heading || frontmatter.title}</h1>,
 				body: <div dangerouslySetInnerHTML={{ __html: html }} />,
 			})}
-		</PageWrap>
+		</TextWrapper>
 	);
 };
 
