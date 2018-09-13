@@ -1,0 +1,3 @@
+[submodule "src/pages/content"]
+	path = src/pages/content
+	url = git@github.com:sidp/website-content.git
