@@ -17,7 +17,6 @@ const VideoEmbed = ({ url, title, width, height, className = '' }) => {
 				height={height}
 				scrolling="no"
 				frameBorder="0"
-				allowTransparency
 				allowFullScreen
 			/>
 		</Block>
