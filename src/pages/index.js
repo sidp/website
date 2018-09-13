@@ -101,7 +101,7 @@ export const pageQuery = graphql`
 					id
 					frontmatter {
 						title
-						date: published(formatString: "MMMM d, YYYY")
+						date: published(formatString: "MMMM D, YYYY")
 						timestamp: published
 					}
 					fields {

@@ -41,7 +41,7 @@ export const postListItemFragment = graphql`
 		frontmatter {
 			title
 			excerpt
-			date: published(formatString: "MMMM d, YYYY")
+			date: published(formatString: "MMMM D, YYYY")
 			timestamp: published
 		}
 		fields {
