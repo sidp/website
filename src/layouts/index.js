@@ -27,6 +27,7 @@ export default class Layout extends Component {
 									label
 									title
 									url
+									rel
 								}
 							}
 						}
