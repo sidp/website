@@ -164,7 +164,10 @@ export const pageQuery = graphql`
 			html
 		}
 		allMarkdownRemark(
-			filter: { fields: { type: { eq: "project" }, slug: { ne: $slug } } }
+			filter: {
+				fields: { type: { eq: "project" }, slug: { ne: $slug } }
+				frontmatter: { draft: { ne: true } }
+			}
 			sort: { order: DESC, fields: [frontmatter___weight] }
 		) {
 			edges {

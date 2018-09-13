@@ -33,7 +33,10 @@ export default class BlogPostList extends Component {
 export const pageQuery = graphql`
 	query BlogPageData($slugs: [String]!) {
 		posts: allMarkdownRemark(
-			filter: { fields: { slug: { in: $slugs } } }
+			filter: {
+				fields: { slug: { in: $slugs } }
+				frontmatter: { draft: { ne: true } }
+			}
 			sort: { order: DESC, fields: [frontmatter___published] }
 		) {
 			edges {

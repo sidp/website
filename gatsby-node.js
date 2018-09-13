@@ -7,7 +7,9 @@ exports.createPages = ({ graphql, actions }) => {
 		graphql(
 			`
 				{
-					posts: allMarkdownRemark {
+					posts: allMarkdownRemark(
+						filter: { frontmatter: { draft: { ne: true } } }
+					) {
 						edges {
 							node {
 								fields {
@@ -24,7 +26,10 @@ exports.createPages = ({ graphql, actions }) => {
 			`
 				{
 					posts: allMarkdownRemark(
-						filter: { fields: { type: { eq: "post" } } }
+						filter: {
+							fields: { type: { eq: "post" } }
+							frontmatter: { draft: { ne: true } }
+						}
 						sort: { order: DESC, fields: [frontmatter___published] }
 					) {
 						edges {

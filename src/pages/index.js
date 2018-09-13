@@ -57,7 +57,10 @@ export const pageQuery = graphql`
 		}
 
 		allProjects: allMarkdownRemark(
-			filter: { fields: { type: { eq: "project" } } }
+			filter: {
+				fields: { type: { eq: "project" } }
+				frontmatter: { draft: { ne: true } }
+			}
 			sort: { order: DESC, fields: [frontmatter___weight] }
 		) {
 			edges {
@@ -68,7 +71,10 @@ export const pageQuery = graphql`
 		}
 
 		allPosts: allMarkdownRemark(
-			filter: { fields: { type: { eq: "post" } } }
+			filter: {
+				fields: { type: { eq: "post" } }
+				frontmatter: { draft: { ne: true } }
+			}
 			sort: { order: DESC, fields: [frontmatter___published] }
 		) {
 			edges {
@@ -79,7 +85,10 @@ export const pageQuery = graphql`
 		}
 
 		allUpdates: allMarkdownRemark(
-			filter: { fields: { type: { eq: "update" } } }
+			filter: {
+				fields: { type: { eq: "update" } }
+				frontmatter: { draft: { ne: true } }
+			}
 			sort: { order: DESC, fields: [frontmatter___published] }
 		) {
 			edges {
