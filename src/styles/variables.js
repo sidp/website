@@ -15,6 +15,10 @@ export const grayedColorActive = Color(grayedColor)
 	.darken(0.6)
 	.toString();
 
+export const paleAccentColor = Color(accentColor)
+	.lighten(0.075)
+	.toString();
+
 export const sansSerifFontFamily = 'Source Sans Pro';
 export const serifFontFamily = 'Source Serif Pro';
 export const monoFontFamily = 'Source Code Pro';

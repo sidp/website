@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	body {
+		overflow-x: hidden;
 		background-color: #fff;
 		box-shadow: inset 0 4px ${accentColor}, inset 0 -4px ${accentColor};
 	}
