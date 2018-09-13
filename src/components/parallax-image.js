@@ -197,7 +197,7 @@ export default class ParallaxImage extends Component {
 				empty={this.props.images.length === 0}
 				onMouseMove={this.handleMouseMoveThrottled}
 				onMouseLeave={this.handleMouseLeave}
-				innerRef={el => {
+				ref={el => {
 					this.el = el;
 				}}
 			>
