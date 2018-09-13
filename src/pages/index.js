@@ -38,7 +38,6 @@ export default class Index extends Component {
 
 const StyledInnerContainer = styled(InnerContainer)`
 	padding-top: 1px;
-	padding-bottom: 1px;
 	margin-bottom: 0;
 `;
 

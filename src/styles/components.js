@@ -32,6 +32,7 @@ export const InnerContainer = styled.div`
 	&,
 	&::before,
 	&::after {
+		background-color: #fff;
 		background-image: linear-gradient(
 			to bottom,
 			${paleAccentColor} 0%,
