@@ -47,9 +47,8 @@ export const pageQuery = graphql`
 				description
 				portrait {
 					childImageSharp {
-						image: responsiveSizes(maxWidth: 640) {
-							src
-							srcSet
+						image: fluid(maxWidth: 640) {
+							...GatsbyImageSharpFluid
 						}
 					}
 				}

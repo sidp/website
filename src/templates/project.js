@@ -149,10 +149,8 @@ export const pageQuery = graphql`
 					title
 					src {
 						childImageSharp {
-							responsive: responsiveSizes(maxWidth: 640) {
-								src
-								srcSet
-								base64
+							responsive: fluid(maxWidth: 640) {
+								...GatsbyImageSharpFluid
 							}
 						}
 					}
