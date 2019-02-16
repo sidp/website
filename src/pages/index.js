@@ -13,11 +13,12 @@ export default class Index extends Component {
 		const { allProjects, allPosts, site } = this.props.data;
 		const projects = allProjects.edges.map(edge => edge.node);
 		const posts = allPosts.edges.map(edge => edge.node);
-		const { description } = site.siteMetadata;
+		const { description, introText } = site.siteMetadata;
 
 		return (
 			<>
 				<Helmet>
+					<title>Peter Simonsson</title>
 					<meta name="description" content={description} />
 					<meta
 						name="og:image"
@@ -25,12 +26,7 @@ export default class Index extends Component {
 					/>
 				</Helmet>
 				<Intro>
-					<p>
-						Hi! I’m a freelance web developer and designer. Have a look at some
-						of the most popular project I’ve worked on below, and{' '}
-						<a href="mailto:peter@simonsson.com">contact me</a> if you want to
-						talk further.
-					</p>
+					<p dangerouslySetInnerHTML={{ __html: introText }} />
 				</Intro>
 				<ProjectList title="Projects" projects={projects} />
 				<StyledInnerContainer>
@@ -58,6 +54,7 @@ export const pageQuery = graphql`
 			siteMetadata {
 				title
 				description
+				introText
 			}
 		}
 
