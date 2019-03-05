@@ -2,6 +2,7 @@ module.exports = {
 	pathPrefix: '/',
 	siteMetadata: {
 		title: 'Peter Simonsson',
+		frontpageTitle: 'Peter Simonsson – Web developer based in Copenhagen',
 		description:
 			'I’m a web developer and designer based in Copenhagen. This is a selection of the most popular projects I’ve worked on.',
 		introText:

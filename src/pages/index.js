@@ -18,7 +18,6 @@ export default class Index extends Component {
 		return (
 			<>
 				<Helmet>
-					<title>Peter Simonsson</title>
 					<meta name="description" content={description} />
 					<meta
 						name="og:image"

@@ -18,6 +18,7 @@ export default class Layout extends Component {
 						site {
 							siteMetadata {
 								title
+								frontpageTitle
 								email
 								navigation {
 									label
@@ -36,16 +37,23 @@ export default class Layout extends Component {
 				render={data => {
 					const {
 						site: {
-							siteMetadata: { title, navigation, email, socialMediaLinks },
+							siteMetadata: {
+								title,
+								frontpageTitle,
+								navigation,
+								email,
+								socialMediaLinks,
+							},
 						},
 					} = data;
 
 					return (
 						<>
 							<GlobalStyles />
-							<Helmet titleTemplate={`%s - ${title}`}>
-								<title>{title}</title>
-							</Helmet>
+							<Helmet
+								defaultTitle={frontpageTitle}
+								titleTemplate={`%s - ${title}`}
+							/>
 							<Header
 								title={title}
 								navigation={navigation}
