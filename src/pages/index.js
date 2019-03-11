@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { graphql } from 'gatsby';
-import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import absoluteUrl from '../utils/absolute-uri';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
-import PostsList from '../components/posts-list';
-import { InnerContainer, TextWrapper } from '../styles/components';
 
 export default class Index extends Component {
 	render() {
-		const { allProjects, allPosts, site } = this.props.data;
+		const { allProjects, site } = this.props.data;
 		const projects = allProjects.edges.map(edge => edge.node);
-		const posts = allPosts.edges.map(edge => edge.node);
 		const { description, introText } = site.siteMetadata;
 
 		return (
@@ -28,24 +24,10 @@ export default class Index extends Component {
 					<p dangerouslySetInnerHTML={{ __html: introText }} />
 				</Intro>
 				<ProjectList title="Projects" projects={projects} />
-				<StyledInnerContainer>
-					<StyledTextWrapper>
-						<PostsList posts={posts} />
-					</StyledTextWrapper>
-				</StyledInnerContainer>
 			</>
 		);
 	}
 }
-
-const StyledInnerContainer = styled(InnerContainer)`
-	padding-top: 1px;
-	margin-bottom: 0;
-`;
-
-const StyledTextWrapper = styled(TextWrapper)`
-	margin-bottom: 2rem;
-`;
 
 export const pageQuery = graphql`
 	query indexPageData {
@@ -67,20 +49,6 @@ export const pageQuery = graphql`
 			edges {
 				node {
 					...Project_list
-				}
-			}
-		}
-
-		allPosts: allMarkdownRemark(
-			filter: {
-				fields: { type: { eq: "post" } }
-				frontmatter: { draft: { ne: true } }
-			}
-			sort: { order: DESC, fields: [frontmatter___published] }
-		) {
-			edges {
-				node {
-					...PostList_item
 				}
 			}
 		}
