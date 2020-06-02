@@ -2,11 +2,11 @@ module.exports = {
 	pathPrefix: '/',
 	siteMetadata: {
 		title: 'Peter Simonsson',
-		frontpageTitle: 'Peter Simonsson – Web developer based in Copenhagen',
+		frontpageTitle: 'Peter Simonsson – Web developer in Malmö, Sweden',
 		description:
-			'I’m a web developer and designer based in Copenhagen. This is a selection of the most popular projects I’ve worked on.',
+			'I’m a web developer and designer based in Malmö, Sweden. This is a selection of the most popular projects I’ve worked on.',
 		introText:
-			'Hi! I’m a web developer and designer based in Copenhagen. Have a look at some of the most popular projects I’ve worked on below, and <a href="mailto:peter@simonsson.com">contact me</a> if you want to talk further.',
+			'Hi! I’m a web developer and designer based in Malmö, Sweden. Have a look at some of the most popular projects I’ve worked on below, and <a href="mailto:peter@simonsson.com">contact me</a> if you want to talk further.',
 		siteUrl: 'https://simonsson.com',
 		email: 'peter@simonsson.com',
 		navigation: [
