@@ -27,9 +27,8 @@ export const contentWidth = '36rem';
 export const metaFontSize = '0.8rem';
 export const metaFontFamily = sansSerifFontFamily;
 
-export const imageBoxShadow = `rgba(0, 0, 0, 0.16) 0 4px 48px -6px,
-					rgba(0, 0, 0, 0.04) 0 0 2px,
-					rgba(0, 0, 0, 0.03) 0 0 0 1px`;
+export const imageBoxShadow = `var(--image-shadow) 0 4px 48px -6px,
+	var(--image-frame) 0 0 0 1px`;
 export const linkBoxShadow = '0 1px 0';
 
 export const cubicBezierFadeIn = 'cubic-bezier(0.32, 0.89, 0.55, 1.0)';

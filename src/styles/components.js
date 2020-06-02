@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { contentWidth, paleAccentColor } from './variables';
+import { contentWidth } from './variables';
 
 export const Container = styled.div`
 	max-width: 1440px;
@@ -35,7 +35,7 @@ export const InnerContainer = styled.div`
 		background-color: #fff;
 		background-image: linear-gradient(
 			to bottom,
-			${paleAccentColor} 0%,
+			var(--pale-accent-color) 0%,
 			#fff 100%
 		);
 	}

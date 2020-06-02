@@ -3,11 +3,7 @@ import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ParallaxImage from '../parallax-image';
-import {
-	grayedColor,
-	metaFontSize,
-	sansSerifFontFamily,
-} from '../../styles/variables';
+import { metaFontSize } from '../../styles/variables';
 import thumbs from '../../images/thumbs';
 
 const ProjectItem = ({
@@ -26,13 +22,13 @@ const ProjectItem = ({
 	}
 
 	return (
-		<div className={`${className} h-entry`}>
+		<Block className={`${className} h-entry`}>
 			<StyledLink to={slug} className="u-url">
 				<ParallaxImage images={images} flattened={flattened} />
 				<Title className="p-name">{title}</Title>
 				<Meta>{client}</Meta>
 			</StyledLink>
-		</div>
+		</Block>
 	);
 };
 
@@ -67,9 +63,17 @@ export const projectItemFragment = graphql`
  * Styled components
  */
 
+const Block = styled.span`
+	display: block;
+`;
+
 const StyledLink = styled(Link)`
 	color: inherit;
 	display: block;
+
+	&:hover {
+		color: inherit;
+	}
 `;
 
 const Title = styled.h3`
@@ -81,9 +85,9 @@ const Title = styled.h3`
 `;
 
 const Meta = styled.p`
-	color: ${grayedColor};
+	color: var(--grayed-color);
 	font-size: ${metaFontSize};
-	font-family: ${sansSerifFontFamily};
+	font-family: var(--sans-serif-font-family);
 	margin-top: 0;
 	margin-bottom: 0;
 `;

@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ExternalLink from './external-link';
 import {
-	grayedColor,
 	metaFontFamily,
 	metaFontSize,
 	linkBoxShadow,
-	grayedColorHover,
-	grayedColorActive,
 } from '../styles/variables';
 
 const Meta = ({ agency = '', client = '', year = '', link = '' }) => {
@@ -75,7 +72,7 @@ MetaItem.propTypes = {
  */
 
 const Block = styled.div`
-	color: ${grayedColor};
+	color: var(--grayed-color);
 	margin: 0.3em 0 1em;
 	font-family: ${metaFontFamily};
 	font-size: ${metaFontSize};
@@ -98,14 +95,14 @@ const Value = styled.span`
 
 const StyledExternalLink = styled(ExternalLink)`
 	font-weight: 600;
-	color: ${grayedColor};
+	color: var(--grayed-color);
 	box-shadow: ${linkBoxShadow};
 
 	&:hover {
-		color: ${grayedColorHover};
+		color: var(--grayed-color--hover);
 	}
 
 	&:active {
-		color: ${grayedColorActive};
+		color: var(--grayed-color--active);
 	}
 `;

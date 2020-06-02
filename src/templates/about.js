@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import MarkdownPage from '../components/markdown-page';
-import { fadeIn, cubicBezierFadeIn } from '../styles/variables';
+import { fadeIn, cubicBezierFadeIn, imageBoxShadow } from '../styles/variables';
 import Columns, { Column } from '../components/columns';
 
 export default class About extends Component {
@@ -69,6 +69,8 @@ const Portrait = styled.img`
 	animation: ${fadeIn} 400ms ${cubicBezierFadeIn} both;
 	margin-bottom: 0;
 	float: left;
+
+	box-shadow: ${imageBoxShadow};
 `;
 
 /**

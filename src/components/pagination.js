@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-import { accentColor } from '../styles/variables';
 
 const getUrlForPage = pageNo => `/${pageNo}`;
 
@@ -23,7 +22,7 @@ const Pagination = ({ pageNo, pageCount, urlForPageNo = getUrlForPage }) => (
 export default Pagination;
 
 const Block = styled.p`
-	border-top: 1px solid ${accentColor};
+	border-top: 1px solid var(--accent-color);
 	padding-top: 1em;
 
 	display: flex;

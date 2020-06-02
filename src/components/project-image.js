@@ -193,15 +193,3 @@ const Wrapper = styled.div`
 				: ''};
 	}
 `;
-
-/*
-
-.wrapper.error {
-
-	&::before {
-	}
-}
-
-
-
-*/

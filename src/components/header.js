@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 import { Container } from '../styles/components';
-import {
-	textColor,
-	linkColor,
-	linkColorHover,
-	linkColorActive,
-	sansSerifFontFamily,
-	linkBoxShadow,
-	fadeIn,
-	cubicBezierFadeIn,
-} from '../styles/variables';
+import { linkBoxShadow, fadeIn, cubicBezierFadeIn } from '../styles/variables';
 
 const Header = ({ title, navigation = [], currentPath = '' }) => {
 	return (
@@ -54,7 +45,7 @@ Header.propTypes = {
  */
 
 const HeaderBlock = styled.header`
-	font-family: ${sansSerifFontFamily};
+	font-family: var(--sans-serif-font-family);
 	padding-top: 1.2em;
 	padding-bottom: 1.2em;
 
@@ -102,12 +93,12 @@ const Title = styled.h1`
 	line-height: 1.5;
 
 	a {
-		color: ${textColor};
+		color: var(--text-color);
 		text-decoration: none;
 		box-shadow: none;
 
 		&:hover {
-			color: ${textColor};
+			color: var(--text-color);
 		}
 	}
 `;
@@ -117,24 +108,25 @@ const Navigation = styled.nav`
 `;
 
 const NavLink = styled(Link)`
-	color: ${linkColor};
+	color: var(--link-color);
 	box-shadow: ${linkBoxShadow};
 
 	${props =>
 		props.selected
 			? css`
-					color: ${textColor};
+					color: var(--text-color);
 					cursor: default;
 					box-shadow: none;
 			  `
 			: ''};
 
 	&:hover {
-		color: ${props => (props.selected ? textColor : linkColorHover)};
+		color: ${props =>
+			props.selected ? 'var(--text-color)' : 'var(--link-color--hover)'};
 	}
 
 	&:active {
-		color: ${linkColorActive};
+		color: var(--link-color--active);
 	}
 
 	&:not(:last-of-type) {

@@ -1,12 +1,7 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import styled from 'styled-components';
-import {
-	accentColor,
-	grayedColor,
-	metaFontFamily,
-	metaFontSize,
-} from '../../styles/variables';
+import { metaFontFamily, metaFontSize } from '../../styles/variables';
 
 const Post = ({
 	post: {
@@ -60,12 +55,12 @@ const BlogItemBlock = styled.div`
 
 	& + & {
 		padding-top: 1.5rem;
-		border-top: 1px solid ${accentColor};
+		border-top: 1px solid var(--accent-color);
 	}
 `;
 
 const Time = styled.time`
-	color: ${grayedColor};
+	color: var(--grayed-color);
 	font-family: ${metaFontFamily};
 	font-size: ${metaFontSize};
 `;

@@ -8,13 +8,7 @@ import ProjectImage from '../components/project-image';
 import VideoEmbed from '../components/video-embed';
 import ProjectList from '../components/project-list';
 import { TextWrapper } from '../styles/components';
-import {
-	accentColor,
-	linkColor,
-	sansSerifFontFamily,
-	imageBoxShadow,
-	cubicBezierFadeIn,
-} from '../styles/variables';
+import { imageBoxShadow, cubicBezierFadeIn } from '../styles/variables';
 
 export default class Project extends Component {
 	renderMeta(frontmatter) {
@@ -190,16 +184,16 @@ const Title = styled.h1`
 `;
 
 const Links = styled.p`
-	border-top: 1px solid ${accentColor};
+	border-top: 1px solid var(--accent-color);
 	margin-top: 2em;
 	padding-top: 0.5em;
 `;
 
 const StyledLink = styled(ExternalLink)`
-	color: ${linkColor};
+	color: var(--link-color);
 	position: relative;
 	padding-right: 0.1em;
-	font-family: ${sansSerifFontFamily};
+	font-family: var(--sans-serif-font-family);
 
 	&::after {
 		content: '→';

@@ -3,11 +3,6 @@ import styled from 'styled-components';
 import naturalJoin from '../utils/natural-join';
 import ExternalLink from './external-link';
 import {
-	textColor,
-	linkColor,
-	linkColorHover,
-	linkColorActive,
-	accentColor,
 	metaFontSize,
 	metaFontFamily,
 	linkBoxShadow,
@@ -52,12 +47,11 @@ export default Footer;
  */
 
 const FooterBlock = styled.footer`
-	text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
 	margin-top: 2rem;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 	line-height: 1.4;
-	border-top: ${accentColor} solid 2px;
+	border-top: var(--accent-color) solid 2px;
 	font-size: ${metaFontSize};
 	font-family: ${metaFontFamily};
 `;
@@ -72,15 +66,15 @@ const Item = styled.span`
 	}
 
 	& > a {
-		color: ${textColor};
-		box-shadow: ${linkBoxShadow} ${linkColor};
+		color: var(--text-color);
+		box-shadow: ${linkBoxShadow} var(--link-color);
 
 		&:hover {
-			color: ${linkColorHover};
+			color: var(--link-color--hover);
 		}
 
 		&:active {
-			color: ${linkColorActive};
+			color: var(--link-color--active);
 		}
 	}
 `;
