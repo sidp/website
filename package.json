@@ -27,7 +27,7 @@
 		"gatsby-transformer-remark": "^2.6.56",
 		"gatsby-transformer-sharp": "^2.3.18",
 		"lodash": "^4.17.4",
-		"prismjs": "^1.19.0",
+		"prismjs": "^1.21.0",
 		"prop-types": "^15.5.8",
 		"react": "^16.13.0",
 		"react-dom": "^16.13.0",
