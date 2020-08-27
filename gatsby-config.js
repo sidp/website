@@ -5,8 +5,6 @@ module.exports = {
 		frontpageTitle: 'Peter Simonsson – Web developer in Malmö, Sweden',
 		description:
 			'I’m a web developer and designer based in Malmö, Sweden. This is a selection of the most popular projects I’ve worked on.',
-		introText:
-			'Hi! I’m a web developer and designer based in Malmö, Sweden. Have a look at some of the most popular projects I’ve worked on below, and <a href="mailto:peter@simonsson.com">contact me</a> if you want to talk further.',
 		siteUrl: 'https://simonsson.com',
 		email: 'peter@simonsson.com',
 		navigation: [

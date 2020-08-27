@@ -9,7 +9,7 @@ export default class Index extends Component {
 	render() {
 		const { allProjects, site } = this.props.data;
 		const projects = allProjects.edges.map(edge => edge.node);
-		const { description, introText } = site.siteMetadata;
+		const { description } = site.siteMetadata;
 
 		return (
 			<>
@@ -21,7 +21,15 @@ export default class Index extends Component {
 					/>
 				</Helmet>
 				<Intro>
-					<p dangerouslySetInnerHTML={{ __html: introText }} />
+					<p>
+						Hi! I’m a web developer and designer at{' '}
+						<a href="https://tulastudio.se" target="_blank">
+							Tula Studio
+						</a>{' '}
+						in Malmö, Sweden. Have a look at some of the projects I’ve worked on
+						below, and <a href="mailto:peter@simonsson.com">contact me</a> if
+						you want to talk further.
+					</p>
 				</Intro>
 				<ProjectList title="Projects" projects={projects} />
 			</>
@@ -35,7 +43,6 @@ export const pageQuery = graphql`
 			siteMetadata {
 				title
 				description
-				introText
 			}
 		}
 
