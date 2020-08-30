@@ -17,7 +17,7 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 					async
 					defer
 					data-domain="simonsson.com"
-					src="https://plausible.io/js/plausible.js"
+					src="https://st.simonsson.com/js/index.js"
 				></script>
 				{headComponents}
 			</head>
