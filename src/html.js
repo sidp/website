@@ -13,6 +13,12 @@ const Html = ({ headComponents, body, postBodyComponents }) => {
 				<link rel="icon" type="image/x-icon" href={favicon} />
 				<TypographyStyle typography={typography} />
 				<GoogleFont typography={typography} />
+				<script
+					async
+					defer
+					data-domain="simonsson.com"
+					src="https://plausible.io/js/plausible.js"
+				></script>
 				{headComponents}
 			</head>
 			<body>
