@@ -9,7 +9,7 @@ export default class Index extends Component {
 	render() {
 		const { allProjects, site } = this.props.data;
 		const projects = allProjects.edges.map(edge => edge.node);
-		const { description } = site.siteMetadata;
+		const { description, siteUrl } = site.siteMetadata;
 
 		return (
 			<>
@@ -19,11 +19,12 @@ export default class Index extends Component {
 						name="og:image"
 						content={absoluteUrl(require('../static/images/og-image.png'))}
 					/>
+					<link rel="canonical" href={`${siteUrl}`} />
 				</Helmet>
 				<Intro>
 					<p>
 						Hi! I’m a web developer and designer at{' '}
-						<a href="https://tulastudio.se" target="_blank">
+						<a href="https://tulastudio.se" target="_blank" rel="noopener">
 							Tula Studio
 						</a>{' '}
 						in Malmö, Sweden. Have a look at some of the projects I’ve worked on
@@ -43,6 +44,7 @@ export const pageQuery = graphql`
 			siteMetadata {
 				title
 				description
+				siteUrl
 			}
 		}
 

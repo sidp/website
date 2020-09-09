@@ -18,6 +18,7 @@ export default class Layout extends Component {
 						site {
 							siteMetadata {
 								title
+								siteUrl
 								frontpageTitle
 								email
 								navigation {
@@ -39,6 +40,7 @@ export default class Layout extends Component {
 						site: {
 							siteMetadata: {
 								title,
+								siteUrl,
 								frontpageTitle,
 								navigation,
 								email,
@@ -53,7 +55,9 @@ export default class Layout extends Component {
 							<Helmet
 								defaultTitle={frontpageTitle}
 								titleTemplate={`%s - ${title}`}
-							/>
+							>
+								<link rel="canonical" href={`${siteUrl}${location.pathname}`} />
+							</Helmet>
 							<Header
 								title={title}
 								navigation={navigation}
