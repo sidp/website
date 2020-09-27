@@ -1,4 +1,5 @@
 module.exports = {
+	title: 'Peter Simonsson',
 	query: `
 		{
 			site {
