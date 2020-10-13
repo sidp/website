@@ -13,7 +13,7 @@ export const Container = styled.div`
 	transition-duration: 100ms;
 	transition-timing-function: ease-out;
 
-	@media screen and (min-width: 639px) {
+	@media screen and (min-width: 640px) {
 		padding-left: 1.8rem;
 		padding-right: 1.8rem;
 	}

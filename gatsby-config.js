@@ -13,8 +13,12 @@ module.exports = {
 				path: '/',
 			},
 			{
+				label: 'Now',
+				path: '/now',
+			},
+			{
 				label: 'About',
-				path: '/about/',
+				path: '/about',
 			},
 		],
 		socialMediaLinks: [

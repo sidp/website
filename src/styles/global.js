@@ -138,6 +138,13 @@ const GlobalStyle = createGlobalStyle`
 		}
 	}
 
+	hr {
+		border: 0;
+		border-top: var(--accent-color) solid 2px;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
 	@media screen and (max-width: 640px) {
 
 		html {

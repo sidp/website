@@ -14,7 +14,7 @@ const Header = ({ title, navigation = [], currentPath = '' }) => {
 						<Link to={'/'}>{title}</Link>
 					</Title>
 					<Navigation>
-						{navigation.map(item => (
+						{navigation.map((item) => (
 							<NavLink
 								to={item.path}
 								selected={item.path === currentPath}
@@ -60,6 +60,13 @@ const HeaderBlock = styled.header`
 		padding-bottom: 0.65em;
 		position: relative;
 
+		${Container} {
+			padding-left: 0;
+			padding-right: 0;
+			overflow-x: auto;
+			overflow-y: hidden;
+		}
+
 		&::after {
 			content: '';
 			position: absolute;
@@ -73,6 +80,14 @@ const HeaderBlock = styled.header`
 				rgba(255, 255, 255, 0),
 				rgba(255, 255, 255, 1) 95%
 			);
+
+			@media (prefers-color-scheme: dark) {
+				background: linear-gradient(
+					to right,
+					rgba(0, 0, 0, 0),
+					var(--background-color) 95%
+				);
+			}
 		}
 	}
 `;
@@ -83,12 +98,19 @@ const HeaderWrapper = styled.div`
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
+
+	@media screen and (max-width: 639px) {
+		padding-left: 1.2rem;
+		padding-right: 1.2rem;
+		min-width: min-content;
+	}
 `;
 
 const Title = styled.h1`
 	font-size: 1.1rem;
 	margin-top: 0;
 	margin-bottom: 0;
+	margin-right: 1rem;
 	letter-spacing: 0;
 	line-height: 1.5;
 
@@ -96,6 +118,7 @@ const Title = styled.h1`
 		color: var(--text-color);
 		text-decoration: none;
 		box-shadow: none;
+		white-space: nowrap;
 
 		&:hover {
 			color: var(--text-color);
@@ -111,7 +134,7 @@ const NavLink = styled(Link)`
 	color: var(--link-color);
 	box-shadow: ${linkBoxShadow};
 
-	${props =>
+	${(props) =>
 		props.selected
 			? css`
 					color: var(--text-color);
@@ -121,7 +144,7 @@ const NavLink = styled(Link)`
 			: ''};
 
 	&:hover {
-		color: ${props =>
+		color: ${(props) =>
 			props.selected ? 'var(--text-color)' : 'var(--link-color--hover)'};
 	}
 
@@ -132,7 +155,7 @@ const NavLink = styled(Link)`
 	&:not(:last-of-type) {
 		margin-right: 1em;
 
-		@media (min-width: 360px) {
+		@media (min-width: 400px) {
 			margin-right: 1.8em;
 		}
 	}

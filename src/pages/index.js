@@ -8,7 +8,7 @@ import ProjectList from '../components/project-list';
 export default class Index extends Component {
 	render() {
 		const { allProjects, site } = this.props.data;
-		const projects = allProjects.edges.map(edge => edge.node);
+		const projects = allProjects.edges.map((edge) => edge.node);
 		const { description, siteUrl } = site.siteMetadata;
 
 		return (
