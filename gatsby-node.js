@@ -49,6 +49,7 @@ exports.createPages = ({ graphql, actions }) => {
 			page: path.resolve('src/templates/page.js'),
 			project: path.resolve('src/templates/project.js'),
 			post: path.resolve('src/templates/post.js'),
+			note: path.resolve('src/templates/post.js'),
 			posts: path.resolve('src/templates/posts.js'),
 			about: path.resolve('src/templates/about.js'),
 		};
@@ -61,7 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
 			throw new Error(result.errors[0].message);
 		}
 
-		result.data.posts.edges.forEach(edge => {
+		result.data.posts.edges.forEach((edge) => {
 			const {
 				fields: { type, slug },
 			} = edge.node;
@@ -95,7 +96,7 @@ exports.createPages = ({ graphql, actions }) => {
 		const makePagePath = (prefix, pageNo) =>
 			`/${prefix}${pageNo > 1 ? `/${pageNo}` : ''}`;
 
-		const posts = resultForPosts.data.posts.edges.map(edge => edge.node);
+		const posts = resultForPosts.data.posts.edges.map((edge) => edge.node);
 
 		const template = templates.posts;
 		const perPage = 3;
@@ -103,7 +104,7 @@ exports.createPages = ({ graphql, actions }) => {
 
 		const grouped = groupPosts(posts, perPage);
 		grouped.forEach((posts, i) => {
-			const slugs = posts.map(post => post.fields.slug);
+			const slugs = posts.map((post) => post.fields.slug);
 			createPage({
 				path: makePagePath(pathPrefix, i + 1),
 				component: template,
@@ -134,8 +135,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 			parsedFilePath.dir === 'posts' ||
 			postFormat.exec(parsedFilePath.dir) !== null;
 
-		const isUpdate =
-			parsedFilePath.dir === 'updates' ||
+		const isNote =
+			parsedFilePath.dir === 'notes' ||
 			postFormat.exec(parsedFilePath.dir) !== null;
 
 		if (isPost) {
@@ -145,28 +146,28 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 					: parsedFilePath.dir;
 
 			const parts = postFormat.exec(name);
-			slug = `/posts/${parts[4] || parsedFilePath.name}/`;
-		} else if (isUpdate) {
+			slug = `/posts/${parts[4] || parsedFilePath.name}`;
+		} else if (isNote) {
 			const name =
-				parsedFilePath.dir === 'updates'
+				parsedFilePath.dir === 'notes'
 					? parsedFilePath.name
 					: parsedFilePath.dir;
 
 			const parts = postFormat.exec(name);
-			slug = `/posts/short/${parts[4] || parsedFilePath.name}`;
+			slug = `/notes/${parts[4] || parsedFilePath.name}`;
 		} else if (parsedFilePath.name !== 'index' && parsedFilePath.dir !== '') {
-			slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`;
+			slug = `/${parsedFilePath.dir}/${parsedFilePath.name}`;
 		} else if (parsedFilePath.dir === '') {
-			slug = `/${parsedFilePath.name}/`;
+			slug = `/${parsedFilePath.name}`;
 		} else {
-			slug = `/${parsedFilePath.dir}/`;
+			slug = `/${parsedFilePath.dir}`;
 		}
 
 		let nodeType = 'page';
 		if (parsedFilePath.dir === 'projects') {
 			nodeType = 'project';
-		} else if (parsedFilePath.dir === 'updates') {
-			nodeType = 'update';
+		} else if (parsedFilePath.dir === 'notes') {
+			nodeType = 'note';
 		} else if (isPost) {
 			nodeType = 'post';
 		} else if (parsedFilePath.name === 'about') {

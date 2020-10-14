@@ -71,7 +71,8 @@ const StyledLink = styled(Link)`
 	color: inherit;
 	display: block;
 
-	&:hover {
+	&:hover,
+	&:active {
 		color: inherit;
 	}
 `;
@@ -80,8 +81,8 @@ const Title = styled.h3`
 	font-size: 1em;
 	line-height: inherit;
 	font-weight: inherit;
-	margin-top: 0.55rem;
-	margin-bottom: 0;
+	margin-top: 0.6rem;
+	margin-bottom: 0.1rem;
 `;
 
 const Meta = styled.p`

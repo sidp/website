@@ -11,21 +11,20 @@ export default Intro;
  */
 
 const Block = styled.div`
-	min-height: calc(100vh - 210px); /* estimated header height */
+	min-height: 25vmin;
 	display: flex;
 	justify-content: center;
+	align-items: flex-start;
+	text-align: left;
 	flex-direction: column;
-	padding-top: 0.75rem;
-	padding-bottom: 1.5rem;
+	margin-top: 2.5rem;
+	margin-bottom: 2.5rem;
 	animation: fadeIn 500ms ${cubicBezierFadeIn} both;
 
 	& > p {
 		font-size: 1.4rem;
 		line-height: 1.5;
 		max-width: 33em;
-		margin-left: auto;
-		margin-right: auto;
-		text-align: center;
 	}
 
 	@media (max-width: 399px) {

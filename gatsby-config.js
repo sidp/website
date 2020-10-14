@@ -9,8 +9,12 @@ module.exports = {
 		email: 'peter@simonsson.com',
 		navigation: [
 			{
-				label: 'Projects',
+				label: 'Start',
 				path: '/',
+			},
+			{
+				label: 'Projects',
+				path: '/projects',
 			},
 			{
 				label: 'Now',

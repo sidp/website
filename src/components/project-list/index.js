@@ -7,11 +7,11 @@ import ProjectItem from './project-item';
 import { fadeIn, cubicBezierFadeIn } from '../../styles/variables';
 
 const ProjectList = ({ title = '', projects = [] }) => (
-	<div>
+	<Block>
 		{title && <Title>{title}</Title>}
 
 		<Columns className="h-feed">
-			{projects.map(item => (
+			{projects.map((item) => (
 				<AnimatedColumn
 					span={{ '<small': 12, '>small': 6, '>medium': 4 }}
 					key={item.fields.slug}
@@ -20,7 +20,7 @@ const ProjectList = ({ title = '', projects = [] }) => (
 				</AnimatedColumn>
 			))}
 		</Columns>
-	</div>
+	</Block>
 );
 
 ProjectList.propTypes = {
@@ -43,6 +43,16 @@ export const projectListFragment = graphql`
 /**
  * Styled components
  */
+
+const Block = styled.div`
+	&:not(:first-child) {
+		margin-top: 3rem;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: 3rem;
+	}
+`;
 
 const Title = styled.h2`
 	margin-top: 0;
