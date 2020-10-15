@@ -1,6 +1,6 @@
-public/
 node_modules/
-.gatsby-context.js
-.sass-cache/
+.next
+dist
 .cache
-yarn-error.log
+*.log
+.env

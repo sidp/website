@@ -5,6 +5,4 @@
  * to customize this model
  */
 
-module.exports = {
-	lifecycles: {},
-};
+module.exports = {};

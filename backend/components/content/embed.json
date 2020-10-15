@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_content_embeds",
+  "info": {
+    "name": "embed",
+    "icon": "file-video",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "width": {
+      "type": "integer",
+      "required": true,
+      "default": 640,
+      "min": 0
+    },
+    "height": {
+      "type": "integer",
+      "min": 0,
+      "default": 360,
+      "required": true
+    }
+  }
+}
