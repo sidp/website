@@ -48,7 +48,7 @@ export type User = {
 	username: string | null;
 };
 
-export type Note = StrapiFields & {
+export type Post = StrapiFields & {
 	id: number;
 	title: string;
 	slug: string;
@@ -77,32 +77,15 @@ export type Page = StrapiFields & {
 	body?: string;
 };
 
-type BaseMention = StrapiFields & {
+export type Mention = StrapiFields & {
+	/* only public fields */
 	id: number;
 	sourceUrl: string;
 	targetUrl: string;
-	review: 'waiting' | 'approved' | 'rejected';
-	target: Note;
-	processed: boolean;
-};
-
-type UnprocessedMention = BaseMention & {
-	processed: false;
-};
-
-type ProcessedMention = BaseMention & {
-	processed: true;
+	target: Post;
 	postInfo: {
 		title?: string;
 	};
-};
-
-export type Mention = UnprocessedMention | ProcessedMention;
-
-export const isProcessedMention = (
-	thing: UnprocessedMention | ProcessedMention
-): thing is ProcessedMention => {
-	return thing.processed;
 };
 
 export type StrapiComponent = {

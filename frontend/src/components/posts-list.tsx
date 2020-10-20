@@ -3,25 +3,25 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import Columns, { Column } from './columns';
 import { fadeIn, cubicBezierFadeIn, metaFontSize } from '../styles/variables';
-import { Note } from '../types';
+import { Post } from '../types';
 import dayjs from 'dayjs';
 
-type NotesListProps = {
+type PostsListProps = {
 	title?: string;
-	notes: Note[];
+	posts: Post[];
 };
 
-const NotesList: React.FC<NotesListProps> = ({ title = '', notes }) => {
+const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
 	return (
 		<Block>
 			{title && <Title>{title}</Title>}
 
 			<Columns className="h-feed">
-				{notes.map((note) => {
-					const postedOn = dayjs(note.created_at).format('MMMM D, YYYY');
+				{posts.map((post) => {
+					const postedOn = dayjs(post.created_at).format('MMMM D, YYYY');
 
 					const date = (
-						<time dateTime={note.created_at} className="dt-published">
+						<time dateTime={post.created_at} className="dt-published">
 							{postedOn}
 						</time>
 					);
@@ -29,14 +29,14 @@ const NotesList: React.FC<NotesListProps> = ({ title = '', notes }) => {
 					const renderBody = () => {
 						const body = (
 							<>
-								<NoteTitle className="p-name">{note.title}</NoteTitle>
-								<Body dangerouslySetInnerHTML={{ __html: note.body }} />
+								<PostTitle className="p-name">{post.title}</PostTitle>
+								<Body dangerouslySetInnerHTML={{ __html: post.body }} />
 							</>
 						);
 
-						if (note.link) {
+						if (post.link) {
 							return (
-								<StyledLink href={note.link} target="_blank" rel="noopener">
+								<StyledLink href={post.link} target="_blank" rel="noopener">
 									{body}
 								</StyledLink>
 							);
@@ -48,14 +48,14 @@ const NotesList: React.FC<NotesListProps> = ({ title = '', notes }) => {
 					return (
 						<AnimatedColumn
 							span={{ '<small': 12, '>small': 6, '>medium': 4 }}
-							key={note.slug}
+							key={post.slug}
 						>
 							<div className="h-entry">
 								{renderBody()}
 								<Meta>
 									<Link
-										href="/notes/[slug]"
-										as={`/notes/${note.slug}`}
+										href="/posts/[slug]"
+										as={`/posts/${post.slug}`}
 										passHref
 									>
 										<StyledLink className="u-url">{date}</StyledLink>
@@ -70,7 +70,7 @@ const NotesList: React.FC<NotesListProps> = ({ title = '', notes }) => {
 	);
 };
 
-export default NotesList;
+export default PostsList;
 
 /**
  * Styled components
@@ -115,7 +115,7 @@ const StyledLink = styled.a`
 	}
 `;
 
-const NoteTitle = styled.h3`
+const PostTitle = styled.h3`
 	font-size: 1.1rem;
 	font-weight: 600;
 	margin-top: 0.25rem;

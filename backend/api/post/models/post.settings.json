@@ -1,6 +1,6 @@
 {
   "kind": "collectionType",
-  "collectionName": "notes",
+  "collectionName": "posts",
   "info": {
     "name": "Post",
     "description": ""

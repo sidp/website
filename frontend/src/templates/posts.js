@@ -5,12 +5,12 @@ import { TextWrapper } from '../styles/components';
 import PostsList from '../components/posts-list';
 import Pagination from '../components/pagination';
 
-const getUrlForPage = pageNo => `/posts${pageNo > 1 ? `/${pageNo}` : ''}`;
+const getUrlForPage = (pageNo) => `/posts${pageNo > 1 ? `/${pageNo}` : ''}`;
 
 export default class BlogPostList extends Component {
 	render() {
 		const { pageNo, pageCount } = this.props.pageContext;
-		const posts = this.props.data.posts.edges.map(edge => edge.node);
+		const posts = this.props.data.posts.edges.map((edge) => edge.node);
 
 		return (
 			<>

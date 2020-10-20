@@ -4,16 +4,16 @@ import Head from 'next/head';
 import { absoluteUrl } from '../utils/url';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
-import NotesList from '../components/notes-list';
-import { Note, Project } from '../types';
+import PostsList from '../components/posts-list';
+import { Post, Project } from '../types';
 import { apiGet } from '../utils/api';
 
 type IndexPageProps = {
-	notes: Note[];
+	posts: Post[];
 	projects: Project[];
 };
 
-const IndexPage: React.FC<IndexPageProps> = ({ notes, projects }) => {
+const IndexPage: React.FC<IndexPageProps> = ({ posts, projects }) => {
 	const description = '';
 	const siteUrl = '';
 	const frontPageTitle = 'Peter Simonsson – Web developer in Malmö, Sweden';
@@ -37,7 +37,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ notes, projects }) => {
 					online.
 				</p>
 			</Intro>
-			<NotesList notes={notes} />
+			<PostsList posts={posts} />
 			<ProjectList title="Projects" projects={projects} />
 		</>
 	);
@@ -46,8 +46,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ notes, projects }) => {
 export default IndexPage;
 
 export const getStaticProps: GetStaticProps<IndexPageProps> = async (ctx) => {
-	const [notes, projects] = await Promise.all([
-		apiGet<Note[]>('notes', {
+	const [posts, projects] = await Promise.all([
+		apiGet<Post[]>('posts', {
 			_sort: 'created_at:DESC',
 			_limit: 16,
 		}),
@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async (ctx) => {
 
 	return {
 		props: {
-			notes,
+			posts,
 			projects,
 		},
 		revalidate: 5,

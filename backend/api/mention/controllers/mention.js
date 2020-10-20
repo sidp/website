@@ -10,12 +10,12 @@ const isUrl = (url) => {
 };
 
 const findTargetEntry = async (url) => {
-	const matches = url.match(/notes\/([^/]+)\/?$/);
-	const noteSlug = matches && matches[1];
+	const matches = url.match(/posts\/([^/]+)\/?$/);
+	const postSlug = matches && matches[1];
 
-	if (noteSlug) {
-		return await strapi.query('note').findOne({
-			slug: noteSlug,
+	if (postSlug) {
+		return await strapi.query('post').findOne({
+			slug: postSlug,
 		});
 	}
 
