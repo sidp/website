@@ -4,6 +4,7 @@ import { absoluteUrl } from '../utils/url';
 
 const MentionForm = () => {
 	const router = useRouter();
+	const [showForm, setShowForm] = React.useState(false);
 	const [url, setUrl] = React.useState('');
 	const [state, setState] = React.useState<
 		'filling' | 'submitting' | 'error' | 'submitted'
@@ -33,6 +34,14 @@ const MentionForm = () => {
 		}
 	};
 
+	if (!showForm) {
+		return (
+			<>
+				<button onClick={() => setShowForm(true)}>Submit mention</button>
+			</>
+		);
+	}
+
 	return (
 		<form onSubmit={handleSubmit} method="post" action="/webmention">
 			{state === 'submitted' && (
@@ -52,8 +61,9 @@ const MentionForm = () => {
 			{state !== 'submitted' && (
 				<>
 					<p>
-						Send a webmention manually by linking to this page in your post and
-						pasting your URL here:
+						Send a webmention manually by linking to this URL in your post and
+						then pasting the URL of your post here. You don’t have to do this if
+						your publishing software has support for sending webmentions.
 					</p>
 					<label>
 						URL
@@ -68,6 +78,13 @@ const MentionForm = () => {
 					</label>
 					<input type="hidden" name="target" value={target} />
 					<input type="submit" value="Send" disabled={state === 'submitting'} />
+					<button
+						onClick={() => {
+							setShowForm(false);
+						}}
+					>
+						Cancel
+					</button>
 				</>
 			)}
 		</form>

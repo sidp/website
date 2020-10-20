@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isProcessedMention, Mention } from '../types';
+import { Mention } from '../types';
 import MentionForm from './mention-form';
 import { TextWrapper } from '../styles/components';
 
@@ -21,20 +21,20 @@ const MentionsList: React.FC<MentionsListProps> = ({ mentions }) => {
 					i
 				</a>
 			</h2>
-			<ul>
-				{mentions.filter(isProcessedMention).map((mention) => {
-					return (
-						<li key={mention.id}>
-							<a href={mention.sourceUrl} rel="nofollow noopener">
-								{mention.sourceUrl}
-								{mention.processed}
-								{mention.review}
-								{mention.postInfo.title}
-							</a>
-						</li>
-					);
-				})}
-			</ul>
+			{mentions.length > 0 && (
+				<ul>
+					{mentions.map((mention) => {
+						return (
+							<li key={mention.id}>
+								<a href={mention.sourceUrl} rel="nofollow noopener">
+									{mention.sourceUrl}
+									{mention.postInfo?.title}
+								</a>
+							</li>
+						);
+					})}
+				</ul>
+			)}
 			<MentionForm />
 		</TextWrapper>
 	);
