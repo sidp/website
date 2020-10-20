@@ -11,7 +11,10 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "@types/jsdom": "^16.2.4",
+    "jsdom": "^16.4.0",
     "knex": "<0.20.0",
+    "node-fetch": "^2.6.1",
     "sqlite3": "latest",
     "strapi": "3.2.3",
     "strapi-admin": "3.2.3",

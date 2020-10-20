@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "notes",
   "info": {
-    "name": "Note",
+    "name": "Post",
     "description": ""
   },
   "options": {
@@ -25,10 +25,6 @@
     },
     "link": {
       "type": "string"
-    },
-    "mentions": {
-      "collection": "mention",
-      "via": "target"
     }
   }
 }

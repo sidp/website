@@ -5,6 +5,7 @@ import GlobalStyles from '../styles/global';
 import { Container } from '../styles/components';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import {absoluteUrl} from '../utils/url';
 
 import '../styles/markdown-styles.css';
 import 'typeface-source-sans-pro';
@@ -78,6 +79,7 @@ export default class CustomApp extends App<AppProps, {}> {
 						content="width=device-width, initial-scale=1.0"
 					/>
 					<link rel="shortcut icon" href="/favicon.ico" />
+					<link rel="webmention" href={absoluteUrl('/webmention')} />
 				</Head>
 				<GlobalStyles />
 				<Header title={title} navigation={navigation} />

@@ -24,13 +24,13 @@ type ImageFormat = {
 };
 
 export type Image = Omit<ImageFormat, 'path'> & {
+	id: number;
 	alternativeText: string;
 	caption: string;
 	ext: string;
 	formats: { [key: string]: ImageFormat };
 	hash: string;
 	height: number;
-	id: number;
 	mime: string;
 	name: string;
 	previewUrl: string | null;
@@ -49,10 +49,12 @@ export type User = {
 };
 
 export type Note = StrapiFields & {
+	id: number;
 	title: string;
 	slug: string;
 	body: string;
 	link?: string;
+	mentions?: Mention[];
 };
 
 export type Project = StrapiFields & {
@@ -73,6 +75,34 @@ export type Page = StrapiFields & {
 	description?: string;
 	slug: string;
 	body?: string;
+};
+
+type BaseMention = StrapiFields & {
+	id: number;
+	sourceUrl: string;
+	targetUrl: string;
+	review: 'waiting' | 'approved' | 'rejected';
+	target: Note;
+	processed: boolean;
+};
+
+type UnprocessedMention = BaseMention & {
+	processed: false;
+};
+
+type ProcessedMention = BaseMention & {
+	processed: true;
+	postInfo: {
+		title?: string;
+	};
+};
+
+export type Mention = UnprocessedMention | ProcessedMention;
+
+export const isProcessedMention = (
+	thing: UnprocessedMention | ProcessedMention
+): thing is ProcessedMention => {
+	return thing.processed;
 };
 
 export type StrapiComponent = {
@@ -103,10 +133,14 @@ export const isTextComponent = (thing: any): thing is ContentTextComponent => {
 	return thing.__component === 'content.text';
 };
 
-export const isImagesComponent = (thing: any): thing is ContentImagesComponent => {
+export const isImagesComponent = (
+	thing: any
+): thing is ContentImagesComponent => {
 	return thing.__component === 'content.images';
 };
 
-export const isEmbedComponent = (thing: any): thing is ContentEmbedComponent => {
+export const isEmbedComponent = (
+	thing: any
+): thing is ContentEmbedComponent => {
 	return thing.__component === 'content.embed';
 };

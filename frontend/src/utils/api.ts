@@ -19,7 +19,10 @@ export const apiPost = async <T>(
 ) => {
 	const res = await fetch(process.env.BACKEND_API + path, {
 		method: 'post',
-		body,
+		body: JSON.stringify(body),
+		headers: {
+			'Content-Type': 'application/json',
+		},
 		...init,
 	});
 

@@ -9,6 +9,7 @@ import ErrorPage404 from '../404';
 import styled from 'styled-components';
 import { cubicBezierFadeIn } from '../../styles/variables';
 import NotesList from '../../components/notes-list';
+import MentionsList from '../../components/mentions-list';
 
 type NotePageProps = {
 	note: Note | null;
@@ -29,6 +30,7 @@ const NotePage: NextPage<NotePageProps> = ({ note, notes }) => {
 	return (
 		<>
 			<StyledMarkdownPage page={note} role="main" showDate />
+			{note.mentions && <MentionsList mentions={note.mentions} />}
 			<NotesList notes={notes} />
 		</>
 	);

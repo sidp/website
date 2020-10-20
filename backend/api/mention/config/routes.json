@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/mentions",
+      "handler": "mention.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/mentions/count",
+      "handler": "mention.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/mentions/:id",
+      "handler": "mention.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/mentions",
+      "handler": "mention.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/mentions/:id",
+      "handler": "mention.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/mentions/upsert",
+      "handler": "mention.upsert",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/mentions/:id",
+      "handler": "mention.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
