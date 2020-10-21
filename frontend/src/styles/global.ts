@@ -171,6 +171,16 @@ const GlobalStyle = createGlobalStyle`
 		font-family: var(--sans-serif-font-family);
 		font-size: 0.8425rem;
 		margin-bottom: 1rem;
+		border-collapse: collapse;
+	}
+
+	.e-content table {
+		width: 100%;
+	}
+
+	.e-content img {
+		max-width: 100%;
+		height: auto;
 	}
 
 	th,

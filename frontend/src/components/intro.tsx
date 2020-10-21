@@ -2,15 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { cubicBezierFadeIn } from '../styles/variables';
 
-const Intro: React.FC = ({ children }) => <Block>{children}</Block>;
-
-export default Intro;
-
-/**
- * Styled components
- */
-
-const Block = styled.div`
+const Intro = styled.div`
 	min-height: 25vmin;
 	display: flex;
 	justify-content: center;
@@ -41,3 +33,5 @@ const Block = styled.div`
 		}
 	}
 `;
+
+export default Intro;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import styled from 'styled-components';
-import { Image, Project } from '../../types';
+import { Image, Navigation, Project } from '../../types';
 import Meta from '../../components/meta';
 import ExternalLink from '../../components/external-link';
 import ProjectImage from '../../components/project-image';
@@ -14,13 +14,19 @@ import apiGet from '../../utils/api';
 import markdown from '../../utils/markdown';
 import { useRouter } from 'next/router';
 import ErrorPage404 from '../404';
+import Header from '../../components/header';
 
 type ProjectPageProps = {
+	navigation: Navigation;
 	project: Project | null;
 	projects: Project[];
 };
 
-const ProjectPage: React.FC<ProjectPageProps> = ({ project, projects }) => {
+const ProjectPage: React.FC<ProjectPageProps> = ({
+	navigation,
+	project,
+	projects,
+}) => {
 	const router = useRouter();
 
 	if (router.isFallback) {
@@ -33,13 +39,14 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project, projects }) => {
 
 	return (
 		<>
+			<Head>
+				<title>{project.title}</title>
+				{project.description && (
+					<meta name="description" content={project.description} />
+				)}
+			</Head>
+			<Header navigation={navigation} />
 			<Article key="article">
-				<Head>
-					<title>{project.title}</title>
-					{project.description && (
-						<meta name="description" content={project.description} />
-					)}
-				</Head>
 				<TextWrapper className="h-entry">
 					<header>
 						<Title className="p-name">{project.title}</Title>
@@ -81,7 +88,8 @@ const ProjectPage: React.FC<ProjectPageProps> = ({ project, projects }) => {
 export default ProjectPage;
 
 export const getStaticProps: GetStaticProps<ProjectPageProps> = async (ctx) => {
-	const [project, projects] = await Promise.all([
+	const [navigation, singleProject, projects] = await Promise.all([
+		apiGet<Navigation>('navigation'),
 		apiGet<Project[]>('projects', {
 			slug: ctx.params.slug,
 			_limit: 1,
@@ -93,13 +101,22 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async (ctx) => {
 		}),
 	]);
 
-	if (project[0] && typeof project[0].body === 'string') {
-		project[0].body = markdown(project[0].body);
+	const project = singleProject && singleProject[0] ? singleProject[0] : null;
+	if (!project) {
+		return {
+			props: { navigation, project: null },
+			revalidate: 1,
+		};
+	}
+
+	if (typeof project.body === 'string') {
+		project.body = markdown(project.body);
 	}
 
 	return {
 		props: {
-			project: project[0],
+			navigation,
+			project,
 			projects,
 		},
 		revalidate: 5,

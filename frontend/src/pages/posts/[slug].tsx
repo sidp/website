@@ -2,7 +2,7 @@ import * as React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import MarkdownPage from '../../components/markdown-page';
-import { Mention, Post } from '../../types';
+import { Mention, Navigation, Post } from '../../types';
 import markdown from '../../utils/markdown';
 import apiGet from '../../utils/api';
 import ErrorPage404 from '../404';
@@ -10,14 +10,21 @@ import styled from 'styled-components';
 import { cubicBezierFadeIn } from '../../styles/variables';
 import PostsList from '../../components/posts-list';
 import MentionsList from '../../components/mentions-list';
+import Header from '../../components/header';
 
 type PostPageProps = {
+	navigation: Navigation;
 	post: Post | null;
 	posts?: Post[];
 	mentions?: Mention[];
 };
 
-const PostPage: NextPage<PostPageProps> = ({ post, posts, mentions }) => {
+const PostPage: NextPage<PostPageProps> = ({
+	navigation,
+	post,
+	posts,
+	mentions,
+}) => {
 	const router = useRouter();
 
 	if (router.isFallback) {
@@ -30,6 +37,7 @@ const PostPage: NextPage<PostPageProps> = ({ post, posts, mentions }) => {
 
 	return (
 		<>
+			<Header navigation={navigation} />
 			<StyledMarkdownPage page={post} role="main" showDate />
 			{mentions && <MentionsList mentions={mentions} />}
 			<PostsList posts={posts} />
@@ -40,7 +48,8 @@ const PostPage: NextPage<PostPageProps> = ({ post, posts, mentions }) => {
 export default PostPage;
 
 export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
-	const [singlePost, posts] = await Promise.all([
+	const [navigation, singlePost, posts] = await Promise.all([
+		apiGet<Navigation>('navigation'),
 		apiGet<Post[]>('posts', {
 			slug: ctx.params.slug,
 			_limit: 1,
@@ -55,7 +64,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 	const post = singlePost && singlePost[0] ? singlePost[0] : null;
 	if (!post) {
 		return {
-			props: { post: null },
+			props: { navigation, post: null },
 			revalidate: 1,
 		};
 	}
@@ -71,9 +80,10 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 
 	return {
 		props: {
-			post: post,
-			posts: posts,
-			mentions: mentions,
+			navigation,
+			post,
+			posts,
+			mentions,
 		},
 		revalidate: 5,
 	};

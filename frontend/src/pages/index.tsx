@@ -5,15 +5,24 @@ import { absoluteUrl } from '../utils/url';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
 import PostsList from '../components/posts-list';
-import { Post, Project } from '../types';
+import { FrontPage, Navigation, Post, Project } from '../types';
 import { apiGet } from '../utils/api';
+import Header from '../components/header';
+import markdown from '../utils/markdown';
 
 type IndexPageProps = {
+	navigation: Navigation;
+	frontPage: FrontPage;
 	posts: Post[];
 	projects: Project[];
 };
 
-const IndexPage: React.FC<IndexPageProps> = ({ posts, projects }) => {
+const IndexPage: React.FC<IndexPageProps> = ({
+	navigation,
+	frontPage,
+	posts,
+	projects,
+}) => {
 	const description = '';
 	const siteUrl = '';
 	const frontPageTitle = 'Peter Simonsson – Web developer in Malmö, Sweden';
@@ -26,17 +35,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ posts, projects }) => {
 				<meta name="og:image" content={absoluteUrl('/images/og-image.png')} />
 				<link rel="canonical" href={`${siteUrl}`} />
 			</Head>
-			<Intro>
-				<p>
-					Welcome to my personal website. During the day I’m a web developer and
-					designer at{' '}
-					<a href="https://tulastudio.se" target="_blank" rel="noopener">
-						Tula Studio
-					</a>{' '}
-					in Malmö, Sweden. This site contains bits and bobs of what I publish
-					online.
-				</p>
-			</Intro>
+			<Header navigation={navigation} />
+			<Intro dangerouslySetInnerHTML={{ __html: frontPage.introduction }} />
 			<PostsList posts={posts} />
 			<ProjectList title="Projects" projects={projects} />
 		</>
@@ -46,7 +46,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ posts, projects }) => {
 export default IndexPage;
 
 export const getStaticProps: GetStaticProps<IndexPageProps> = async (ctx) => {
-	const [posts, projects] = await Promise.all([
+	const [navigation, frontPage, posts, projects] = await Promise.all([
+		apiGet<Navigation>('navigation'),
+		apiGet<FrontPage>('front-page'),
 		apiGet<Post[]>('posts', {
 			_sort: 'created_at:DESC',
 			_limit: 16,
@@ -57,12 +59,14 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async (ctx) => {
 		}),
 	]);
 
-	/*if (typeof frontPage.body === 'string') {
-		frontPage.body = markdown(frontPage.body);
-	}*/
+	if (typeof frontPage.introduction === 'string') {
+		frontPage.introduction = markdown(frontPage.introduction);
+	}
 
 	return {
 		props: {
+			navigation,
+			frontPage,
 			posts,
 			projects,
 		},

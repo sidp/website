@@ -3,9 +3,8 @@ import App from 'next/app';
 import Head from 'next/head';
 import GlobalStyles from '../styles/global';
 import { Container } from '../styles/components';
-import Header from '../components/header';
 import Footer from '../components/footer';
-import {absoluteUrl} from '../utils/url';
+import { absoluteUrl } from '../utils/url';
 
 import '../styles/markdown-styles.css';
 import 'typeface-source-sans-pro';
@@ -19,24 +18,6 @@ export default class CustomApp extends App<AppProps, {}> {
 
 		const title = 'Peter Simonsson';
 		const email = 'peter@simonsson.com';
-		const navigation = [
-			{
-				label: 'Start',
-				href: '/',
-			},
-			{
-				label: 'Projects',
-				href: '/projects',
-			},
-			{
-				label: 'Now',
-				href: '/now',
-			},
-			{
-				label: 'About',
-				href: '/about',
-			},
-		];
 
 		const socialMediaLinks = [
 			{
@@ -82,7 +63,6 @@ export default class CustomApp extends App<AppProps, {}> {
 					<link rel="webmention" href={absoluteUrl('/webmention')} />
 				</Head>
 				<GlobalStyles />
-				<Header title={title} navigation={navigation} />
 				<Container>
 					<Component {...pageProps} />
 				</Container>

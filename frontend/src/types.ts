@@ -89,9 +89,24 @@ export type Mention = StrapiFields & {
 	};
 };
 
+export type FrontPage = StrapiFields & {
+	introduction?: string;
+};
+
+export type Navigation = StrapiFields & {
+	links: NavigationLinkComponent[];
+};
+
 export type StrapiComponent = {
 	id: number;
 	__component: string;
+};
+
+export type NavigationLinkComponent = StrapiComponent & {
+	__component: 'navigation.link';
+	label: string;
+	href: string;
+	as?: string;
 };
 
 export type ContentTextComponent = StrapiComponent & {

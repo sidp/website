@@ -2,36 +2,44 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled, { css } from 'styled-components';
-import { Container } from '../styles/components';
 import { linkBoxShadow, fadeIn, cubicBezierFadeIn } from '../styles/variables';
+import { Navigation } from '../types';
 
 type HeaderProps = {
-	title: string;
-	navigation?: { href: string; as?: string; label: string }[];
+	navigation: Navigation;
 };
 
-const Header: React.FC<HeaderProps> = ({ title, navigation = [] }) => {
+const Header: React.FC<HeaderProps> = ({ navigation }) => {
 	const router = useRouter();
+	const [shouldAnimate, setShouldAnimate] = React.useState(true);
+
+	React.useEffect(() => {
+		setShouldAnimate(!(window as any).__has_loaded);
+		(window as any).__has_loaded = true;
+	}, []);
+
 	return (
-		<HeaderBlock role="banner">
-			<Container>
-				<HeaderWrapper>
-					<Title>
-						<Link href="/">
-							<a>{title}</a>
+		<HeaderBlock role="banner" animateIn={shouldAnimate}>
+			<HeaderWrapper>
+				<Title>
+					<Link href="/">
+						<a>Peter Simonsson</a>
+					</Link>
+				</Title>
+				<Nav>
+					{navigation.links.map((item) => (
+						<Link href={item.href} as={item.as} passHref key={item.label}>
+							<NavLink
+								selected={
+									item.href === router.pathname || item.as === router.asPath
+								}
+							>
+								{item.label}
+							</NavLink>
 						</Link>
-					</Title>
-					<Navigation>
-						{navigation.map((item) => (
-							<Link href={item.href} as={item.as} passHref key={item.label}>
-								<NavLink selected={item.as === router.asPath}>
-									{item.label}
-								</NavLink>
-							</Link>
-						))}
-					</Navigation>
-				</HeaderWrapper>
-			</Container>
+					))}
+				</Nav>
+			</HeaderWrapper>
 		</HeaderBlock>
 	);
 };
@@ -42,7 +50,7 @@ export default Header;
  * Styled components
  */
 
-const HeaderBlock = styled.header`
+const HeaderBlock = styled.header<{ animateIn: boolean }>`
 	font-family: var(--sans-serif-font-family);
 	padding-top: 1.2em;
 	padding-bottom: 1.2em;
@@ -51,19 +59,17 @@ const HeaderBlock = styled.header`
 	transition-duration: 100ms;
 	transition-timing-function: ease-out;
 
-	animation: ${fadeIn} 400ms ${cubicBezierFadeIn} both;
+	${(props) =>
+		props.animateIn
+			? css`
+					animation: ${fadeIn} 400ms ${cubicBezierFadeIn} both;
+			  `
+			: ''}
 
 	@media screen and (max-width: 639px) {
 		padding-top: 0.65em;
 		padding-bottom: 0.65em;
 		position: relative;
-
-		${Container} {
-			padding-left: 0;
-			padding-right: 0;
-			overflow-x: auto;
-			overflow-y: hidden;
-		}
 
 		&::after {
 			content: '';
@@ -124,7 +130,7 @@ const Title = styled.h1`
 	}
 `;
 
-const Navigation = styled.nav`
+const Nav = styled.nav`
 	line-height: 1.5;
 `;
 
