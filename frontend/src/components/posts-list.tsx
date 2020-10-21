@@ -30,7 +30,11 @@ const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
 						const body = (
 							<>
 								<PostTitle className="p-name">{post.title}</PostTitle>
-								<Body dangerouslySetInnerHTML={{ __html: post.body }} />
+								{post.description ? (
+									<Body>{post.description}</Body>
+								) : (
+									<Body dangerouslySetInnerHTML={{ __html: post.body }} />
+								)}
 							</>
 						);
 

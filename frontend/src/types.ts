@@ -53,6 +53,7 @@ export type Post = StrapiFields & {
 	title: string;
 	slug: string;
 	body: string;
+	description?: string;
 	link?: string;
 	mentions?: Mention[];
 };

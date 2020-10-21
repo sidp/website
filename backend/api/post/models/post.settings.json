@@ -20,6 +20,9 @@
       "targetField": "title",
       "required": true
     },
+    "description": {
+      "type": "text"
+    },
     "body": {
       "type": "richtext"
     },
