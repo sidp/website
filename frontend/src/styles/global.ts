@@ -31,6 +31,14 @@ const GlobalStyle = createGlobalStyle`
 		--link-color--hover: ${linkColorHover};
 		--link-color--active: ${linkColorActive};
 
+		--input-color: inherit;
+		--input-background: transparent;
+		--input-border: #E0CCDB;
+
+		--button-color: #fff;
+		--button-background: var(--link-color);
+		--button-border: var(--link-color);
+
 		--image-frame: rgba(0, 0, 0, 0.05);
 		--image-shadow: rgba(0, 0, 0, 0.16);
 
@@ -45,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
 			--text-color: #fff;
 			--background-color: #110d11;
 			--accent-color: #221a2a;
+			--pale-accent-color: #221a2a;
 			--grayed-color: #968796;
 
 			--image-frame: rgba(255, 255, 255, 0.05);
@@ -52,6 +61,11 @@ const GlobalStyle = createGlobalStyle`
 
 			--link-color--hover: #7bcaff;
 			--link-color--active: ${linkColor};
+
+			--input-color: inherit;
+			--input-border: #473A53;
+
+			--button-color: #fff;;
 		}
 	}
 
@@ -144,9 +158,10 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	h1 {
+		font-size: 2rem;
 		letter-spacing: -0.007em;
 		line-height: 1.2;
-		margin-bottom: 0.25rem;
+		margin-bottom: 0.75rem;
 	}
 
 	h2,
@@ -169,7 +184,7 @@ const GlobalStyle = createGlobalStyle`
 
 	table {
 		font-family: var(--sans-serif-font-family);
-		font-size: 0.8425rem;
+		font-size: 0.85rem;
 		margin-bottom: 1rem;
 		border-collapse: collapse;
 	}
@@ -199,8 +214,6 @@ const GlobalStyle = createGlobalStyle`
 	code {
 		font-family: var(--mono-font-family), monospace;
 		font-feature-settings: "onum" 0, "pnum" 0;
-		padding-top: 0.15em;
-		padding-bottom: 0.15em;
 
 		background-color: var(--pale-accent-color);
 		box-shadow: inset 0 0 0 1px var(--accent-color);

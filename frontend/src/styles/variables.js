@@ -8,16 +8,10 @@ export const linkColorActive = '#00395F';
 export const focusColor = linkColor;
 export const accentColor = '#F0DFEC';
 export const grayedColor = '#968796';
-export const grayedColorHover = Color(grayedColor)
-	.darken(0.2)
-	.toString();
-export const grayedColorActive = Color(grayedColor)
-	.darken(0.6)
-	.toString();
+export const grayedColorHover = Color(grayedColor).darken(0.2).toString();
+export const grayedColorActive = Color(grayedColor).darken(0.6).toString();
 
-export const paleAccentColor = Color(accentColor)
-	.lighten(0.075)
-	.toString();
+export const paleAccentColor = Color(accentColor).lighten(0.075).toString();
 
 export const sansSerifFontFamily = 'Source Sans Pro';
 export const serifFontFamily = 'Source Serif Pro';

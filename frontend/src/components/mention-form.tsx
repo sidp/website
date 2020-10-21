@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { absoluteUrl } from '../utils/url';
+import styled from 'styled-components';
+import Input from './input';
+import Button from './button';
+import InputGroup from './input-group';
 
 const MentionForm = () => {
 	const router = useRouter();
@@ -37,7 +41,9 @@ const MentionForm = () => {
 	if (!showForm) {
 		return (
 			<>
-				<button onClick={() => setShowForm(true)}>Submit mention</button>
+				<Button primary onClick={() => setShowForm(true)}>
+					Submit mention
+				</Button>
 			</>
 		);
 	}
@@ -62,29 +68,31 @@ const MentionForm = () => {
 				<>
 					<p>
 						Send a webmention manually by linking to this URL in your post and
-						then pasting the URL of your post here. You don’t have to do this if
-						your publishing software has support for sending webmentions.
+						then pasting the URL to your post here.
 					</p>
-					<label>
-						URL
-						<br />
-						<input
+					<HiddenLabel htmlFor="source">URL</HiddenLabel>
+					<InputGroup>
+						<Input
 							type="url"
 							name="source"
+							id="source"
 							value={url}
 							onChange={(ev) => setUrl(ev.target.value)}
+							placeholder="https://"
 							required
 						/>
-					</label>
-					<input type="hidden" name="target" value={target} />
-					<input type="submit" value="Send" disabled={state === 'submitting'} />
-					<button
-						onClick={() => {
-							setShowForm(false);
-						}}
-					>
-						Cancel
-					</button>
+						<input type="hidden" name="target" value={target} />
+						<Button type="submit" disabled={state === 'submitting'} primary>
+							Send
+						</Button>
+						<Button
+							onClick={() => {
+								setShowForm(false);
+							}}
+						>
+							Cancel
+						</Button>
+					</InputGroup>
 				</>
 			)}
 		</form>
@@ -92,3 +100,13 @@ const MentionForm = () => {
 };
 
 export default MentionForm;
+
+const HiddenLabel = styled.label`
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+`;

@@ -23,16 +23,14 @@ const MentionsList: React.FC<MentionsListProps> = ({ mentions }) => {
 			</h2>
 			{mentions.length > 0 && (
 				<ul>
-					{mentions.map((mention) => {
-						return (
-							<li key={mention.id}>
-								<a href={mention.sourceUrl} rel="nofollow noopener">
-									{mention.sourceUrl}
-									{mention.postInfo?.title}
-								</a>
-							</li>
-						);
-					})}
+					{mentions.map((mention) => (
+						<li key={mention.id}>
+							<a href={mention.sourceUrl} rel="nofollow noopener">
+								{mention.sourceUrl}
+								{mention.postInfo?.title}
+							</a>
+						</li>
+					))}
 				</ul>
 			)}
 			<MentionForm />
