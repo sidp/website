@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ExternalLink from './external-link';
 import {
@@ -59,12 +58,6 @@ const MetaItem = ({ label, value, link = '' }) => {
 			<Label>{label}:</Label> {valueElement}
 		</Item>
 	);
-};
-
-MetaItem.propTypes = {
-	label: PropTypes.string.isRequired,
-	value: PropTypes.string.isRequired,
-	link: PropTypes.string,
 };
 
 /**

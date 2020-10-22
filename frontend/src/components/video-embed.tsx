@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 type VideoEmbedProps = {
@@ -35,14 +34,6 @@ const VideoEmbed: React.FC<VideoEmbedProps> = ({
 			/>
 		</Block>
 	);
-};
-
-VideoEmbed.propTypes = {
-	url: PropTypes.string.isRequired,
-	title: PropTypes.string,
-	width: PropTypes.number.isRequired,
-	height: PropTypes.number.isRequired,
-	className: PropTypes.string,
 };
 
 export default VideoEmbed;
