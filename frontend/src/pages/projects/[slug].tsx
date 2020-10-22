@@ -66,7 +66,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
 							<StyledLink href={project.link}>See it live</StyledLink>
 						</Links>
 					)}
-					{/*project.videoEmbed && <StyledVideoEmbed {...project.videoEmbed} />*/}
+					{project.videoEmbed && <StyledVideoEmbed {...project.videoEmbed} />}
 				</TextWrapper>
 				{project.images && project.images.length > 0 && (
 					<Images>

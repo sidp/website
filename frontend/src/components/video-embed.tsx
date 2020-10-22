@@ -3,17 +3,17 @@ import styled from 'styled-components';
 
 type VideoEmbedProps = {
 	url: string;
-	title: string;
 	width: number;
 	height: number;
+	title?: string;
 	className?: string;
 };
 
 const VideoEmbed: React.FC<VideoEmbedProps> = ({
 	url,
-	title,
 	width,
 	height,
+	title,
 	className = '',
 }) => {
 	const aspectRatio = height / width;
@@ -31,6 +31,7 @@ const VideoEmbed: React.FC<VideoEmbedProps> = ({
 				scrolling="no"
 				frameBorder="0"
 				allowFullScreen
+				loading="lazy"
 			/>
 		</Block>
 	);

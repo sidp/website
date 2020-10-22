@@ -49,6 +49,11 @@
     },
     "link": {
       "type": "string"
+    },
+    "videoEmbed": {
+      "type": "component",
+      "repeatable": false,
+      "component": "project.video-embed"
     }
   }
 }

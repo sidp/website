@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_project_video_embeds",
+  "info": {
+    "name": "videoEmbed",
+    "icon": "photo-video"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    }
+  }
+}

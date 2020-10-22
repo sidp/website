@@ -68,6 +68,7 @@ export type Project = StrapiFields & {
 	link?: string;
 	body?: string;
 	images?: Image[];
+	videoEmbed?: { url: string; width: number; height: number };
 };
 
 export type Page = StrapiFields & {
