@@ -104,7 +104,11 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async (ctx) => {
 	const project = singleProject && singleProject[0] ? singleProject[0] : null;
 	if (!project) {
 		return {
-			props: { navigation, project: null },
+			props: {
+				navigation,
+				project: null,
+				projects,
+			},
 			revalidate: 1,
 		};
 	}
