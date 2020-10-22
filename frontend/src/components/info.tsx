@@ -6,7 +6,7 @@ type InfoProps = {};
 
 const Info: React.FC<InfoProps> = ({ children }) => {
 	const [hover, setHover] = React.useState(true);
-	const el = React.useRef<SVGElement>();
+	const el = React.useRef<SVGSVGElement>();
 
 	return (
 		<Block
