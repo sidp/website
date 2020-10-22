@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Mention } from '../types';
 import MentionForm from './mention-form';
 import { TextWrapper } from '../styles/components';
+import Info from './info';
 
 type MentionsListProps = {
 	mentions: Mention[];
@@ -12,14 +13,16 @@ const MentionsList: React.FC<MentionsListProps> = ({ mentions }) => {
 		<TextWrapper>
 			<h2>
 				Mentions{' '}
-				<a
-					href="https://indieweb.org/Webmention"
-					target="_blank"
-					rel="noopener"
-					title="Read more about webmention"
-				>
-					i
-				</a>
+				<Info>
+					Read more about{' '}
+					<a
+						href="https://indieweb.org/Webmention"
+						target="_blank"
+						rel="noopener"
+					>
+						webmention
+					</a>
+				</Info>
 			</h2>
 			{mentions.length > 0 && (
 				<ul>

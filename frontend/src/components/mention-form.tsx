@@ -42,7 +42,7 @@ const MentionForm = () => {
 		return (
 			<>
 				<Button primary onClick={() => setShowForm(true)}>
-					Submit mention
+					Add Mention
 				</Button>
 			</>
 		);
@@ -57,7 +57,15 @@ const MentionForm = () => {
 						show up here in a bit.
 					</p>
 					<p>
-						<button onClick={(ev) => setState('filling')}>Ok</button>
+						<Button
+							onClick={(ev) => {
+								setState('filling');
+								setShowForm(false);
+							}}
+							primary
+						>
+							Ok
+						</Button>
 					</p>
 				</>
 			)}
@@ -83,7 +91,7 @@ const MentionForm = () => {
 						/>
 						<input type="hidden" name="target" value={target} />
 						<Button type="submit" disabled={state === 'submitting'} primary>
-							Send
+							Submit
 						</Button>
 						<Button
 							onClick={() => {
