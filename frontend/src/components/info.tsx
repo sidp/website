@@ -12,17 +12,8 @@ const Info: React.FC<InfoProps> = ({ children }) => {
 		<Block
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
-			onFocus={() => {
-				console.log();
-				setHover(true);
-			}}
+			onFocus={() => setHover(true)}
 			onBlur={() => {
-				console.log(
-					'blur happened',
-					el.current,
-					document.activeElement,
-					el.current
-				);
 				if (el.current && el.current.contains(document.activeElement)) {
 					return;
 				}

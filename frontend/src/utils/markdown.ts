@@ -9,9 +9,6 @@ renderer.link = function (href, title, text) {
 };
 
 renderer.image = function(href, title, text) {
-	const html = imageRenderer.call(renderer, href, title, text);
-	console.log(href, title, text);
-
 	return `<img src="${process.env.NEXT_PUBLIC_UPLOAD_PREFIX + href}" alt="${text}" ${title ? ` title="${title}"` : ''}" />`;
 }
 
