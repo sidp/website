@@ -5,7 +5,7 @@ import { metaFontFamily, metaFontSize, textColor } from '../styles/variables';
 type InfoProps = {};
 
 const Info: React.FC<InfoProps> = ({ children }) => {
-	const [hover, setHover] = React.useState(true);
+	const [hover, setHover] = React.useState(false);
 	const el = React.useRef<SVGSVGElement>();
 
 	return (
