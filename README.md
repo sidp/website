@@ -1,13 +1,3 @@
-# Portfolio
-This is my portfolio website, published at [simonsson.com](https://simonsson.com). It uses [Gatsby](https://github.com/gatsbyjs/gatsby/) to generate static pages from React component and Markdown files.
+# Website
 
-## Develop
-```bash
-$ yarn run develop
-```
-
-## Publish
-```bash
-$ yarn run deploy:staging
-$ yarn run deploy:production
-```
+This is my website, published at [simonsson.com](https://simonsson.com). It uses [Next](https://nextjs.org/) for the front-end and [Strapi](https://strapi.io/) for the backend. The front-end is hosted on Vercel and the backend on DigitalOcean.

@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "mentions",
+  "info": {
+    "name": "Mention",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "sourceUrl": {
+      "type": "string"
+    },
+    "targetUrl": {
+      "type": "string"
+    },
+    "target": {
+      "model": "post"
+    },
+    "review": {
+      "type": "enumeration",
+      "enum": [
+        "waiting",
+        "approved",
+        "rejected"
+      ],
+      "default": "waiting",
+      "required": false,
+      "private": true
+    },
+    "processed": {
+      "type": "boolean",
+      "default": false,
+      "private": true
+    },
+    "postInfo": {
+      "type": "json"
+    }
+  }
+}
