@@ -18,53 +18,22 @@ const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
 
 			<Columns className="h-feed">
 				{posts.map((post) => {
-					const postedOn = dayjs(post.created_at).format('MMMM D, YYYY');
-
-					const date = (
-						<time dateTime={post.created_at} className="dt-published">
-							{postedOn}
-						</time>
-					);
-
-					const renderBody = () => {
-						const body = (
-							<>
-								<PostTitle className="p-name">{post.title}</PostTitle>
-								{post.description ? (
-									<Body>{post.description}</Body>
-								) : (
-									<Body dangerouslySetInnerHTML={{ __html: post.body }} />
-								)}
-							</>
-						);
-
-						if (post.link) {
-							return (
-								<StyledLink href={post.link} target="_blank" rel="noopener">
-									{body}
-								</StyledLink>
-							);
-						}
-
-						return body;
-					};
-
 					return (
 						<AnimatedColumn
 							span={{ '<small': 12, '>small': 6, '>medium': 4 }}
 							key={post.slug}
 						>
 							<div className="h-entry">
-								{renderBody()}
-								<Meta>
-									<Link
-										href="/posts/[slug]"
-										as={`/posts/${post.slug}`}
-										passHref
-									>
-										<StyledLink className="u-url">{date}</StyledLink>
-									</Link>
-								</Meta>
+								<Link href="/posts/[slug]" as={`/posts/${post.slug}`} passHref>
+									<StyledLink className="u-url">
+										<PostTitle className="p-name">{post.title}</PostTitle>
+										{post.description ? (
+											<Body>{post.description}</Body>
+										) : (
+											<Body dangerouslySetInnerHTML={{ __html: post.body }} />
+										)}
+									</StyledLink>
+								</Link>
 							</div>
 						</AnimatedColumn>
 					);
