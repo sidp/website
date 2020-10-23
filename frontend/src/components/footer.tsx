@@ -36,7 +36,7 @@ const Footer: React.FC<FooterProps> = ({ title, email, links = [] }) => {
 				<Item>Also on {naturalJoin(socialMediaLinks)}.</Item>
 				<Item>
 					Check out this site on{' '}
-					<ExternalLink href="https://github.com/sidp/portfolio">
+					<ExternalLink href="https://github.com/sidp/website">
 						GitHub
 					</ExternalLink>
 					.

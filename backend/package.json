@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "sidp-website-backend",
   "private": true,
   "version": "0.1.0",
   "description": "The Strapi backend for simonsson.com",

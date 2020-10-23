@@ -1,7 +1,7 @@
 {
-	"name": "sidp-portfolio",
+	"name": "sidp-website-frontend",
 	"private": true,
-	"description": "Portfolio of Peter Simonsson",
+	"description": "Website of Peter Simonsson",
 	"version": "1.0.0",
 	"author": "Peter Simonsson <peter@simonsson.com>",
 	"scripts": {
