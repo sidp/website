@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import * as React from 'react';
 import styled from 'styled-components';
 import { Image } from '../types';
@@ -13,7 +14,7 @@ const ProjectImage: React.FC<ProjectImageProps> = ({ image, className }) => {
 	const [loadError, setLoadError] = React.useState(false);
 
 	const imageElement = (
-		<img
+		<Image
 			src={image.url}
 			sizes="100vw"
 			srcSet={srcSet(image)}

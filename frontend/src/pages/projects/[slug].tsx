@@ -15,6 +15,8 @@ import markdown from '../../utils/markdown';
 import { useRouter } from 'next/router';
 import ErrorPage404 from '../404';
 import Header from '../../components/header';
+import NextImage from 'next/image';
+import { uploadUrl } from '../../utils/url';
 
 type ProjectPageProps = {
 	navigation: Navigation;
@@ -71,7 +73,15 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
 				{project.images && project.images.length > 0 && (
 					<Images>
 						{project.images.map((image) => (
-							<StyledProjectImage image={image} key={image.id} />
+							<StyledImage>
+								<NextImage
+									src={uploadUrl(image.url)}
+									width={image.width}
+									height={image.height}
+									alt={image.alternativeText}
+									key={image.id}
+								/>
+							</StyledImage>
 						))}
 					</Images>
 				)}
@@ -177,7 +187,7 @@ const Images = styled.div`
 	margin-bottom: 4.5rem;
 `;
 
-const StyledProjectImage = styled(ProjectImage)`
+const StyledImage = styled.div`
 	margin: 1.2rem 0;
 	transition: margin 100ms ease-out;
 	box-shadow: ${imageBoxShadow};

@@ -5,6 +5,7 @@ import { fadeIn, cubicBezierFadeIn, imageBoxShadow } from '../styles/variables';
 import Columns, { Column } from '../components/columns';
 import { Navigation, Page } from '../types';
 import { GetStaticProps } from 'next';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import apiGet from '../utils/api';
 import markdown from '../utils/markdown';
@@ -32,7 +33,15 @@ const AboutPage: React.FC<AboutPageProps> = ({ navigation, page }) => {
 			<Header navigation={navigation} />
 			<Columns as="article" role="main">
 				<Column span={{ '<small': 12, '>small': 4, '>medium': 5 }}>
-					<Portrait src="/images/peter.jpg" alt="Peter Simonsson" />
+					<Portrait
+						src="/images/peter.jpg"
+						width="1200"
+						height="1200"
+						alt="Peter Simonsson"
+						sizes="(min-width: 800px) 33vw, (min-width: 500px) 50vw, 95vw"
+						loading="eager"
+						priority
+					/>
 				</Column>
 				<Column span={{ '<small': 12, '>small': 8, '>medium': 7 }}>
 					<Content page={page} htmlElement="div" />
@@ -78,7 +87,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (ctx) => {
  * Styled components
  */
 
-const Portrait = styled.img`
+const Portrait = styled(Image)`
 	max-width: 100%;
 	width: 600px;
 	height: auto;
