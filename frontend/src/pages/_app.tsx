@@ -7,6 +7,7 @@ import Footer from '../components/footer';
 import { absoluteUrl } from '../utils/url';
 
 import '../styles/markdown-styles.css';
+import '../styles/prism-styles.css';
 import 'typeface-source-sans-pro';
 import 'typeface-source-serif-pro';
 

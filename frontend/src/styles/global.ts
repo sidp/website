@@ -65,7 +65,7 @@ const GlobalStyle = createGlobalStyle`
 			--input-color: inherit;
 			--input-border: #473A53;
 
-			--button-color: #fff;;
+			--button-color: #fff;
 		}
 	}
 
@@ -212,6 +212,7 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	code {
+		font-size: 0.95rem;
 		font-family: var(--mono-font-family), monospace;
 		font-feature-settings: "onum" 0, "pnum" 0;
 
@@ -243,6 +244,24 @@ const GlobalStyle = createGlobalStyle`
 		html {
 			font-size: 131.25%;
 		}
+	}
+
+	/**
+	 * Code blocks
+	 */
+
+	code {
+		font-family: var(--mono-font-family);
+	}
+
+	pre code {
+		display: block;
+		padding: 0.1rem 0.25rem 0.2rem;
+		margin-left: -0.15rem;
+		margin-right: -0.15rem;
+		border-radius: 0.15rem;
+		font-size: 0.85em;
+		box-shadow: inset 0 0 0 0.05rem var(--image-frame);
 	}
 `;
 

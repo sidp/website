@@ -1,17 +1,34 @@
 import marked from 'marked';
+import Prism from 'prismjs';
+
 const renderer = new marked.Renderer();
 const linkRenderer = renderer.link;
-const imageRenderer = renderer.image;
+const codeRenderer = renderer.code;
 
-renderer.link = function (href, title, text) {
+renderer.link = (href, title, text) => {
 	const html = linkRenderer.call(renderer, href, title, text);
 	return html.replace(/^<a /, '<a target="_blank" rel="noopener" ');
 };
 
-renderer.image = function(href, title, text) {
-	return `<img src="${process.env.NEXT_PUBLIC_UPLOAD_PREFIX + href}" alt="${text}" ${title ? ` title="${title}"` : ''}" />`;
-}
+renderer.image = (href, title, text) => {
+	return `<img src="${
+		process.env.NEXT_PUBLIC_UPLOAD_PREFIX + href
+	}" alt="${text}" ${title ? ` title="${title}"` : ''}" />`;
+};
+
+renderer.code = (code, language, isEscaped) => {
+	let output: string;
+
+	if (language in Prism.languages) {
+		output = `<pre><code class="language-${language}">${Prism.highlight(code, Prism.languages[language], language)}</code></pre>`;
+	} else {
+		output = codeRenderer.call(renderer, code, language, isEscaped);
+	}
+
+	return output;
+};
 
 export default function markdown(src: string) {
-	return marked(src, { renderer, headerIds: true });
+	marked.use({ renderer });
+	return marked(src, { headerIds: true });
 }
