@@ -1,7 +1,6 @@
 pre[class*='language-'],
 code[class*='language-'] {
 	color: #d4d4d4;
-	font-size: 13px;
 	text-shadow: none;
 	direction: ltr;
 	text-align: left;
@@ -16,13 +15,6 @@ code[class*='language-'] {
 	-moz-hyphens: none;
 	-ms-hyphens: none;
 	hyphens: none;
-}
-
-pre[class*='language-']::selection,
-code[class*='language-']::selection,
-pre[class*='language-'] *::selection,
-code[class*='language-'] *::selection {
-	text-shadow: none;
 }
 
 @media print {

@@ -211,20 +211,6 @@ const GlobalStyle = createGlobalStyle`
 		background-color: color(var(--accent-color) alpha(10%));
 	}
 
-	code {
-		font-size: 0.95rem;
-		font-family: var(--mono-font-family), monospace;
-		font-feature-settings: "onum" 0, "pnum" 0;
-
-		background-color: var(--pale-accent-color);
-		box-shadow: inset 0 0 0 1px var(--accent-color);
-
-		&::before,
-		&::after {
-			letter-spacing: -0.33em;
-		}
-	}
-
 	hr {
 		border: 0;
 		border-top: var(--accent-color) solid 2px;
@@ -251,17 +237,25 @@ const GlobalStyle = createGlobalStyle`
 	 */
 
 	code {
+		font-size: 0.95em;
+		font-family: var(--mono-font-family), monospace;
+		font-feature-settings: "onum" 0, "pnum" 0;
+
+		background-color: var(--pale-accent-color);
+		box-shadow: inset 0 0 0 0.05rem var(--image-frame);
+		border-radius: 0.15rem;
+	}
+
+	code {
 		font-family: var(--mono-font-family);
 	}
 
 	pre code {
 		display: block;
+		font-size: 0.85em;
 		padding: 0.1rem 0.25rem 0.2rem;
 		margin-left: -0.15rem;
 		margin-right: -0.15rem;
-		border-radius: 0.15rem;
-		font-size: 0.85em;
-		box-shadow: inset 0 0 0 0.05rem var(--image-frame);
 	}
 `;
 
