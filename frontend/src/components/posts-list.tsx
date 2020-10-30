@@ -90,6 +90,7 @@ const StyledLink = styled.a`
 
 const PostTitle = styled.h3`
 	font-size: 1.1rem;
+	line-height: 1.3;
 	font-weight: 600;
 	margin-top: 0.25rem;
 	margin-bottom: 0.45rem;
