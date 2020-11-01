@@ -20,6 +20,7 @@ const ProjectIndex: React.FC<ProjectIndexProps> = ({
 		<>
 			<Head>
 				<meta name="og:image" content={absoluteUrl('/images/og-image.png')} />
+				<link rel="canonical" href={absoluteUrl('/projects')} />
 			</Head>
 			<Header navigation={navigation} />
 			<ProjectList projects={projects} />

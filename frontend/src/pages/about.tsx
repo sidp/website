@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { GetStaticProps } from 'next';
+import Image from 'next/image';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import MarkdownPage from '../components/markdown-page';
 import { fadeIn, cubicBezierFadeIn, imageBoxShadow } from '../styles/variables';
 import Columns, { Column } from '../components/columns';
 import { Navigation, Page } from '../types';
-import { GetStaticProps } from 'next';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
 import apiGet from '../utils/api';
 import markdown from '../utils/markdown';
 import ErrorPage404 from './404';
 import Header from '../components/header';
+import { absoluteUrl } from '../utils/url';
+
+const aboutPageSlug = 'about';
 
 type AboutPageProps = {
 	navigation: Navigation;
@@ -30,6 +34,9 @@ const AboutPage: React.FC<AboutPageProps> = ({ navigation, page }) => {
 
 	return (
 		<>
+			<Head>
+				<link rel="canonical" href={absoluteUrl(`/${aboutPageSlug}`)} />
+			</Head>
 			<Header navigation={navigation} />
 			<Columns as="article" role="main">
 				<Column span={{ '<small': 12, '>small': 4, '>medium': 5 }}>
@@ -57,7 +64,7 @@ export const getStaticProps: GetStaticProps<AboutPageProps> = async (ctx) => {
 	const [navigation, singlePage] = await Promise.all([
 		apiGet<Navigation>('navigation'),
 		apiGet<Page[]>('pages', {
-			slug: 'about',
+			slug: aboutPageSlug,
 			_limit: 1,
 		}),
 	]);

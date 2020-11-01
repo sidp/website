@@ -1,6 +1,7 @@
 import * as React from 'react';
-import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import NextImage from 'next/image';
 import styled from 'styled-components';
 import { Navigation, Project } from '../../types';
 import Meta from '../../components/meta';
@@ -14,8 +15,7 @@ import markdown from '../../utils/markdown';
 import { useRouter } from 'next/router';
 import ErrorPage404 from '../404';
 import Header from '../../components/header';
-import NextImage from 'next/image';
-import { uploadUrl } from '../../utils/url';
+import { absoluteUrl, uploadUrl } from '../../utils/url';
 
 type ProjectPageProps = {
 	navigation: Navigation;
@@ -45,6 +45,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
 				{project.description && (
 					<meta name="description" content={project.description} />
 				)}
+				<link rel="canonical" href={absoluteUrl(`/projects/${project.slug}`)} />
 			</Head>
 			<Header navigation={navigation} />
 			<Article key="article">

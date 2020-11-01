@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import MarkdownPage from '../components/markdown-page';
 import { Navigation, Page } from '../types';
@@ -9,6 +10,7 @@ import ErrorPage404 from './404';
 import styled from 'styled-components';
 import { cubicBezierFadeIn } from '../styles/variables';
 import Header from '../components/header';
+import { absoluteUrl } from '../utils/url';
 
 type PagePageProps = {
 	navigation: Navigation;
@@ -28,6 +30,9 @@ const PagePage: NextPage<PagePageProps> = ({ navigation, page }) => {
 
 	return (
 		<>
+			<Head>
+				<link rel="canonical" href={absoluteUrl(`/${page.slug}`)} />
+			</Head>
 			<Header navigation={navigation} />
 			<StyledMarkdownPage page={page} role="main" />
 		</>

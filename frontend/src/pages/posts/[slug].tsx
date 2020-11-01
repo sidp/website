@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import MarkdownPage from '../../components/markdown-page';
 import { Mention, Navigation, Post } from '../../types';
@@ -11,6 +12,7 @@ import { cubicBezierFadeIn } from '../../styles/variables';
 import PostsList from '../../components/posts-list';
 import MentionsList from '../../components/mentions-list';
 import Header from '../../components/header';
+import { absoluteUrl } from '../../utils/url';
 
 type PostPageProps = {
 	navigation: Navigation;
@@ -37,6 +39,9 @@ const PostPage: NextPage<PostPageProps> = ({
 
 	return (
 		<>
+			<Head>
+				<link rel="canonical" href={absoluteUrl(`/posts/${post.slug}`)} />
+			</Head>
 			<Header navigation={navigation} />
 			<StyledMarkdownPage page={post} role="main" showDate />
 			{mentions && <MentionsList mentions={mentions} />}
