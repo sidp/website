@@ -16,6 +16,10 @@ module.exports = {
 				source: '/sitemap.xml',
 				destination: '/api/sitemap',
 			},
+			{
+				source: '/feed/:format',
+				destination: '/api/feed/:format',
+			},
 		];
 	},
 	async headers() {

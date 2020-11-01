@@ -62,6 +62,18 @@ export default class CustomApp extends App<AppProps, {}> {
 					/>
 					<link rel="shortcut icon" href="/favicon.ico" />
 					<link rel="webmention" href={absoluteUrl('/webmention')} />
+					<link
+						rel="alternate"
+						type="application/atom+xml"
+						title="Atom Feed"
+						href="/feed/atom"
+					/>
+					<link
+						rel="alternate"
+						type="application/feed+json"
+						title="JSON Feed"
+						href="/feed/json"
+					/>
 				</Head>
 				<GlobalStyles />
 				<Container>
