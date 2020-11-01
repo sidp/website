@@ -23,17 +23,13 @@ const IndexPage: React.FC<IndexPageProps> = ({
 	posts,
 	projects,
 }) => {
-	const description = '';
-	const siteUrl = '';
-	const frontPageTitle = 'Peter Simonsson – Web developer in Malmö, Sweden';
-
 	return (
 		<>
 			<Head>
-				<title>{frontPageTitle}</title>
-				<meta name="description" content={description} />
+				<title>{frontPage.title}</title>
+				<meta name="description" content={frontPage.description} />
 				<meta name="og:image" content={absoluteUrl('/images/og-image.png')} />
-				<link rel="canonical" href={`${siteUrl}`} />
+				<link rel="canonical" href={absoluteUrl('/')} />
 			</Head>
 			<Header navigation={navigation} />
 			<Intro dangerouslySetInnerHTML={{ __html: frontPage.introduction }} />

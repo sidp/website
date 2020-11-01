@@ -1,10 +1,13 @@
+import getConfig from 'next/config';
 import { Image } from '../types';
+
+const { publicRuntimeConfig } = getConfig();
 
 export function absoluteUrl(link = '') {
 	if (link.indexOf('http') === 0) {
 		return link;
 	}
-	return process.env.APP_BASENAME + link;
+	return publicRuntimeConfig.siteUrl + link;
 }
 
 export const uploadUrl = (url: string) => {

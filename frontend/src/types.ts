@@ -92,6 +92,8 @@ export type Mention = StrapiFields & {
 
 export type FrontPage = StrapiFields & {
 	introduction?: string;
+	title?: string;
+	description?: string;
 };
 
 export type Navigation = StrapiFields & {
