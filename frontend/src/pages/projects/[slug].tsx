@@ -2,10 +2,9 @@ import * as React from 'react';
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import styled from 'styled-components';
-import { Image, Navigation, Project } from '../../types';
+import { Navigation, Project } from '../../types';
 import Meta from '../../components/meta';
 import ExternalLink from '../../components/external-link';
-import ProjectImage from '../../components/project-image';
 import VideoEmbed from '../../components/video-embed';
 import ProjectList from '../../components/project-list';
 import { TextWrapper } from '../../styles/components';
@@ -73,13 +72,12 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
 				{project.images && project.images.length > 0 && (
 					<Images>
 						{project.images.map((image) => (
-							<StyledImage>
+							<StyledImage key={image.id}>
 								<NextImage
 									src={uploadUrl(image.url)}
 									width={image.width}
 									height={image.height}
 									alt={image.alternativeText}
-									key={image.id}
 								/>
 							</StyledImage>
 						))}

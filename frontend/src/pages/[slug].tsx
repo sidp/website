@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps<PagePageProps> = async (ctx) => {
 	return {
 		props: {
 			navigation,
-			page: page,
+			page,
 		},
 		revalidate: 5,
 	};
