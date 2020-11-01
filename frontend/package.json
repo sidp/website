@@ -21,6 +21,7 @@
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"react-is": "^17.0.1",
+		"sitemap": "^6.3.3",
 		"styled-components": "^5.2.0",
 		"typeface-source-sans-pro": "^1.1.13",
 		"typeface-source-serif-pro": "^1.1.13"

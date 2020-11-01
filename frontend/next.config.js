@@ -12,6 +12,10 @@ module.exports = {
 				source: '/webmention',
 				destination: '/api/webmention',
 			},
+			{
+				source: '/sitemap.xml',
+				destination: '/api/sitemap',
+			},
 		];
 	},
 	async headers() {
