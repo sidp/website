@@ -70,29 +70,6 @@ const HeaderBlock = styled.header<{ animateIn: boolean }>`
 		padding-top: 0.65em;
 		padding-bottom: 0.65em;
 		position: relative;
-
-		&::after {
-			content: '';
-			position: absolute;
-			top: 4px;
-			right: 0;
-			bottom: 0;
-			z-index: 2;
-			width: 1.2rem;
-			background: linear-gradient(
-				to right,
-				rgba(255, 255, 255, 0),
-				rgba(255, 255, 255, 1) 95%
-			);
-
-			@media (prefers-color-scheme: dark) {
-				background: linear-gradient(
-					to right,
-					rgba(0, 0, 0, 0),
-					var(--background-color) 95%
-				);
-			}
-		}
 	}
 `;
 
@@ -104,8 +81,6 @@ const HeaderWrapper = styled.div`
 	justify-content: space-between;
 
 	@media screen and (max-width: 639px) {
-		padding-left: 1.2rem;
-		padding-right: 1.2rem;
 		min-width: min-content;
 	}
 `;
