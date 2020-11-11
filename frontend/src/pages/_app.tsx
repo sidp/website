@@ -8,8 +8,9 @@ import { absoluteUrl } from '../utils/url';
 
 import '../styles/markdown-styles.css';
 import '../styles/prism-styles.css';
-import 'typeface-source-sans-pro';
-import 'typeface-source-serif-pro';
+import 'fontsource-source-sans-pro/latin.css';
+import 'fontsource-source-serif-pro/latin.css';
+import 'fontsource-source-code-pro/latin.css';
 
 type AppProps = {};
 

@@ -2829,6 +2829,21 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
+fontsource-source-code-pro@^3.0.10:
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/fontsource-source-code-pro/-/fontsource-source-code-pro-3.0.10.tgz#6366788783b21ccdd29673537c4b35c278e874a0"
+  integrity sha512-O240cr7mUAiiqZZ4pb9tEZyRrmgYpS7qQvrnuS0zXFvHAuLRdl+hbE2RQN+QSQmzovOYIiZpHzX6cME4Phc8YA==
+
+fontsource-source-sans-pro@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/fontsource-source-sans-pro/-/fontsource-source-sans-pro-3.0.9.tgz#793f426a598564961b21b913d6d32480a3484213"
+  integrity sha512-kBwOSHXR/P+oTGCdemcJM9Z7jYK1O0h+aeqq60fajP/HvhYJWTVBA1ZmKlOX+rHPARLRgfwCv6B4m1UC7bHsoA==
+
+fontsource-source-serif-pro@^3.0.10:
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/fontsource-source-serif-pro/-/fontsource-source-serif-pro-3.0.10.tgz#d6c8915cb2a88919f476971f88dfeeb5c9cdbb8c"
+  integrity sha512-LhIcets0YtBS56iea5P7kt+3z9V9NaavJdZKXW9anLybg2nxwUuHE6JLRv6mHwjMEa7DPz+ak6DLgBrBTvTHFw==
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -5357,16 +5372,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typeface-source-sans-pro@^1.1.13:
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/typeface-source-sans-pro/-/typeface-source-sans-pro-1.1.13.tgz#a7757542b8c301c26322acb0c8b97cc1a12cf91e"
-  integrity sha512-eCczLh0FYByjVoMxZVDfSSTI8A6qJOBJftgWBVJL63AuemQTTvMU8DEk6ud/TQhkbIwWZ3A7ll/NfS9yI0lIrQ==
-
-typeface-source-serif-pro@^1.1.13:
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/typeface-source-serif-pro/-/typeface-source-serif-pro-1.1.13.tgz#65ef53e40589fb54763abea033e394bcb412ae36"
-  integrity sha512-LfJYxVscKSpIK63sCO1OP2LzWTlFen/Lt3USPUUOzKqT53d83ZPy4dS2VV0Uac2IbgdQJQajhTH8dZUPGvcdBQ==
 
 typescript@^4.0.5:
   version "4.0.5"
