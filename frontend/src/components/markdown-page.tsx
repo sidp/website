@@ -30,12 +30,9 @@ const MarkdownPage: React.FC<MarkdownPageProps> = ({
 	children,
 	...props
 }) => {
-	const postedOn = dayjs(page.created_at).format('MMMM D, YYYY');
-	const date = (
-		<time dateTime={page.created_at} className="dt-published">
-			{postedOn}
-		</time>
-	);
+	const postedOn = dayjs(page.created_at);
+	const updatedOn = dayjs(page.updated_at);
+	const wasUpdated = !postedOn.isSame(updatedOn, 'day');
 
 	return (
 		<TextWrapper as={htmlElement} className="h-entry" {...props}>
@@ -58,7 +55,25 @@ const MarkdownPage: React.FC<MarkdownPageProps> = ({
 					/>
 				),
 			})}
-			{showDate && <PostDetails>Published on {date}</PostDetails>}
+			{showDate && (
+				<PostDetails>
+					Published on{' '}
+					<time dateTime={page.created_at} className="dt-published">
+						{postedOn.format('MMMM D, YYYY')}
+					</time>
+					.
+					{wasUpdated && (
+						<>
+							{' '}
+							Last update on{' '}
+							<time dateTime={page.created_at} className="dt-published">
+								{updatedOn.format('MMMM D, YYYY')}
+							</time>
+							.
+						</>
+					)}
+				</PostDetails>
+			)}
 		</TextWrapper>
 	);
 };

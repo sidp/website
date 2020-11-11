@@ -34,7 +34,7 @@ const PagePage: NextPage<PagePageProps> = ({ navigation, page }) => {
 				<link rel="canonical" href={absoluteUrl(`/${page.slug}`)} />
 			</Head>
 			<Header navigation={navigation} />
-			<StyledMarkdownPage page={page} role="main" />
+			<StyledMarkdownPage page={page} role="main" showDate />
 		</>
 	);
 };
