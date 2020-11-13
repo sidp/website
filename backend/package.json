@@ -11,20 +11,20 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@types/jsdom": "^16.2.4",
+    "@types/jsdom": "^16.2.5",
     "jsdom": "^16.4.0",
     "knex": "<0.20.0",
     "node-fetch": "^2.6.1",
     "sqlite3": "latest",
-    "strapi": "3.2.3",
-    "strapi-admin": "3.2.3",
-    "strapi-connector-bookshelf": "3.2.3",
-    "strapi-plugin-content-manager": "3.2.3",
-    "strapi-plugin-content-type-builder": "3.2.3",
-    "strapi-plugin-email": "3.2.3",
-    "strapi-plugin-upload": "3.2.3",
-    "strapi-plugin-users-permissions": "3.2.3",
-    "strapi-utils": "3.2.3"
+    "strapi": "3.3.2",
+    "strapi-admin": "3.3.2",
+    "strapi-connector-bookshelf": "3.3.2",
+    "strapi-plugin-content-manager": "3.3.2",
+    "strapi-plugin-content-type-builder": "3.3.2",
+    "strapi-plugin-email": "3.3.2",
+    "strapi-plugin-upload": "3.3.2",
+    "strapi-plugin-users-permissions": "3.3.2",
+    "strapi-utils": "3.3.2"
   },
   "author": {
     "name": "Peter Simonsson <peter@simonsson.com>"
