@@ -13,6 +13,7 @@ import PostsList from '../../components/posts-list';
 import MentionsList from '../../components/mentions-list';
 import Header from '../../components/header';
 import { absoluteUrl } from '../../utils/url';
+import PostLink from '../../components/post-link';
 
 type PostPageProps = {
 	navigation: Navigation;
@@ -43,7 +44,18 @@ const PostPage: NextPage<PostPageProps> = ({
 				<link rel="canonical" href={absoluteUrl(`/posts/${post.slug}`)} />
 			</Head>
 			<Header navigation={navigation} />
-			<StyledMarkdownPage page={post} role="main" showDate />
+			<StyledMarkdownPage
+				page={post}
+				role="main"
+				showDate
+				render={({ title, body }) => (
+					<>
+						{title}
+						{body}
+						{post.link && <PostLink url={post.link} />}
+					</>
+				)}
+			/>
 			{mentions && <MentionsList mentions={mentions} />}
 			<PostsList posts={posts} />
 		</>

@@ -41,3 +41,13 @@ export const srcSet = (image: Image) => {
 
 	return set.map(([_, s]) => s).join(', ');
 };
+
+export const getDomain = (url: string, fqdn = false) => {
+	const [domain] = url.replace(/https?:\/\//, '').split(/[/?#]/);
+
+	if (!fqdn) {
+		return domain.replace(/^www\./, '');
+	}
+
+	return domain;
+};
