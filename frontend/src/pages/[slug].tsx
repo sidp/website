@@ -108,7 +108,9 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const posts = await apiGet<Post[]>('posts');
+	const posts = await apiGet<Post[]>('posts', {
+		slug_ne: 'about',
+	});
 
 	return {
 		paths: posts.map((post) => ({ params: { slug: post.slug } })),
