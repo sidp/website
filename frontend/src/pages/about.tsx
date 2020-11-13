@@ -63,7 +63,7 @@ export default AboutPage;
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (ctx) => {
 	const [navigation, singlePage] = await Promise.all([
 		apiGet<Navigation>('navigation'),
-		apiGet<Page[]>('pages', {
+		apiGet<Page[]>('posts', {
 			slug: aboutPageSlug,
 			_limit: 1,
 		}),

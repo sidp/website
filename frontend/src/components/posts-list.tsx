@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Columns, { Column } from './columns';
 import { fadeIn, cubicBezierFadeIn, metaFontSize } from '../styles/variables';
 import { Post } from '../types';
-import dayjs from 'dayjs';
 
 type PostsListProps = {
 	title?: string;
@@ -24,7 +23,7 @@ const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
 							key={post.slug}
 						>
 							<div className="h-entry">
-								<Link href="/posts/[slug]" as={`/posts/${post.slug}`} passHref>
+								<Link href="/[slug]" as={`/${post.slug}`} passHref>
 									<StyledLink className="u-url">
 										<PostTitle className="p-name">{post.title}</PostTitle>
 										{post.description ? (
