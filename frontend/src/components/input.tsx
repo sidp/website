@@ -16,6 +16,10 @@ const Input = styled.input`
 	color: var(--input-color);
 	background-color: var(--input-background);
 	border-color: var(--input-border);
+
+	&::placeholder {
+		color: var(--grayed-color);
+	}
 `;
 
 export default Input;

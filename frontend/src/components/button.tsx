@@ -16,6 +16,7 @@ const Button = styled.button<ButtonProps>`
 	color: var(--button-color);
 	background-color: var(--button-background);
 	border-color: var(--button-border);
+	font-size: 0.85rem;
 
 	${(props) =>
 		!props.primary
