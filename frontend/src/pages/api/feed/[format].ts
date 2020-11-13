@@ -15,6 +15,7 @@ const feed: NextApiHandler = async (req, res) => {
 	format = Array.isArray(format) ? format[0] : format;
 
 	const posts = await apiGet<Post[]>('posts', {
+		inFeed: true,
 		_sort: 'created_at:DESC',
 		_limit: 16,
 	});

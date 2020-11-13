@@ -46,6 +46,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async (ctx) => {
 		apiGet<Navigation>('navigation'),
 		apiGet<FrontPage>('front-page'),
 		apiGet<Post[]>('posts', {
+			inFeed: true,
 			_sort: 'created_at:DESC',
 			_limit: 16,
 		}),

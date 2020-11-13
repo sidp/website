@@ -73,6 +73,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 		}),
 		apiGet<Post[]>('posts', {
 			slug_ne: ctx.params.slug,
+			inFeed: true,
 			_sort: 'created_at:DESC',
 			_limit: 16,
 		}),

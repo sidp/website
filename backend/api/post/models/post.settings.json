@@ -29,6 +29,10 @@
     "link": {
       "type": "string"
     },
+    "inFeed": {
+      "type": "boolean",
+      "default": true
+    },
     "tags": {
       "via": "posts",
       "collection": "tag",
