@@ -28,6 +28,11 @@
     },
     "link": {
       "type": "string"
+    },
+    "tags": {
+      "via": "posts",
+      "collection": "tag",
+      "dominant": true
     }
   }
 }

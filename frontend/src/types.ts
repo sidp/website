@@ -56,6 +56,7 @@ export type Post = StrapiFields & {
 	description?: string;
 	link?: string;
 	mentions?: Mention[];
+	tags?: Tag[];
 };
 
 export type Project = StrapiFields & {
@@ -88,6 +89,13 @@ export type Mention = StrapiFields & {
 	postInfo: {
 		title?: string;
 	};
+};
+
+export type Tag = StrapiFields & {
+	name: string;
+	slug: string;
+	description: string;
+	posts?: Post[];
 };
 
 export type FrontPage = StrapiFields & {
