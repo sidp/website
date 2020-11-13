@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Head from 'next/head';
-import { absoluteUrl } from '../../utils/url';
-import ProjectList from '../../components/project-list';
-import { Navigation, Project } from '../../types';
 import { GetStaticProps } from 'next';
+import { Navigation, Project } from '../../types';
+import { absoluteUrl } from '../../utils/url';
 import apiGet from '../../utils/api';
+import title from '../../utils/title';
 import Header from '../../components/header';
+import ProjectList from '../../components/project-list';
 
 type ProjectIndexProps = {
 	navigation: Navigation;
@@ -19,6 +20,7 @@ const ProjectIndex: React.FC<ProjectIndexProps> = ({
 	return (
 		<>
 			<Head>
+				<title>{title('Projects')}</title>
 				<meta name="og:image" content={absoluteUrl('/images/og-image.png')} />
 				<link rel="canonical" href={absoluteUrl('/projects')} />
 			</Head>

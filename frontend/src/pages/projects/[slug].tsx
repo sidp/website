@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import ErrorPage404 from '../404';
 import Header from '../../components/header';
 import { absoluteUrl, uploadUrl } from '../../utils/url';
+import title from '../../utils/title';
 
 type ProjectPageProps = {
 	navigation: Navigation;
@@ -41,7 +42,7 @@ const ProjectPage: React.FC<ProjectPageProps> = ({
 	return (
 		<>
 			<Head>
-				<title>{project.title}</title>
+				<title>{title(project.title)}</title>
 				{project.description && (
 					<meta name="description" content={project.description} />
 				)}

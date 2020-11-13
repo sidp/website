@@ -3,6 +3,7 @@ import Head from 'next/head';
 import React, { HTMLAttributes } from 'react';
 import { TextWrapper } from '../styles/components';
 import { Page } from '../types';
+import title from '../utils/title';
 import PostDetails from './post-details';
 
 type MarkdownPageProps = HTMLAttributes<HTMLElement> & {
@@ -37,7 +38,7 @@ const MarkdownPage: React.FC<MarkdownPageProps> = ({
 	return (
 		<TextWrapper as={htmlElement} className="h-entry" {...props}>
 			<Head>
-				<title>{page.title}</title>
+				<title>{title(page.title)}</title>
 				{page.description && (
 					<meta
 						name="description"
