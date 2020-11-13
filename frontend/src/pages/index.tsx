@@ -33,8 +33,8 @@ const IndexPage: React.FC<IndexPageProps> = ({
 			</Head>
 			<Header navigation={navigation} />
 			<Intro dangerouslySetInnerHTML={{ __html: frontPage.introduction }} />
-			<PostsList posts={posts} />
-			<ProjectList title="Projects" projects={projects} />
+			{posts && <PostsList posts={posts} />}
+			{projects && <ProjectList title="Projects" projects={projects} />}
 		</>
 	);
 };
