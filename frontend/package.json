@@ -19,7 +19,7 @@
 		"fontsource-source-serif-pro": "^3.0.10",
 		"front-matter": "^4.0.2",
 		"marked": "^1.2.3",
-		"next": "^10.0.1",
+		"next": "^11.1.3",
 		"prismjs": "^1.22.0",
 		"qs": "^6.9.4",
 		"react": "^17.0.1",
