@@ -16,7 +16,7 @@
     "knex": "<0.20.0",
     "node-fetch": "^2.6.1",
     "sqlite3": "latest",
-    "strapi": "3.3.2",
+    "strapi": "3.6.8",
     "strapi-admin": "3.3.2",
     "strapi-connector-bookshelf": "3.3.2",
     "strapi-plugin-content-manager": "3.3.2",
