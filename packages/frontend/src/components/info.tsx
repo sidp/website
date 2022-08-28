@@ -2,7 +2,9 @@ import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { metaFontFamily, metaFontSize, textColor } from '../styles/variables';
 
-type InfoProps = {};
+type InfoProps = {
+	children?: React.ReactNode;
+};
 
 const Info: React.FC<InfoProps> = ({ children }) => {
 	const [hover, setHover] = React.useState(false);
