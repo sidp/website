@@ -47,6 +47,12 @@ export default class CustomApp extends App<AppProps, {}> {
 				rel: 'me',
 			},
 			{
+				label: 'Mastodon',
+				title: 'sidp on Mastodon',
+				url: 'https://mastodon.social/@sidp',
+				rel: 'me',
+			},
+			{
 				label: 'Last.fm',
 				title: 'sidp on Last.fm',
 				url: 'http://www.last.fm/user/sidp',
