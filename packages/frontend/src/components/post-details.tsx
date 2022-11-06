@@ -2,7 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { metaFontFamily, metaFontSize } from '../styles/variables';
 
-const PostDetails: React.FC = ({ children }) => <Block>{children}</Block>;
+type PostDetailsProps = {
+	children: React.ReactNode;
+};
+
+const PostDetails: React.FC<PostDetailsProps> = ({ children }) => (
+	<Block>{children}</Block>
+);
 
 export default PostDetails;
 
