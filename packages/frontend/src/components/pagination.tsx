@@ -17,16 +17,12 @@ const Pagination: React.FC<PaginationProps> = ({
 }) => (
 	<Block>
 		{pageNo !== 1 ? (
-			<Link href={urlForPageNo(pageNo - 1)}>
-				<a>« Previous page</a>
-			</Link>
+			<Link href={urlForPageNo(pageNo - 1)}>« Previous page</Link>
 		) : (
 			<span />
 		)}
 		{pageNo !== pageCount ? (
-			<Link href={urlForPageNo(pageNo + 1)}>
-				<a>Next page »</a>
-			</Link>
+			<Link href={urlForPageNo(pageNo + 1)}>Next page »</Link>
 		) : (
 			<span />
 		)}

@@ -1,8 +1,11 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { Mention } from "../../types";
-import { apiPost } from "../../utils/api";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { Mention } from '../../types';
+import { apiPost } from '../../utils/api';
 
-export default async function webmention(req: NextApiRequest, res: NextApiResponse) {
+export default async function webmention(
+	req: NextApiRequest,
+	res: NextApiResponse,
+) {
 	if (req.method !== 'POST') {
 		res.statusCode = 405;
 		return res.end('405 Method Not Allowed');

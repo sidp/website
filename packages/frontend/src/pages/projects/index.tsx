@@ -33,7 +33,7 @@ const ProjectIndex: React.FC<ProjectIndexProps> = ({
 export default ProjectIndex;
 
 export const getStaticProps: GetStaticProps<ProjectIndexProps> = async (
-	ctx
+	ctx,
 ) => {
 	const [navigation, projects] = await Promise.all([
 		apiGet<Navigation>('navigation'),

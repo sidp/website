@@ -16,15 +16,13 @@ const Post: React.FC<PostProps> = ({
 }) => (
 	<BlogItemBlock className="h-entry">
 		<Heading>
-			<Link href="/post/[slug]" as={`/post/${slug}`}>
-				<a className="u-url p-name">{title}</a>
+			<Link href={`/post/${slug}`} className="u-url p-name">
+				{title}
 			</Link>
 		</Heading>
 		<Excerpt>
 			<span className="p-summary">{excerpt}</span>{' '}
-			<Link href="/post/[slug]" as={`/post/${slug}`}>
-				<a>Read more »</a>
-			</Link>
+			<Link href={`/post/${slug}`}>Read more »</Link>
 		</Excerpt>
 		<Time dateTime={timestamp} className="dt-published">
 			{date}

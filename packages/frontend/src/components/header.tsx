@@ -22,18 +22,12 @@ const Header: React.FC<HeaderProps> = ({ navigation }) => {
 		<HeaderBlock role="banner" animateIn={shouldAnimate}>
 			<HeaderWrapper>
 				<Title>
-					<Link href="/">
-						<a>Peter Simonsson</a>
-					</Link>
+					<Link href="/">Peter Simonsson</Link>
 				</Title>
 				<Nav>
-					{navigation.links.map((item) => (
-						<Link href={item.href} as={item.as} passHref key={item.label}>
-							<NavLink
-								selected={
-									item.href === router.pathname || item.as === router.asPath
-								}
-							>
+					{navigation.items.map((item) => (
+						<Link href={item.href} passHref key={item.label} legacyBehavior>
+							<NavLink selected={item.href === router.pathname}>
 								{item.label}
 							</NavLink>
 						</Link>

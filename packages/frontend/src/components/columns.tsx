@@ -54,6 +54,6 @@ export const Column = styled.div<ColumnProps>`
 					@media (${mediaQueryMap[key]}) {
 						grid-column-start: span ${props.span[key]};
 					}
-				`
+				`,
 			)};
 `;

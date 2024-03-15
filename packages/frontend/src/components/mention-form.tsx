@@ -26,7 +26,7 @@ const MentionForm = () => {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: `source=${encodeURIComponent(url)}&target=${encodeURIComponent(
-				target
+				target,
 			)}`,
 		});
 

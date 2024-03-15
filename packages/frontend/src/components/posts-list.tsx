@@ -23,7 +23,12 @@ const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
 							key={post.slug}
 						>
 							<div className="h-entry">
-								<Link href="/[slug]" as={`/${post.slug}`} passHref>
+								<Link
+									href="/[slug]"
+									as={`/${post.slug}`}
+									passHref
+									legacyBehavior
+								>
 									<StyledLink className="u-url">
 										<PostTitle className="p-name">{post.title}</PostTitle>
 										{post.description ? (

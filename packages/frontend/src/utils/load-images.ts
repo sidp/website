@@ -1,9 +1,12 @@
-export default function loadImages(images: string[] = [], callback = (error: boolean) => {}) {
+export default function loadImages(
+	images: string[] = [],
+	callback = (error: boolean) => {},
+) {
 	let imageElements = [];
 	let loaded = 0;
 	let successfully = 0;
 
-	const eventHandler = function(ev) {
+	const eventHandler = function (ev) {
 		if (ev.type === 'load') {
 			successfully += 1;
 		}

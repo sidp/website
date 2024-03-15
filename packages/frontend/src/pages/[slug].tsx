@@ -2,40 +2,24 @@ import * as React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import MarkdownPage from '../components/markdown-page';
-import { Mention, Navigation, Post } from '../types';
-import markdown from '../utils/markdown';
-import apiGet from '../utils/api';
-import ErrorPage404 from './404';
-import styled from 'styled-components';
-import { cubicBezierFadeIn } from '../styles/variables';
+import { PortableText } from '@portabletext/react';
+import { Navigation, Post } from '../types';
 import PostsList from '../components/posts-list';
-import MentionsList from '../components/mentions-list';
 import Header from '../components/header';
 import { absoluteUrl } from '../utils/url';
-import PostLink from '../components/post-link';
+import { client } from '../utils/sanity-client';
 
 type PostPageProps = {
 	navigation: Navigation;
-	post: Post | null;
+	post: Post;
 	posts?: Post[];
-	mentions?: Mention[];
 };
 
-const PostPage: NextPage<PostPageProps> = ({
-	navigation,
-	post,
-	posts,
-	mentions,
-}) => {
+const PostPage: NextPage<PostPageProps> = ({ navigation, post, posts }) => {
 	const router = useRouter();
 
 	if (router.isFallback) {
 		return <div>Loading...</div>;
-	}
-
-	if (!post) {
-		return <ErrorPage404 />;
 	}
 
 	return (
@@ -44,19 +28,7 @@ const PostPage: NextPage<PostPageProps> = ({
 				<link rel="canonical" href={absoluteUrl(`/posts/${post.slug}`)} />
 			</Head>
 			<Header navigation={navigation} />
-			<StyledMarkdownPage
-				page={post}
-				role="main"
-				showDate
-				render={({ title, body }) => (
-					<>
-						{title}
-						{body}
-						{post.link && <PostLink url={post.link} />}
-					</>
-				)}
-			/>
-			{mentions && <MentionsList mentions={mentions} />}
+			<PortableText value={post.body} />
 			<PostsList posts={posts} />
 		</>
 	);
@@ -65,35 +37,28 @@ const PostPage: NextPage<PostPageProps> = ({
 export default PostPage;
 
 export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
-	const [navigation, singlePost, posts] = await Promise.all([
-		apiGet<Navigation>('navigation'),
-		apiGet<Post[]>('posts', {
-			slug: ctx.params.slug,
-			_limit: 1,
-		}),
-		apiGet<Post[]>('posts', {
-			slug_ne: ctx.params.slug,
-			inFeed: true,
-			_sort: 'created_at:DESC',
-			_limit: 16,
-		}),
-	]);
+	const slug = ctx.params?.slug;
 
-	const post = singlePost && singlePost[0] ? singlePost[0] : null;
-	if (!post) {
+	if (typeof slug !== 'string') {
 		return {
-			props: { navigation, post: null },
-			revalidate: 1,
+			notFound: true,
 		};
 	}
 
-	const mentions = await apiGet<Mention[]>('mentions', {
-		target: post.id,
-		_sort: 'created_at:DESC',
-	});
+	const [navigation, post, posts] = await Promise.all([
+		client.fetch<Navigation>(`*[_type == "navigation"][0]`),
+		client.fetch<Post>(
+			`*[_type == "post" && slug.current == "${ctx.params.slug}"][0]`,
+		),
+		client.fetch<Post[]>(
+			`*[_type == "post" && slug.current != "${ctx.params.slug}"][0...16]`,
+		),
+	]);
 
-	if (typeof post.body === 'string') {
-		post.body = markdown(post.body);
+	if (!post) {
+		return {
+			notFound: true,
+		};
 	}
 
 	return {
@@ -101,23 +66,16 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 			navigation,
 			post,
 			posts,
-			mentions,
 		},
 		revalidate: 5,
 	};
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const posts = await apiGet<Post[]>('posts', {
-		slug_ne: 'about',
-	});
+	const posts = await client.fetch<Post[]>(`*[_type == "post"]`);
 
 	return {
-		paths: posts.map((post) => ({ params: { slug: post.slug } })),
+		paths: posts.map((post) => ({ params: { slug: post.slug.current } })),
 		fallback: true,
 	};
 };
-
-const StyledMarkdownPage = styled(MarkdownPage)`
-	animation: fadeIn 500ms ${cubicBezierFadeIn} both;
-`;

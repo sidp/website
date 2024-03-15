@@ -38,7 +38,7 @@ const sitemap: NextApiHandler = async (req, res) => {
 	smStream.end();
 
 	const sitemap = await streamToPromise(smStream).then((sm: any) =>
-		sm.toString()
+		sm.toString(),
 	);
 
 	res.setHeader('Content-Type', 'text/xml');

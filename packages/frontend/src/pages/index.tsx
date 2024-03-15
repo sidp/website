@@ -6,7 +6,7 @@ import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
 import PostsList from '../components/posts-list';
 import { FrontPage, Navigation, Post, Project } from '../types';
-import { apiGet } from '../utils/api';
+import { client } from '../utils/sanity-client';
 import Header from '../components/header';
 import markdown from '../utils/markdown';
 

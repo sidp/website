@@ -76,7 +76,7 @@ const boxMove = keyframes`
 const getSvg = (color: string) =>
 	`data:image/svg+xml;utf8,<svg width="19" height="9" xmlns="http://www.w3.org/2000/svg"><path d="M0 9l9.5-9L19 9z" fill="${color.replace(
 		'#',
-		'%23'
+		'%23',
 	)}"/></svg>`;
 
 const Box = styled.span`
