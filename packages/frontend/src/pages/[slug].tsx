@@ -7,7 +7,7 @@ import { Navigation, Post } from '../types';
 import PostsList from '../components/posts-list';
 import Header from '../components/header';
 import { absoluteUrl } from '../utils/url';
-import { client } from '../utils/sanity-client';
+import { fetch } from '../utils/sanity-fetch';
 
 type PostPageProps = {
 	navigation: Navigation;
@@ -46,13 +46,18 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 	}
 
 	const [navigation, post, posts] = await Promise.all([
-		client.fetch<Navigation>(`*[_type == "navigation"][0]`),
-		client.fetch<Post>(
-			`*[_type == "post" && slug.current == "${ctx.params.slug}"][0]`,
-		),
-		client.fetch<Post[]>(
-			`*[_type == "post" && slug.current != "${ctx.params.slug}"][0...16]`,
-		),
+		fetch<Navigation>({
+			draftMode: false,
+			query: `*[_type == "navigation"][0]`,
+		}),
+		fetch<Post>({
+			draftMode: false,
+			query: `*[_type == "post" && slug.current == "${ctx.params.slug}"][0]`,
+		}),
+		fetch<Post[]>({
+			draftMode: false,
+			query: `*[_type == "post" && slug.current != "${ctx.params.slug}"][0...16]`,
+		}),
 	]);
 
 	if (!post) {
@@ -72,7 +77,10 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const posts = await client.fetch<Post[]>(`*[_type == "post"]`);
+	const posts = await fetch<Post[]>({
+		draftMode: false,
+		query: `*[_type == "post"]`,
+	});
 
 	return {
 		paths: posts.map((post) => ({ params: { slug: post.slug.current } })),

@@ -1,7 +1,7 @@
 module.exports = {
 	images: {
 		deviceSizes: [320, 420, 768, 1024, 1200, 1440, 1920, 2400],
-		domains: ['localhost', 'api.simonsson.com'],
+		domains: ['localhost', 'api.simonsson.com', 'cdn.sanity.io'],
 	},
 	publicRuntimeConfig: {
 		siteUrl: process.env.APP_BASENAME,

@@ -1,12 +1,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { metaFontSize } from '../../styles/variables';
-import { Project } from '../../types';
+import { Post } from '../../types';
 import Link from 'next/link';
 import Image from 'next/image';
+import imageUrlBuilder from '@sanity/image-url';
+import { client } from '../../utils/sanity-client';
+
+const builder = imageUrlBuilder(client);
 
 type ProjectItemProps = {
-	project: Project;
+	project: Post;
 	className?: string;
 };
 
@@ -16,23 +20,19 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
 }) => {
 	return (
 		<Block className={`${className} h-entry`}>
-			<Link
-				href="/projects/[slug]"
-				as={`/projects/${project.slug}`}
-				passHref
-				legacyBehavior
-			>
-				<StyledLink className="u-url">
-					{/* <Image
-						src={image
+			<StyledLink href={`/${project.slug.current}`} className="u-url">
+				{project.image && (
+					<Image
+						src={builder.image(project.image).size(800, 600).url()}
+						alt=""
 						width="800"
 						height="600"
-						sizes="(max-width: 500px) 98vw, (max-width:800px) 50vw, 33vw"
-					/> */}
-					<Title className="p-name">{project.title}</Title>
-					<Meta>{project.client}</Meta>
-				</StyledLink>
-			</Link>
+						sizes="(max-width: 500px) 98vw, (max-width: 800px) 50vw, 33vw"
+					/>
+				)}
+				<Title className="p-name">{project.title}</Title>
+				{project.meta?.client && <Meta>{project.meta.client}</Meta>}
+			</StyledLink>
 		</Block>
 	);
 };
@@ -47,7 +47,7 @@ const Block = styled.span`
 	display: block;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
 	color: inherit;
 	display: block;
 

@@ -31,8 +31,8 @@ const MarkdownPage: React.FC<MarkdownPageProps> = ({
 	children,
 	...props
 }) => {
-	const postedOn = dayjs(page.created_at);
-	const updatedOn = dayjs(page.updated_at);
+	const postedOn = dayjs(page._createdAt);
+	const updatedOn = dayjs(page._updatedAt);
 	const wasUpdated = !postedOn.isSame(updatedOn, 'day');
 
 	return (

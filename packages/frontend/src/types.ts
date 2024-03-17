@@ -13,8 +13,6 @@ type SanityDocument<T extends string, K> = {
 	_updatedAt: string;
 } & K;
 
-type BodyField = [];
-
 export type StrapiError = {
 	statusCode: number;
 	error: string;
@@ -73,7 +71,9 @@ export type Post<T extends string = string> = SanityDocument<
 		type: T;
 		slug: SanitySlug;
 		body: PortableTextProps['value'];
+		meta?: { [index: string]: string };
 		image?: SanityImage;
+		description?: string;
 	}
 >;
 
@@ -86,5 +86,18 @@ export type Navigation = SanityDocument<
 	'navigation',
 	{
 		items: { title: string; href: string }[];
+	}
+>;
+
+export type Settings = SanityDocument<
+	'navigation',
+	{
+		websiteName: string;
+		introMessage: PortableTextProps['value'];
+		socialMedia: {
+			label: string;
+			title: string;
+			url: string;
+		}[];
 	}
 >;

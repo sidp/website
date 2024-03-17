@@ -6,7 +6,7 @@ import { structure } from './structure';
 
 const singletonActions = new Set(['publish', 'discardChanges', 'restore']);
 
-const singletonTypes = new Set(['navigation']);
+const singletonTypes = new Set(['navigation', 'settings']);
 
 export default defineConfig({
 	name: 'default',

@@ -21,8 +21,17 @@ export const structure: StructureResolver = (S) =>
 						.documentId('navigation')
 						.title('Navigation'),
 				),
+			S.listItem()
+				.title('Settings')
+				.id('settings')
+				.child(
+					S.document()
+						.schemaType('settings')
+						.documentId('settings')
+						.title('Settings'),
+				),
 			S.divider(),
-			S.documentTypeListItem('post').title('Posts').icon(FolderIcon),
+			S.documentTypeListItem('post').title('All posts').icon(FolderIcon),
 			S.listItem()
 				.title('Articles')
 				.icon(DocumentTextIcon)

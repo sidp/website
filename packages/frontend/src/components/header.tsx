@@ -11,24 +11,18 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ navigation }) => {
 	const router = useRouter();
-	const [shouldAnimate, setShouldAnimate] = React.useState(true);
-
-	React.useEffect(() => {
-		setShouldAnimate(!(window as any).__has_loaded);
-		(window as any).__has_loaded = true;
-	}, []);
 
 	return (
-		<HeaderBlock role="banner" animateIn={shouldAnimate}>
+		<HeaderBlock role="banner">
 			<HeaderWrapper>
 				<Title>
 					<Link href="/">Peter Simonsson</Link>
 				</Title>
 				<Nav>
 					{navigation.items.map((item) => (
-						<Link href={item.href} passHref key={item.label} legacyBehavior>
+						<Link href={item.href} key={item.title} legacyBehavior passHref>
 							<NavLink selected={item.href === router.pathname}>
-								{item.label}
+								{item.title}
 							</NavLink>
 						</Link>
 					))}
@@ -44,7 +38,7 @@ export default Header;
  * Styled components
  */
 
-const HeaderBlock = styled.header<{ animateIn: boolean }>`
+const HeaderBlock = styled.header<{ animateIn?: boolean }>`
 	font-family: var(--sans-serif-font-family);
 	padding-top: 1.2em;
 	padding-bottom: 1.2em;

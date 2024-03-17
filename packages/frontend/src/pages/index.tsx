@@ -5,34 +5,39 @@ import { absoluteUrl } from '../utils/url';
 import Intro from '../components/intro';
 import ProjectList from '../components/project-list';
 import PostsList from '../components/posts-list';
-import { FrontPage, Navigation, Post, Project } from '../types';
-import { client } from '../utils/sanity-client';
+import { Article, Artwork, Navigation, Project, Settings } from '../types';
 import Header from '../components/header';
-import markdown from '../utils/markdown';
+import { fetch } from '../utils/sanity-fetch';
+import { PortableText } from 'next-sanity';
 
 type IndexPageProps = {
 	navigation: Navigation;
-	frontPage: FrontPage;
-	posts: Post[];
+	settings: Settings;
+	artworks: Artwork[];
+	posts: Article[];
 	projects: Project[];
 };
 
 const IndexPage: React.FC<IndexPageProps> = ({
 	navigation,
-	frontPage,
+	settings,
+	artworks,
 	posts,
 	projects,
 }) => {
 	return (
 		<>
 			<Head>
-				<title>{frontPage.title}</title>
-				<meta name="description" content={frontPage.description} />
+				<title>{settings.websiteName}</title>
+				{/* <meta name="description" content={frontPage.description} /> */}
 				<meta name="og:image" content={absoluteUrl('/images/og-image.png')} />
 				<link rel="canonical" href={absoluteUrl('/')} />
 			</Head>
 			<Header navigation={navigation} />
-			<Intro dangerouslySetInnerHTML={{ __html: frontPage.introduction }} />
+			<Intro>
+				<PortableText value={settings.introMessage} />
+			</Intro>
+			{artworks && <ProjectList title="Artworks" projects={artworks} />}
 			{posts && <PostsList posts={posts} />}
 			{projects && <ProjectList title="Projects" projects={projects} />}
 		</>
@@ -42,28 +47,34 @@ const IndexPage: React.FC<IndexPageProps> = ({
 export default IndexPage;
 
 export const getStaticProps: GetStaticProps<IndexPageProps> = async (ctx) => {
-	const [navigation, frontPage, posts, projects] = await Promise.all([
-		apiGet<Navigation>('navigation'),
-		apiGet<FrontPage>('front-page'),
-		apiGet<Post[]>('posts', {
-			inFeed: true,
-			_sort: 'created_at:DESC',
-			_limit: 16,
+	const [navigation, settings, artworks, posts, projects] = await Promise.all([
+		fetch<Navigation>({
+			draftMode: false,
+			query: `*[_type == "navigation"][0]`,
 		}),
-		apiGet<Project[]>('projects', {
-			_sort: 'created_at:DESC',
-			_limit: 16,
+		fetch<Settings>({
+			draftMode: false,
+			query: `*[_type == "settings"][0]`,
+		}),
+		fetch<Artwork[]>({
+			draftMode: false,
+			query: `*[_type == "post" && type == "artwork"][0...16]`,
+		}),
+		fetch<Article[]>({
+			draftMode: false,
+			query: `*[_type == "post" && type == "article"][0...16]`,
+		}),
+		fetch<Project[]>({
+			draftMode: false,
+			query: `*[_type == "post" && type == "project"][0...16]`,
 		}),
 	]);
-
-	if (typeof frontPage.introduction === 'string') {
-		frontPage.introduction = markdown(frontPage.introduction);
-	}
 
 	return {
 		props: {
 			navigation,
-			frontPage,
+			settings,
+			artworks,
 			posts,
 			projects,
 		},

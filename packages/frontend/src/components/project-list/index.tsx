@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import Columns, { Column } from '../columns';
 import ProjectItem from './project-item';
 import { fadeIn, cubicBezierFadeIn } from '../../styles/variables';
-import { Project } from '../../types';
+import { Post } from '../../types';
 
 type ProjectListProps = {
 	title?: string;
-	projects: Project[];
+	projects: Post[];
 };
 
 const ProjectList: React.FC<ProjectListProps> = ({ title = '', projects }) => (
@@ -18,7 +18,7 @@ const ProjectList: React.FC<ProjectListProps> = ({ title = '', projects }) => (
 			{projects.map((project) => (
 				<AnimatedColumn
 					span={{ '<small': 12, '>small': 6, '>medium': 4 }}
-					key={project.slug}
+					key={project._id}
 				>
 					<ProjectItem project={project} />
 				</AnimatedColumn>

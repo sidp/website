@@ -32,6 +32,11 @@ export const postType = defineType({
 			type: 'image',
 		}),
 		defineField({
+			name: 'description',
+			type: 'text',
+			rows: 4,
+		}),
+		defineField({
 			name: 'meta',
 			type: 'object',
 			fields: [
@@ -46,12 +51,15 @@ export const postType = defineType({
 					type: 'string',
 					hidden: ({ document }) => document?.type !== 'project',
 				}),
+				defineField({
+					name: 'date',
+					type: 'date',
+					hidden: ({ document }) => {
+						if (typeof document?.type !== 'string') return false;
+						return !['project', 'artwork'].includes(document.type);
+					},
+				}),
 			],
-		}),
-		defineField({
-			name: 'date',
-			type: 'date',
-			validation: (rule) => rule.required(),
 		}),
 		defineField({
 			name: 'body',

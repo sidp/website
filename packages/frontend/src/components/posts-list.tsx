@@ -20,24 +20,13 @@ const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
 					return (
 						<AnimatedColumn
 							span={{ '<small': 12, '>small': 6, '>medium': 4 }}
-							key={post.slug}
+							key={post._id}
 						>
 							<div className="h-entry">
-								<Link
-									href="/[slug]"
-									as={`/${post.slug}`}
-									passHref
-									legacyBehavior
-								>
-									<StyledLink className="u-url">
-										<PostTitle className="p-name">{post.title}</PostTitle>
-										{post.description ? (
-											<Body>{post.description}</Body>
-										) : (
-											<Body dangerouslySetInnerHTML={{ __html: post.body }} />
-										)}
-									</StyledLink>
-								</Link>
+								<StyledLink className="u-url" href={`/${post.slug.current}`}>
+									<PostTitle className="p-name">{post.title}</PostTitle>
+									{post.description && <Body>{post.description}</Body>}
+								</StyledLink>
 							</div>
 						</AnimatedColumn>
 					);
@@ -81,7 +70,7 @@ const AnimatedColumn = styled(Column)`
 	${animationDelaySequence};
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
 	color: inherit;
 	display: inline-block;
 	box-shadow: none;
