@@ -72,7 +72,7 @@ export type Post<T extends string = string> = SanityDocument<
 		slug: SanitySlug;
 		body: PortableTextProps['value'];
 		meta?: { [index: string]: string };
-		image?: SanityImage;
+		image?: SanityImage & { lqip?: string };
 		description?: string;
 	}
 >;

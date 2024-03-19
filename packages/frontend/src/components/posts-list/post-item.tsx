@@ -13,29 +13,35 @@ type PostItemProps = {
 	className?: string;
 };
 
-const PostItem: React.FC<PostItemProps> = ({ post }) => (
-	<Link href={`/${post.slug.current}`} className="u-url p-name">
-		{post.image && (
-			<Image
-				src={builder.image(post.image).size(800, 600).url()}
-				alt=""
-				width="800"
-				height="600"
-				sizes="(max-width: 500px) 98vw, (max-width: 800px) 50vw, 33vw"
-			/>
-		)}
-		<Heading as="h3" className="mt-3">
-			{post.title}
-		</Heading>
-		{post.description && (
-			<>
-				<span className="p-summary">{post.description}</span> Read more »
-			</>
-		)}
-		<time dateTime={post._createdAt} className="dt-published">
-			{post._createdAt}
-		</time>
-	</Link>
-);
+const PostItem: React.FC<PostItemProps> = ({ post }) => {
+	console.log(post.image);
+	return (
+		<Link href={`/${post.slug.current}`} className="u-url p-name">
+			{post.image && (
+				<Image
+					src={builder.image(post.image).size(800, 600).url()}
+					placeholder="blur"
+					blurDataURL={post.image.lqip}
+					alt=""
+					width="800"
+					height="600"
+					sizes="(max-width: 500px) 98vw, (max-width: 800px) 50vw, 33vw"
+					className="aspect-[4/3]"
+				/>
+			)}
+			<Heading as="h3" className="mt-3">
+				{post.title}
+			</Heading>
+			{post.description && (
+				<>
+					<span className="p-summary">{post.description}</span> Read more »
+				</>
+			)}
+			<time dateTime={post._createdAt} className="dt-published">
+				{post._createdAt}
+			</time>
+		</Link>
+	);
+};
 
 export default PostItem;

@@ -15,16 +15,28 @@ const Body: FC<BodyProps> = ({ value }) => {
 		<PortableText
 			value={value}
 			components={{
+				block: {
+					normal: (props) => <p className="max-w-4xl">{props.children}</p>,
+				},
 				types: {
 					image: (props) => {
-						console.log('props', props);
+						const width = props.value.width || 1920;
+						const height = props.value.height || 1440;
+
 						return (
 							<Image
-								src={builder.image(props.value.asset).size(800, 600).url()}
+								src={builder
+									.image(props.value.asset)
+									.size(width, height)
+									.quality(80)
+									.url()}
 								alt={props.value.alt}
-								width="800"
-								height="600"
-								sizes="(max-width: 500px) 98vw, (max-width: 800px) 50vw, 33vw"
+								placeholder="blur"
+								blurDataURL={props.value.lqip}
+								width={width}
+								height={height}
+								sizes="100vw"
+								className="my-12 md:my-16"
 							/>
 						);
 					},

@@ -10,6 +10,7 @@ import Header from '../components/header';
 import { fetch } from '../utils/sanity-fetch';
 import { PortableText } from 'next-sanity';
 import Section from '../components/section';
+import { postFields } from '../utils/sanity-data';
 
 type IndexPageProps = {
 	navigation: Navigation;
@@ -59,15 +60,15 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
 		}),
 		fetch<Artwork[]>({
 			draftMode: false,
-			query: `*[_type == "post" && type == "artwork"][0...16]`,
+			query: `*[_type == "post" && type == "artwork"][0...16] { ${postFields} }`,
 		}),
 		fetch<Article[]>({
 			draftMode: false,
-			query: `*[_type == "post" && type == "article"][0...16]`,
+			query: `*[_type == "post" && type == "article"][0...16] { ${postFields} }`,
 		}),
 		fetch<Project[]>({
 			draftMode: false,
-			query: `*[_type == "post" && type == "project"][0...16]`,
+			query: `*[_type == "post" && type == "project"][0...16] { ${postFields} }`,
 		}),
 	]);
 

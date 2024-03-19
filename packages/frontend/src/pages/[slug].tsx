@@ -12,6 +12,7 @@ import Body from '../components/body';
 import Heading from '../components/heading';
 import { Container } from '../styles/components';
 import Section from '../components/section';
+import { postFields } from '../utils/sanity-data';
 
 type PostPageProps = {
 	navigation: Navigation;
@@ -29,6 +30,7 @@ const PostPage: NextPage<PostPageProps> = ({ navigation, post, posts }) => {
 	return (
 		<>
 			<Head>
+				<title>{post.title}</title>
 				<link rel="canonical" href={absoluteUrl(`/posts/${post.slug}`)} />
 			</Head>
 			<Header navigation={navigation} />
@@ -59,7 +61,19 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 		}),
 		fetch<Post>({
 			draftMode: false,
-			query: `*[_type == "post" && slug.current == "${ctx.params.slug}"][0]`,
+			query: `*[_type == "post" && slug.current == "${ctx.params.slug}"][0] {
+				...,
+				body[] {
+					...,
+					_type == "image" => {
+						asset,
+						alt,
+						"width": asset->metadata.dimensions.width,
+						"height": asset->metadata.dimensions.height,
+						"lqip": asset->metadata.lqip,
+					}
+				}
+			}`,
 		}),
 	]);
 
@@ -71,7 +85,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 
 	const posts = await fetch<Post[]>({
 		draftMode: false,
-		query: `*[_type == "post" && slug.current != "${post.slug.current}" && type == "${post.type}"][0...16]`,
+		query: `*[_type == "post" && slug.current != "${post.slug.current}" && type == "${post.type}"][0...16] { ${postFields} }`,
 	});
 
 	return {
