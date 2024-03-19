@@ -16,7 +16,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 			value={value}
 			components={{
 				block: {
-					normal: (props) => <p className="max-w-4xl">{props.children}</p>,
+					normal: (props) => <p className="max-w-4xl mb-4">{props.children}</p>,
 				},
 				types: {
 					image: (props) => {
@@ -31,6 +31,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 									.quality(80)
 									.url()}
 								alt={props.value.alt}
+								quality="85"
 								placeholder="blur"
 								blurDataURL={props.value.lqip}
 								width={width}
@@ -40,6 +41,11 @@ const Body: FC<BodyProps> = ({ value }) => {
 							/>
 						);
 					},
+					code: (props) => (
+						<pre className="pl-6 mb-4">
+							<code>{props.value.code}</code>
+						</pre>
+					),
 				},
 			}}
 		/>

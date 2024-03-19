@@ -67,6 +67,18 @@ export const postType = defineType({
 			of: [
 				{ type: 'block' },
 				{ type: 'image', fields: [{ name: 'alt', type: 'string' }] },
+				{
+					type: 'code',
+					options: {
+						language: 'typescript',
+						languageAlternativs: [
+							{ title: 'TypeScript', value: 'typescript' },
+							{ title: 'JavaScript', value: 'javascript' },
+							{ title: 'HTML', value: 'html' },
+							{ title: 'CSS', value: 'css' },
+						],
+					},
+				},
 			],
 		}),
 	],
