@@ -9,6 +9,7 @@ import { Article, Artwork, Navigation, Project, Settings } from '../types';
 import Header from '../components/header';
 import { fetch } from '../utils/sanity-fetch';
 import { PortableText } from 'next-sanity';
+import Section from '../components/section';
 
 type IndexPageProps = {
 	navigation: Navigation;
@@ -34,19 +35,19 @@ const IndexPage: React.FC<IndexPageProps> = ({
 				<link rel="canonical" href={absoluteUrl('/')} />
 			</Head>
 			<Header navigation={navigation} />
-			<Intro>
+			<Section limitWidth>
 				<PortableText value={settings.introMessage} />
-			</Intro>
-			{artworks && <ProjectList title="Artworks" projects={artworks} />}
+			</Section>
+			{artworks && <PostsList title="Computer graphics" posts={artworks} />}
 			{posts && <PostsList posts={posts} />}
-			{projects && <ProjectList title="Projects" projects={projects} />}
+			{projects && <PostsList title="Projects" posts={projects} />}
 		</>
 	);
 };
 
 export default IndexPage;
 
-export const getStaticProps: GetStaticProps<IndexPageProps> = async (ctx) => {
+export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
 	const [navigation, settings, artworks, posts, projects] = await Promise.all([
 		fetch<Navigation>({
 			draftMode: false,

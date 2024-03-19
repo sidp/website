@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import GlobalStyles from '../styles/global';
-import { Container } from '../styles/components';
 import Footer from '../components/footer';
 import { absoluteUrl } from '../utils/url';
+
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/400-italic.css';
+import '@fontsource/ibm-plex-mono/700.css';
+import '@fontsource/ibm-plex-mono/700-italic.css';
+import '../styles/globals.css';
 
 import dynamic from 'next/dynamic';
 
@@ -80,10 +84,7 @@ export default function App(
 					href="/feed/json"
 				/>
 			</Head>
-			<GlobalStyles />
-			<Container>
-				<Component {...pageProps} />
-			</Container>
+			<Component {...pageProps} />
 			<Footer title={title} email={email} links={socialMediaLinks} />
 		</>
 	);

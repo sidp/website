@@ -8,6 +8,10 @@ import PostsList from '../components/posts-list';
 import Header from '../components/header';
 import { absoluteUrl } from '../utils/url';
 import { fetch } from '../utils/sanity-fetch';
+import Body from '../components/body';
+import Heading from '../components/heading';
+import { Container } from '../styles/components';
+import Section from '../components/section';
 
 type PostPageProps = {
 	navigation: Navigation;
@@ -28,8 +32,11 @@ const PostPage: NextPage<PostPageProps> = ({ navigation, post, posts }) => {
 				<link rel="canonical" href={absoluteUrl(`/posts/${post.slug}`)} />
 			</Head>
 			<Header navigation={navigation} />
-			<PortableText value={post.body} />
-			<PostsList posts={posts} />
+			<Section>
+				<Heading as="h1">{post.title}</Heading>
+				<Body value={post.body} />
+			</Section>
+			<PostsList title="Other posts" posts={posts} />
 		</>
 	);
 };
@@ -45,7 +52,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 		};
 	}
 
-	const [navigation, post, posts] = await Promise.all([
+	const [navigation, post] = await Promise.all([
 		fetch<Navigation>({
 			draftMode: false,
 			query: `*[_type == "navigation"][0]`,
@@ -54,10 +61,6 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 			draftMode: false,
 			query: `*[_type == "post" && slug.current == "${ctx.params.slug}"][0]`,
 		}),
-		fetch<Post[]>({
-			draftMode: false,
-			query: `*[_type == "post" && slug.current != "${ctx.params.slug}"][0...16]`,
-		}),
 	]);
 
 	if (!post) {
@@ -65,6 +68,11 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 			notFound: true,
 		};
 	}
+
+	const posts = await fetch<Post[]>({
+		draftMode: false,
+		query: `*[_type == "post" && slug.current != "${post.slug.current}" && type == "${post.type}"][0...16]`,
+	});
 
 	return {
 		props: {

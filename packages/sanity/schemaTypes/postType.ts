@@ -43,7 +43,6 @@ export const postType = defineType({
 				defineField({
 					name: 'agency',
 					type: 'string',
-					validation: (rule) => rule.required(),
 					hidden: ({ document }) => document?.type !== 'project',
 				}),
 				defineField({
