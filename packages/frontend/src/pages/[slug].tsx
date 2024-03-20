@@ -2,26 +2,31 @@ import * as React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { PortableText } from '@portabletext/react';
-import { Navigation, Post } from '../types';
+import { Navigation, Post, Settings } from '../types';
 import PostsList from '../components/posts-list';
 import Header from '../components/header';
 import { absoluteUrl } from '../utils/url';
 import { fetch } from '../utils/sanity-fetch';
 import Body from '../components/body';
 import Heading from '../components/heading';
-import { Container } from '../styles/components';
 import Section from '../components/section';
 import { postFields } from '../utils/sanity-data';
 import { typeNamePlural } from '../utils/strings';
+import Footer from '../components/footer';
 
 type PostPageProps = {
 	navigation: Navigation;
+	settings: Settings;
 	post: Post;
 	posts?: Post[];
 };
 
-const PostPage: NextPage<PostPageProps> = ({ navigation, post, posts }) => {
+const PostPage: NextPage<PostPageProps> = ({
+	navigation,
+	settings,
+	post,
+	posts,
+}) => {
 	const router = useRouter();
 
 	if (router.isFallback) {
@@ -39,7 +44,13 @@ const PostPage: NextPage<PostPageProps> = ({ navigation, post, posts }) => {
 				<Heading as="h1">{post.title}</Heading>
 				<Body value={post.body} />
 			</Section>
-			<PostsList title={`More in ${typeNamePlural(post.type)}`} posts={posts} />
+			{post.type !== 'page' && (
+				<PostsList
+					title={`More in ${typeNamePlural(post.type)}`}
+					posts={posts}
+				/>
+			)}
+			<Footer links={settings.socialMedia} />
 		</>
 	);
 };
@@ -55,10 +66,14 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 		};
 	}
 
-	const [navigation, post] = await Promise.all([
+	const [navigation, settings, post] = await Promise.all([
 		fetch<Navigation>({
 			draftMode: false,
 			query: `*[_type == "navigation"][0]`,
+		}),
+		fetch<Settings>({
+			draftMode: false,
+			query: `*[_type == "settings"][0]`,
 		}),
 		fetch<Post>({
 			draftMode: false,
@@ -92,6 +107,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 	return {
 		props: {
 			navigation,
+			settings,
 			post,
 			posts,
 		},
