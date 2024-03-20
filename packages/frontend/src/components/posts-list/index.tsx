@@ -11,6 +11,10 @@ type PostsListProps = {
 };
 
 const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
+	if (posts.length === 0) {
+		return null;
+	}
+
 	return (
 		<Section>
 			{title && <Heading className="mb-6">{title}</Heading>}
