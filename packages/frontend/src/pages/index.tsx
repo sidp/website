@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import { PortableText } from 'next-sanity';
 import { absoluteUrl } from '../utils/url';
 import PostsList from '../components/posts-list';
 import { Article, Artwork, Navigation, Project, Settings } from '../types';
 import Header from '../components/header';
+import Footer from '../components/footer';
 import { fetch } from '../utils/sanity-fetch';
-import { PortableText } from 'next-sanity';
 import Section from '../components/section';
 import { postFields } from '../utils/sanity-data';
 
@@ -40,6 +41,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
 			{artworks && <PostsList title="Computer graphics" posts={artworks} />}
 			{posts && <PostsList title="Posts" posts={posts} />}
 			{projects && <PostsList title="Projects" posts={projects} />}
+			<Footer links={settings.socialMedia} />
 		</>
 	);
 };

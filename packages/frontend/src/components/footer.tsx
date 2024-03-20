@@ -4,11 +4,10 @@ import ExternalLink from './external-link';
 import cx from '../utils/cx';
 
 type FooterProps = {
-	email: string;
 	links: { url: string; label: string; title?: string; rel?: string }[];
 };
 
-const Footer: React.FC<FooterProps> = ({ email, links = [] }) => {
+const Footer: React.FC<FooterProps> = ({ links = [] }) => {
 	const socialMediaLinks = links.map((link) => (
 		<ExternalLink
 			href={link.url}
@@ -22,6 +21,7 @@ const Footer: React.FC<FooterProps> = ({ email, links = [] }) => {
 	));
 
 	const flexClassNames = 'flex justify-between flex-wrap gap-x-5 gap-y-3';
+	const email = 'peter@simonsson.com';
 
 	return (
 		<footer

@@ -1,8 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import styled, { css } from 'styled-components';
-import { linkBoxShadow, fadeIn, cubicBezierFadeIn } from '../styles/variables';
 import { Navigation } from '../types';
 import cx from '../utils/cx';
 
