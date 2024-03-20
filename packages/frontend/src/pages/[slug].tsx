@@ -101,7 +101,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 
 	const posts = await fetch<Post[]>({
 		draftMode: false,
-		query: `*[_type == "post" && slug.current != "${post.slug.current}" && type == "${post.type}"][0...16] { ${postFields} }`,
+		query: `*[_type == "post" && slug.current != "${post.slug.current}" && type == "${post.type}"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 	});
 
 	return {

@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
 		}),
 		fetch<Project[]>({
 			draftMode: false,
-			query: `*[_type == "post" && type == "project"] { ${postFields} }`,
+			query: `*[_type == "post" && type == "project"] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 		}),
 	]);
 

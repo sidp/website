@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
 		}),
 		fetch<Artwork[]>({
 			draftMode: false,
-			query: `*[_type == "post" && type == "artwork"] { ${postFields} }`,
+			query: `*[_type == "post" && type == "artwork"] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 		}),
 	]);
 

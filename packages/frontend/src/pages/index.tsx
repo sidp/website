@@ -60,15 +60,15 @@ export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
 		}),
 		fetch<Artwork[]>({
 			draftMode: false,
-			query: `*[_type == "post" && type == "artwork"][0...16] { ${postFields} }`,
+			query: `*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 		}),
 		fetch<Article[]>({
 			draftMode: false,
-			query: `*[_type == "post" && type == "article"][0...16] { ${postFields} }`,
+			query: `*[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 		}),
 		fetch<Project[]>({
 			draftMode: false,
-			query: `*[_type == "post" && type == "project"][0...16] { ${postFields} }`,
+			query: `*[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 		}),
 	]);
 
