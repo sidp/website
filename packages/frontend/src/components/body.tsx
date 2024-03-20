@@ -30,8 +30,8 @@ const Body: FC<BodyProps> = ({ value }) => {
 				},
 				types: {
 					image: (props) => {
-						const width = props.value.width || 1920;
-						const height = props.value.height || 1440;
+						const width = props.value.width || 3200;
+						const height = props.value.height || 2400;
 
 						return (
 							<Image

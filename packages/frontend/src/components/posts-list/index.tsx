@@ -15,7 +15,9 @@ const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
 		<Section>
 			{title && <Heading className="mb-6">{title}</Heading>}
 
-			<Columns>
+			<Columns
+				maxColumns={posts.some((post) => post.type === 'project') ? 3 : 2}
+			>
 				{posts.map((post) => {
 					return <PostItem key={post._id} post={post} />;
 				})}

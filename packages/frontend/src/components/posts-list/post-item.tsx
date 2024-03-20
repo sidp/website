@@ -18,13 +18,16 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
 		<Link href={`/${post.slug.current}`} className="flex flex-col gap-3">
 			{post.image && (
 				<Image
-					src={builder.image(post.image).size(800, 600).url()}
+					src={builder.image(post.image).size(3200, 2400).url()}
 					placeholder="blur"
 					blurDataURL={post.image.lqip}
+					quality={90}
 					alt=""
-					width="800"
-					height="600"
-					sizes="(max-width: 500px) 98vw, (max-width: 800px) 50vw, 33vw"
+					width="3200"
+					height="2400"
+					sizes={`(max-width: 1024px) 100vw, ${
+						post.type === 'project' ? '33vw' : '50vw'
+					}`}
 					className="aspect-[4/3]"
 				/>
 			)}
