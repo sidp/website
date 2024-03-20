@@ -9,6 +9,7 @@ module.exports = {
 			black: 'black',
 			white: '#eee',
 			blue: '#1300ED',
+			hover: '#06004E',
 		},
 		extend: {},
 	},
