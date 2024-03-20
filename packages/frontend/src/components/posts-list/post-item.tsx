@@ -15,7 +15,7 @@ type PostItemProps = {
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
 	return (
-		<Link href={`/${post.slug.current}`} className="u-url p-name">
+		<Link href={`/${post.slug.current}`} className="flex flex-col gap-3">
 			{post.image && (
 				<Image
 					src={builder.image(post.image).size(800, 600).url()}
@@ -28,21 +28,13 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
 					className="aspect-[4/3]"
 				/>
 			)}
-			<Heading as="h3" className="mt-3">
-				{post.title}
-			</Heading>
-			{post.description && (
-				<>
-					<span className="p-summary">{post.description}</span>
-				</>
-			)}
-			{post.type === 'project' && post.meta.client && <>{post.meta.client}</>}
-			{post.type === 'article' && <>Read more »</>}
-			{post.type === 'article' && (
-				<time dateTime={post._createdAt} className="dt-published">
-					{post._createdAt}
-				</time>
-			)}
+			<div>
+				<Heading as="h3" className="underline underline-offset-4">
+					{post.title}
+				</Heading>
+				{post.description && <p>{post.description}</p>}
+				{post.type === 'project' && post.meta.client && <>{post.meta.client}</>}
+			</div>
 		</Link>
 	);
 };

@@ -2,8 +2,6 @@ import * as React from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { absoluteUrl } from '../utils/url';
-import Intro from '../components/intro';
-import ProjectList from '../components/project-list';
 import PostsList from '../components/posts-list';
 import { Article, Artwork, Navigation, Project, Settings } from '../types';
 import Header from '../components/header';
@@ -40,7 +38,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
 				<PortableText value={settings.introMessage} />
 			</Section>
 			{artworks && <PostsList title="Computer graphics" posts={artworks} />}
-			{posts && <PostsList posts={posts} />}
+			{posts && <PostsList title="Posts" posts={posts} />}
 			{projects && <PostsList title="Projects" posts={projects} />}
 		</>
 	);
