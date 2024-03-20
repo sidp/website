@@ -16,7 +16,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 			value={value}
 			components={{
 				block: {
-					normal: (props) => <p className="max-w-4xl mb-4">{props.children}</p>,
+					normal: (props) => <p className="max-w-3xl mb-4">{props.children}</p>,
 				},
 				types: {
 					image: (props) => {

@@ -13,6 +13,7 @@ import Heading from '../components/heading';
 import { Container } from '../styles/components';
 import Section from '../components/section';
 import { postFields } from '../utils/sanity-data';
+import { typeNamePlural } from '../utils/strings';
 
 type PostPageProps = {
 	navigation: Navigation;
@@ -38,7 +39,7 @@ const PostPage: NextPage<PostPageProps> = ({ navigation, post, posts }) => {
 				<Heading as="h1">{post.title}</Heading>
 				<Body value={post.body} />
 			</Section>
-			<PostsList title="Other posts" posts={posts} />
+			<PostsList title={`More in ${typeNamePlural(post.type)}`} posts={posts} />
 		</>
 	);
 };

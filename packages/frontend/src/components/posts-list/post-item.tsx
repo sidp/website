@@ -14,7 +14,6 @@ type PostItemProps = {
 };
 
 const PostItem: React.FC<PostItemProps> = ({ post }) => {
-	console.log(post.image);
 	return (
 		<Link href={`/${post.slug.current}`} className="u-url p-name">
 			{post.image && (
@@ -34,12 +33,16 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
 			</Heading>
 			{post.description && (
 				<>
-					<span className="p-summary">{post.description}</span> Read more »
+					<span className="p-summary">{post.description}</span>
 				</>
 			)}
-			<time dateTime={post._createdAt} className="dt-published">
-				{post._createdAt}
-			</time>
+			{post.type === 'project' && post.meta.client && <>{post.meta.client}</>}
+			{post.type === 'article' && <>Read more »</>}
+			{post.type === 'article' && (
+				<time dateTime={post._createdAt} className="dt-published">
+					{post._createdAt}
+				</time>
+			)}
 		</Link>
 	);
 };

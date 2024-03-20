@@ -13,7 +13,7 @@ type PostsListProps = {
 const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
 	return (
 		<Section>
-			{title && <Heading className="mb-3">{title}</Heading>}
+			{title && <Heading className="mb-6">{title}</Heading>}
 
 			<Columns>
 				{posts.map((post) => {
