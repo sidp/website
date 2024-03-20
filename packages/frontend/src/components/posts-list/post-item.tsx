@@ -18,7 +18,7 @@ const PostItem: React.FC<PostItemProps> = ({ post }) => {
 		<Link href={`/${post.slug.current}`} className="flex flex-col gap-3">
 			{post.image && (
 				<Image
-					src={builder.image(post.image).size(3200, 2400).url()}
+					src={builder.image(post.image).size(3200, 2400).quality(90).url()}
 					placeholder="blur"
 					blurDataURL={post.image.lqip}
 					quality={90}

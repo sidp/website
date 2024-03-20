@@ -38,7 +38,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 								src={builder
 									.image(props.value.asset)
 									.size(width, height)
-									.quality(80)
+									.quality(90)
 									.url()}
 								alt={props.value.alt}
 								quality="85"
