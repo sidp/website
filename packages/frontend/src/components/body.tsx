@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import { PortableText, PortableTextProps } from 'next-sanity';
 import Image from 'next/image';
-import { FC } from 'react';
+import Prism from 'prismjs';
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from '../utils/sanity-client';
 
@@ -51,11 +52,27 @@ const Body: FC<BodyProps> = ({ value }) => {
 							/>
 						);
 					},
-					code: (props) => (
-						<pre className="pl-6 mb-4">
-							<code>{props.value.code}</code>
-						</pre>
-					),
+					code: (props) => {
+						let code = props.value.code;
+						const language = props.value.language;
+
+						if (language in Prism.languages) {
+							code = Prism.highlight(
+								props.value.code,
+								Prism.languages[language],
+								language,
+							);
+						}
+
+						return (
+							<pre className="px-2 mb-4 border-l border-gray">
+								<code
+									className={`language-${language}`}
+									dangerouslySetInnerHTML={{ __html: code }}
+								/>
+							</pre>
+						);
+					},
 				},
 			}}
 		/>

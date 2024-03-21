@@ -7,9 +7,10 @@ module.exports = {
 		},
 		colors: {
 			black: 'black',
+			gray: '#222',
 			white: '#eee',
 			blue: '#1300ED',
-			hover: '#06004E',
+			hover: '#100B4C',
 		},
 		extend: {},
 	},
