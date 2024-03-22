@@ -1685,10 +1685,15 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.1.tgz#16308cea045f0fc777b6ff20a9f25474dd8293d2"
   integrity sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==
 
-"@fontsource/ibm-plex-mono@^5.0.12":
-  version "5.0.12"
-  resolved "https://registry.yarnpkg.com/@fontsource/ibm-plex-mono/-/ibm-plex-mono-5.0.12.tgz#6f9cbea8142a2cf05df178720aa2b561d898a4d3"
-  integrity sha512-RamYYYUQk7FX/yVbQqGxyMR+AfX5hfCZsLo5pr5BBUBNf2i3N4AjJ4AWfieqLx1Mdwt2ukzXYojlf9J0G/gaZQ==
+"@fontsource/ia-writer-mono@^5.0.7":
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/@fontsource/ia-writer-mono/-/ia-writer-mono-5.0.7.tgz#964cb5498aaf002d688b803bafd285e91c4e8247"
+  integrity sha512-dfOitIIZDlvXeeJHl7cKtWP9/nZ1Zj+9MQ/MPlcnPn7Yt/WRWHNK5rA1w5Wnyx4QZ+vDvOnznbj1agLH4kQA4w==
+
+"@fontsource/ia-writer-quattro@^5.0.7":
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/@fontsource/ia-writer-quattro/-/ia-writer-quattro-5.0.7.tgz#8f2da993cad8d95342bd5b65d9ddfc52828fdf2a"
+  integrity sha512-o8O9dUKcAKpwlKF2mk0sfuneu0NRN6AYGIXdSPNv6iIIJ6E2ne8MchwIIY0uR6ER4m/mseLtq+IosXH86/J3zw==
 
 "@humanwhocodes/config-array@^0.11.14":
   version "0.11.14"

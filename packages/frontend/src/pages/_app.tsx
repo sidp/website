@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import Footer from '../components/footer';
 import { absoluteUrl } from '../utils/url';
 
-import '@fontsource/ibm-plex-mono/400.css';
-import '@fontsource/ibm-plex-mono/400-italic.css';
-import '@fontsource/ibm-plex-mono/700.css';
-import '@fontsource/ibm-plex-mono/700-italic.css';
+import '@fontsource/ia-writer-quattro/400.css';
+import '@fontsource/ia-writer-quattro/400-italic.css';
+import '@fontsource/ia-writer-quattro/700.css';
+import '@fontsource/ia-writer-quattro/700-italic.css';
+import '@fontsource/ia-writer-mono/400.css';
+import '@fontsource/ia-writer-mono/400-italic.css';
+
 import '../styles/globals.css';
 
 import dynamic from 'next/dynamic';
@@ -48,7 +50,7 @@ export default function App(
 	);
 
 	return draftMode ? (
-		<PreviewProvider token={token}>content</PreviewProvider>
+		<PreviewProvider token={token}>{content}</PreviewProvider>
 	) : (
 		content
 	);

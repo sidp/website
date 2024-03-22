@@ -11,7 +11,7 @@ export default function Document() {
 					src="https://st.simonsson.com/js/index.js"
 				></script>
 			</Head>
-			<body className="font-mono leading-relaxed text-sm bg-black text-white antialiased">
+			<body className="font-sans leading-relaxed text-sm bg-black text-white antialiased">
 				<Main />
 				<NextScript />
 			</body>

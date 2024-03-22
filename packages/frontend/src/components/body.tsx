@@ -65,7 +65,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 						}
 
 						return (
-							<pre className="px-2 mb-4 border-l border-gray">
+							<pre className="font-mono px-2 mb-4 border-l border-gray">
 								<code
 									className={`language-${language}`}
 									dangerouslySetInnerHTML={{ __html: code }}

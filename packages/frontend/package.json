@@ -10,7 +10,8 @@
 		"start": "next start --port $PORT"
 	},
 	"dependencies": {
-		"@fontsource/ibm-plex-mono": "^5.0.12",
+		"@fontsource/ia-writer-mono": "^5.0.7",
+		"@fontsource/ia-writer-quattro": "^5.0.7",
 		"@portabletext/react": "^3.0.11",
 		"@sanity/client": "^6.15.5",
 		"@sanity/image-url": "^1.0.2",
