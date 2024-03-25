@@ -16,6 +16,9 @@ import Footer from '../components/footer';
 import dayjs from 'dayjs';
 import Meta from '../components/meta';
 import title from '../utils/title';
+import imageUrlBuilder from '@sanity/image-url';
+import { client } from '../utils/sanity-client';
+const builder = imageUrlBuilder(client);
 
 type PostPageProps = {
 	navigation: Navigation;
@@ -36,11 +39,16 @@ const PostPage: NextPage<PostPageProps> = ({
 		return <div>Loading...</div>;
 	}
 
+	const ogImage = post.image
+		? builder.image(post.image).size(2400, 1260).quality(80).url()
+		: '/images/og-image.png';
+
 	return (
 		<>
 			<Head>
 				<title>{title(post.title, settings.websiteName)}</title>
 				<link rel="canonical" href={absoluteUrl(`/${post.slug.current}`)} />
+				<meta property="og:image" content={absoluteUrl(ogImage)} />
 			</Head>
 			<Header navigation={navigation} />
 			<Section>
@@ -91,7 +99,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 		fetch<Post>({
 			draftMode: false,
 			query: `*[_type == "post" && slug.current == "${ctx.params.slug}"][0] {
-				...,
+				${postFields},
 				body[] {
 					...,
 					_type == "image" => {
