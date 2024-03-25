@@ -3,7 +3,6 @@ import { NextApiHandler } from 'next';
 import { absoluteUrl } from '../../../utils/url';
 import apiGet from '../../../utils/api';
 import { Post } from '../../../types';
-import markdown from '../../../utils/markdown';
 
 export const feedLinks = {
 	json: absoluteUrl(`/feed/json`),

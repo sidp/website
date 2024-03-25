@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react';
-import styled from 'styled-components';
 
 const getUrlForPage = (pageNo) => `/${pageNo}`;
 
@@ -15,7 +14,7 @@ const Pagination: React.FC<PaginationProps> = ({
 	pageCount,
 	urlForPageNo = getUrlForPage,
 }) => (
-	<Block>
+	<p>
 		{pageNo !== 1 ? (
 			<Link href={urlForPageNo(pageNo - 1)}>« Previous page</Link>
 		) : (
@@ -26,16 +25,7 @@ const Pagination: React.FC<PaginationProps> = ({
 		) : (
 			<span />
 		)}
-	</Block>
+	</p>
 );
 
 export default Pagination;
-
-const Block = styled.p`
-	border-top: 1px solid var(--accent-color);
-	padding-top: 1em;
-
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-`;

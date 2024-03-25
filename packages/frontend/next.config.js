@@ -13,10 +13,6 @@ module.exports = {
 	async rewrites() {
 		return [
 			{
-				source: '/webmention',
-				destination: '/api/webmention',
-			},
-			{
 				source: '/sitemap.xml',
 				destination: '/api/sitemap',
 			},
