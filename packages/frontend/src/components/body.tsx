@@ -6,6 +6,8 @@ import imageUrlBuilder from '@sanity/image-url';
 import { client } from '../utils/sanity-client';
 import VideoEmbed from './video-embed';
 import cx from '../utils/cx';
+import { isExternal } from '../utils/url';
+import ExternalLink from './external-link';
 
 const builder = imageUrlBuilder(client);
 
@@ -38,6 +40,17 @@ const Body: FC<BodyProps> = ({ value }) => {
 							{props.children}
 						</h3>
 					),
+				},
+				marks: {
+					link: ({ value, children }) => {
+						const { href } = value;
+						const external = isExternal(href);
+						return external ? (
+							<ExternalLink href={href}>{children}</ExternalLink>
+						) : (
+							<a href={href}>{children}</a>
+						);
+					},
 				},
 				list: {
 					bullet: (props) => (

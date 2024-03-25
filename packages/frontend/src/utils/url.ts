@@ -18,3 +18,10 @@ export const getDomain = (url: string, fqdn = false) => {
 
 	return domain;
 };
+
+export const isExternal = (url: string): boolean => {
+	return (
+		url.match(/^https?:\/\//) !== null &&
+		!url.startsWith(publicRuntimeConfig.siteUrl)
+	);
+};
