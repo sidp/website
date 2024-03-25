@@ -13,6 +13,8 @@ import Section from '../components/section';
 import { postFields } from '../utils/sanity-data';
 import { typeNamePlural } from '../utils/strings';
 import Footer from '../components/footer';
+import dayjs from 'dayjs';
+import Meta from '../components/meta';
 
 type PostPageProps = {
 	navigation: Navigation;
@@ -41,7 +43,16 @@ const PostPage: NextPage<PostPageProps> = ({
 			</Head>
 			<Header navigation={navigation} />
 			<Section>
-				<Heading as="h1">{post.title}</Heading>
+				<header className="mb-4">
+					<Heading as="h1">{post.title}</Heading>
+					<Meta
+						agency={post.meta?.agency}
+						client={post.meta?.client}
+						year={
+							post.meta?.date ? dayjs(post.meta.date).format('YYYY') : undefined
+						}
+					/>
+				</header>
 				<Body value={post.body} />
 			</Section>
 			{post.type !== 'page' && (
