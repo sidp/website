@@ -23,6 +23,10 @@ module.exports = {
 				source: '/feed/:format',
 				destination: '/api/feed/:format',
 			},
+			{
+				source: '/js/script.js',
+				destination: 'https://plausible.io/js/script.js',
+			},
 		];
 	},
 	async redirects() {
