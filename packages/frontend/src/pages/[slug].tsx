@@ -59,6 +59,7 @@ const PostPage: NextPage<PostPageProps> = ({
 				<PostsList
 					title={`More in ${typeNamePlural(post.type)}`}
 					posts={posts}
+					className="border-t border-dotted border-current pt-6"
 				/>
 			)}
 			<Footer links={settings.socialMedia} />

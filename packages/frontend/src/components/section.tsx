@@ -15,7 +15,7 @@ const Section: FC<SectionProps> = ({
 	return (
 		<section
 			className={cx(
-				'mx-4 my-12 md:my-16',
+				'px-4 my-12 md:my-16',
 				limitWidth && 'max-w-3xl',
 				className,
 			)}

@@ -8,15 +8,20 @@ import Section from '../section';
 type PostsListProps = {
 	title?: string;
 	posts: Post[];
+	className?: string;
 };
 
-const PostsList: React.FC<PostsListProps> = ({ title = '', posts }) => {
+const PostsList: React.FC<PostsListProps> = ({
+	title = '',
+	posts,
+	className,
+}) => {
 	if (posts.length === 0) {
 		return null;
 	}
 
 	return (
-		<Section>
+		<Section className={className}>
 			{title && <Heading className="mb-6">{title}</Heading>}
 
 			<Columns
