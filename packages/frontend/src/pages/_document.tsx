@@ -38,12 +38,7 @@ export default class CustomDocument extends Document {
 		return (
 			<Html lang="en">
 				<Head>
-					<script
-						async
-						defer
-						data-domain="simonsson.com"
-						src="https://st.simonsson.com/js/index.js"
-					></script>
+					<script defer data-domain="simonsson.com" src="/js/script.js" />
 				</Head>
 				<body>
 					<Main />
