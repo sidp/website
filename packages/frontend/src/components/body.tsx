@@ -70,7 +70,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 								width={width}
 								height={height}
 								sizes="100vw"
-								className={!props.value.caption && className}
+								className={!props.value.caption ? className : undefined}
 							/>
 						);
 
