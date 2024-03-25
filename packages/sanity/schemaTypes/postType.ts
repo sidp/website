@@ -91,6 +91,10 @@ export const postType = defineType({
 						],
 					},
 				},
+				{
+					name: 'table',
+					type: 'table',
+				},
 			],
 		}),
 	],

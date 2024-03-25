@@ -4,6 +4,7 @@ import { visionTool } from '@sanity/vision';
 import { schemaTypes } from './schemaTypes';
 import { structure } from './structure';
 import { codeInput } from '@sanity/code-input';
+import { table } from '@sanity/table';
 
 const singletonActions = new Set(['publish', 'discardChanges', 'restore']);
 
@@ -16,7 +17,7 @@ export default defineConfig({
 	projectId: 'hxcrb1u6',
 	dataset: 'production',
 
-	plugins: [structureTool({ structure }), visionTool(), codeInput()],
+	plugins: [structureTool({ structure }), visionTool(), codeInput(), table()],
 
 	schema: {
 		types: schemaTypes,

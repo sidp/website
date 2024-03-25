@@ -113,6 +113,24 @@ const Body: FC<BodyProps> = ({ value }) => {
 							</pre>
 						);
 					},
+					table: (props) => {
+						const { rows } = props.value;
+						return (
+							<table className={cx(centerClassName, 'w-full mt-4 mb-6')}>
+								<tbody>
+									{rows.map((row, i) => (
+										<tr key={i} className="border-b border-gray">
+											{row.cells.map((cell, j) => (
+												<td key={j} className="pr-4 py-2">
+													{cell}
+												</td>
+											))}
+										</tr>
+									))}
+								</tbody>
+							</table>
+						);
+					},
 				},
 			}}
 		/>
