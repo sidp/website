@@ -1,4 +1,4 @@
-import { PortableTextProps } from '@portabletext/react';
+import { PortableTextBlock, PortableTextProps } from '@portabletext/react';
 
 type SanitySlug = {
 	current: string;
@@ -70,7 +70,7 @@ export type Post<T extends string = string> = SanityDocument<
 		title: string;
 		type: T;
 		slug: SanitySlug;
-		body: PortableTextProps['value'];
+		body: PortableTextBlock[];
 		meta?: { [index: string]: string };
 		image?: SanityImage & { lqip?: string };
 		description?: string;
