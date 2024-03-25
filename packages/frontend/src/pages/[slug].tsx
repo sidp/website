@@ -15,6 +15,7 @@ import { typeNamePlural } from '../utils/strings';
 import Footer from '../components/footer';
 import dayjs from 'dayjs';
 import Meta from '../components/meta';
+import title from '../utils/title';
 
 type PostPageProps = {
 	navigation: Navigation;
@@ -38,7 +39,7 @@ const PostPage: NextPage<PostPageProps> = ({
 	return (
 		<>
 			<Head>
-				<title>{post.title}</title>
+				<title>{title(post.title, settings.websiteName)}</title>
 				<link rel="canonical" href={absoluteUrl(`/posts/${post.slug}`)} />
 			</Head>
 			<Header navigation={navigation} />
