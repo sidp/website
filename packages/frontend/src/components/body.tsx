@@ -5,6 +5,7 @@ import Prism from 'prismjs';
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from '../utils/sanity-client';
 import VideoEmbed from './video-embed';
+import cx from '../utils/cx';
 
 const builder = imageUrlBuilder(client);
 
@@ -34,8 +35,9 @@ const Body: FC<BodyProps> = ({ value }) => {
 					image: (props) => {
 						const width = props.value.width || 3200;
 						const height = props.value.height || 2400;
+						const className = 'my-12 md:my-16';
 
-						return (
+						const image = (
 							<Image
 								src={builder
 									.image(props.value.asset)
@@ -49,9 +51,22 @@ const Body: FC<BodyProps> = ({ value }) => {
 								width={width}
 								height={height}
 								sizes="100vw"
-								className="my-12 md:my-16"
+								className={!props.value.caption && className}
 							/>
 						);
+
+						if (props.value.caption) {
+							return (
+								<figure className={className}>
+									{image}
+									<figcaption className="mt-2 text-light-gray">
+										{props.value.caption}
+									</figcaption>
+								</figure>
+							);
+						}
+
+						return image;
 					},
 					videoEmbed: (props) => {
 						return (
