@@ -40,7 +40,7 @@ const PostPage: NextPage<PostPageProps> = ({
 		<>
 			<Head>
 				<title>{title(post.title, settings.websiteName)}</title>
-				<link rel="canonical" href={absoluteUrl(`/posts/${post.slug}`)} />
+				<link rel="canonical" href={absoluteUrl(`/${post.slug.current}`)} />
 			</Head>
 			<Header navigation={navigation} />
 			<Section>

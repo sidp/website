@@ -10,6 +10,7 @@ import Footer from '../components/footer';
 import { fetch } from '../utils/sanity-fetch';
 import Section from '../components/section';
 import { postFields } from '../utils/sanity-data';
+import title from '../utils/title';
 
 type IndexPageProps = {
 	navigation: Navigation;
@@ -25,7 +26,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
 	return (
 		<>
 			<Head>
-				<title>Projects</title>
+				<title>{title('Projects', settings.websiteName)}</title>
 				<meta name="og:image" content={absoluteUrl('/images/og-image.png')} />
 				<link rel="canonical" href={absoluteUrl('/projects')} />
 			</Head>
