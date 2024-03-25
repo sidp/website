@@ -5,7 +5,7 @@ type ColumnsProps = {
 	children: ReactNode;
 };
 
-export const Columns: FC<ColumnsProps> = ({ maxColumns = 2, children }) => (
+const Columns: FC<ColumnsProps> = ({ maxColumns = 2, children }) => (
 	<div
 		className={`grid ${
 			maxColumns === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3'
