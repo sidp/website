@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('./prism-styles.css');
+
+:is(p, li) a {
+	text-decoration: underline;
+	text-underline-offset: 4px;
+}

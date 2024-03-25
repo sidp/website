@@ -1,4 +1,8 @@
-const naturalJoin = (parts: (string|JSX.Element)[], endSeparator = 'and', separator = ','): (string|JSX.Element)[] =>
+const naturalJoin = (
+	parts: (string | JSX.Element)[],
+	endSeparator = 'and',
+	separator = ',',
+): (string | JSX.Element)[] =>
 	parts.reduce((prev, part, i) => {
 		let sep = `${separator} `;
 

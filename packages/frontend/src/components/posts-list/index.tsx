@@ -1,16 +1,38 @@
-import React from 'react';
-import Post from './post';
+import * as React from 'react';
+import Columns from '../columns';
+import { Post } from '../../types';
+import PostItem from './post-item';
+import Heading from '../heading';
+import Section from '../section';
 
-type PostsList = {
-	posts: any[];
+type PostsListProps = {
+	title?: string;
+	posts: Post[];
+	className?: string;
 };
 
-const PostsList = ({ posts }) => (
-	<>
-		{posts.map((post) => (
-			<Post post={post} key={post.fields.slug} className="h-feed" />
-		))}
-	</>
-);
+const PostsList: React.FC<PostsListProps> = ({
+	title = '',
+	posts,
+	className,
+}) => {
+	if (posts.length === 0) {
+		return null;
+	}
+
+	return (
+		<Section className={className}>
+			{title && <Heading className="mb-6">{title}</Heading>}
+
+			<Columns
+				maxColumns={posts.some((post) => post.type === 'project') ? 3 : 2}
+			>
+				{posts.map((post) => {
+					return <PostItem key={post._id} post={post} />;
+				})}
+			</Columns>
+		</Section>
+	);
+};
 
 export default PostsList;

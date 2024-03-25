@@ -2,31 +2,36 @@ import * as React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import MarkdownPage from '../components/markdown-page';
-import { Mention, Navigation, Post } from '../types';
-import markdown from '../utils/markdown';
-import apiGet from '../utils/api';
-import ErrorPage404 from './404';
-import styled from 'styled-components';
-import { cubicBezierFadeIn } from '../styles/variables';
+import { Navigation, Post, Settings } from '../types';
 import PostsList from '../components/posts-list';
-import MentionsList from '../components/mentions-list';
 import Header from '../components/header';
 import { absoluteUrl } from '../utils/url';
-import PostLink from '../components/post-link';
+import { fetch } from '../utils/sanity-fetch';
+import Body from '../components/body';
+import Heading from '../components/heading';
+import Section from '../components/section';
+import { postFields } from '../utils/sanity-data';
+import { typeNamePlural } from '../utils/strings';
+import Footer from '../components/footer';
+import dayjs from 'dayjs';
+import Meta from '../components/meta';
+import title from '../utils/title';
+import imageUrlBuilder from '@sanity/image-url';
+import { client } from '../utils/sanity-client';
+const builder = imageUrlBuilder(client);
 
 type PostPageProps = {
 	navigation: Navigation;
-	post: Post | null;
+	settings: Settings;
+	post: Post;
 	posts?: Post[];
-	mentions?: Mention[];
 };
 
 const PostPage: NextPage<PostPageProps> = ({
 	navigation,
+	settings,
 	post,
 	posts,
-	mentions,
 }) => {
 	const router = useRouter();
 
@@ -34,30 +39,39 @@ const PostPage: NextPage<PostPageProps> = ({
 		return <div>Loading...</div>;
 	}
 
-	if (!post) {
-		return <ErrorPage404 />;
-	}
+	const ogImage = post.image
+		? builder.image(post.image).size(2400, 1260).quality(80).url()
+		: '/images/og-image.png';
 
 	return (
 		<>
 			<Head>
-				<link rel="canonical" href={absoluteUrl(`/posts/${post.slug}`)} />
+				<title>{title(post.title, settings.websiteName)}</title>
+				<link rel="canonical" href={absoluteUrl(`/${post.slug.current}`)} />
+				<meta property="og:image" content={absoluteUrl(ogImage)} />
 			</Head>
 			<Header navigation={navigation} />
-			<StyledMarkdownPage
-				page={post}
-				role="main"
-				showDate
-				render={({ title, body }) => (
-					<>
-						{title}
-						{body}
-						{post.link && <PostLink url={post.link} />}
-					</>
-				)}
-			/>
-			{mentions && <MentionsList mentions={mentions} />}
-			<PostsList posts={posts} />
+			<Section>
+				<header className="mb-4 mx-auto max-w-3xl">
+					<Heading as="h1">{post.title}</Heading>
+					<Meta
+						agency={post.meta?.agency}
+						client={post.meta?.client}
+						year={
+							post.meta?.date ? dayjs(post.meta.date).format('YYYY') : undefined
+						}
+					/>
+				</header>
+				<Body value={post.body} />
+			</Section>
+			{post.type !== 'page' && (
+				<PostsList
+					title={`More in ${typeNamePlural(post.type)}`}
+					posts={posts}
+					className="border-t border-dotted border-current pt-6"
+				/>
+			)}
+			<Footer links={settings.socialMedia} />
 		</>
 	);
 };
@@ -65,59 +79,71 @@ const PostPage: NextPage<PostPageProps> = ({
 export default PostPage;
 
 export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
-	const [navigation, singlePost, posts] = await Promise.all([
-		apiGet<Navigation>('navigation'),
-		apiGet<Post[]>('posts', {
-			slug: ctx.params.slug,
-			_limit: 1,
-		}),
-		apiGet<Post[]>('posts', {
-			slug_ne: ctx.params.slug,
-			inFeed: true,
-			_sort: 'created_at:DESC',
-			_limit: 16,
-		}),
-	]);
+	const slug = ctx.params?.slug;
 
-	const post = singlePost && singlePost[0] ? singlePost[0] : null;
-	if (!post) {
+	if (typeof slug !== 'string') {
 		return {
-			props: { navigation, post: null },
-			revalidate: 1,
+			notFound: true,
 		};
 	}
 
-	const mentions = await apiGet<Mention[]>('mentions', {
-		target: post.id,
-		_sort: 'created_at:DESC',
-	});
+	const [navigation, settings, post] = await Promise.all([
+		fetch<Navigation>({
+			draftMode: false,
+			query: `*[_type == "navigation"][0]`,
+		}),
+		fetch<Settings>({
+			draftMode: false,
+			query: `*[_type == "settings"][0]`,
+		}),
+		fetch<Post>({
+			draftMode: false,
+			query: `*[_type == "post" && slug.current == "${ctx.params.slug}"][0] {
+				${postFields},
+				body[] {
+					...,
+					_type == "image" => {
+						asset,
+						alt,
+						"width": asset->metadata.dimensions.width,
+						"height": asset->metadata.dimensions.height,
+						"lqip": asset->metadata.lqip,
+					}
+				}
+			}`,
+		}),
+	]);
 
-	if (typeof post.body === 'string') {
-		post.body = markdown(post.body);
+	if (!post) {
+		return {
+			notFound: true,
+		};
 	}
+
+	const posts = await fetch<Post[]>({
+		draftMode: false,
+		query: `*[_type == "post" && slug.current != "${post.slug.current}" && type == "${post.type}"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
+	});
 
 	return {
 		props: {
 			navigation,
+			settings,
 			post,
 			posts,
-			mentions,
 		},
 		revalidate: 5,
 	};
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const posts = await apiGet<Post[]>('posts', {
-		slug_ne: 'about',
+	const posts = await fetch<Post[]>({
+		draftMode: false,
+		query: `*[_type == "post"]`,
 	});
 
 	return {
-		paths: posts.map((post) => ({ params: { slug: post.slug } })),
+		paths: posts.map((post) => ({ params: { slug: post.slug.current } })),
 		fallback: true,
 	};
 };
-
-const StyledMarkdownPage = styled(MarkdownPage)`
-	animation: fadeIn 500ms ${cubicBezierFadeIn} both;
-`;

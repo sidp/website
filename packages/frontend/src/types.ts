@@ -1,14 +1,30 @@
-type StrapiFields = {
-	created_by: User | number;
-	updated_by: User | number;
-	created_at: string;
-	updated_at: string;
+import { PortableTextBlock, PortableTextProps } from '@portabletext/react';
+
+type SanitySlug = {
+	current: string;
+	_type: 'slug';
 };
+
+type SanityDocument<T extends string, K> = {
+	_id: string;
+	_rev: string;
+	_type: T;
+	_createdAt: string;
+	_updatedAt: string;
+} & K;
 
 export type StrapiError = {
 	statusCode: number;
 	error: string;
 	message: string;
+};
+
+type SanityImage = {
+	_type: 'image';
+	asset: {
+		_ref: string;
+		_type: 'reference';
+	};
 };
 
 type ImageFormat = {
@@ -48,109 +64,40 @@ export type User = {
 	username: string | null;
 };
 
-export type Post = StrapiFields & {
-	id: number;
-	title: string;
-	slug: string;
-	body: string;
-	description?: string;
-	link?: string;
-	mentions?: Mention[];
-	tags?: Tag[];
-};
+export type Post<T extends string = string> = SanityDocument<
+	'post',
+	{
+		title: string;
+		type: T;
+		slug: SanitySlug;
+		body: PortableTextBlock[];
+		meta?: { [index: string]: string };
+		image?: SanityImage & { lqip?: string };
+		description?: string;
+	}
+>;
 
-export type Project = StrapiFields & {
-	title: string;
-	slug: string;
-	description: string;
-	agency?: string;
-	client?: string;
-	year?: string;
-	link?: string;
-	body?: string;
-	images?: Image[];
-	videoEmbed?: { url: string; width: number; height: number };
-};
+export type Article = Post<'article'>;
+export type Project = Post<'project'>;
+export type Page = Post<'page'>;
+export type Artwork = Post<'artwork'>;
 
-export type Page = StrapiFields & {
-	title: string;
-	heading?: string;
-	description?: string;
-	slug: string;
-	body?: string;
-};
+export type Navigation = SanityDocument<
+	'navigation',
+	{
+		items: { title: string; href: string }[];
+	}
+>;
 
-export type Mention = StrapiFields & {
-	/* only public fields */
-	id: number;
-	sourceUrl: string;
-	targetUrl: string;
-	target: Post;
-	postInfo: {
-		title?: string;
-	};
-};
-
-export type Tag = StrapiFields & {
-	name: string;
-	slug: string;
-	description: string;
-	posts?: Post[];
-};
-
-export type FrontPage = StrapiFields & {
-	introduction?: string;
-	title?: string;
-	description?: string;
-};
-
-export type Navigation = StrapiFields & {
-	links: NavigationLinkComponent[];
-};
-
-export type StrapiComponent = {
-	id: number;
-	__component: string;
-};
-
-export type NavigationLinkComponent = StrapiComponent & {
-	__component: 'navigation.link';
-	label: string;
-	href: string;
-	as?: string;
-};
-
-export type ContentTextComponent = StrapiComponent & {
-	__component: 'content.text';
-	body: string;
-};
-
-export type ContentImagesComponent = StrapiComponent & {
-	__component: 'content.images';
-	images: Image[];
-};
-
-export type ContentEmbedComponent = StrapiComponent & {
-	__component: 'content.embed';
-	url: string;
-	width: number;
-	height: number;
-};
-
-export type ContentComponent = ContentTextComponent | ContentImagesComponent;
-
-export const isTextComponent = (thing: any): thing is ContentTextComponent => {
-	return thing.__component === 'content.text';
-};
-
-export const isImagesComponent = (
-	thing: any
-): thing is ContentImagesComponent => {
-	return thing.__component === 'content.images';
-};
-
-export const isEmbedComponent = (
-	thing: any
-): thing is ContentEmbedComponent => {
-	return thing.__component === 'content.embed';
-};
+export type Settings = SanityDocument<
+	'navigation',
+	{
+		websiteName: string;
+		introMessage: PortableTextProps['value'];
+		socialMedia: {
+			label: string;
+			title: string;
+			url: string;
+		}[];
+	}
+>;

@@ -1,11 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { FC } from 'react';
 import ExternalLink from './external-link';
-import {
-	metaFontFamily,
-	metaFontSize,
-	linkBoxShadow,
-} from '../styles/variables';
 
 type MetaProps = {
 	agency?: string;
@@ -17,6 +11,10 @@ type MetaProps = {
 const Meta: React.FC<MetaProps> = ({ agency, client, year, link }) => {
 	const items = [];
 
+	if (year) {
+		items.push(<MetaItem key="year" value={year} />);
+	}
+
 	if (agency) {
 		items.push(<MetaItem key="agency" label="Agency" value={agency} />);
 	}
@@ -25,16 +23,12 @@ const Meta: React.FC<MetaProps> = ({ agency, client, year, link }) => {
 		items.push(<MetaItem key="client" label="Client" value={client} />);
 	}
 
-	if (year) {
-		items.push(<MetaItem key="year" label="Year" value={year} />);
-	}
-
 	if (link) {
 		const value = link.replace(/^https?:\/\/(www\.)?([^/]+).*$/, '$2');
 		items.push(<MetaItem key="link" label="Link" value={value} link={link} />);
 	}
 
-	return <Block>{items}</Block>;
+	return <div className="flex flex-wrap gap-5 text-light-gray">{items}</div>;
 };
 
 export default Meta;
@@ -44,58 +38,22 @@ export default Meta;
  * Component for each field
  */
 
-const MetaItem = ({ label, value, link = '' }) => {
+const MetaItem: FC<{ label?: string; value: string; link?: string }> = ({
+	label,
+	value,
+	link = '',
+}) => {
 	let valueElement: React.ReactNode;
 
 	if (link) {
-		valueElement = <StyledExternalLink href={link}>{value}</StyledExternalLink>;
+		valueElement = <ExternalLink href={link}>{value}</ExternalLink>;
 	} else {
-		valueElement = <Value>{value}</Value>;
+		valueElement = value;
 	}
 
 	return (
-		<Item>
-			<Label>{label}:</Label> {valueElement}
-		</Item>
+		<span className="whitespace-nowrap">
+			{label && `${label}: `} {valueElement}
+		</span>
 	);
 };
-
-/**
- * Styled components
- */
-
-const Block = styled.div`
-	color: var(--grayed-color);
-	margin: 0.3em 0 1em;
-	font-family: ${metaFontFamily};
-	font-size: ${metaFontSize};
-`;
-
-const Item = styled.span`
-	display: inline-block;
-	white-space: nowrap;
-
-	&:not(:last-of-type) {
-		margin-right: 1em;
-	}
-`;
-
-const Label = styled.span``;
-
-const Value = styled.span`
-	font-weight: 600;
-`;
-
-const StyledExternalLink = styled(ExternalLink)`
-	font-weight: 600;
-	color: var(--grayed-color);
-	box-shadow: ${linkBoxShadow};
-
-	&:hover {
-		color: var(--grayed-color--hover);
-	}
-
-	&:active {
-		color: var(--grayed-color--active);
-	}
-`;
