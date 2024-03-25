@@ -43,7 +43,7 @@ const PostPage: NextPage<PostPageProps> = ({
 			</Head>
 			<Header navigation={navigation} />
 			<Section>
-				<header className="mb-4">
+				<header className="mb-4 mx-auto max-w-3xl">
 					<Heading as="h1">{post.title}</Heading>
 					<Meta
 						agency={post.meta?.agency}
