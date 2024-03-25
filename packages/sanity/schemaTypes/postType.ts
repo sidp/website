@@ -68,6 +68,12 @@ export const postType = defineType({
 				{ type: 'block' },
 				{ type: 'image', fields: [{ name: 'alt', type: 'string' }] },
 				{
+					name: 'videoEmbed',
+					title: 'Video Embed',
+					type: 'object',
+					fields: [{ name: 'url', type: 'url', title: 'URL' }],
+				},
+				{
 					type: 'code',
 					options: {
 						language: 'typescript',

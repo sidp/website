@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Prism from 'prismjs';
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from '../utils/sanity-client';
+import VideoEmbed from './video-embed';
 
 const builder = imageUrlBuilder(client);
 
@@ -50,6 +51,11 @@ const Body: FC<BodyProps> = ({ value }) => {
 								sizes="100vw"
 								className="my-12 md:my-16"
 							/>
+						);
+					},
+					videoEmbed: (props) => {
+						return (
+							<VideoEmbed url={props.value.url} className="my-12 md:my-16" />
 						);
 					},
 					code: (props) => {
