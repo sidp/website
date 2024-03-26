@@ -7,6 +7,7 @@ import title from '../utils/title';
 import Section from '../components/section';
 import Footer from '../components/footer';
 import Header from '../components/header';
+import Heading from '../components/heading';
 
 type ErrorPage404Props = {
 	navigation: Navigation;
@@ -22,7 +23,7 @@ const ErrorPage404: FC<ErrorPage404Props> = ({ navigation, settings }) => {
 			</Head>
 			<Header navigation={navigation} />
 			<Section limitWidth>
-				<h1>Page not found</h1>
+				<Heading as="h1">Page not found</Heading>
 				<p>The requested page could not be found.</p>
 			</Section>
 
