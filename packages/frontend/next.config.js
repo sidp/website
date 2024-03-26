@@ -42,6 +42,11 @@ module.exports = {
 				destination: '/:slug*',
 				permanent: true,
 			},
+			{
+				source: '/sailor-ts66',
+				destination: '/shortwave-receiver',
+				permanent: true,
+			},
 		];
 	},
 };
