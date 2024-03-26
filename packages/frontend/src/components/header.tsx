@@ -14,12 +14,16 @@ const Header: React.FC<HeaderProps> = ({ navigation }) => {
 			role="banner"
 			className="border-b border-dotted border-current flex justify-between flex-wrap"
 		>
-			<NavItem href="/" className="max-sm:w-full">
+			<NavItem href="/" className="bg-blue hover:bg-blue max-sm:w-full">
 				Peter Simonsson
 			</NavItem>
-			<div className="flex">
+			<div className="flex gap-x-1 p-1">
 				{navigation.items.map((item) => (
-					<NavItem href={item.href} key={item.title}>
+					<NavItem
+						href={item.href}
+						key={item.title}
+						className="px-3 sm:py-2 rounded-sm"
+					>
 						{item.title}
 					</NavItem>
 				))}
@@ -41,7 +45,7 @@ const NavItem: FC<{
 		<Link
 			href={href}
 			className={cx(
-				'px-4 py-3 leading-normal trasition-colors duration-100 linear',
+				'px-4 py-3 leading-normal transition-colors duration-100 linear',
 				current && 'bg-blue',
 				!current && 'hover:bg-hover',
 				className,
