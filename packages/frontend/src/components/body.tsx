@@ -67,7 +67,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 					image: (props) => {
 						const width = props.value.width || 3200;
 						const height = props.value.height || 2400;
-						const className = 'my-12 md:my-16';
+						const className = 'my-12 md:my-16 max-sm:-mx-4';
 
 						const image = (
 							<Image
@@ -92,7 +92,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 							return (
 								<figure className={className}>
 									{image}
-									<figcaption className="mt-2 text-light-gray">
+									<figcaption className="mt-2 max-sm:mx-4 text-light-gray">
 										{props.value.caption}
 									</figcaption>
 								</figure>

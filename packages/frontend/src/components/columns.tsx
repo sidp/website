@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import cx from '../utils/cx';
 
 type ColumnsProps = {
 	maxColumns?: 2 | 3;
@@ -7,9 +8,10 @@ type ColumnsProps = {
 
 const Columns: FC<ColumnsProps> = ({ maxColumns = 2, children }) => (
 	<div
-		className={`grid ${
-			maxColumns === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3'
-		} gap-x-4 gap-y-10`}
+		className={cx(
+			'grid gap-x-4 gap-y-10',
+			maxColumns === 2 ? 'lg:grid-cols-2' : 'lg:grid-cols-3',
+		)}
 	>
 		{children}
 	</div>

@@ -16,7 +16,10 @@ type PostItemProps = {
 
 const PostItem: React.FC<PostItemProps> = ({ post, loading = 'lazy' }) => {
 	return (
-		<Link href={`/${post.slug.current}`} className="flex flex-col gap-3">
+		<Link
+			href={`/${post.slug.current}`}
+			className="flex flex-col gap-3 max-sm:-mx-4"
+		>
 			{post.image && (
 				<Image
 					src={builder.image(post.image).size(3200, 2400).quality(90).url()}
@@ -33,7 +36,7 @@ const PostItem: React.FC<PostItemProps> = ({ post, loading = 'lazy' }) => {
 					className="aspect-[4/3]"
 				/>
 			)}
-			<div>
+			<div className="max-sm:mx-4">
 				<Heading as="h3" className="underline underline-offset-4">
 					{post.title}
 				</Heading>
