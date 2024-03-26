@@ -8,12 +8,14 @@ import Section from '../section';
 type PostsListProps = {
 	title?: string;
 	posts: Post[];
+	priorityImageLoading?: boolean;
 	className?: string;
 };
 
 const PostsList: React.FC<PostsListProps> = ({
 	title = '',
 	posts,
+	priorityImageLoading = false,
 	className,
 }) => {
 	if (posts.length === 0) {
@@ -27,8 +29,14 @@ const PostsList: React.FC<PostsListProps> = ({
 			<Columns
 				maxColumns={posts.some((post) => post.type === 'project') ? 3 : 2}
 			>
-				{posts.map((post) => {
-					return <PostItem key={post._id} post={post} />;
+				{posts.map((post, index) => {
+					return (
+						<PostItem
+							key={post._id}
+							post={post}
+							loading={priorityImageLoading && index < 2 ? 'eager' : 'lazy'}
+						/>
+					);
 				})}
 			</Columns>
 		</Section>

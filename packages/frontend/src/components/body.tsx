@@ -78,6 +78,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 									.url()}
 								alt={props.value.alt}
 								quality="85"
+								loading={props.value.loading}
 								placeholder="blur"
 								blurDataURL={props.value.lqip}
 								width={width}

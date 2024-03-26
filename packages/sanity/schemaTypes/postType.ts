@@ -71,6 +71,16 @@ export const postType = defineType({
 					fields: [
 						{ name: 'alt', type: 'string' },
 						{ name: 'caption', type: 'string' },
+						{
+							name: 'loading',
+							type: 'string',
+							options: {
+								list: ['lazy', 'eager'],
+								default: 'lazy',
+								layout: 'radio',
+								direction: 'horizontal',
+							},
+						},
 					],
 				},
 				{

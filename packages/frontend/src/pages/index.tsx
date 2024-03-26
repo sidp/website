@@ -39,7 +39,13 @@ const IndexPage: React.FC<IndexPageProps> = ({
 			<Section limitWidth>
 				<PortableText value={settings.introMessage} />
 			</Section>
-			{artworks && <PostsList title="Computer graphics" posts={artworks} />}
+			{artworks && (
+				<PostsList
+					title="Computer graphics"
+					posts={artworks}
+					priorityImageLoading
+				/>
+			)}
 			{posts && <PostsList title="Posts" posts={posts} />}
 			{projects && <PostsList title="Projects" posts={projects} />}
 			<Footer links={settings.socialMedia} />

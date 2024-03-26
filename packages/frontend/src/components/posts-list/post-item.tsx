@@ -10,16 +10,18 @@ const builder = imageUrlBuilder(client);
 
 type PostItemProps = {
 	post: Post;
+	loading?: 'lazy' | 'eager';
 	className?: string;
 };
 
-const PostItem: React.FC<PostItemProps> = ({ post }) => {
+const PostItem: React.FC<PostItemProps> = ({ post, loading = 'lazy' }) => {
 	return (
 		<Link href={`/${post.slug.current}`} className="flex flex-col gap-3">
 			{post.image && (
 				<Image
 					src={builder.image(post.image).size(3200, 2400).quality(90).url()}
 					placeholder="blur"
+					loading={loading}
 					blurDataURL={post.image.lqip}
 					quality={90}
 					alt=""
