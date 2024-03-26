@@ -31,7 +31,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
 		<>
 			<Head>
 				<title>{title(settings.websiteName)}</title>
-				{/* <meta name="description" content={frontPage.description} /> */}
+				<meta name="description" content={settings.description} />
 				<meta name="og:image" content={absoluteUrl('/images/og-image.png')} />
 				<link rel="canonical" href={absoluteUrl('/')} />
 			</Head>

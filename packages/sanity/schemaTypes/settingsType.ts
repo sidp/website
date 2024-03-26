@@ -10,6 +10,13 @@ export const settingsType = defineType({
 			name: 'introMessage',
 			type: 'array',
 			of: [{ type: 'block' }],
+			description: 'Message displayed on the homepage.',
+		}),
+		defineField({
+			name: 'description',
+			type: 'text',
+			rows: 4,
+			description: 'Meta description for SEO purposes.',
 		}),
 		defineField({
 			name: 'socialMedia',

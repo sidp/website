@@ -94,6 +94,7 @@ export type Settings = SanityDocument<
 	{
 		websiteName: string;
 		introMessage: PortableTextProps['value'];
+		description: string;
 		socialMedia: {
 			label: string;
 			title: string;
