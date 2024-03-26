@@ -44,7 +44,7 @@ const feed: NextApiHandler = async (req, res) => {
 			return res.send(f.atom1());
 		case 'json':
 			res.setHeader('Content-Type', 'application/feed+json');
-			return res.json(f.json1());
+			return res.send(f.json1());
 	}
 
 	return res.status(400).send('Invalid feed type.');
