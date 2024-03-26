@@ -16,7 +16,7 @@ const feed: NextApiHandler = async (req, res) => {
 
 	const posts = await fetch<Post[]>({
 		draftMode: false,
-		query: `*[_type == "post" && type !== "page"][0...16] | order(_createdAt desc)`,
+		query: `*[_type == "post" && type != "page"][0...16] | order(_createdAt desc)`,
 	});
 
 	const f = new Feed({
