@@ -18,7 +18,7 @@ const sitemap: NextApiHandler = async (req, res) => {
 
 	posts.forEach((page) => {
 		smStream.write({
-			url: absoluteUrl(`/${page.slug}`),
+			url: absoluteUrl(`/${page.slug.current}`),
 		});
 	});
 
