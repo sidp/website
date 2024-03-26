@@ -84,7 +84,6 @@ const Body: FC<BodyProps> = ({ value }) => {
 								width={width}
 								height={height}
 								sizes="100vw"
-								className={!props.value.caption ? className : undefined}
 							/>
 						);
 
@@ -99,7 +98,7 @@ const Body: FC<BodyProps> = ({ value }) => {
 							);
 						}
 
-						return image;
+						return <div className={className}>{image}</div>;
 					},
 					videoEmbed: (props) => {
 						return (
