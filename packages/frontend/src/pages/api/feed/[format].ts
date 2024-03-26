@@ -30,8 +30,8 @@ const feed: NextApiHandler = async (req, res) => {
 	posts.forEach((post) => {
 		f.addItem({
 			title: post.title,
-			id: absoluteUrl(`/posts/${post.slug}`),
-			link: absoluteUrl(`/posts/${post.slug}`),
+			id: absoluteUrl(`/${post.slug.current}`),
+			link: absoluteUrl(`/${post.slug.current}`),
 			content: toPlainText(post.body),
 			date: new Date(post._updatedAt),
 			published: new Date(post._createdAt),
