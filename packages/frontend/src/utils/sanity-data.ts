@@ -4,6 +4,7 @@ export const imageFields = `
 	"width": asset->metadata.dimensions.width,
 	"height": asset->metadata.dimensions.height,
 	"lqip": asset->metadata.lqip,
+	"color": asset->metadata.palette.dominant.background,
 `;
 
 export const postFields = `

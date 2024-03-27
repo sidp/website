@@ -27,6 +27,7 @@ export type SanityDecoratedImage = SanityImage & {
 	width: number;
 	height: number;
 	lqip: string;
+	color?: string;
 	loading?: 'lazy' | 'eager';
 };
 

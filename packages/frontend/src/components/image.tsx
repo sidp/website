@@ -17,7 +17,7 @@ const Image: FC<ImageProps> = ({ image, sizes, className }) => {
 	return (
 		<NextImage
 			src={builder.image(asset).size(width, height).quality(90).url()}
-			alt={alt}
+			alt={alt || ''}
 			quality="90"
 			loading={loading}
 			placeholder="blur"
@@ -26,6 +26,7 @@ const Image: FC<ImageProps> = ({ image, sizes, className }) => {
 			height={height}
 			sizes={sizes}
 			className={className}
+			style={{ backgroundColor: image.color }}
 		/>
 	);
 };
