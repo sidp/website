@@ -13,12 +13,6 @@ type SanityDocument<T extends string, K> = {
 	_updatedAt: string;
 } & K;
 
-export type StrapiError = {
-	statusCode: number;
-	error: string;
-	message: string;
-};
-
 type SanityImage = {
 	_type: 'image';
 	asset: {
@@ -27,34 +21,13 @@ type SanityImage = {
 	};
 };
 
-type ImageFormat = {
-	ext: string;
-	hash: string;
-	height: number;
-	mime: string;
-	name: string;
-	path: string | null;
-	size: number;
-	url: string;
+/** Fields corresponding to imageFields in sanity-data.ts */
+export type SanityDecoratedImage = SanityImage & {
+	alt: string;
 	width: number;
-};
-
-export type Image = Omit<ImageFormat, 'path'> & {
-	id: number;
-	alternativeText: string;
-	caption: string;
-	ext: string;
-	formats: { [key: string]: ImageFormat };
-	hash: string;
 	height: number;
-	mime: string;
-	name: string;
-	previewUrl: string | null;
-	provider: 'local';
-	provider_metadata: null;
-	size: number;
-	url: string;
-	width: number;
+	lqip: string;
+	loading?: 'lazy' | 'eager';
 };
 
 export type User = {
@@ -72,7 +45,7 @@ export type Post<T extends string = string> = SanityDocument<
 		slug: SanitySlug;
 		body: PortableTextBlock[];
 		meta?: { [index: string]: string };
-		image?: SanityImage & { lqip?: string };
+		image?: SanityDecoratedImage;
 		description?: string;
 	}
 >;

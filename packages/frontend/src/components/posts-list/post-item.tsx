@@ -1,12 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
-import Image from 'next/image';
-import imageUrlBuilder from '@sanity/image-url';
 import { Post } from '../../types';
-import { client } from '../../utils/sanity-client';
 import Heading from '../heading';
-
-const builder = imageUrlBuilder(client);
+import Image from '../image';
 
 type PostItemProps = {
 	post: Post;
@@ -22,14 +18,11 @@ const PostItem: React.FC<PostItemProps> = ({ post, loading = 'lazy' }) => {
 		>
 			{post.image && (
 				<Image
-					src={builder.image(post.image).size(3200, 2400).quality(90).url()}
-					placeholder="blur"
-					loading={loading}
-					blurDataURL={post.image.lqip}
-					quality={90}
-					alt=""
-					width="3200"
-					height="2400"
+					image={{
+						...post.image,
+						width: 3200,
+						height: 2400,
+					}}
 					sizes={`(max-width: 1024px) 100vw, ${
 						post.type === 'project' ? '33vw' : '50vw'
 					}`}

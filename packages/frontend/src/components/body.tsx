@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { PortableText, PortableTextProps } from 'next-sanity';
-import Image from 'next/image';
 import Prism from 'prismjs';
 import imageUrlBuilder from '@sanity/image-url';
 import { client } from '../utils/sanity-client';
@@ -8,6 +7,7 @@ import VideoEmbed from './video-embed';
 import cx from '../utils/cx';
 import { isExternal } from '../utils/url';
 import ExternalLink from './external-link';
+import Image from './image';
 
 const builder = imageUrlBuilder(client);
 
@@ -65,24 +65,15 @@ const Body: FC<BodyProps> = ({ value }) => {
 				},
 				types: {
 					image: (props) => {
-						const width = props.value.width || 3200;
-						const height = props.value.height || 2400;
 						const className = 'my-12 md:my-16 max-sm:-mx-4';
 
 						const image = (
 							<Image
-								src={builder
-									.image(props.value.asset)
-									.size(width, height)
-									.quality(90)
-									.url()}
-								alt={props.value.alt}
-								quality="85"
-								loading={props.value.loading}
-								placeholder="blur"
-								blurDataURL={props.value.lqip}
-								width={width}
-								height={height}
+								image={{
+									...props.value,
+									width: props.value.width || 3200,
+									height: props.value.height || 2400,
+								}}
 								sizes="100vw"
 							/>
 						);

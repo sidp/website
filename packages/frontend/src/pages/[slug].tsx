@@ -10,7 +10,7 @@ import { fetch } from '../utils/sanity-fetch';
 import Body from '../components/body';
 import Heading from '../components/heading';
 import Section from '../components/section';
-import { postFields } from '../utils/sanity-data';
+import { imageFields, postFields } from '../utils/sanity-data';
 import { typeNamePlural } from '../utils/strings';
 import Footer from '../components/footer';
 import dayjs from 'dayjs';
@@ -103,11 +103,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async (ctx) => {
 				body[] {
 					...,
 					_type == "image" => {
-						asset,
-						alt,
-						"width": asset->metadata.dimensions.width,
-						"height": asset->metadata.dimensions.height,
-						"lqip": asset->metadata.lqip,
+						${imageFields}
 					}
 				}
 			}`,
