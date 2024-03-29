@@ -24,11 +24,11 @@ const IndexPage: React.FC<IndexPageProps> = ({
 	return (
 		<>
 			<Head>
-				<title>{title('Computer graphics', settings.websiteName)}</title>
+				<title>{title('Artworks', settings.websiteName)}</title>
 				<link rel="canonical" href={absoluteUrl('/artworks')} />
 			</Head>
 			<Header navigation={navigation} />
-			{artworks && <PostsList title="Computer graphics" posts={artworks} />}
+			{artworks && <PostsList title="Artworks" posts={artworks} />}
 			<Footer links={settings.socialMedia} />
 		</>
 	);

@@ -7,7 +7,7 @@ export const typeNameSingular = (typeName: string): string => {
 		case 'page':
 			return 'page';
 		case 'artwork':
-			return 'computer graphics';
+			return 'artwork';
 		default:
 			return typeName;
 	}
@@ -22,7 +22,7 @@ export const typeNamePlural = (typeName: string): string => {
 		case 'page':
 			return 'pages';
 		case 'artwork':
-			return 'computer graphics';
+			return 'artworks';
 		default:
 			return typeName;
 	}

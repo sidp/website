@@ -40,11 +40,7 @@ const IndexPage: React.FC<IndexPageProps> = ({
 				<PortableText value={settings.introMessage} />
 			</Section>
 			{artworks && (
-				<PostsList
-					title="Computer graphics"
-					posts={artworks}
-					priorityImageLoading
-				/>
+				<PostsList title="Artworks" posts={artworks} priorityImageLoading />
 			)}
 			{posts && <PostsList title="Posts" posts={posts} />}
 			{projects && <PostsList title="Projects" posts={projects} />}
