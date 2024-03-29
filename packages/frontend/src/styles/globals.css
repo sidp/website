@@ -8,3 +8,15 @@
 	text-decoration: underline;
 	text-underline-offset: 4px;
 }
+
+:root {
+	--color-blue: #1300ed;
+	--color-hover: #100b4c;
+}
+
+@supports (color: color(display-p3 0 0 0)) {
+	:root {
+		--color-blue: color(display-p3 0.0745 0 0.93);
+		--color-hover: color(display-p3 0.0627 0.0431 0.298);
+	}
+}
