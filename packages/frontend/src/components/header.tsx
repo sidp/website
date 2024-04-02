@@ -11,25 +11,27 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ navigation }) => {
 	const router = useRouter();
 	return (
-		<div
+		<header
 			role="banner"
-			className="border-b border-dotted border-current flex justify-between flex-wrap leading-normal"
+			className="border-b border-dotted border-current flex flex-wrap justify-between whitespace-nowrap leading-normal"
 		>
 			<Link
 				href="/"
-				className={cx('px-4 py-3 duration-100 linear', 'bg-blue max-sm:w-full')}
+				className="px-4 py-3 duration-100 linear bg-blue"
 				aria-current={isCurrent('/', router) ? 'page' : undefined}
+				aria-label="Peter Simonsson"
 			>
 				Peter Simonsson
 			</Link>
-			<div className="flex gap-x-1 p-1">
+			<div className="flex-1 flex gap-x-1 p-1 relative">
+				<span className="border-t border-dotted border-current absolute top-[-1px] left-0 right-0"></span>
 				{navigation.items.map((item) => (
 					<NavItem href={item.href} key={item.title}>
 						{item.title}
 					</NavItem>
 				))}
 			</div>
-		</div>
+		</header>
 	);
 };
 
@@ -47,8 +49,8 @@ const NavItem: FC<{
 			href={href}
 			className={cx(
 				'px-3 py-2 rounded-sm transition-colors duration-100 linear',
-				current && 'bg-blue',
-				!current && 'hover:bg-hover',
+				current && 'bg-white text-black font-bold',
+				!current && 'hover:bg-gray',
 				className,
 			)}
 			aria-current={current}
