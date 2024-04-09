@@ -5,6 +5,7 @@ import { schemaTypes } from './schemaTypes';
 import { structure } from './structure';
 import { codeInput } from '@sanity/code-input';
 import { table } from '@sanity/table';
+import Icon from './components/icon';
 
 const singletonActions = new Set(['publish', 'discardChanges', 'restore']);
 
@@ -13,6 +14,7 @@ const singletonTypes = new Set(['navigation', 'settings']);
 export default defineConfig({
 	name: 'default',
 	title: 'Peter Simonsson',
+	icon: Icon,
 
 	projectId: 'hxcrb1u6',
 	dataset: 'production',
