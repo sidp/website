@@ -20,3 +20,8 @@
 		--color-hover: color(display-p3 0.0627 0.0431 0.298);
 	}
 }
+
+::selection {
+	background-color: var(--color-blue);
+	color: white;
+}
