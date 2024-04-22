@@ -5,7 +5,7 @@ import { Article, Artwork, Project, Settings } from '../types';
 import { fetch } from '../utils/sanity-fetch';
 import Section from '../components/section';
 import { postFields } from '../utils/sanity-data';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
 	const settings = await fetch<Settings>({
@@ -20,9 +20,6 @@ export async function generateMetadata(): Promise<Metadata> {
 	return {
 		title: settings.websiteName,
 		description: settings.description,
-		openGraph: {
-			description: settings.description,
-		},
 		alternates: {
 			canonical: '/',
 		},

@@ -1,3 +1,3 @@
-export default function cx(...classes: (string | undefined)[]) {
+export default function cx(...classes: (string | undefined | null | false)[]) {
 	return classes.filter(Boolean).join(' ');
 }
