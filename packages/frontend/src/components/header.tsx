@@ -1,6 +1,8 @@
+'use client';
+
 import React, { FC, ReactNode } from 'react';
 import Link from 'next/link';
-import { NextRouter, useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { Navigation } from '../types';
 import cx from '../utils/cx';
 
@@ -9,7 +11,7 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ navigation }) => {
-	const router = useRouter();
+	const pathname = usePathname();
 	return (
 		<header
 			role="banner"
@@ -18,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ navigation }) => {
 			<Link
 				href="/"
 				className="px-4 py-3 duration-100 linear bg-blue"
-				aria-current={isCurrent('/', router) ? 'page' : undefined}
+				aria-current={isCurrent('/', pathname) ? 'page' : undefined}
 				aria-label="Peter Simonsson"
 			>
 				Peter Simonsson
@@ -42,8 +44,8 @@ const NavItem: FC<{
 	className?: string;
 	children: ReactNode;
 }> = ({ href, className, children }) => {
-	const router = useRouter();
-	const current = isCurrent(href, router) ? 'page' : undefined;
+	const pathname = usePathname();
+	const current = isCurrent(href, pathname) ? 'page' : undefined;
 	return (
 		<Link
 			href={href}
@@ -60,8 +62,7 @@ const NavItem: FC<{
 	);
 };
 
-const isCurrent = (href: string, router: NextRouter): boolean => {
-	const { asPath, route } = router;
-	const current = href === asPath || route === href ? true : false;
+const isCurrent = (href: string, pathname: string | null): boolean => {
+	const current = href === pathname;
 	return current;
 };
