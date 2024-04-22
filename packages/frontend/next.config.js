@@ -18,10 +18,6 @@ module.exports = {
 	async rewrites() {
 		return [
 			{
-				source: '/sitemap.xml',
-				destination: '/api/sitemap',
-			},
-			{
 				source: '/feed/:format',
 				destination: '/api/feed/:format',
 			},
