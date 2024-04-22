@@ -1,9 +1,11 @@
+import { ReactNode } from 'react';
+
 const naturalJoin = (
-	parts: (string | JSX.Element)[],
+	parts: ReactNode[],
 	endSeparator = 'and',
 	separator = ',',
-): (string | JSX.Element)[] =>
-	parts.reduce((prev, part, i) => {
+): ReactNode[] =>
+	parts.reduce<ReactNode[]>((prev, part, i) => {
 		let sep = `${separator} `;
 
 		if (i + 2 === parts.length) {

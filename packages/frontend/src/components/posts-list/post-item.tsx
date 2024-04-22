@@ -34,7 +34,9 @@ const PostItem: React.FC<PostItemProps> = ({ post, loading = 'lazy' }) => {
 					{post.title}
 				</Heading>
 				{post.description && <p>{post.description}</p>}
-				{post.type === 'project' && post.meta.client && <>{post.meta.client}</>}
+				{post.type === 'project' && post.meta?.client && (
+					<>{post.meta.client}</>
+				)}
 			</div>
 		</Link>
 	);

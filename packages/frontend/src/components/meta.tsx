@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import ExternalLink from './external-link';
 
 type MetaProps = {
@@ -9,7 +9,7 @@ type MetaProps = {
 };
 
 const Meta: React.FC<MetaProps> = ({ agency, client, year, link }) => {
-	const items = [];
+	const items: ReactNode[] = [];
 
 	if (year) {
 		items.push(<MetaItem key="year" value={year} />);
