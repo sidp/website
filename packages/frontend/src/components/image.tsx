@@ -13,15 +13,13 @@ type ImageProps = {
 };
 
 const Image: FC<ImageProps> = ({ image, sizes, className }) => {
-	const { asset, width, height, lqip, alt, loading } = image;
+	const { asset, width, height, alt, loading } = image;
 	return (
 		<NextImage
 			src={builder.image(asset).size(width, height).quality(90).url()}
 			alt={alt || ''}
 			quality="90"
 			loading={loading}
-			placeholder="blur"
-			blurDataURL={lqip}
 			width={width}
 			height={height}
 			sizes={sizes}
