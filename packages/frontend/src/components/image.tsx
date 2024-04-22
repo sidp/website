@@ -20,6 +20,7 @@ const Image: FC<ImageProps> = ({ image, sizes, className }) => {
 			alt={alt || ''}
 			quality="90"
 			loading={loading}
+			priority={loading === 'eager'}
 			width={width}
 			height={height}
 			sizes={sizes}
