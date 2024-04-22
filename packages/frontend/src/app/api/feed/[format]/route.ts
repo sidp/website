@@ -4,7 +4,7 @@ import { fetch } from '../../../../utils/sanity-fetch';
 import { Post } from '../../../../types';
 import { toPlainText } from 'next-sanity';
 
-export const feedLinks = {
+const feedLinks = {
 	json: absoluteUrl(`/feed/json`),
 	atom: absoluteUrl(`/feed/atom`),
 };
@@ -24,7 +24,7 @@ export async function GET(
 		title: 'Peter Simonsson',
 		id: absoluteUrl('/'),
 		copyright: '',
-		feedLinks: feedLinks,
+		feedLinks,
 		generator: 'simonsson.com',
 	});
 
