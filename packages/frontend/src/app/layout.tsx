@@ -24,6 +24,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+	title: {
+		template: '%s – Peter Simonsson',
+		default: 'Peter Simonsson',
+	},
 	metadataBase: new URL('https://simonsson.com'),
 	icons: [
 		{ rel: 'icon', url: '/favicon.png' },

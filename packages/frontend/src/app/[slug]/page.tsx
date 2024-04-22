@@ -45,7 +45,7 @@ export async function generateMetadata(
 		: '/images/og-image.png';
 
 	return {
-		title: (await parent).title,
+		title: post.title || (await parent).title,
 		description: post.description,
 		openGraph: {
 			images: ogImage,
