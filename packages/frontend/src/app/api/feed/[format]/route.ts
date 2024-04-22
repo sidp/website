@@ -1,8 +1,7 @@
 import { Feed } from 'feed';
-import { NextApiHandler } from 'next';
-import { absoluteUrl } from '../../../utils/url';
-import { fetch } from '../../../utils/sanity-fetch';
-import { Post } from '../../../types';
+import { absoluteUrl } from '../../../../utils/url';
+import { fetch } from '../../../../utils/sanity-fetch';
+import { Post } from '../../../../types';
 import { toPlainText } from 'next-sanity';
 
 export const feedLinks = {
@@ -10,9 +9,11 @@ export const feedLinks = {
 	atom: absoluteUrl(`/feed/atom`),
 };
 
-const feed: NextApiHandler = async (req, res) => {
-	let { format } = req.query;
-	format = Array.isArray(format) ? format[0] : format;
+export async function GET(
+	_request: Request,
+	{ params }: { params: { format: string } },
+) {
+	let { format } = params;
 
 	const posts = await fetch<Post[]>({
 		draftMode: false,
@@ -40,14 +41,18 @@ const feed: NextApiHandler = async (req, res) => {
 
 	switch (format) {
 		case 'atom':
-			res.setHeader('Content-Type', 'application/atom+xml');
-			return res.send(f.atom1());
+			return new Response(f.atom1(), {
+				headers: {
+					'Content-Type': 'application/atom+xml',
+				},
+			});
 		case 'json':
-			res.setHeader('Content-Type', 'application/feed+json');
-			return res.send(f.json1());
+			return new Response(f.json1(), {
+				headers: {
+					'Content-Type': 'application/feed+json',
+				},
+			});
 	}
 
-	return res.status(400).send('Invalid feed type.');
-};
-
-export default feed;
+	return new Response('Invalid feed type.', { status: 400 });
+}
