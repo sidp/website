@@ -16,6 +16,7 @@
 		"@portabletext/react": "^3.0.15",
 		"@sanity/client": "^6.15.7",
 		"@sanity/image-url": "^1.0.2",
+		"@vercel/speed-insights": "^1.0.10",
 		"dayjs": "^1.11.10",
 		"feed": "^4.2.1",
 		"next": "^14.1.4",

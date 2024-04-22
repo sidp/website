@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { absoluteUrl } from '../utils/url';
@@ -46,6 +47,7 @@ export default function App(
 					href="/feed/json"
 				/>
 			</Head>
+			<SpeedInsights />
 			<Component {...pageProps} />
 		</>
 	);
