@@ -16,6 +16,7 @@ export default async function ArtworkPage() {
 	const artworks = await fetch<Artwork[]>({
 		draftMode: false,
 		query: `*[_type == "post" && type == "artwork"] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
+		tags: ['post'],
 	});
 
 	return <>{artworks && <PostsList title="Artworks" posts={artworks} />}</>;

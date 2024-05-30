@@ -18,6 +18,7 @@ export async function GET(
 	const posts = await fetch<Post[]>({
 		draftMode: false,
 		query: `*[_type == "post" && type != "page"][0...16] | order(_createdAt desc)`,
+		tags: ['post'],
 	});
 
 	const f = new Feed({

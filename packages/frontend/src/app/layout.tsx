@@ -53,10 +53,12 @@ export default async function RootLayout({
 		fetch<Navigation>({
 			draftMode: false,
 			query: `*[_type == "navigation"][0]`,
+			tags: ['navigation'],
 		}),
 		fetch<Settings>({
 			draftMode: false,
 			query: `*[_type == "settings"][0]`,
+			tags: ['settings'],
 		}),
 	]);
 
