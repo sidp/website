@@ -38,7 +38,8 @@ export const structure: StructureResolver = (S) =>
 				.child(
 					S.documentList()
 						.title('Articles')
-						.filter('_type =="post" && type == "article"'),
+						.filter('_type =="post" && type == "article"')
+						.initialValueTemplates([S.initialValueTemplateItem('article')]),
 				),
 			S.listItem()
 				.title('Projects')
@@ -46,7 +47,8 @@ export const structure: StructureResolver = (S) =>
 				.child(
 					S.documentList()
 						.title('Projects')
-						.filter('_type =="post" && type == "project"'),
+						.filter('_type =="post" && type == "project"')
+						.initialValueTemplates([S.initialValueTemplateItem('project')]),
 				),
 			S.listItem()
 				.title('Pages')
@@ -54,7 +56,8 @@ export const structure: StructureResolver = (S) =>
 				.child(
 					S.documentList()
 						.title('Pages')
-						.filter('_type =="post" && type == "page"'),
+						.filter('_type =="post" && type == "page"')
+						.initialValueTemplates([S.initialValueTemplateItem('page')]),
 				),
 			S.listItem()
 				.title('Artworks')
@@ -62,6 +65,7 @@ export const structure: StructureResolver = (S) =>
 				.child(
 					S.documentList()
 						.title('Artworks')
-						.filter('_type =="post" && type == "artwork"'),
+						.filter('_type =="post" && type == "artwork"')
+						.initialValueTemplates([S.initialValueTemplateItem('artwork')]),
 				),
 		]);

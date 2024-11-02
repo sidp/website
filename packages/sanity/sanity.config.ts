@@ -30,8 +30,38 @@ export default defineConfig({
 
 	schema: {
 		types: schemaTypes,
-		templates: (templates) =>
-			templates.filter(({ schemaType }) => !singletonTypes.has(schemaType)),
+		templates: (templates) => {
+			const noSingletons = templates.filter(
+				({ schemaType }) => !singletonTypes.has(schemaType),
+			);
+			return [
+				...noSingletons,
+				{
+					id: 'article',
+					title: 'Article',
+					schemaType: 'post',
+					value: { type: 'article' },
+				},
+				{
+					id: 'project',
+					title: 'Project',
+					schemaType: 'post',
+					value: { type: 'project' },
+				},
+				{
+					id: 'page',
+					title: 'Page',
+					schemaType: 'post',
+					value: { type: 'page' },
+				},
+				{
+					id: 'artwork',
+					title: 'Artwork',
+					schemaType: 'post',
+					value: { type: 'artwork' },
+				},
+			];
+		},
 	},
 
 	form: {
