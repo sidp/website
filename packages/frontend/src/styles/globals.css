@@ -1,6 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+	--font-sans: 'iA Writer Duo', monospace;
+	--font-mono: 'iA Writer Mono', monospace;
+
+	--color-black: #000;
+	--color-gray: #222;
+	--color-light-gray: #999;
+	--color-white: #eee;
+	--color-blue: var(--color-blue);
+}
 
 @import url('./prism-styles.css');
 
@@ -11,13 +20,11 @@
 
 :root {
 	--color-blue: #1300ed;
-	--color-hover: #100b4c;
 }
 
 @supports (color: color(display-p3 0 0 0)) {
 	:root {
 		--color-blue: color(display-p3 0.0745 0 0.93);
-		--color-hover: color(display-p3 0.0627 0.0431 0.298);
 	}
 }
 

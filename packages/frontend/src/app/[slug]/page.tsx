@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata, ResolvingMetadata, NextPage } from 'next';
 import { Post } from '../../types';
 import PostsList from '../../components/posts-list';
 import { fetch } from '../../utils/sanity-fetch';
@@ -16,16 +16,18 @@ import { notFound } from 'next/navigation';
 const builder = imageUrlBuilder(client);
 
 type PostPageProps = {
-	params: { slug: string };
+	params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata(
 	{ params }: PostPageProps,
 	parent: ResolvingMetadata,
 ): Promise<Metadata> {
+	const { slug } = await params;
+
 	const post = await fetch<Post>({
 		draftMode: false,
-		query: `*[_type == "post" && slug.current == "${params.slug}"][0] {
+		query: `*[_type == "post" && slug.current == "${slug}"][0] {
 			${postFields},
 			body[] {
 				...,
@@ -58,9 +60,10 @@ export async function generateMetadata(
 }
 
 export default async function PostPage({ params }: PostPageProps) {
+	const { slug } = await params;
 	const post = await fetch<Post>({
 		draftMode: false,
-		query: `*[_type == "post" && slug.current == "${params.slug}"][0] {
+		query: `*[_type == "post" && slug.current == "${slug}"][0] {
 			${postFields}
 		}`,
 		tags: ['post'],

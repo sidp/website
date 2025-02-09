@@ -11,10 +11,8 @@ const feedLinks = {
 
 export async function GET(
 	_request: Request,
-	{ params }: { params: { format: string } },
+	{ params }: { params: Promise<{ format: string }> },
 ) {
-	let { format } = params;
-
 	const posts = await fetch<Post[]>({
 		draftMode: false,
 		query: `*[_type == "post" && type != "page"][0...16] | order(_createdAt desc)`,
@@ -40,6 +38,7 @@ export async function GET(
 		});
 	});
 
+	let { format } = await params;
 	switch (format) {
 		case 'atom':
 			return new Response(f.atom1(), {
