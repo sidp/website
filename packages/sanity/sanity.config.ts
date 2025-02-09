@@ -86,5 +86,16 @@ export default defineConfig({
 			singletonTypes.has(context.schemaType)
 				? input.filter(({ action }) => action && singletonActions.has(action))
 				: input,
+		newDocumentOptions: (prev, { creationContext }) => {
+			if (
+				creationContext.type === 'global' ||
+				creationContext.type === 'structure'
+			) {
+				return prev.filter(
+					(templateItem) => templateItem.templateId !== 'post',
+				);
+			}
+			return prev;
+		},
 	},
 });
