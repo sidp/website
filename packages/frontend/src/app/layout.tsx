@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { Metadata, Viewport } from 'next';
 import Script from 'next/script';
+import { draftMode } from 'next/headers';
+import { VisualEditing } from 'next-sanity';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Header from '../components/header';
 import { Navigation, Settings } from '../types';
 import { fetch } from '../utils/sanity-fetch';
 import Footer from '../components/footer';
+import DisableDraftMode from '../components/disable-draft-mode';
 
 import '@fontsource/ia-writer-quattro/400.css';
 import '@fontsource/ia-writer-quattro/400-italic.css';
@@ -51,16 +54,16 @@ export default async function RootLayout({
 }) {
 	const [navigation, settings] = await Promise.all([
 		fetch<Navigation>({
-			draftMode: false,
 			query: `*[_type == "navigation"][0]`,
 			tags: ['navigation'],
 		}),
 		fetch<Settings>({
-			draftMode: false,
 			query: `*[_type == "settings"][0]`,
 			tags: ['settings'],
 		}),
 	]);
+
+	const { isEnabled } = await draftMode();
 
 	return (
 		<html lang="en">
@@ -70,6 +73,12 @@ export default async function RootLayout({
 				<Header navigation={navigation} />
 				{children}
 				<Footer links={settings.socialMedia} />
+				{isEnabled && (
+					<>
+						<VisualEditing />
+						<DisableDraftMode />
+					</>
+				)}
 			</body>
 		</html>
 	);

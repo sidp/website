@@ -9,7 +9,6 @@ import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
 	const settings = await fetch<Settings>({
-		draftMode: false,
 		query: `*[_type == "settings"][0]`,
 	});
 
@@ -29,22 +28,18 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function IndexPage() {
 	const [settings, artworks, posts, projects] = await Promise.all([
 		fetch<Settings>({
-			draftMode: false,
 			query: `*[_type == "settings"][0]`,
 			tags: ['settings'],
 		}),
 		fetch<Artwork[]>({
-			draftMode: false,
 			query: `*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 			tags: ['post'],
 		}),
 		fetch<Article[]>({
-			draftMode: false,
 			query: `*[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 			tags: ['post'],
 		}),
 		fetch<Project[]>({
-			draftMode: false,
 			query: `*[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 			tags: ['post'],
 		}),

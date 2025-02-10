@@ -26,7 +26,6 @@ export async function generateMetadata(
 	const { slug } = await params;
 
 	const post = await fetch<Post>({
-		draftMode: false,
 		query: `*[_type == "post" && slug.current == "${slug}"][0] {
 			${postFields},
 			body[] {
@@ -62,7 +61,6 @@ export async function generateMetadata(
 export default async function PostPage({ params }: PostPageProps) {
 	const { slug } = await params;
 	const post = await fetch<Post>({
-		draftMode: false,
 		query: `*[_type == "post" && slug.current == "${slug}"][0] {
 			${postFields}
 		}`,
@@ -74,7 +72,6 @@ export default async function PostPage({ params }: PostPageProps) {
 	}
 
 	const posts = await fetch<Post[]>({
-		draftMode: false,
 		query: `*[_type == "post" && slug.current != "${post.slug.current}" && type == "${post.type}"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
 		tags: ['post'],
 	});

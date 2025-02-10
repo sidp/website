@@ -2,6 +2,7 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { codeInput } from '@sanity/code-input';
+import { presentationTool } from 'sanity/presentation';
 import { table } from '@sanity/table';
 import { media, mediaAssetSource } from 'sanity-plugin-media';
 import { schemaTypes } from './schemaTypes';
@@ -22,6 +23,15 @@ export default defineConfig({
 
 	plugins: [
 		structureTool({ structure }),
+		presentationTool({
+			previewUrl: {
+				origin: process.env.SANITY_STUDIO_PREVIEW_ORIGIN,
+				preview: '/',
+				previewMode: {
+					enable: '/api/draft-mode/enable',
+				},
+			},
+		}),
 		visionTool(),
 		codeInput(),
 		table(),
