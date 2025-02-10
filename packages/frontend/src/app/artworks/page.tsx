@@ -18,5 +18,11 @@ export default async function ArtworkPage() {
 		tags: ['post'],
 	});
 
-	return <>{artworks && <PostsList title="Artworks" posts={artworks} />}</>;
+	return (
+		<>
+			{artworks && (
+				<PostsList title="Artworks" posts={artworks} priorityImageLoading />
+			)}
+		</>
+	);
 }

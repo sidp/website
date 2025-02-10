@@ -22,19 +22,21 @@ const PostsList: React.FC<PostsListProps> = ({
 		return null;
 	}
 
+	const maxColumns = posts.some((post) => post.type === 'project') ? 3 : 2;
+
 	return (
 		<Section className={className}>
 			{title && <Heading className="mb-6">{title}</Heading>}
 
-			<Columns
-				maxColumns={posts.some((post) => post.type === 'project') ? 3 : 2}
-			>
+			<Columns maxColumns={maxColumns}>
 				{posts.map((post, index) => {
 					return (
 						<PostItem
 							key={post._id}
 							post={post}
-							loading={priorityImageLoading && index < 2 ? 'eager' : 'lazy'}
+							loading={
+								priorityImageLoading && index < maxColumns ? 'eager' : 'lazy'
+							}
 						/>
 					);
 				})}

@@ -18,5 +18,11 @@ export default async function ProjectsPage() {
 		tags: ['post'],
 	});
 
-	return <>{projects && <PostsList title="Projects" posts={projects} />}</>;
+	return (
+		<>
+			{projects && (
+				<PostsList title="Projects" posts={projects} priorityImageLoading />
+			)}
+		</>
+	);
 }

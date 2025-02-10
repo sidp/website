@@ -20,6 +20,7 @@ const PostItem: React.FC<PostItemProps> = ({ post, loading = 'lazy' }) => {
 				<Image
 					image={{
 						...post.image,
+						loading: loading || post.image?.loading || 'lazy',
 						width: 3200,
 						height: 2400,
 					}}
