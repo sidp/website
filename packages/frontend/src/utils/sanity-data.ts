@@ -21,3 +21,10 @@ export const postFields = `
 		},
 	}
 `;
+
+export const postListFields = `
+	...,
+	image {
+		${imageFields}
+	},
+`;

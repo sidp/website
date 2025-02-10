@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import React from 'react';
-import { Post } from '../../types';
 import Heading from '../heading';
 import Image from '../image';
+import type { PostItem as PostItemType } from './types';
 
 type PostItemProps = {
-	post: Post;
+	post: PostItemType;
 	loading?: 'lazy' | 'eager';
 	className?: string;
 };
@@ -13,17 +13,15 @@ type PostItemProps = {
 const PostItem: React.FC<PostItemProps> = ({ post, loading = 'lazy' }) => {
 	return (
 		<Link
-			href={`/${post.slug.current}`}
+			href={`/${post.slug?.current}`}
 			className="flex flex-col gap-3 max-sm:-mx-4"
 		>
-			{post.image && (
+			{post.image?.asset && (
 				<Image
-					image={{
-						...post.image,
-						loading: loading || post.image?.loading || 'lazy',
-						width: 3200,
-						height: 2400,
-					}}
+					image={post.image}
+					loading={loading}
+					width={3200}
+					height={2400}
 					sizes={`(max-width: 1024px) 100vw, ${
 						post.type === 'project' ? '33vw' : '50vw'
 					}`}

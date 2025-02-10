@@ -1,11 +1,11 @@
-import React from 'react';
+import type { AnchorHTMLAttributes, DetailedHTMLProps, FC } from 'react';
 
-type ExternalLinkProps = React.DetailedHTMLProps<
-	React.AnchorHTMLAttributes<HTMLAnchorElement>,
+type ExternalLinkProps = DetailedHTMLProps<
+	AnchorHTMLAttributes<HTMLAnchorElement>,
 	HTMLAnchorElement
 > & { href: string; rel?: string };
 
-const ExternalLink: React.FC<ExternalLinkProps> = ({
+const ExternalLink: FC<ExternalLinkProps> = ({
 	href,
 	rel = '',
 	children,

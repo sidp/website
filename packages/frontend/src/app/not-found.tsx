@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { Metadata } from 'next';
-import Section from '../components/section';
+import type { Metadata } from 'next';
 import Heading from '../components/heading';
+import Section from '../components/section';
 
 export const metadata: Metadata = {
 	title: 'Page not found',

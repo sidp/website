@@ -1,9 +1,9 @@
 'use client';
 
-import React, { FC, ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Navigation } from '../types';
+import React, { type FC, type ReactNode } from 'react';
+import { type Navigation } from '../../sanity.types';
 import cx from '../utils/cx';
 
 type HeaderProps = {
@@ -27,8 +27,8 @@ const Header: React.FC<HeaderProps> = ({ navigation }) => {
 			</Link>
 			<div className="flex-1 flex gap-x-1 p-1 relative">
 				<span className="border-t border-dotted border-current absolute top-[-1px] left-0 right-0"></span>
-				{navigation.items.map((item) => (
-					<NavItem href={item.href} key={item.title}>
+				{navigation.items?.filter(isNavItem).map((item) => (
+					<NavItem href={item.href} key={item._key}>
 						{item.title}
 					</NavItem>
 				))}
@@ -65,4 +65,16 @@ const NavItem: FC<{
 const isCurrent = (href: string, pathname: string | null): boolean => {
 	const current = href === pathname;
 	return current;
+};
+
+const isNavItem = (
+	item: unknown,
+): item is { _key: string; href: string; title: string } => {
+	return (
+		typeof item === 'object' &&
+		item !== null &&
+		'_key' in item &&
+		'href' in item &&
+		'title' in item
+	);
 };

@@ -1,13 +1,19 @@
-import { MetadataRoute } from 'next';
 import dayjs from 'dayjs';
-import { Post } from '../types';
-import { fetch } from '../utils/sanity-fetch';
+import type { MetadataRoute } from 'next';
+import { defineQuery } from 'next-sanity';
+import type { Slug } from '../../sanity.types';
+import { client } from '../utils/sanity-client';
 import { absoluteUrl } from '../utils/url';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const posts = await fetch<Post[]>({
-		draftMode: false,
-		query: `*[_type == "post"]`,
+	const sitemapQuery = defineQuery(`
+		*[_type == "post"] {
+			_updatedAt,
+			slug,
+		}
+	`);
+	const posts = await client.fetch(sitemapQuery, undefined, {
+		next: { tags: ['post'] },
 	});
 
 	const lastModified = posts.reduce((latest, post) => {
@@ -20,9 +26,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			url: absoluteUrl('/'),
 			lastModified: dayjs.unix(lastModified).toISOString(),
 		},
-		...posts.map((post) => ({
-			url: absoluteUrl(`/${post.slug.current}`),
-			lastModified: post._updatedAt,
-		})),
+		...posts
+			.filter(
+				(post): post is { _updatedAt: string; slug: Slug } =>
+					typeof post._updatedAt === 'string' && post.slug !== null,
+			)
+			.map((post) => ({
+				url: absoluteUrl(`/${post.slug.current}`),
+				lastModified: post._updatedAt,
+			})),
 	];
 }

@@ -1,16 +1,25 @@
-import * as React from 'react';
-import { PortableText } from 'next-sanity';
+import type { Metadata } from 'next';
+import { defineQuery, PortableText } from 'next-sanity';
 import PostsList from '../components/posts-list';
-import { Article, Artwork, Project, Settings } from '../types';
-import { fetch } from '../utils/sanity-fetch';
 import Section from '../components/section';
-import { postFields } from '../utils/sanity-data';
-import { Metadata } from 'next';
+import { client } from '../utils/sanity-client';
+import { postListFields } from '../utils/sanity-data';
+import { fetchOptions } from '../utils/sanity-fetch';
 
 export async function generateMetadata(): Promise<Metadata> {
-	const settings = await fetch<Settings>({
-		query: `*[_type == "settings"][0]`,
-	});
+	const indexMetadataQuery = defineQuery(`
+		*[_type == "settings"][0] {
+			websiteName,
+			description,
+		}
+	`);
+	const settings = await client.fetch(
+		indexMetadataQuery,
+		undefined,
+		await fetchOptions({
+			tags: ['post'],
+		}),
+	);
 
 	if (settings === null) {
 		return {};
@@ -26,30 +35,52 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function IndexPage() {
+	const homeSettingsQuery = defineQuery(`
+		*[_type == "settings"][0] {
+			introMessage
+		}
+	`);
+
+	const homeArtworksQuery = defineQuery(`
+		*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {
+			${postListFields}
+		}
+	`);
+
+	const homePostsQuery = defineQuery(`
+		*[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) {
+			${postListFields}
+		}
+	`);
+
+	const homeProjectsQuery = defineQuery(`
+		*[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) {
+			${postListFields}
+		}
+	`);
+
 	const [settings, artworks, posts, projects] = await Promise.all([
-		fetch<Settings>({
-			query: `*[_type == "settings"][0]`,
-			tags: ['settings'],
+		client.fetch(homeSettingsQuery, undefined, {
+			next: { tags: ['settings'] },
 		}),
-		fetch<Artwork[]>({
-			query: `*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
-			tags: ['post'],
+		client.fetch(homeArtworksQuery, undefined, {
+			next: { tags: ['post'] },
 		}),
-		fetch<Article[]>({
-			query: `*[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
-			tags: ['post'],
+		client.fetch(homePostsQuery, undefined, {
+			next: { tags: ['post'] },
 		}),
-		fetch<Project[]>({
-			query: `*[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
-			tags: ['post'],
+		client.fetch(homeProjectsQuery, undefined, {
+			next: { tags: ['post'] },
 		}),
 	]);
 
 	return (
 		<>
-			<Section limitWidth>
-				<PortableText value={settings.introMessage} />
-			</Section>
+			{settings?.introMessage && (
+				<Section limitWidth>
+					<PortableText value={settings.introMessage} />
+				</Section>
+			)}
 			{artworks && (
 				<PostsList title="Artworks" posts={artworks} priorityImageLoading />
 			)}

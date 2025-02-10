@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { Metadata } from 'next';
-import { Project } from '../../types';
-import { fetch } from '../../utils/sanity-fetch';
-import { postFields } from '../../utils/sanity-data';
+import type { Metadata } from 'next';
+import { defineQuery } from 'next-sanity';
+import { notFound } from 'next/navigation';
 import PostsList from '../../components/posts-list';
+import { client } from '../../utils/sanity-client';
+import { postFields } from '../../utils/sanity-data';
+import { fetchOptions } from '../../utils/sanity-fetch';
 
 export const metadata: Metadata = {
 	title: 'Projects',
@@ -13,16 +14,23 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage() {
-	const projects = await fetch<Project[]>({
-		query: `*[_type == "post" && type == "project"] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
-		tags: ['post'],
-	});
+	const projectsPageQuery = defineQuery(`
+		*[_type == "post" && type == "project"] | order(meta.date desc, _createdAt desc) {
+			${postFields}
+		}
+	`);
 
-	return (
-		<>
-			{projects && (
-				<PostsList title="Projects" posts={projects} priorityImageLoading />
-			)}
-		</>
+	const projects = await client.fetch(
+		projectsPageQuery,
+		undefined,
+		await fetchOptions({
+			tags: ['post'],
+		}),
 	);
+
+	if (!projects || projects.length === 0) {
+		notFound();
+	}
+
+	return <PostsList title="Projects" posts={projects} priorityImageLoading />;
 }

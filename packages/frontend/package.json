@@ -8,7 +8,8 @@
 	"scripts": {
 		"dev": "next dev --port 8830",
 		"build": "next build",
-		"start": "next start --port $PORT"
+		"start": "next start --port $PORT",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@fontsource/ia-writer-mono": "^5.1.0",

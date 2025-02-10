@@ -1,18 +1,20 @@
-import * as React from 'react';
-import { Metadata, ResolvingMetadata, NextPage } from 'next';
-import { Post } from '../../types';
-import PostsList from '../../components/posts-list';
-import { fetch } from '../../utils/sanity-fetch';
+import imageUrlBuilder from '@sanity/image-url';
+import dayjs from 'dayjs';
+import type { Metadata, ResolvingMetadata } from 'next';
+import { defineQuery } from 'next-sanity';
+import { notFound } from 'next/navigation';
 import Body from '../../components/body';
 import Heading from '../../components/heading';
-import Section from '../../components/section';
-import { imageFields, postFields } from '../../utils/sanity-data';
-import { typeNamePlural } from '../../utils/strings';
-import dayjs from 'dayjs';
 import Meta from '../../components/meta';
-import imageUrlBuilder from '@sanity/image-url';
+import PostsList from '../../components/posts-list';
+import Section from '../../components/section';
 import { client } from '../../utils/sanity-client';
-import { notFound } from 'next/navigation';
+import {
+	imageFields,
+	postFields,
+	postListFields,
+} from '../../utils/sanity-data';
+import { typeNamePlural } from '../../utils/strings';
 const builder = imageUrlBuilder(client);
 
 type PostPageProps = {
@@ -25,18 +27,20 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 	const { slug } = await params;
 
-	const post = await fetch<Post>({
-		query: `*[_type == "post" && slug.current == "${slug}"][0] {
-			${postFields},
-			body[] {
-				...,
-				_type == "image" => {
-					${imageFields}
-				}
-			}
-		}`,
-		tags: ['post'],
-	});
+	const postMetadataQuery = defineQuery(`
+		*[_type == "post" && slug.current == $slug][0] {
+			title,
+			description,
+			slug,
+			image { ${imageFields} }
+		}
+	`);
+
+	const post = await client.fetch(
+		postMetadataQuery,
+		{ slug },
+		{ next: { tags: ['post'] } },
+	);
 
 	if (!post) {
 		return {};
@@ -53,28 +57,41 @@ export async function generateMetadata(
 			images: ogImage,
 		},
 		alternates: {
-			canonical: `/${post.slug.current}`,
+			canonical: post.slug ? `/${post.slug.current}` : undefined,
 		},
 	};
 }
 
 export default async function PostPage({ params }: PostPageProps) {
 	const { slug } = await params;
-	const post = await fetch<Post>({
-		query: `*[_type == "post" && slug.current == "${slug}"][0] {
+
+	const postPageQuery = defineQuery(`
+		*[_type == "post" && slug.current == $slug][0] {
 			${postFields}
-		}`,
-		tags: ['post'],
-	});
+		}
+	`);
+
+	const post = await client.fetch(
+		postPageQuery,
+		{ slug },
+		{ next: { tags: ['post'] } },
+	);
 
 	if (!post) {
 		notFound();
 	}
 
-	const posts = await fetch<Post[]>({
-		query: `*[_type == "post" && slug.current != "${post.slug.current}" && type == "${post.type}"][0...16] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
-		tags: ['post'],
-	});
+	const postPageOtherPostsQuery = defineQuery(`
+		*[_type == "post" && slug.current != $slug && type == $type][0...16] | order(meta.date desc, _createdAt desc) {
+			${postListFields}
+		}
+	`);
+
+	const posts = await client.fetch(
+		postPageOtherPostsQuery,
+		{ slug, type: post.type },
+		{ next: { tags: ['post'] } },
+	);
 
 	return (
 		<>
@@ -89,9 +106,9 @@ export default async function PostPage({ params }: PostPageProps) {
 						}
 					/>
 				</header>
-				<Body value={post.body} />
+				{post.body && <Body value={post.body} />}
 			</Section>
-			{post.type !== 'page' && (
+			{post.type && post.type !== 'page' && (
 				<PostsList
 					title={`More in ${typeNamePlural(post.type)}`}
 					posts={posts}
@@ -103,11 +120,14 @@ export default async function PostPage({ params }: PostPageProps) {
 }
 
 export async function generateStaticParams() {
-	const posts = await fetch<Post[]>({
-		draftMode: false,
-		query: `*[_type == "post"]`,
-		tags: ['post'],
+	const postsStaticParamsQuery = defineQuery(`
+		*[_type == "post"] { slug }
+	`);
+	const posts = await client.fetch(postsStaticParamsQuery, undefined, {
+		next: { tags: ['post'] },
 	});
 
-	return posts.map((post) => ({ params: { slug: post.slug.current } }));
+	return posts
+		.map((post) => ({ params: { slug: post.slug?.current } }))
+		.filter(({ params }) => Boolean(params.slug));
 }

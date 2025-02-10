@@ -1,20 +1,26 @@
 import React from 'react';
+import cx from '../utils/cx';
 import naturalJoin from '../utils/natural-join';
 import ExternalLink from './external-link';
-import cx from '../utils/cx';
 
 type FooterProps = {
-	links: { url: string; label: string; title?: string; rel?: string }[];
+	links?: {
+		_key: string;
+		url?: string;
+		label?: string;
+		title?: string;
+		rel?: string;
+	}[];
 };
 
 const Footer: React.FC<FooterProps> = ({ links = [] }) => {
-	const socialMediaLinks = links.map((link) => (
+	const socialMediaLinks = links.filter(isLink).map((link) => (
 		<ExternalLink
 			href={link.url}
 			title={link.title}
 			rel={link.rel}
-			key={link.url}
 			className="underline underline-offset-4"
+			key={link._key}
 		>
 			{link.label}
 		</ExternalLink>
@@ -55,3 +61,21 @@ const Footer: React.FC<FooterProps> = ({ links = [] }) => {
 };
 
 export default Footer;
+
+const isLink = (
+	item: unknown,
+): item is {
+	_key: string;
+	url: string;
+	label: string;
+	title?: string;
+	rel?: string;
+} => {
+	return (
+		typeof item === 'object' &&
+		item !== null &&
+		'_key' in item &&
+		'url' in item &&
+		'label' in item
+	);
+};

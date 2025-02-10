@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { Metadata } from 'next';
-import { Artwork } from '../../types';
-import { fetch } from '../../utils/sanity-fetch';
-import { postFields } from '../../utils/sanity-data';
+import type { Metadata } from 'next';
+import { defineQuery } from 'next-sanity';
+import { notFound } from 'next/navigation';
 import PostsList from '../../components/posts-list';
+import { client } from '../../utils/sanity-client';
+import { postListFields } from '../../utils/sanity-data';
 
 export const metadata: Metadata = {
 	title: 'Artworks',
@@ -13,16 +13,18 @@ export const metadata: Metadata = {
 };
 
 export default async function ArtworkPage() {
-	const artworks = await fetch<Artwork[]>({
-		query: `*[_type == "post" && type == "artwork"] | order(meta.date desc, _createdAt desc) { ${postFields} }`,
-		tags: ['post'],
+	const artworksPageQuery = defineQuery(`
+		*[_type == "post" && type == "artwork"] | order(meta.date desc, _createdAt desc) {
+			${postListFields}
+		}
+	`);
+	const artworks = await client.fetch(artworksPageQuery, undefined, {
+		next: { tags: ['post'] },
 	});
 
-	return (
-		<>
-			{artworks && (
-				<PostsList title="Artworks" posts={artworks} priorityImageLoading />
-			)}
-		</>
-	);
+	if (!artworks || artworks.length === 0) {
+		notFound();
+	}
+
+	return <PostsList title="Artworks" posts={artworks} priorityImageLoading />;
 }

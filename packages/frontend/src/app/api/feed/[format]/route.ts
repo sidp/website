@@ -1,8 +1,8 @@
 import { Feed } from 'feed';
+import { defineQuery, toPlainText } from 'next-sanity';
+import { client } from '../../../../utils/sanity-client';
+import { postFields } from '../../../../utils/sanity-data';
 import { absoluteUrl } from '../../../../utils/url';
-import { fetch } from '../../../../utils/sanity-fetch';
-import { Post } from '../../../../types';
-import { toPlainText } from 'next-sanity';
 
 const feedLinks = {
 	json: absoluteUrl(`/feed/json`),
@@ -13,10 +13,14 @@ export async function GET(
 	_request: Request,
 	{ params }: { params: Promise<{ format: string }> },
 ) {
-	const posts = await fetch<Post[]>({
-		draftMode: false,
-		query: `*[_type == "post" && type != "page"][0...16] | order(_createdAt desc)`,
-		tags: ['post'],
+	const feedQuery = defineQuery(`
+		*[_type == "post" && type != "page"][0...16] | order(_createdAt desc) {
+			${postFields}
+		}
+	`);
+
+	const posts = await client.fetch(feedQuery, undefined, {
+		next: { tags: ['post'] },
 	});
 
 	const f = new Feed({
@@ -28,11 +32,19 @@ export async function GET(
 	});
 
 	posts.forEach((post) => {
+		if (
+			post.title === undefined ||
+			post.slug === undefined ||
+			post.body === undefined
+		) {
+			return;
+		}
+
 		f.addItem({
 			title: post.title,
 			id: absoluteUrl(`/${post.slug.current}`),
 			link: absoluteUrl(`/${post.slug.current}`),
-			content: toPlainText(post.body),
+			content: post.body ? toPlainText(post.body) : '',
 			date: new Date(post._updatedAt),
 			published: new Date(post._createdAt),
 		});

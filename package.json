@@ -7,10 +7,10 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev --parallel",
 		"lint": "turbo run lint",
-		"format": "prettier --write \"**/*.{ts,tsx,md}\""
+		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"typecheck": "turbo run typecheck"
 	},
 	"devDependencies": {
-		"eslint-config-custom": "*",
 		"prettier": "^2.8.8",
 		"turbo": "^2.4.0"
 	},

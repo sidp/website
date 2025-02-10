@@ -1,4 +1,4 @@
-import { FC, ReactNode, createElement } from 'react';
+import { type FC, type ReactNode, createElement } from 'react';
 import cx from '../utils/cx';
 
 type HeadingProps = {

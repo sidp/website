@@ -1,23 +1,23 @@
-import * as React from 'react';
-import { Metadata, Viewport } from 'next';
-import Script from 'next/script';
-import { draftMode } from 'next/headers';
-import { VisualEditing } from 'next-sanity';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import Header from '../components/header';
-import { Navigation, Settings } from '../types';
-import { fetch } from '../utils/sanity-fetch';
-import Footer from '../components/footer';
+import type { Metadata, Viewport } from 'next';
+import { defineQuery, VisualEditing } from 'next-sanity';
+import { draftMode } from 'next/headers';
+import Script from 'next/script';
+import * as React from 'react';
 import DisableDraftMode from '../components/disable-draft-mode';
+import Footer from '../components/footer';
+import Header from '../components/header';
+import { client } from '../utils/sanity-client';
 
-import '@fontsource/ia-writer-quattro/400.css';
-import '@fontsource/ia-writer-quattro/400-italic.css';
-import '@fontsource/ia-writer-quattro/700.css';
-import '@fontsource/ia-writer-quattro/700-italic.css';
-import '@fontsource/ia-writer-mono/400.css';
 import '@fontsource/ia-writer-mono/400-italic.css';
+import '@fontsource/ia-writer-mono/400.css';
+import '@fontsource/ia-writer-quattro/400-italic.css';
+import '@fontsource/ia-writer-quattro/400.css';
+import '@fontsource/ia-writer-quattro/700-italic.css';
+import '@fontsource/ia-writer-quattro/700.css';
 
 import '../styles/globals.css';
+import { fetchOptions } from '../utils/sanity-fetch';
 
 export const viewport: Viewport = {
 	width: 'device-width',
@@ -52,15 +52,24 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	const navigationQuery = defineQuery(`*[_type == "navigation"][0]`);
+	const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
+
 	const [navigation, settings] = await Promise.all([
-		fetch<Navigation>({
-			query: `*[_type == "navigation"][0]`,
-			tags: ['navigation'],
-		}),
-		fetch<Settings>({
-			query: `*[_type == "settings"][0]`,
-			tags: ['settings'],
-		}),
+		client.fetch(
+			navigationQuery,
+			undefined,
+			await fetchOptions({
+				tags: ['navigation'],
+			}),
+		),
+		client.fetch(
+			settingsQuery,
+			undefined,
+			await fetchOptions({
+				tags: ['settings'],
+			}),
+		),
 	]);
 
 	const { isEnabled } = await draftMode();
@@ -70,9 +79,9 @@ export default async function RootLayout({
 			<SpeedInsights />
 			<Script defer data-domain="simonsson.com" src="/js/script.js" />
 			<body className="font-sans leading-relaxed text-sm bg-black text-white antialiased">
-				<Header navigation={navigation} />
+				{navigation && <Header navigation={navigation} />}
 				{children}
-				<Footer links={settings.socialMedia} />
+				<Footer links={settings?.socialMedia} />
 				{isEnabled && (
 					<>
 						<VisualEditing />

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Columns from '../columns';
-import { Post } from '../../types';
-import PostItem from './post-item';
 import Heading from '../heading';
 import Section from '../section';
+import PostItem from './post-item';
+import { isValidPostItem, type PostItem as PostItemType } from './types';
 
 type PostsListProps = {
 	title?: string;
-	posts: Post[];
+	posts: PostItemType[];
 	priorityImageLoading?: boolean;
 	className?: string;
 };
@@ -18,18 +18,19 @@ const PostsList: React.FC<PostsListProps> = ({
 	priorityImageLoading = false,
 	className,
 }) => {
-	if (posts.length === 0) {
+	const validPosts = posts.filter(isValidPostItem);
+	if (validPosts.length === 0) {
 		return null;
 	}
 
-	const maxColumns = posts.some((post) => post.type === 'project') ? 3 : 2;
+	const maxColumns = validPosts.some((post) => post.type === 'project') ? 3 : 2;
 
 	return (
 		<Section className={className}>
 			{title && <Heading className="mb-6">{title}</Heading>}
 
 			<Columns maxColumns={maxColumns}>
-				{posts.map((post, index) => {
+				{validPosts.map((post, index) => {
 					return (
 						<PostItem
 							key={post._id}

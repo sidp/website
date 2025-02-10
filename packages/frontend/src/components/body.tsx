@@ -1,13 +1,13 @@
-import { FC } from 'react';
-import { PortableText, PortableTextProps } from 'next-sanity';
-import Prism from 'prismjs';
 import imageUrlBuilder from '@sanity/image-url';
-import { client } from '../utils/sanity-client';
-import VideoEmbed from './video-embed';
+import { PortableText, type PortableTextProps } from 'next-sanity';
+import Prism from 'prismjs';
+import type { FC } from 'react';
 import cx from '../utils/cx';
+import { client } from '../utils/sanity-client';
 import { isExternal } from '../utils/url';
 import ExternalLink from './external-link';
 import Image from './image';
+import VideoEmbed from './video-embed';
 
 const builder = imageUrlBuilder(client);
 
@@ -69,11 +69,9 @@ const Body: FC<BodyProps> = ({ value }) => {
 
 						const image = (
 							<Image
-								image={{
-									...props.value,
-									width: props.value.width || 3200,
-									height: props.value.height || 2400,
-								}}
+								image={props.value}
+								width={props.value.width || 3200}
+								height={props.value.height || 2400}
 								sizes="100vw"
 							/>
 						);
