@@ -1,5 +1,5 @@
 {
-	"name": "sidp-website-frontend",
+	"name": "@sidp/website-frontend",
 	"private": true,
 	"description": "Website of Peter Simonsson",
 	"license": "UNLICENSED",

@@ -1,5 +1,5 @@
 {
-	"name": "sidp-website-sanity",
+	"name": "@sidp/website-sanity",
 	"private": true,
 	"version": "2.0.0",
 	"main": "package.json",

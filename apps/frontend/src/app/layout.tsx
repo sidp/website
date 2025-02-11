@@ -77,7 +77,7 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<SpeedInsights />
-			<Script defer data-domain="simonsson.com" src="/js/script.js" />
+			<Script data-domain="simonsson.com" src="/js/script.js" />
 			<body className="font-sans leading-relaxed text-sm bg-black text-white antialiased">
 				{navigation && <Header navigation={navigation} />}
 				{children}

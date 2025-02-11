@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 
 const Icon: FC = () => {
 	return <img src="/static/favicon.png" alt="" width={25} height={25} />;

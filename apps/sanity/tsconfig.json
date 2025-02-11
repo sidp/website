@@ -1,9 +1,9 @@
 {
 	"compilerOptions": {
+		"target": "ES2017",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
-		"strict": false,
 		"noEmit": true,
 		"incremental": true,
 		"esModuleInterop": true,
@@ -12,21 +12,11 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
+		"strict": true,
 		"verbatimModuleSyntax": true,
-		"plugins": [
-			{
-				"name": "next"
-			}
-		],
-		"strictNullChecks": true,
-		"target": "ES2017"
+		"forceConsistentCasingInFileNames": true,
+		"strictNullChecks": true
 	},
-	"include": [
-		"next-env.d.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		".next/types/**/*.ts",
-		"sanity.types.ts"
-	],
+	"include": ["**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]
 }
