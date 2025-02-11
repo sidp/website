@@ -1,7 +1,7 @@
 import { Feed } from 'feed';
 import { defineQuery, toPlainText } from 'next-sanity';
-import { client } from '../../../../utils/sanity-client';
 import { postFields } from '../../../../utils/sanity-data';
+import { fetch } from '../../../../utils/sanity-fetch';
 import { absoluteUrl } from '../../../../utils/url';
 
 const feedLinks = {
@@ -19,7 +19,7 @@ export async function GET(
 		}
 	`);
 
-	const posts = await client.fetch(feedQuery, undefined, {
+	const posts = await fetch(feedQuery, undefined, {
 		next: { tags: ['post'] },
 	});
 

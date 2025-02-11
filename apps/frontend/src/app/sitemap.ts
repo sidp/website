@@ -2,8 +2,8 @@ import dayjs from 'dayjs';
 import type { MetadataRoute } from 'next';
 import { defineQuery } from 'next-sanity';
 import type { Slug } from '../../sanity.types';
-import { client } from '../utils/sanity-client';
 import { absoluteUrl } from '../utils/url';
+import { fetch } from '../utils/sanity-fetch';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const sitemapQuery = defineQuery(`
@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			slug,
 		}
 	`);
-	const posts = await client.fetch(sitemapQuery, undefined, {
+	const posts = await fetch(sitemapQuery, undefined, {
 		next: { tags: ['post'] },
 	});
 

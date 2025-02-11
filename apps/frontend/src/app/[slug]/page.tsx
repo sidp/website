@@ -15,6 +15,7 @@ import {
 	postListFields,
 } from '../../utils/sanity-data';
 import { typeNamePlural } from '../../utils/strings';
+import { fetch } from '../../utils/sanity-fetch';
 const builder = imageUrlBuilder(client);
 
 type PostPageProps = {
@@ -36,7 +37,7 @@ export async function generateMetadata(
 		}
 	`);
 
-	const post = await client.fetch(
+	const post = await fetch(
 		postMetadataQuery,
 		{ slug },
 		{ next: { tags: ['post'] } },
@@ -71,13 +72,13 @@ export default async function PostPage({ params }: PostPageProps) {
 		}
 	`);
 
-	const post = await client.fetch(
+	const post = await fetch(
 		postPageQuery,
 		{ slug },
 		{ next: { tags: ['post'] } },
 	);
 
-	if (!post) {
+	if (!post || !post.type) {
 		notFound();
 	}
 
@@ -87,7 +88,7 @@ export default async function PostPage({ params }: PostPageProps) {
 		}
 	`);
 
-	const posts = await client.fetch(
+	const posts = await fetch(
 		postPageOtherPostsQuery,
 		{ slug, type: post.type },
 		{ next: { tags: ['post'] } },
@@ -123,8 +124,9 @@ export async function generateStaticParams() {
 	const postsStaticParamsQuery = defineQuery(`
 		*[_type == "post"] { slug }
 	`);
-	const posts = await client.fetch(postsStaticParamsQuery, undefined, {
+	const posts = await fetch(postsStaticParamsQuery, undefined, {
 		next: { tags: ['post'] },
+		draftMode: false,
 	});
 
 	return posts

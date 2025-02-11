@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { defineQuery } from 'next-sanity';
 import { notFound } from 'next/navigation';
 import PostsList from '../../components/posts-list';
-import { client } from '../../utils/sanity-client';
 import { postListFields } from '../../utils/sanity-data';
+import { fetch } from '../../utils/sanity-fetch';
 
 export const metadata: Metadata = {
 	title: 'Artworks',
@@ -18,7 +18,7 @@ export default async function ArtworkPage() {
 			${postListFields}
 		}
 	`);
-	const artworks = await client.fetch(artworksPageQuery, undefined, {
+	const artworks = await fetch(artworksPageQuery, undefined, {
 		next: { tags: ['post'] },
 	});
 

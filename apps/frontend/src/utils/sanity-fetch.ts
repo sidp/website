@@ -1,24 +1,32 @@
-import type { FilteredResponseQueryOptions } from 'next-sanity';
+import type {
+	Any,
+	ClientReturn,
+	FilteredResponseQueryOptions,
+} from 'next-sanity';
 import { draftMode as nextDraftMode } from 'next/headers';
+import { client } from './sanity-client';
 
-// import { client } from './sanity-client';
+export async function fetch<R = Any, const G extends string = string>(
+	query: G,
+	params?: { [index: string]: string },
+	options?: FilteredResponseQueryOptions & { draftMode?: boolean },
+): Promise<ClientReturn<G, R>> {
+	const { draftMode } = options || {};
+	const isEnabled =
+		typeof draftMode === 'boolean'
+			? draftMode
+			: (await nextDraftMode()).isEnabled;
 
-// type FetchClient = typeof client.fetch;
-// type Params = Parameters<FetchClient>;
+	const draftModeConfig: FilteredResponseQueryOptions = isEnabled
+		? {
+				perspective: 'previewDrafts',
+				useCdn: false,
+				stega: true,
+		  }
+		: {};
 
-// export const fetch: FetchClient = async (a, b, c) => {
-// 	const { isEnabled } = await nextDraftMode();
-
-// 	const draftModeConfig: FilteredResponseQueryOptions = isEnabled
-// 		? {
-// 				perspective: 'previewDrafts',
-// 				useCdn: false,
-// 				stega: true,
-// 		  }
-// 		: {};
-
-// 	return client.fetch(a, b, { ...c, ...draftModeConfig });
-// };
+	return client.fetch(query, params, { ...draftModeConfig, ...options });
+}
 
 export async function fetchOptions(options: {
 	tags: string[];

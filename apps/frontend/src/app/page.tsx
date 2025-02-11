@@ -2,9 +2,8 @@ import type { Metadata } from 'next';
 import { defineQuery, PortableText } from 'next-sanity';
 import PostsList from '../components/posts-list';
 import Section from '../components/section';
-import { client } from '../utils/sanity-client';
 import { postListFields } from '../utils/sanity-data';
-import { fetchOptions } from '../utils/sanity-fetch';
+import { fetch } from '../utils/sanity-fetch';
 
 export async function generateMetadata(): Promise<Metadata> {
 	const indexMetadataQuery = defineQuery(`
@@ -13,13 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
 			description,
 		}
 	`);
-	const settings = await client.fetch(
-		indexMetadataQuery,
-		undefined,
-		await fetchOptions({
-			tags: ['post'],
-		}),
-	);
+	const settings = await fetch(indexMetadataQuery, undefined, {
+		next: { tags: ['post'] },
+	});
 
 	if (settings === null) {
 		return {};
@@ -60,16 +55,16 @@ export default async function IndexPage() {
 	`);
 
 	const [settings, artworks, posts, projects] = await Promise.all([
-		client.fetch(homeSettingsQuery, undefined, {
+		fetch(homeSettingsQuery, undefined, {
 			next: { tags: ['settings'] },
 		}),
-		client.fetch(homeArtworksQuery, undefined, {
+		fetch(homeArtworksQuery, undefined, {
 			next: { tags: ['post'] },
 		}),
-		client.fetch(homePostsQuery, undefined, {
+		fetch(homePostsQuery, undefined, {
 			next: { tags: ['post'] },
 		}),
-		client.fetch(homeProjectsQuery, undefined, {
+		fetch(homeProjectsQuery, undefined, {
 			next: { tags: ['post'] },
 		}),
 	]);

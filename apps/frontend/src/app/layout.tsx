@@ -7,7 +7,7 @@ import * as React from 'react';
 import DisableDraftMode from '../components/disable-draft-mode';
 import Footer from '../components/footer';
 import Header from '../components/header';
-import { client } from '../utils/sanity-client';
+import { fetch } from '../utils/sanity-fetch';
 
 import '@fontsource/ia-writer-mono/400-italic.css';
 import '@fontsource/ia-writer-mono/400.css';
@@ -17,7 +17,6 @@ import '@fontsource/ia-writer-quattro/700-italic.css';
 import '@fontsource/ia-writer-quattro/700.css';
 
 import '../styles/globals.css';
-import { fetchOptions } from '../utils/sanity-fetch';
 
 export const viewport: Viewport = {
 	width: 'device-width',
@@ -56,20 +55,12 @@ export default async function RootLayout({
 	const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
 
 	const [navigation, settings] = await Promise.all([
-		client.fetch(
-			navigationQuery,
-			undefined,
-			await fetchOptions({
-				tags: ['navigation'],
-			}),
-		),
-		client.fetch(
-			settingsQuery,
-			undefined,
-			await fetchOptions({
-				tags: ['settings'],
-			}),
-		),
+		fetch(navigationQuery, undefined, {
+			next: { tags: ['navigation'] },
+		}),
+		fetch(settingsQuery, undefined, {
+			next: { tags: ['settings'] },
+		}),
 	]);
 
 	const { isEnabled } = await draftMode();
