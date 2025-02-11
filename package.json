@@ -1,8 +1,9 @@
 {
-	"name": "sidp-website",
+	"name": "@sidp/website",
 	"version": "2.0.0",
 	"private": true,
 	"license": "UNLICENSED",
+	"author": "Peter Simonsson <peter@simonsson.com>",
 	"scripts": {
 		"build": "turbo run build",
 		"dev": "turbo run dev --parallel",

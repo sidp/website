@@ -1,10 +1,8 @@
 {
-	"name": "@sidp/website-frontend",
+	"name": "@sidp/frontend",
 	"private": true,
-	"description": "Website of Peter Simonsson",
 	"license": "UNLICENSED",
 	"version": "2.0.0",
-	"author": "Peter Simonsson <peter@simonsson.com>",
 	"scripts": {
 		"dev": "next dev --port 8830",
 		"build": "next build",
@@ -27,6 +25,7 @@
 		"react-dom": "^19.0.0"
 	},
 	"devDependencies": {
+		"@sidp/tsconfig": "*",
 		"@tailwindcss/postcss": "^4.0.6",
 		"@types/lodash": "^4.17.15",
 		"@types/node": "^20.17.17",

@@ -57,6 +57,9 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
     devDependencies:
+      '@sidp/tsconfig':
+        specifier: '*'
+        version: link:../../packages/tsconfig
       '@tailwindcss/postcss':
         specifier: ^4.0.6
         version: 4.0.6
@@ -124,6 +127,9 @@ importers:
       '@sanity/eslint-config-studio':
         specifier: ^5.0.1
         version: 5.0.1(eslint@9.20.0)(typescript@5.7.3)
+      '@sidp/tsconfig':
+        specifier: '*'
+        version: link:../../packages/tsconfig
       '@types/react':
         specifier: ^18.2.70
         version: 18.3.18
@@ -133,6 +139,8 @@ importers:
       typescript:
         specifier: ^5.4.3
         version: 5.7.3
+
+  packages/tsconfig: {}
 
 packages:
 
@@ -4481,7 +4489,7 @@ packages:
         optional: true
     dependencies:
       '@sanity/client': 6.27.2(debug@4.4.0)
-      '@sanity/types': 3.74.1(@types/react@18.3.18)(debug@4.4.0)
+      '@sanity/types': 3.74.1(@types/react@19.0.8)(debug@4.4.0)
     dev: false
 
   /@sanity/visual-editing@2.13.1(@sanity/client@6.27.2)(@sanity/types@3.74.1)(next@15.1.6)(react-dom@19.0.0)(react-is@19.0.0)(react@19.0.0):
