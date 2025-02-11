@@ -1,5 +1,11 @@
 import imageUrlBuilder from '@sanity/image-url';
-import { PortableText, type PortableTextProps } from 'next-sanity';
+import type { TableProps } from '@sanity/table';
+import {
+	PortableText,
+	type PortableTextBlock,
+	type PortableTextComponents,
+	type PortableTextProps,
+} from 'next-sanity';
 import Prism from 'prismjs';
 import type { FC } from 'react';
 import cx from '../utils/cx';
@@ -16,127 +22,115 @@ type BodyProps = {
 };
 
 const Body: FC<BodyProps> = ({ value }) => {
-	const centerClassName = 'max-w-3xl mx-auto';
-	return (
-		<PortableText
-			value={value}
-			components={{
-				block: {
-					normal: (props) => (
-						<p className={cx(centerClassName, 'mb-4')}>{props.children}</p>
-					),
-					h1: (props) => (
-						<h1 className={cx(centerClassName, 'font-bold')}>
-							{props.children}
-						</h1>
-					),
-					h2: (props) => (
-						<h2 className={cx(centerClassName, 'font-bold')}>
-							{props.children}
-						</h2>
-					),
-					h3: (props) => (
-						<h3 className={cx(centerClassName, 'font-bold')}>
-							{props.children}
-						</h3>
-					),
-				},
-				marks: {
-					link: ({ value, children }) => {
-						const { href } = value;
-						const external = isExternal(href);
-						return external ? (
-							<ExternalLink href={href}>{children}</ExternalLink>
-						) : (
-							<a href={href}>{children}</a>
-						);
-					},
-				},
-				list: {
-					bullet: (props) => (
-						<ul className={cx(centerClassName, 'pl-5')}>{props.children}</ul>
-					),
-					number: (props) => (
-						<ol className={cx(centerClassName, 'pl-5')}>{props.children}</ol>
-					),
-				},
-				listItem: {
-					bullet: ({ children }) => <li className="list-disc">{children}</li>,
-				},
-				types: {
-					image: (props) => {
-						const className = 'my-12 md:my-16 max-sm:-mx-4';
+	return <PortableText value={value} components={components} />;
+};
 
-						const image = (
-							<Image
-								image={props.value}
-								width={props.value.width || 3200}
-								height={props.value.height || 2400}
-								sizes="100vw"
-							/>
-						);
+const centerClassName = 'max-w-3xl mx-auto';
+const components: PortableTextComponents = {
+	block: {
+		normal({ children }: any) {
+			return <p className={cx(centerClassName, 'mb-4')}>{children}</p>;
+		},
+		h1: ({ children }: any) => (
+			<h1 className={cx(centerClassName, 'font-bold')}>{children}</h1>
+		),
+		h2: ({ children }: any) => (
+			<h2 className={cx(centerClassName, 'font-bold')}>{children}</h2>
+		),
+		h3: ({ children }: any) => (
+			<h3 className={cx(centerClassName, 'font-bold')}>{children}</h3>
+		),
+	},
+	marks: {
+		link: ({ value, children }: any) => {
+			const { href } = value;
+			const external = isExternal(href);
+			return external ? (
+				<ExternalLink href={href}>{children}</ExternalLink>
+			) : (
+				<a href={href}>{children}</a>
+			);
+		},
+	},
+	list: {
+		bullet: ({ children }: any) => (
+			<ul className={cx(centerClassName, 'pl-5')}>{children}</ul>
+		),
+		number: ({ children }: any) => (
+			<ol className={cx(centerClassName, 'pl-5')}>{children}</ol>
+		),
+	},
+	listItem: {
+		bullet: ({ children }: any) => <li className="list-disc">{children}</li>,
+	},
+	types: {
+		image: ({ value }: any) => {
+			const className = 'my-12 md:my-16 max-sm:-mx-4';
 
-						if (props.value.caption) {
-							return (
-								<figure className={className}>
-									{image}
-									<figcaption className="mt-2 max-sm:mx-4 text-light-gray">
-										{props.value.caption}
-									</figcaption>
-								</figure>
-							);
-						}
+			const image = (
+				<Image
+					image={value}
+					width={value.width || 3200}
+					height={value.height || 2400}
+					sizes="100vw"
+				/>
+			);
 
-						return <div className={className}>{image}</div>;
-					},
-					videoEmbed: (props) => {
-						return (
-							<VideoEmbed url={props.value.url} className="my-12 md:my-16" />
-						);
-					},
-					code: (props) => {
-						let code = props.value.code;
-						const language = props.value.language;
+			if (value.caption) {
+				return (
+					<figure className={className}>
+						{image}
+						<figcaption className="mt-2 max-sm:mx-4 text-light-gray">
+							{value.caption}
+						</figcaption>
+					</figure>
+				);
+			}
 
-						if (language in Prism.languages) {
-							code = Prism.highlight(
-								props.value.code,
-								Prism.languages[language],
-								language,
-							);
-						}
+			return <div className={className}>{image}</div>;
+		},
+		videoEmbed: ({ value }: any) => {
+			return <VideoEmbed url={value.url} className="my-12 md:my-16" />;
+		},
+		code: ({ value }: any) => {
+			let code = value.code;
+			const language = value.language;
 
-						return (
-							<pre className="font-mono px-2 mb-4 border-l border-gray">
-								<code
-									className={`language-${language}`}
-									dangerouslySetInnerHTML={{ __html: code }}
-								/>
-							</pre>
-						);
-					},
-					table: (props) => {
-						const { rows } = props.value;
-						return (
-							<table className={cx(centerClassName, 'w-full mt-4 mb-6')}>
-								<tbody>
-									{rows.map((row, i) => (
-										<tr key={i} className="border-b border-gray">
-											{row.cells.map((cell, j) => (
-												<td key={j} className="pr-4 py-2">
-													{cell}
-												</td>
-											))}
-										</tr>
-									))}
-								</tbody>
-							</table>
-						);
-					},
-				},
-			}}
-		/>
-	);
+			if (language in Prism.languages) {
+				code = Prism.highlight(value.code, Prism.languages[language], language);
+			}
+
+			return (
+				<pre className="font-mono px-2 mb-4 border-l border-gray">
+					<code
+						className={`language-${language}`}
+						dangerouslySetInnerHTML={{ __html: code }}
+					/>
+				</pre>
+			);
+		},
+		table: ({ value }: TableProps) => {
+			if (!value) {
+				return null;
+			}
+
+			return (
+				<table className={cx(centerClassName, 'w-full mt-4 mb-6')}>
+					<tbody>
+						{value.rows.map((row, i) => (
+							<tr key={i} className="border-b border-gray">
+								{row.cells.map((cell, j) => (
+									<td key={j} className="pr-4 py-2">
+										{cell}
+									</td>
+								))}
+							</tr>
+						))}
+					</tbody>
+				</table>
+			);
+		},
+	},
 };
 
 export default Body;

@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
 
-const getUrlForPage = (pageNo) => `/${pageNo}`;
+const getUrlForPage = (pageNo: number) => `/${pageNo}`;
 
 type PaginationProps = {
 	pageNo: number;
 	pageCount: number;
-	urlForPageNo: (pageNo: number) => string;
+	urlForPageNo: typeof getUrlForPage;
 };
 
 const Pagination: React.FC<PaginationProps> = ({

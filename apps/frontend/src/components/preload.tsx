@@ -13,10 +13,10 @@ const Preload: React.FC<PreloadProps> = ({
 	images2x = [],
 }) => {
 	const baseProps = { rel: 'preload', as: 'image' };
-	const removeData = (src) => !src.match(/^data:/);
+	const removeData = (src: string) => !src.match(/^data:/);
 	const mapper =
 		(media = 'all') =>
-		(src) =>
+		(src: string) =>
 			<link {...baseProps} href={src} media={media} key={src} />;
 	return (
 		<Head>
