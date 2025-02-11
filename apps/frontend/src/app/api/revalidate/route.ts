@@ -28,8 +28,10 @@ export async function POST(req: NextRequest) {
 		revalidateTag(body._type);
 
 		return NextResponse.json({ body });
-	} catch (err) {
-		console.error(err);
-		return new Response(err.message, { status: 500 });
+	} catch (error) {
+		if (error instanceof Error) {
+			console.error(error);
+			return new Response(error.message, { status: 500 });
+		}
 	}
 }
