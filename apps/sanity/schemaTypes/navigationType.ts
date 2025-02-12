@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export const navigationType = defineType({
 	name: 'navigation',
@@ -7,15 +7,16 @@ export const navigationType = defineType({
 	fields: [
 		defineField({
 			name: 'items',
+			title: 'Items',
 			type: 'array',
 			of: [
-				{
+				defineArrayMember({
 					type: 'object',
 					fields: [
-						{ type: 'string', name: 'title' },
-						{ type: 'string', name: 'href' },
+						defineField({ type: 'string', name: 'title' }),
+						defineField({ type: 'string', name: 'href' }),
 					],
-				},
+				}),
 			],
 		}),
 	],

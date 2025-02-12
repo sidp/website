@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export const settingsType = defineType({
 	name: 'settings',
@@ -22,7 +22,7 @@ export const settingsType = defineType({
 			name: 'socialMedia',
 			type: 'array',
 			of: [
-				{
+				defineArrayMember({
 					type: 'object',
 					fields: [
 						defineField({
@@ -38,7 +38,7 @@ export const settingsType = defineType({
 							type: 'string',
 						}),
 					],
-				},
+				}),
 			],
 		}),
 	],

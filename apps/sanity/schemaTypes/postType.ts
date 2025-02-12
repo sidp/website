@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export const postType = defineType({
 	name: 'post',
@@ -55,7 +55,7 @@ export const postType = defineType({
 					type: 'date',
 					hidden: ({ document }) => {
 						if (typeof document?.type !== 'string') return false;
-						return !['project', 'artwork'].includes(document.type);
+						return !['article', 'project', 'artwork'].includes(document.type);
 					},
 				}),
 			],
@@ -65,31 +65,31 @@ export const postType = defineType({
 			type: 'array',
 			options: {},
 			of: [
-				{ type: 'block' },
-				{
+				defineArrayMember({ type: 'block' }),
+				defineArrayMember({
 					type: 'image',
 					fields: [
-						{ name: 'alt', type: 'string' },
-						{ name: 'caption', type: 'string' },
-						{
+						defineField({ name: 'alt', type: 'string' }),
+						defineField({ name: 'caption', type: 'string' }),
+						defineField({
 							name: 'loading',
 							type: 'string',
+							initialValue: 'lazy',
 							options: {
 								list: ['lazy', 'eager'],
-								default: 'lazy',
 								layout: 'radio',
 								direction: 'horizontal',
 							},
-						},
+						}),
 					],
-				},
-				{
+				}),
+				defineArrayMember({
 					name: 'videoEmbed',
 					title: 'Video Embed',
 					type: 'object',
 					fields: [{ name: 'url', type: 'url', title: 'URL' }],
-				},
-				{
+				}),
+				defineArrayMember({
 					type: 'code',
 					options: {
 						language: 'typescript',
@@ -100,11 +100,11 @@ export const postType = defineType({
 							{ title: 'CSS', value: 'css' },
 						],
 					},
-				},
-				{
+				}),
+				defineArrayMember({
 					name: 'table',
 					type: 'table',
-				},
+				}),
 			],
 		}),
 	],
