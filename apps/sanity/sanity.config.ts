@@ -25,7 +25,7 @@ export default defineConfig({
 		structureTool({ structure }),
 		presentationTool({
 			previewUrl: {
-				origin: process.env.SANITY_STUDIO_PREVIEW_ORIGIN,
+				origin: process.env.SANITY_STUDIO_PREVIEW_ORIGIN || '',
 				preview: '/',
 				previewMode: {
 					enable: '/api/draft-mode/enable',

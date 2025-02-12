@@ -9,7 +9,7 @@ export const getDomain = (url: string, fqdn = false) => {
 	const [domain] = url.replace(/https?:\/\//, '').split(/[/?#]/);
 
 	if (!fqdn) {
-		return domain.replace(/^www\./, '');
+		return domain?.replace(/^www\./, '');
 	}
 
 	return domain;

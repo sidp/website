@@ -29,9 +29,10 @@ export async function POST(req: NextRequest) {
 
 		return NextResponse.json({ body });
 	} catch (error) {
-		if (error instanceof Error) {
-			console.error(error);
-			return new Response(error.message, { status: 500 });
-		}
+		console.error(error);
+		return new Response(
+			error instanceof Error ? error.message : 'Unknown error',
+			{ status: 500 },
+		);
 	}
 }

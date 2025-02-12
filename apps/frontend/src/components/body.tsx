@@ -95,7 +95,7 @@ const components: PortableTextComponents = {
 			let code = value.code;
 			const language = value.language;
 
-			if (language in Prism.languages) {
+			if (language in Prism.languages && Prism.languages[language]) {
 				code = Prism.highlight(value.code, Prism.languages[language], language);
 			}
 

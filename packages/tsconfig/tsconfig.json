@@ -15,7 +15,10 @@
 		"strict": true,
 		"verbatimModuleSyntax": true,
 		"forceConsistentCasingInFileNames": true,
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noUncheckedIndexedAccess": true
 	},
 	"exclude": ["node_modules"]
 }

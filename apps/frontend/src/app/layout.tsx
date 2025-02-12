@@ -68,11 +68,12 @@ export default async function RootLayout({
 	return (
 		<html lang="en">
 			<SpeedInsights />
+			{/* @ts-ignore */}
 			<Script data-domain="simonsson.com" src="/js/script.js" />
 			<body className="font-sans leading-relaxed text-sm bg-black text-white antialiased">
 				{navigation && <Header navigation={navigation} />}
 				{children}
-				<Footer links={settings?.socialMedia} />
+				<Footer links={settings?.socialMedia || undefined} />
 				{isEnabled && (
 					<>
 						<VisualEditing />
