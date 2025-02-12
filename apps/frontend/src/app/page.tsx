@@ -6,14 +6,15 @@ import { postListFields } from '../utils/sanity-data';
 import { fetch } from '../utils/sanity-fetch';
 
 export async function generateMetadata(): Promise<Metadata> {
-	const indexMetadataQuery = defineQuery(`
+	const homeMetadataQuery = defineQuery(`
 		*[_type == "settings"][0] {
 			websiteName,
 			description,
 		}
 	`);
-	const settings = await fetch(indexMetadataQuery, undefined, {
-		next: { tags: ['post'] },
+	const settings = await fetch(homeMetadataQuery, {
+		tags: ['post'],
+		stega: false,
 	});
 
 	if (settings === null) {
@@ -55,18 +56,10 @@ export default async function IndexPage() {
 	`);
 
 	const [settings, artworks, posts, projects] = await Promise.all([
-		fetch(homeSettingsQuery, undefined, {
-			next: { tags: ['settings'] },
-		}),
-		fetch(homeArtworksQuery, undefined, {
-			next: { tags: ['post'] },
-		}),
-		fetch(homePostsQuery, undefined, {
-			next: { tags: ['post'] },
-		}),
-		fetch(homeProjectsQuery, undefined, {
-			next: { tags: ['post'] },
-		}),
+		fetch(homeSettingsQuery, { tags: ['settings'] }),
+		fetch(homeArtworksQuery, { tags: ['post'] }),
+		fetch(homePostsQuery, { tags: ['post'] }),
+		fetch(homeProjectsQuery, { tags: ['post'] }),
 	]);
 
 	return (

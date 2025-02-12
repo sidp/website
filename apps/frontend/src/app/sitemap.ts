@@ -12,8 +12,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			slug,
 		}
 	`);
-	const posts = await fetch(sitemapQuery, undefined, {
-		next: { tags: ['post'] },
+
+	const posts = await fetch(sitemapQuery, {
+		tags: ['post'],
+		draftMode: false,
 	});
 
 	const lastModified = posts.reduce((latest, post) => {

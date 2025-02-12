@@ -19,8 +19,8 @@ export async function GET(
 		}
 	`);
 
-	const posts = await fetch(feedQuery, undefined, {
-		next: { tags: ['post'] },
+	const posts = await fetch(feedQuery, {
+		tags: ['post'],
 	});
 
 	const f = new Feed({

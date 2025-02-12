@@ -51,16 +51,16 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const navigationQuery = defineQuery(`*[_type == "navigation"][0]`);
-	const settingsQuery = defineQuery(`*[_type == "settings"][0]`);
+	const navigationQuery = defineQuery(`
+		*[_type == "navigation"][0]
+	`);
+	const layoutSettingsQuery = defineQuery(`
+		*[_type == "settings"][0] { socialMedia }
+	`);
 
 	const [navigation, settings] = await Promise.all([
-		fetch(navigationQuery, undefined, {
-			next: { tags: ['navigation'] },
-		}),
-		fetch(settingsQuery, undefined, {
-			next: { tags: ['settings'] },
-		}),
+		fetch(navigationQuery, { tags: ['navigation'] }),
+		fetch(layoutSettingsQuery, { tags: ['settings'] }),
 	]);
 
 	const { isEnabled } = await draftMode();

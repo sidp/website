@@ -19,8 +19,8 @@ export default async function ProjectsPage() {
 		}
 	`);
 
-	const projects = await fetch(projectsPageQuery, undefined, {
-		next: { tags: ['post'] },
+	const projects = await fetch(projectsPageQuery, {
+		tags: ['post'],
 	});
 
 	if (!projects || projects.length === 0) {

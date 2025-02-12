@@ -18,8 +18,8 @@ export default async function ArtworkPage() {
 			${postListFields}
 		}
 	`);
-	const artworks = await fetch(artworksPageQuery, undefined, {
-		next: { tags: ['post'] },
+	const artworks = await fetch(artworksPageQuery, {
+		tags: ['post'],
 	});
 
 	if (!artworks || artworks.length === 0) {

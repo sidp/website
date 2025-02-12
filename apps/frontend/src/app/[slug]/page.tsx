@@ -37,11 +37,11 @@ export async function generateMetadata(
 		}
 	`);
 
-	const post = await fetch(
-		postMetadataQuery,
-		{ slug },
-		{ next: { tags: ['post'] } },
-	);
+	const post = await fetch(postMetadataQuery, {
+		params: { slug },
+		tags: ['post'],
+		stega: false,
+	});
 
 	if (!post) {
 		return {};
@@ -72,11 +72,10 @@ export default async function PostPage({ params }: PostPageProps) {
 		}
 	`);
 
-	const post = await fetch(
-		postPageQuery,
-		{ slug },
-		{ next: { tags: ['post'] } },
-	);
+	const post = await fetch(postPageQuery, {
+		params: { slug },
+		tags: ['post'],
+	});
 
 	if (!post || !post.type) {
 		notFound();
@@ -88,11 +87,10 @@ export default async function PostPage({ params }: PostPageProps) {
 		}
 	`);
 
-	const posts = await fetch(
-		postPageOtherPostsQuery,
-		{ slug, type: post.type },
-		{ next: { tags: ['post'] } },
-	);
+	const posts = await fetch(postPageOtherPostsQuery, {
+		params: { slug, type: post.type },
+		tags: ['post'],
+	});
 
 	return (
 		<>
@@ -124,8 +122,8 @@ export async function generateStaticParams() {
 	const postsStaticParamsQuery = defineQuery(`
 		*[_type == "post"] { slug }
 	`);
-	const posts = await fetch(postsStaticParamsQuery, undefined, {
-		next: { tags: ['post'] },
+	const posts = await fetch(postsStaticParamsQuery, {
+		tags: ['post'],
 		draftMode: false,
 	});
 

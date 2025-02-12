@@ -2,7 +2,6 @@ import imageUrlBuilder from '@sanity/image-url';
 import type { TableProps } from '@sanity/table';
 import {
 	PortableText,
-	type PortableTextBlock,
 	type PortableTextComponents,
 	type PortableTextProps,
 } from 'next-sanity';

@@ -326,46 +326,21 @@ export type NavigationQueryResult = {
 		_key: string;
 	}>;
 } | null;
-// Variable: settingsQuery
-// Query: *[_type == "settings"][0]
-export type SettingsQueryResult = {
-	_id: string;
-	_type: 'settings';
-	_createdAt: string;
-	_updatedAt: string;
-	_rev: string;
-	websiteName?: string;
-	introMessage?: Array<{
-		children?: Array<{
-			marks?: Array<string>;
-			text?: string;
-			_type: 'span';
-			_key: string;
-		}>;
-		style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal';
-		listItem?: 'bullet' | 'number';
-		markDefs?: Array<{
-			href?: string;
-			_type: 'link';
-			_key: string;
-		}>;
-		level?: number;
-		_type: 'block';
-		_key: string;
-	}>;
-	description?: string;
-	socialMedia?: Array<{
+// Variable: layoutSettingsQuery
+// Query: *[_type == "settings"][0] { socialMedia }
+export type LayoutSettingsQueryResult = {
+	socialMedia: Array<{
 		label?: string;
 		title?: string;
 		url?: string;
 		_key: string;
-	}>;
+	}> | null;
 } | null;
 
 // Source: ../frontend/src/app/page.tsx
-// Variable: indexMetadataQuery
+// Variable: homeMetadataQuery
 // Query: *[_type == "settings"][0] {			websiteName,			description,		}
-export type IndexMetadataQueryResult = {
+export type HomeMetadataQueryResult = {
 	websiteName: string | null;
 	description: string | null;
 } | null;
@@ -392,7 +367,7 @@ export type HomeSettingsQueryResult = {
 	}> | null;
 } | null;
 // Variable: homeArtworksQuery
-// Query: *[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	body[] {		...,		_type == 'image' => {			...,			"width": asset->metadata.dimensions.width,			"height": asset->metadata.dimensions.height,			"color": asset->metadata.palette.dominant.background,		},	}		}
+// Query: *[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},		}
 export type HomeArtworksQueryResult = Array<{
 	_id: string;
 	_type: 'post';
@@ -420,7 +395,13 @@ export type HomeArtworksQueryResult = Array<{
 		client?: string;
 		date?: string;
 	};
-	body: Array<
+	body?: Array<
+		| ({
+				_key: string;
+		  } & Code)
+		| ({
+				_key: string;
+		  } & Table)
 		| {
 				children?: Array<{
 					marks?: Array<string>;
@@ -448,14 +429,6 @@ export type HomeArtworksQueryResult = Array<{
 				_key: string;
 		  }
 		| {
-				_key: string;
-				_type: 'code';
-				language?: string;
-				filename?: string;
-				code?: string;
-				highlightedLines?: Array<number>;
-		  }
-		| {
 				asset?: {
 					_ref: string;
 					_type: 'reference';
@@ -469,28 +442,16 @@ export type HomeArtworksQueryResult = Array<{
 				loading?: 'eager' | 'lazy';
 				_type: 'image';
 				_key: string;
-				width: number | null;
-				height: number | null;
-				color: string | null;
-		  }
-		| {
-				_key: string;
-				_type: 'table';
-				rows?: Array<
-					{
-						_key: string;
-					} & TableRow
-				>;
 		  }
 		| {
 				url?: string;
 				_type: 'videoEmbed';
 				_key: string;
 		  }
-	> | null;
+	>;
 }>;
 // Variable: homePostsQuery
-// Query: *[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	body[] {		...,		_type == 'image' => {			...,			"width": asset->metadata.dimensions.width,			"height": asset->metadata.dimensions.height,			"color": asset->metadata.palette.dominant.background,		},	}		}
+// Query: *[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},		}
 export type HomePostsQueryResult = Array<{
 	_id: string;
 	_type: 'post';
@@ -518,7 +479,13 @@ export type HomePostsQueryResult = Array<{
 		client?: string;
 		date?: string;
 	};
-	body: Array<
+	body?: Array<
+		| ({
+				_key: string;
+		  } & Code)
+		| ({
+				_key: string;
+		  } & Table)
 		| {
 				children?: Array<{
 					marks?: Array<string>;
@@ -546,14 +513,6 @@ export type HomePostsQueryResult = Array<{
 				_key: string;
 		  }
 		| {
-				_key: string;
-				_type: 'code';
-				language?: string;
-				filename?: string;
-				code?: string;
-				highlightedLines?: Array<number>;
-		  }
-		| {
 				asset?: {
 					_ref: string;
 					_type: 'reference';
@@ -567,28 +526,16 @@ export type HomePostsQueryResult = Array<{
 				loading?: 'eager' | 'lazy';
 				_type: 'image';
 				_key: string;
-				width: number | null;
-				height: number | null;
-				color: string | null;
-		  }
-		| {
-				_key: string;
-				_type: 'table';
-				rows?: Array<
-					{
-						_key: string;
-					} & TableRow
-				>;
 		  }
 		| {
 				url?: string;
 				_type: 'videoEmbed';
 				_key: string;
 		  }
-	> | null;
+	>;
 }>;
 // Variable: homeProjectsQuery
-// Query: *[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	body[] {		...,		_type == 'image' => {			...,			"width": asset->metadata.dimensions.width,			"height": asset->metadata.dimensions.height,			"color": asset->metadata.palette.dominant.background,		},	}		}
+// Query: *[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},		}
 export type HomeProjectsQueryResult = Array<{
 	_id: string;
 	_type: 'post';
@@ -616,7 +563,13 @@ export type HomeProjectsQueryResult = Array<{
 		client?: string;
 		date?: string;
 	};
-	body: Array<
+	body?: Array<
+		| ({
+				_key: string;
+		  } & Code)
+		| ({
+				_key: string;
+		  } & Table)
 		| {
 				children?: Array<{
 					marks?: Array<string>;
@@ -644,14 +597,6 @@ export type HomeProjectsQueryResult = Array<{
 				_key: string;
 		  }
 		| {
-				_key: string;
-				_type: 'code';
-				language?: string;
-				filename?: string;
-				code?: string;
-				highlightedLines?: Array<number>;
-		  }
-		| {
 				asset?: {
 					_ref: string;
 					_type: 'reference';
@@ -665,25 +610,13 @@ export type HomeProjectsQueryResult = Array<{
 				loading?: 'eager' | 'lazy';
 				_type: 'image';
 				_key: string;
-				width: number | null;
-				height: number | null;
-				color: string | null;
-		  }
-		| {
-				_key: string;
-				_type: 'table';
-				rows?: Array<
-					{
-						_key: string;
-					} & TableRow
-				>;
 		  }
 		| {
 				url?: string;
 				_type: 'videoEmbed';
 				_key: string;
 		  }
-	> | null;
+	>;
 }>;
 
 // Source: ../frontend/src/app/sitemap.ts
@@ -1192,13 +1125,13 @@ export type FeedQueryResult = Array<{
 import '@sanity/client';
 declare module '@sanity/client' {
 	interface SanityQueries {
-		'*[_type == "navigation"][0]': NavigationQueryResult;
-		'*[_type == "settings"][0]': SettingsQueryResult;
-		'\n\t\t*[_type == "settings"][0] {\n\t\t\twebsiteName,\n\t\t\tdescription,\n\t\t}\n\t': IndexMetadataQueryResult;
+		'\n\t\t*[_type == "navigation"][0]\n\t': NavigationQueryResult;
+		'\n\t\t*[_type == "settings"][0] { socialMedia }\n\t': LayoutSettingsQueryResult;
+		'\n\t\t*[_type == "settings"][0] {\n\t\t\twebsiteName,\n\t\t\tdescription,\n\t\t}\n\t': HomeMetadataQueryResult;
 		'\n\t\t*[_type == "settings"][0] {\n\t\t\tintroMessage\n\t\t}\n\t': HomeSettingsQueryResult;
-		'\n\t\t*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t}\n\n\t\t}\n\t': HomeArtworksQueryResult;
-		'\n\t\t*[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t}\n\n\t\t}\n\t': HomePostsQueryResult;
-		'\n\t\t*[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t}\n\n\t\t}\n\t': HomeProjectsQueryResult;
+		'\n\t\t*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': HomeArtworksQueryResult;
+		'\n\t\t*[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': HomePostsQueryResult;
+		'\n\t\t*[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': HomeProjectsQueryResult;
 		'\n\t\t*[_type == "post"] {\n\t\t\t_updatedAt,\n\t\t\tslug,\n\t\t}\n\t': SitemapQueryResult;
 		'\n\t\t*[_type == "post" && slug.current == $slug][0] {\n\t\t\ttitle,\n\t\t\tdescription,\n\t\t\tslug,\n\t\t\timage { \n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n }\n\t\t}\n\t': PostMetadataQueryResult;
 		'\n\t\t*[_type == "post" && slug.current == $slug][0] {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t}\n\n\t\t}\n\t': PostPageQueryResult;
