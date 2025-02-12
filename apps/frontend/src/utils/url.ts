@@ -1,12 +1,8 @@
-import getConfig from 'next/config';
-
-const { publicRuntimeConfig } = getConfig();
-
 export function absoluteUrl(url = ''): string {
 	if (url.indexOf('http') === 0) {
 		return url;
 	}
-	return publicRuntimeConfig.siteUrl + url;
+	return process.env.NEXT_PUBLIC_APP_URL + url;
 }
 
 export const getDomain = (url: string, fqdn = false) => {
@@ -22,6 +18,7 @@ export const getDomain = (url: string, fqdn = false) => {
 export const isExternal = (url: string): boolean => {
 	return (
 		url.match(/^https?:\/\//) !== null &&
-		!url.startsWith(publicRuntimeConfig.siteUrl)
+		!!process.env.NEXT_PUBLIC_APP_URL &&
+		!url.startsWith(process.env.NEXT_PUBLIC_APP_URL)
 	);
 };

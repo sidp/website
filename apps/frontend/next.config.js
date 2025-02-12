@@ -12,9 +12,6 @@ module.exports = {
 			{ hostname: 'api.simonsson.com' },
 		],
 	},
-	publicRuntimeConfig: {
-		siteUrl: process.env.APP_BASENAME,
-	},
 	async rewrites() {
 		return [
 			{
