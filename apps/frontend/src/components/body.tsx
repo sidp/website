@@ -64,7 +64,11 @@ const components: PortableTextComponents = {
 	},
 	types: {
 		image: ({ value }: any) => {
-			const className = 'my-12 md:my-16 max-sm:-mx-4';
+			let className = 'my-12 md:my-16 max-sm:-mx-4';
+
+			if (value.layout === 'text-width') {
+				className += ' ' + centerClassName;
+			}
 
 			const image = (
 				<Image
@@ -89,7 +93,17 @@ const components: PortableTextComponents = {
 			return <div className={className}>{image}</div>;
 		},
 		videoEmbed: ({ value }: any) => {
-			return <VideoEmbed url={value.url} className="my-12 md:my-16" />;
+			let className = 'my-12 md:my-16';
+
+			if (value.layout === 'text-width') {
+				className += ' ' + centerClassName;
+			}
+
+			return (
+				<div className={className}>
+					<VideoEmbed url={value.url} />
+				</div>
+			);
 		},
 		code: ({ value }: any) => {
 			let code = value.code;
@@ -100,12 +114,14 @@ const components: PortableTextComponents = {
 			}
 
 			return (
-				<pre className="font-mono px-2 mb-4 border-l border-gray">
-					<code
-						className={`language-${language}`}
-						dangerouslySetInnerHTML={{ __html: code }}
-					/>
-				</pre>
+				<div className={centerClassName}>
+					<pre className="font-mono px-2 mx-1 mb-4 border-l border-gray">
+						<code
+							className={`language-${language}`}
+							dangerouslySetInnerHTML={{ __html: code }}
+						/>
+					</pre>
+				</div>
 			);
 		},
 		table: ({ value }: TableProps) => {

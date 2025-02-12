@@ -180,11 +180,13 @@ export type Post = {
 				alt?: string;
 				caption?: string;
 				loading?: 'lazy' | 'eager';
+				layout?: 'full-width' | 'text-width';
 				_type: 'image';
 				_key: string;
 		  }
 		| {
 				url?: string;
+				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
 				_key: string;
 		  }
@@ -440,11 +442,13 @@ export type HomeArtworksQueryResult = Array<{
 				alt?: string;
 				caption?: string;
 				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
 				_type: 'image';
 				_key: string;
 		  }
 		| {
 				url?: string;
+				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
 				_key: string;
 		  }
@@ -524,11 +528,13 @@ export type HomePostsQueryResult = Array<{
 				alt?: string;
 				caption?: string;
 				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
 				_type: 'image';
 				_key: string;
 		  }
 		| {
 				url?: string;
+				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
 				_key: string;
 		  }
@@ -608,11 +614,13 @@ export type HomeProjectsQueryResult = Array<{
 				alt?: string;
 				caption?: string;
 				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
 				_type: 'image';
 				_key: string;
 		  }
 		| {
 				url?: string;
+				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
 				_key: string;
 		  }
@@ -723,6 +731,7 @@ export type PostPageQueryResult = {
 				alt?: string;
 				caption?: string;
 				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
 				_type: 'image';
 				_key: string;
 				width: number | null;
@@ -740,6 +749,7 @@ export type PostPageQueryResult = {
 		  }
 		| {
 				url?: string;
+				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
 				_key: string;
 		  }
@@ -819,11 +829,13 @@ export type PostPageOtherPostsQueryResult = Array<{
 				alt?: string;
 				caption?: string;
 				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
 				_type: 'image';
 				_key: string;
 		  }
 		| {
 				url?: string;
+				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
 				_key: string;
 		  }
@@ -910,11 +922,13 @@ export type ArtworksPageQueryResult = Array<{
 				alt?: string;
 				caption?: string;
 				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
 				_type: 'image';
 				_key: string;
 		  }
 		| {
 				url?: string;
+				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
 				_key: string;
 		  }
@@ -998,6 +1012,7 @@ export type ProjectsPageQueryResult = Array<{
 				alt?: string;
 				caption?: string;
 				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
 				_type: 'image';
 				_key: string;
 				width: number | null;
@@ -1015,6 +1030,7 @@ export type ProjectsPageQueryResult = Array<{
 		  }
 		| {
 				url?: string;
+				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
 				_key: string;
 		  }
@@ -1098,6 +1114,7 @@ export type FeedQueryResult = Array<{
 				alt?: string;
 				caption?: string;
 				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
 				_type: 'image';
 				_key: string;
 				width: number | null;
@@ -1115,6 +1132,7 @@ export type FeedQueryResult = Array<{
 		  }
 		| {
 				url?: string;
+				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
 				_key: string;
 		  }

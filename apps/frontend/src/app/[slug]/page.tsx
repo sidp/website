@@ -101,7 +101,11 @@ export default async function PostPage({ params }: PostPageProps) {
 						agency={post.meta?.agency}
 						client={post.meta?.client}
 						year={
-							post.meta?.date ? dayjs(post.meta.date).format('YYYY') : undefined
+							post.meta?.date
+								? dayjs(post.meta.date).format(
+										post.type === 'article' ? 'YYYY-MM-DD' : 'YYYY',
+								  )
+								: undefined
 						}
 					/>
 				</header>

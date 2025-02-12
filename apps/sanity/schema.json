@@ -1106,6 +1106,23 @@
                     },
                     "optional": true
                   },
+                  "layout": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "union",
+                      "of": [
+                        {
+                          "type": "string",
+                          "value": "full-width"
+                        },
+                        {
+                          "type": "string",
+                          "value": "text-width"
+                        }
+                      ]
+                    },
+                    "optional": true
+                  },
                   "_type": {
                     "type": "objectAttribute",
                     "value": {
@@ -1133,6 +1150,23 @@
                     "type": "objectAttribute",
                     "value": {
                       "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "layout": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "union",
+                      "of": [
+                        {
+                          "type": "string",
+                          "value": "full-width"
+                        },
+                        {
+                          "type": "string",
+                          "value": "text-width"
+                        }
+                      ]
                     },
                     "optional": true
                   },

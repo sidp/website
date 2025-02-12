@@ -81,13 +81,49 @@ export const postType = defineType({
 								direction: 'horizontal',
 							},
 						}),
+						defineField({
+							name: 'layout',
+							type: 'string',
+							initialValue: 'full-width',
+							options: {
+								list: [
+									{ value: 'full-width', title: 'Full width' },
+									{ value: 'text-width', title: 'Text width' },
+								],
+								layout: 'radio',
+								direction: 'horizontal',
+							},
+						}),
 					],
 				}),
 				defineArrayMember({
 					name: 'videoEmbed',
 					title: 'Video Embed',
 					type: 'object',
-					fields: [{ name: 'url', type: 'url', title: 'URL' }],
+					preview: {
+						select: {
+							url: 'url',
+						},
+						prepare: ({ url }) => ({
+							title: `Video Embed: ${url}`,
+						}),
+					},
+					fields: [
+						defineField({ name: 'url', type: 'url', title: 'URL' }),
+						defineField({
+							name: 'layout',
+							type: 'string',
+							initialValue: 'full-width',
+							options: {
+								list: [
+									{ value: 'full-width', title: 'Full width' },
+									{ value: 'text-width', title: 'Text width' },
+								],
+								layout: 'radio',
+								direction: 'horizontal',
+							},
+						}),
+					],
 				}),
 				defineArrayMember({
 					type: 'code',
