@@ -2,7 +2,7 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { codeInput } from '@sanity/code-input';
-import { presentationTool } from 'sanity/presentation';
+import { defineDocuments, presentationTool } from 'sanity/presentation';
 import { table } from '@sanity/table';
 import { media, mediaAssetSource } from 'sanity-plugin-media';
 import { schemaTypes } from './schemaTypes';
@@ -30,6 +30,18 @@ export default defineConfig({
 				previewMode: {
 					enable: '/api/draft-mode/enable',
 				},
+			},
+			resolve: {
+				mainDocuments: defineDocuments([
+					{
+						route: `/`,
+						filter: `_type == "settings" && _id == "settings"`,
+					},
+					{
+						route: `/:slug`,
+						filter: `_type == "post" && slug.current == $slug`,
+					},
+				]),
 			},
 		}),
 		visionTool(),
