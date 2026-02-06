@@ -1,4 +1,3 @@
-import imageUrlBuilder from '@sanity/image-url';
 import type { TableProps } from '@sanity/table';
 import {
 	PortableText,
@@ -8,13 +7,10 @@ import {
 import Prism from 'prismjs';
 import type { FC } from 'react';
 import cx from '../utils/cx';
-import { client } from '../utils/sanity-client';
 import { isExternal } from '../utils/url';
 import ExternalLink from './external-link';
 import Image from './image';
 import VideoEmbed from './video-embed';
-
-const builder = imageUrlBuilder(client);
 
 type BodyProps = {
 	value: PortableTextProps['value'];

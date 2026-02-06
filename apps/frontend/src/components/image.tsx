@@ -31,7 +31,7 @@ const Image: FC<ImageProps> = ({
 
 	return (
 		<NextImage
-			src={builder.image(asset).size(width, height).quality(90).url()}
+			src={builder.image(asset).url()}
 			alt={alt || ''}
 			quality="90"
 			loading={loading}
