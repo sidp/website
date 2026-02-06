@@ -6,7 +6,8 @@
 				"name": "next"
 			}
 		],
-		"module": "esnext"
+		"module": "esnext",
+		"moduleResolution": "bundler"
 	},
 	"include": [
 		"next-env.d.ts",

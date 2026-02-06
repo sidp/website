@@ -1,5 +1,5 @@
 import { parseBody } from 'next-sanity/webhook';
-import { revalidateTag } from 'next/cache';
+import { updateTag } from 'next/cache';
 import { type NextRequest, NextResponse } from 'next/server';
 
 type WebhookPayload = {
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
 			return new Response(JSON.stringify({ message, body }), { status: 400 });
 		}
 
-		revalidateTag(body._type);
+		updateTag(body._type);
 
 		return NextResponse.json({ body });
 	} catch (error) {

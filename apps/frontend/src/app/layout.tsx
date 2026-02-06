@@ -1,6 +1,7 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata, Viewport } from 'next';
-import { defineQuery, VisualEditing } from 'next-sanity';
+import { defineQuery } from 'next-sanity';
+import { VisualEditing } from 'next-sanity/visual-editing';
 import { draftMode } from 'next/headers';
 import Script from 'next/script';
 import * as React from 'react';

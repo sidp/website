@@ -1,4 +1,4 @@
-import imageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
 import NextImage from 'next/image';
 import type { FC } from 'react';
 import type { ImageFields } from '../types';

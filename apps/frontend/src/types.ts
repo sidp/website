@@ -1,4 +1,4 @@
-import type { SanityAsset } from '@sanity/image-url/lib/types/types';
+import type { SanityAsset } from '@sanity/image-url';
 import type { SanityImageCrop, SanityImageHotspot } from '../sanity.types';
 import type { SanityReference } from 'next-sanity';
 
