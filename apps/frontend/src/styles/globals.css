@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './prism-styles.css';
 
 @theme {
 	--font-sans: 'iA Writer Duo', monospace;
@@ -10,8 +11,6 @@
 	--color-white: #eee;
 	--color-blue: var(--color-blue);
 }
-
-@import url('./prism-styles.css');
 
 :is(p, li) a {
 	text-decoration: underline;

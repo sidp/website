@@ -1,4 +1,4 @@
-import imageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
 import dayjs from 'dayjs';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { defineQuery } from 'next-sanity';
