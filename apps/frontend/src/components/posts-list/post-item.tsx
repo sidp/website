@@ -25,7 +25,7 @@ const PostItem: React.FC<PostItemProps> = ({ post, loading = 'lazy' }) => {
 					sizes={`(max-width: 1024px) 100vw, ${
 						post.type === 'project' ? '33vw' : '50vw'
 					}`}
-					className="aspect-[4/3]"
+					className="aspect-[4/3] object-cover"
 				/>
 			)}
 			<div className="max-sm:mx-4">
