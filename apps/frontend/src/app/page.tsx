@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 		}
 	`);
 	const settings = await fetch(homeMetadataQuery, {
-		tags: ['post'],
+		tags: ['settings'],
 		stega: false,
 	});
 

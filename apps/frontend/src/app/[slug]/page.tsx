@@ -132,6 +132,6 @@ export async function generateStaticParams() {
 	});
 
 	return posts
-		.map((post) => ({ params: { slug: post.slug?.current } }))
-		.filter(({ params }) => Boolean(params.slug));
+		.map((post) => ({ slug: post.slug?.current }))
+		.filter((params) => Boolean(params.slug));
 }

@@ -21,6 +21,7 @@ export async function GET(
 
 	const posts = await fetch(feedQuery, {
 		tags: ['post'],
+		draftMode: false,
 	});
 
 	const f = new Feed({

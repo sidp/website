@@ -19,7 +19,7 @@ export async function fetch<R = Any, const G extends string = string>(
 			: (await nextDraftMode()).isEnabled;
 
 	const perspective = isEnabled ? 'drafts' : 'published';
-	const stega = options?.stega || isEnabled;
+	const stega = options?.stega ?? isEnabled;
 
 	return client.fetch(query, params, { perspective, stega, next: { tags } });
 }
