@@ -11,3 +11,16 @@ export type ImageFields = {
 	loading?: 'lazy' | 'eager' | null;
 	color?: string | null;
 };
+
+/** Fields corresponding to the video block projection in sanity-data.ts */
+export type VideoFields = {
+	url?: string | null;
+	poster?: {
+		asset?: SanityReference | SanityAsset | null;
+		width?: number | null;
+		height?: number | null;
+	} | null;
+	alt?: string | null;
+	autoplay?: boolean | null;
+	loading?: 'lazy' | 'eager' | null;
+};

@@ -10,6 +10,7 @@ import cx from '../utils/cx';
 import { isExternal } from '../utils/url';
 import ExternalLink from './external-link';
 import Image from './image';
+import Video from './video';
 import VideoEmbed from './video-embed';
 
 type BodyProps = {
@@ -100,6 +101,40 @@ const components: PortableTextComponents = {
 					<VideoEmbed url={value.url} />
 				</div>
 			);
+		},
+		video: ({ value }: any) => {
+			if (!value.url) {
+				return null;
+			}
+
+			let className = 'my-12 md:my-16 max-sm:-mx-4';
+
+			if (value.layout === 'text-width') {
+				className += ' ' + centerClassName;
+			}
+
+			const video = (
+				<Video
+					url={value.url}
+					poster={value.poster}
+					alt={value.alt}
+					autoplay={value.autoplay}
+					loading={value.loading}
+				/>
+			);
+
+			if (value.caption) {
+				return (
+					<figure className={className}>
+						{video}
+						<figcaption className="mt-2 max-sm:mx-4 text-light-gray">
+							{value.caption}
+						</figcaption>
+					</figure>
+				);
+			}
+
+			return <div className={className}>{video}</div>;
 		},
 		code: ({ value }: any) => {
 			let code = value.code;

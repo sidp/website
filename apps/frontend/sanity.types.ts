@@ -67,6 +67,13 @@ export type SanityImageAssetReference = {
 	[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
 };
 
+export type SanityFileAssetReference = {
+	_ref: string;
+	_type: 'reference';
+	_weak?: boolean;
+	[internalGroqTypeReferenceTo]?: 'sanity.fileAsset';
+};
+
 export type Post = {
 	_id: string;
 	_type: 'post';
@@ -132,6 +139,27 @@ export type Post = {
 				url?: string;
 				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
+				_key: string;
+		  }
+		| {
+				file?: {
+					asset?: SanityFileAssetReference;
+					media?: unknown;
+					_type: 'file';
+				};
+				poster?: {
+					asset?: SanityImageAssetReference;
+					media?: unknown;
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					_type: 'image';
+				};
+				caption?: string;
+				alt?: string;
+				autoplay?: boolean;
+				loading?: 'lazy' | 'eager';
+				layout?: 'full-width' | 'text-width';
+				_type: 'video';
 				_key: string;
 		  }
 		| ({
@@ -297,6 +325,7 @@ export type AllSanitySchemaTypes =
 	| Settings
 	| Navigation
 	| SanityImageAssetReference
+	| SanityFileAssetReference
 	| Post
 	| SanityImageCrop
 	| SanityImageHotspot
@@ -334,7 +363,7 @@ export type PostMetadataQueryResult = {
 
 // Source: ../frontend/src/app/[slug]/page.tsx
 // Variable: postPageQuery
-// Query: *[_type == "post" && slug.current == $slug][0] {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	body[] {		...,		_type == 'image' => {			...,			"width": asset->metadata.dimensions.width,			"height": asset->metadata.dimensions.height,			"color": asset->metadata.palette.dominant.background,		},	}		}
+// Query: *[_type == "post" && slug.current == $slug][0] {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	body[] {		...,		_type == 'image' => {			...,			"width": asset->metadata.dimensions.width,			"height": asset->metadata.dimensions.height,			"color": asset->metadata.palette.dominant.background,		},		_type == 'video' => {			...,			"url": file.asset->url,			poster {				asset,				"width": asset->metadata.dimensions.width,				"height": asset->metadata.dimensions.height,			},		},	}		}
 export type PostPageQueryResult = {
 	_id: string;
 	_type: 'post';
@@ -417,6 +446,26 @@ export type PostPageQueryResult = {
 				>;
 		  }
 		| {
+				file?: {
+					asset?: SanityFileAssetReference;
+					media?: unknown;
+					_type: 'file';
+				};
+				poster: {
+					asset: SanityImageAssetReference | null;
+					width: number | null;
+					height: number | null;
+				} | null;
+				caption?: string;
+				alt?: string;
+				autoplay?: boolean;
+				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
+				_type: 'video';
+				_key: string;
+				url: string | null;
+		  }
+		| {
 				url?: string;
 				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
@@ -496,6 +545,27 @@ export type PostPageOtherPostsQueryResult = Array<{
 				_key: string;
 		  }
 		| {
+				file?: {
+					asset?: SanityFileAssetReference;
+					media?: unknown;
+					_type: 'file';
+				};
+				poster?: {
+					asset?: SanityImageAssetReference;
+					media?: unknown;
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					_type: 'image';
+				};
+				caption?: string;
+				alt?: string;
+				autoplay?: boolean;
+				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
+				_type: 'video';
+				_key: string;
+		  }
+		| {
 				url?: string;
 				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
@@ -513,7 +583,7 @@ export type PostsStaticParamsQueryResult = Array<{
 
 // Source: ../frontend/src/app/api/feed/[format]/route.ts
 // Variable: feedQuery
-// Query: *[_type == "post" && type != "page"][0...16] | order(_createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	body[] {		...,		_type == 'image' => {			...,			"width": asset->metadata.dimensions.width,			"height": asset->metadata.dimensions.height,			"color": asset->metadata.palette.dominant.background,		},	}		}
+// Query: *[_type == "post" && type != "page"][0...16] | order(_createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	body[] {		...,		_type == 'image' => {			...,			"width": asset->metadata.dimensions.width,			"height": asset->metadata.dimensions.height,			"color": asset->metadata.palette.dominant.background,		},		_type == 'video' => {			...,			"url": file.asset->url,			poster {				asset,				"width": asset->metadata.dimensions.width,				"height": asset->metadata.dimensions.height,			},		},	}		}
 export type FeedQueryResult = Array<{
 	_id: string;
 	_type: 'post';
@@ -596,6 +666,26 @@ export type FeedQueryResult = Array<{
 				>;
 		  }
 		| {
+				file?: {
+					asset?: SanityFileAssetReference;
+					media?: unknown;
+					_type: 'file';
+				};
+				poster: {
+					asset: SanityImageAssetReference | null;
+					width: number | null;
+					height: number | null;
+				} | null;
+				caption?: string;
+				alt?: string;
+				autoplay?: boolean;
+				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
+				_type: 'video';
+				_key: string;
+				url: string | null;
+		  }
+		| {
 				url?: string;
 				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
@@ -672,6 +762,27 @@ export type ArtworksPageQueryResult = Array<{
 				loading?: 'eager' | 'lazy';
 				layout?: 'full-width' | 'text-width';
 				_type: 'image';
+				_key: string;
+		  }
+		| {
+				file?: {
+					asset?: SanityFileAssetReference;
+					media?: unknown;
+					_type: 'file';
+				};
+				poster?: {
+					asset?: SanityImageAssetReference;
+					media?: unknown;
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					_type: 'image';
+				};
+				caption?: string;
+				alt?: string;
+				autoplay?: boolean;
+				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
+				_type: 'video';
 				_key: string;
 		  }
 		| {
@@ -814,6 +925,27 @@ export type HomeArtworksQueryResult = Array<{
 				_key: string;
 		  }
 		| {
+				file?: {
+					asset?: SanityFileAssetReference;
+					media?: unknown;
+					_type: 'file';
+				};
+				poster?: {
+					asset?: SanityImageAssetReference;
+					media?: unknown;
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					_type: 'image';
+				};
+				caption?: string;
+				alt?: string;
+				autoplay?: boolean;
+				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
+				_type: 'video';
+				_key: string;
+		  }
+		| {
 				url?: string;
 				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
@@ -890,6 +1022,27 @@ export type HomePostsQueryResult = Array<{
 				loading?: 'eager' | 'lazy';
 				layout?: 'full-width' | 'text-width';
 				_type: 'image';
+				_key: string;
+		  }
+		| {
+				file?: {
+					asset?: SanityFileAssetReference;
+					media?: unknown;
+					_type: 'file';
+				};
+				poster?: {
+					asset?: SanityImageAssetReference;
+					media?: unknown;
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					_type: 'image';
+				};
+				caption?: string;
+				alt?: string;
+				autoplay?: boolean;
+				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
+				_type: 'video';
 				_key: string;
 		  }
 		| {
@@ -972,6 +1125,27 @@ export type HomeProjectsQueryResult = Array<{
 				_key: string;
 		  }
 		| {
+				file?: {
+					asset?: SanityFileAssetReference;
+					media?: unknown;
+					_type: 'file';
+				};
+				poster?: {
+					asset?: SanityImageAssetReference;
+					media?: unknown;
+					hotspot?: SanityImageHotspot;
+					crop?: SanityImageCrop;
+					_type: 'image';
+				};
+				caption?: string;
+				alt?: string;
+				autoplay?: boolean;
+				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
+				_type: 'video';
+				_key: string;
+		  }
+		| {
 				url?: string;
 				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
@@ -982,7 +1156,7 @@ export type HomeProjectsQueryResult = Array<{
 
 // Source: ../frontend/src/app/projects/page.tsx
 // Variable: projectsPageQuery
-// Query: *[_type == "post" && type == "project"] | order(meta.date desc, _createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	body[] {		...,		_type == 'image' => {			...,			"width": asset->metadata.dimensions.width,			"height": asset->metadata.dimensions.height,			"color": asset->metadata.palette.dominant.background,		},	}		}
+// Query: *[_type == "post" && type == "project"] | order(meta.date desc, _createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	body[] {		...,		_type == 'image' => {			...,			"width": asset->metadata.dimensions.width,			"height": asset->metadata.dimensions.height,			"color": asset->metadata.palette.dominant.background,		},		_type == 'video' => {			...,			"url": file.asset->url,			poster {				asset,				"width": asset->metadata.dimensions.width,				"height": asset->metadata.dimensions.height,			},		},	}		}
 export type ProjectsPageQueryResult = Array<{
 	_id: string;
 	_type: 'post';
@@ -1065,6 +1239,26 @@ export type ProjectsPageQueryResult = Array<{
 				>;
 		  }
 		| {
+				file?: {
+					asset?: SanityFileAssetReference;
+					media?: unknown;
+					_type: 'file';
+				};
+				poster: {
+					asset: SanityImageAssetReference | null;
+					width: number | null;
+					height: number | null;
+				} | null;
+				caption?: string;
+				alt?: string;
+				autoplay?: boolean;
+				loading?: 'eager' | 'lazy';
+				layout?: 'full-width' | 'text-width';
+				_type: 'video';
+				_key: string;
+				url: string | null;
+		  }
+		| {
 				url?: string;
 				layout?: 'full-width' | 'text-width';
 				_type: 'videoEmbed';
@@ -1086,10 +1280,10 @@ import '@sanity/client';
 declare module '@sanity/client' {
 	interface SanityQueries {
 		'\n\t\t*[_type == "post" && slug.current == $slug][0] {\n\t\t\ttitle,\n\t\t\tdescription,\n\t\t\tslug,\n\t\t\timage { \n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n }\n\t\t}\n\t': PostMetadataQueryResult;
-		'\n\t\t*[_type == "post" && slug.current == $slug][0] {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t}\n\n\t\t}\n\t': PostPageQueryResult;
+		'\n\t\t*[_type == "post" && slug.current == $slug][0] {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t\t_type == \'video\' => {\n\t\t\t...,\n\t\t\t"url": file.asset->url,\n\t\t\tposter {\n\t\t\t\tasset,\n\t\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t},\n\t\t},\n\t}\n\n\t\t}\n\t': PostPageQueryResult;
 		'\n\t\t*[_type == "post" && slug.current != $slug && type == $type][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': PostPageOtherPostsQueryResult;
 		'\n\t\t*[_type == "post"] { slug }\n\t': PostsStaticParamsQueryResult;
-		'\n\t\t*[_type == "post" && type != "page"][0...16] | order(_createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t}\n\n\t\t}\n\t': FeedQueryResult;
+		'\n\t\t*[_type == "post" && type != "page"][0...16] | order(_createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t\t_type == \'video\' => {\n\t\t\t...,\n\t\t\t"url": file.asset->url,\n\t\t\tposter {\n\t\t\t\tasset,\n\t\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t},\n\t\t},\n\t}\n\n\t\t}\n\t': FeedQueryResult;
 		'\n\t\t*[_type == "post" && type == "artwork"] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': ArtworksPageQueryResult;
 		'\n\t\t*[_type == "navigation"][0]\n\t': NavigationQueryResult;
 		'\n\t\t*[_type == "settings"][0] { socialMedia }\n\t': LayoutSettingsQueryResult;
@@ -1098,7 +1292,7 @@ declare module '@sanity/client' {
 		'\n\t\t*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': HomeArtworksQueryResult;
 		'\n\t\t*[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': HomePostsQueryResult;
 		'\n\t\t*[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': HomeProjectsQueryResult;
-		'\n\t\t*[_type == "post" && type == "project"] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t}\n\n\t\t}\n\t': ProjectsPageQueryResult;
+		'\n\t\t*[_type == "post" && type == "project"] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t\t_type == \'video\' => {\n\t\t\t...,\n\t\t\t"url": file.asset->url,\n\t\t\tposter {\n\t\t\t\tasset,\n\t\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t},\n\t\t},\n\t}\n\n\t\t}\n\t': ProjectsPageQueryResult;
 		'\n\t\t*[_type == "post"] {\n\t\t\t_updatedAt,\n\t\t\tslug,\n\t\t}\n\t': SitemapQueryResult;
 	}
 }
