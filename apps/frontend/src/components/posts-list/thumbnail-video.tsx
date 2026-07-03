@@ -81,7 +81,7 @@ const ThumbnailVideo: FC<ThumbnailVideoProps> = ({
 	}
 
 	const posterUrl = image.asset
-		? builder.image(image.asset).width(1600).url()
+		? builder.image(image.asset).width(800).url()
 		: undefined;
 
 	return (

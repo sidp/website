@@ -34,7 +34,7 @@ const Video: FC<VideoProps> = ({
 			: '16 / 9';
 
 	const posterUrl = poster?.asset
-		? builder.image(poster.asset).width(1920).url()
+		? builder.image(poster.asset).width(1280).url()
 		: undefined;
 
 	const shouldAutoplay = autoplay && !reducedMotion;
