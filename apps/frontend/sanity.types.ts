@@ -90,6 +90,11 @@ export type Post = {
 		crop?: SanityImageCrop;
 		_type: 'image';
 	};
+	thumbnailVideo?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
 	description?: string;
 	meta?: {
 		agency?: string;
@@ -380,6 +385,11 @@ export type PostPageQueryResult = {
 		height: number | null;
 		color: string | null;
 	} | null;
+	thumbnailVideo?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
 	description?: string;
 	meta?: {
 		agency?: string;
@@ -493,6 +503,11 @@ export type PostPageOtherPostsQueryResult = Array<{
 		height: number | null;
 		color: string | null;
 	} | null;
+	thumbnailVideo?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
 	description?: string;
 	meta?: {
 		agency?: string;
@@ -600,6 +615,11 @@ export type FeedQueryResult = Array<{
 		height: number | null;
 		color: string | null;
 	} | null;
+	thumbnailVideo?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
 	description?: string;
 	meta?: {
 		agency?: string;
@@ -713,6 +733,11 @@ export type ArtworksPageQueryResult = Array<{
 		height: number | null;
 		color: string | null;
 	} | null;
+	thumbnailVideo?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
 	description?: string;
 	meta?: {
 		agency?: string;
@@ -856,7 +881,7 @@ export type HomeSettingsQueryResult = {
 
 // Source: ../frontend/src/app/page.tsx
 // Variable: homeArtworksQuery
-// Query: *[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {				...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},		}
+// Query: *[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {					...,	image {			asset,	alt,	"width": asset->metadata.dimensions.width,	"height": asset->metadata.dimensions.height,	"color": asset->metadata.palette.dominant.background,	},	"thumbnailVideoUrl": thumbnailVideo.asset->url,		}
 export type HomeArtworksQueryResult = Array<{
 	_id: string;
 	_type: 'post';
@@ -873,6 +898,11 @@ export type HomeArtworksQueryResult = Array<{
 		height: number | null;
 		color: string | null;
 	} | null;
+	thumbnailVideo?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
 	description?: string;
 	meta?: {
 		agency?: string;
@@ -952,6 +982,7 @@ export type HomeArtworksQueryResult = Array<{
 				_key: string;
 		  }
 	>;
+	thumbnailVideoUrl: string | null;
 }>;
 
 // Source: ../frontend/src/app/page.tsx
@@ -973,6 +1004,11 @@ export type HomePostsQueryResult = Array<{
 		height: number | null;
 		color: string | null;
 	} | null;
+	thumbnailVideo?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
 	description?: string;
 	meta?: {
 		agency?: string;
@@ -1073,6 +1109,11 @@ export type HomeProjectsQueryResult = Array<{
 		height: number | null;
 		color: string | null;
 	} | null;
+	thumbnailVideo?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
 	description?: string;
 	meta?: {
 		agency?: string;
@@ -1173,6 +1214,11 @@ export type ProjectsPageQueryResult = Array<{
 		height: number | null;
 		color: string | null;
 	} | null;
+	thumbnailVideo?: {
+		asset?: SanityFileAssetReference;
+		media?: unknown;
+		_type: 'file';
+	};
 	description?: string;
 	meta?: {
 		agency?: string;
@@ -1289,7 +1335,7 @@ declare module '@sanity/client' {
 		'\n\t\t*[_type == "settings"][0] { socialMedia }\n\t': LayoutSettingsQueryResult;
 		'\n\t\t*[_type == "settings"][0] {\n\t\t\twebsiteName,\n\t\t\tdescription,\n\t\t}\n\t': HomeMetadataQueryResult;
 		'\n\t\t*[_type == "settings"][0] {\n\t\t\tintroMessage\n\t\t}\n\t': HomeSettingsQueryResult;
-		'\n\t\t*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': HomeArtworksQueryResult;
+		'\n\t\t*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t"thumbnailVideoUrl": thumbnailVideo.asset->url,\n\n\t\t}\n\t': HomeArtworksQueryResult;
 		'\n\t\t*[_type == "post" && type == "article"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': HomePostsQueryResult;
 		'\n\t\t*[_type == "post" && type == "project"][0...16] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\n\t\t}\n\t': HomeProjectsQueryResult;
 		'\n\t\t*[_type == "post" && type == "project"] | order(meta.date desc, _createdAt desc) {\n\t\t\t\n\t...,\n\timage {\n\t\t\n\tasset,\n\talt,\n\t"width": asset->metadata.dimensions.width,\n\t"height": asset->metadata.dimensions.height,\n\t"color": asset->metadata.palette.dominant.background,\n\n\t},\n\tbody[] {\n\t\t...,\n\t\t_type == \'image\' => {\n\t\t\t...,\n\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t"color": asset->metadata.palette.dominant.background,\n\t\t},\n\t\t_type == \'video\' => {\n\t\t\t...,\n\t\t\t"url": file.asset->url,\n\t\t\tposter {\n\t\t\t\tasset,\n\t\t\t\t"width": asset->metadata.dimensions.width,\n\t\t\t\t"height": asset->metadata.dimensions.height,\n\t\t\t},\n\t\t},\n\t}\n\n\t\t}\n\t': ProjectsPageQueryResult;

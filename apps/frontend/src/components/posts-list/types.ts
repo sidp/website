@@ -4,6 +4,7 @@ import type { ImageFields } from '../../types';
 export type PostItem = {
 	_id: string;
 	image?: ImageFields | null;
+	thumbnailVideoUrl?: string | null;
 	type?: string | null;
 	slug?: Slug;
 	title?: string;

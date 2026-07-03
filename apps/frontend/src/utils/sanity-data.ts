@@ -37,3 +37,8 @@ export const postListFields = `
 		${imageFields}
 	},
 `;
+
+export const homeArtworkListFields = `
+	${postListFields}
+	"thumbnailVideoUrl": thumbnailVideo.asset->url,
+`;

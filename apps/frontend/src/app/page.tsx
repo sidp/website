@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { defineQuery, PortableText } from 'next-sanity';
 import PostsList from '../components/posts-list';
 import Section from '../components/section';
-import { postListFields } from '../utils/sanity-data';
+import { homeArtworkListFields, postListFields } from '../utils/sanity-data';
 import { fetch } from '../utils/sanity-fetch';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -39,7 +39,7 @@ export default async function IndexPage() {
 
 	const homeArtworksQuery = defineQuery(`
 		*[_type == "post" && type == "artwork"][0...16] | order(meta.date desc, _createdAt desc) {
-			${postListFields}
+			${homeArtworkListFields}
 		}
 	`);
 

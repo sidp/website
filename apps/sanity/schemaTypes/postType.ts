@@ -32,6 +32,14 @@ export const postType = defineType({
 			type: 'image',
 		}),
 		defineField({
+			name: 'thumbnailVideo',
+			title: 'Thumbnail video',
+			type: 'file',
+			options: { accept: 'video/*' },
+			description:
+				'Animates in the home page artwork list only; the image is shown everywhere else and as the still frame.',
+		}),
+		defineField({
 			name: 'description',
 			type: 'text',
 			rows: 4,
