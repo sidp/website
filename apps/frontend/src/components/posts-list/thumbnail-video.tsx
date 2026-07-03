@@ -1,10 +1,12 @@
 'use client';
 
 import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
-import { type FC, useEffect, useRef, useState } from 'react';
+import { type FC, useRef } from 'react';
 import type { ImageFields } from '../../types';
 import cx from '../../utils/cx';
 import { client } from '../../utils/sanity-client';
+import { usePlayInView } from '../../utils/use-play-in-view';
+import { useReducedMotion } from '../../utils/use-reduced-motion';
 import Image from '../image';
 
 const builder = imageUrlBuilder(client);
@@ -25,49 +27,11 @@ const ThumbnailVideo: FC<ThumbnailVideoProps> = ({
 	className,
 }) => {
 	const ref = useRef<HTMLVideoElement>(null);
-	const [motionOk, setMotionOk] = useState(false);
+	const reducedMotion = useReducedMotion();
 
-	useEffect(() => {
-		const query = window.matchMedia('(prefers-reduced-motion: reduce)');
-		setMotionOk(!query.matches);
+	usePlayInView(ref, !reducedMotion);
 
-		const onChange = (event: MediaQueryListEvent) =>
-			setMotionOk(!event.matches);
-		query.addEventListener('change', onChange);
-
-		return () => query.removeEventListener('change', onChange);
-	}, []);
-
-	useEffect(() => {
-		const video = ref.current;
-
-		if (!video || !motionOk) {
-			return;
-		}
-
-		video.muted = true;
-
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (!entry) {
-					return;
-				}
-
-				if (entry.isIntersecting) {
-					video.play().catch(() => {});
-				} else {
-					video.pause();
-				}
-			},
-			{ threshold: 0 },
-		);
-
-		observer.observe(video);
-
-		return () => observer.disconnect();
-	}, [motionOk]);
-
-	if (!motionOk) {
+	if (reducedMotion) {
 		return (
 			<Image
 				image={image}

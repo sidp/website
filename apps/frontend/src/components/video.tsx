@@ -1,10 +1,12 @@
 'use client';
 
 import { createImageUrlBuilder as imageUrlBuilder } from '@sanity/image-url';
-import { type FC, useEffect, useRef, useState } from 'react';
+import { type FC, useRef } from 'react';
 import type { VideoFields } from '../types';
 import cx from '../utils/cx';
 import { client } from '../utils/sanity-client';
+import { usePlayInView } from '../utils/use-play-in-view';
+import { useReducedMotion } from '../utils/use-reduced-motion';
 
 const builder = imageUrlBuilder(client);
 
@@ -26,7 +28,7 @@ const Video: FC<VideoProps> = ({
 	className = '',
 }) => {
 	const ref = useRef<HTMLVideoElement>(null);
-	const [reducedMotion, setReducedMotion] = useState(false);
+	const reducedMotion = useReducedMotion();
 
 	const aspectRatio =
 		poster?.width && poster?.height
@@ -39,50 +41,7 @@ const Video: FC<VideoProps> = ({
 
 	const shouldAutoplay = autoplay && !reducedMotion;
 
-	useEffect(() => {
-		const query = window.matchMedia('(prefers-reduced-motion: reduce)');
-		setReducedMotion(query.matches);
-
-		const onChange = (event: MediaQueryListEvent) =>
-			setReducedMotion(event.matches);
-		query.addEventListener('change', onChange);
-
-		return () => query.removeEventListener('change', onChange);
-	}, []);
-
-	useEffect(() => {
-		const video = ref.current;
-
-		if (!video) {
-			return;
-		}
-
-		if (!shouldAutoplay) {
-			video.pause();
-			return;
-		}
-
-		video.muted = true;
-
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (!entry) {
-					return;
-				}
-
-				if (entry.isIntersecting) {
-					video.play().catch(() => {});
-				} else {
-					video.pause();
-				}
-			},
-			{ threshold: 0 },
-		);
-
-		observer.observe(video);
-
-		return () => observer.disconnect();
-	}, [shouldAutoplay]);
+	usePlayInView(ref, shouldAutoplay);
 
 	return (
 		<video
