@@ -32,6 +32,14 @@ export const postType = defineType({
 			type: 'image',
 		}),
 		defineField({
+			name: 'thumbnailVideo',
+			title: 'Thumbnail video',
+			type: 'file',
+			options: { accept: 'video/*' },
+			description:
+				'Animates in the home page artwork list only; the image is shown everywhere else and as the still frame.',
+		}),
+		defineField({
 			name: 'description',
 			type: 'text',
 			rows: 4,
@@ -110,6 +118,69 @@ export const postType = defineType({
 					},
 					fields: [
 						defineField({ name: 'url', type: 'url', title: 'URL' }),
+						defineField({
+							name: 'layout',
+							type: 'string',
+							initialValue: 'full-width',
+							options: {
+								list: [
+									{ value: 'full-width', title: 'Full width' },
+									{ value: 'text-width', title: 'Text width' },
+								],
+								layout: 'radio',
+								direction: 'horizontal',
+							},
+						}),
+					],
+				}),
+				defineArrayMember({
+					name: 'video',
+					title: 'Video',
+					type: 'object',
+					preview: {
+						select: {
+							caption: 'caption',
+							media: 'poster',
+						},
+						prepare: ({ caption, media }) => ({
+							title: caption || 'Video',
+							media,
+						}),
+					},
+					fields: [
+						defineField({
+							name: 'file',
+							title: 'Video file',
+							type: 'file',
+							options: { accept: 'video/*' },
+							validation: (rule) => rule.required(),
+						}),
+						defineField({
+							name: 'poster',
+							title: 'Poster image',
+							type: 'image',
+							description:
+								'Sets the aspect ratio, falling back to 16:9 if omitted.',
+						}),
+						defineField({ name: 'caption', type: 'string' }),
+						defineField({ name: 'alt', type: 'string' }),
+						defineField({
+							name: 'autoplay',
+							type: 'boolean',
+							initialValue: true,
+							description:
+								'When off, the video shows controls and plays with sound.',
+						}),
+						defineField({
+							name: 'loading',
+							type: 'string',
+							initialValue: 'lazy',
+							options: {
+								list: ['lazy', 'eager'],
+								layout: 'radio',
+								direction: 'horizontal',
+							},
+						}),
 						defineField({
 							name: 'layout',
 							type: 'string',
